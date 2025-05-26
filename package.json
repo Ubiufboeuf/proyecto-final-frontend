@@ -1,0 +1,17 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "dev": "pnpm tailwindcss --watch -i input.css -o output.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "packageManager": "pnpm@10.11.0",
+  "dependencies": {
+    "tailwindcss": "4.1.7",
+    "@tailwindcss/cli": "4.1.7"
+  }
+}
