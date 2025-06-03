@@ -11,3 +11,9 @@ body {
     color-scheme: dark;
   }
 }
+
+@custom-variant touch {
+  @media (pointer: coarse) {
+    @slot;
+  }
+}
