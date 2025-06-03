@@ -1,7 +1,0 @@
-@import "tailwindcss";
-
-@custom-variant touch {
-  @media (pointer: coarse) {
-    @slot;
-  }  
-}
