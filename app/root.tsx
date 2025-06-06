@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useEffect } from 'react';
 
 // export const links: Route.LinksFunction = () => [];
 
