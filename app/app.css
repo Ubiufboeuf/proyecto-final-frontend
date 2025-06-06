@@ -17,3 +17,9 @@ body {
     @slot;
   }
 }
+
+@custom-variant mobile {
+  &:where(.is-mobile-ua *) {
+    @slot;
+  }
+}
