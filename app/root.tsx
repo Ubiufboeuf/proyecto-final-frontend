@@ -4,22 +4,22 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
-} from "react-router";
+  ScrollRestoration
+} from 'react-router'
 
-import type { Route } from "./+types/root";
-import "./app.css";
-import { useEffect } from 'react';
+import type { Route } from './+types/root'
+import './app.css'
+import { useEffect } from 'react'
 
-// export const links: Route.LinksFunction = () => [];
+// export const links: Route.LinksFunction = () => []
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout ({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     detectDeviceType()
   }, [])
 
-  function detectDeviceType() {
+  function detectDeviceType () {
     const ua = navigator.userAgent
     const body = document.body
   
@@ -35,10 +35,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <html lang="es">
+    <html lang='es'>
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
         <Links />
       </head>
@@ -48,38 +48,38 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  );
+  )
 }
 
-export default function App() {
-  return <Outlet />;
+export default function App () {
+  return <Outlet />
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oh no!";
-  let details = "Ocurrió un error inesperado.";
-  let stack: string | undefined;
+export function ErrorBoundary ({ error }: Route.ErrorBoundaryProps) {
+  let message = 'Oh no!'
+  let details = 'Ocurrió un error inesperado.'
+  let stack: string | undefined
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? '404' : 'Error'
     details =
       error.status === 404
-        ? "No se encontró la página solicitada."
-        : error.statusText || details;
+        ? 'No se encontró la página solicitada.'
+        : error.statusText || details
   } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
+    details = error.message
+    stack = error.stack
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main className='pt-16 p-4 container mx-auto'>
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className='w-full p-4 overflow-x-auto'>
           <code>{stack}</code>
         </pre>
       )}
     </main>
-  );
+  )
 }
