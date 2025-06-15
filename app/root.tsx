@@ -24,7 +24,7 @@ export function Layout ({ children }: { children: React.ReactNode }) {
     const body = document.body
   
     // Eliminar todas las clases relevantes de una vez.
-    body.classList.remove('is-mobile-ua', 'is-tablet-ua', 'is-laptop-ua')
+    body.classList.remove('is-mobile-ua', 'is-laptop-ua')
   
     // Expresiones regulares precompiladas para mayor eficiencia
     const mobileRegex = /(Mobi|Android|iPhone|iPod|Windows Phone|BlackBerry|Symbian|IEMobile|Opera Mini|Fennec|webOS|hpwos|avantgo|bada|blazer|compal|elaine|hiptop|kindle|lge|maemo|midp|mmp|netfront|palm|phone|plucker|pocket|psp|series60|treo|up\.browser|up\.link|vodafone|wap|windows ce|xda|xiino)/i
