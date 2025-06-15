@@ -31,6 +31,8 @@ export function Layout ({ children }: { children: React.ReactNode }) {
   
     if (mobileRegex.test(ua)  && !/iPad/i.test(ua)) {
       body.classList.add('is-mobile-ua')
+    } else {
+      body.classList.add('is-laptop-ua')
     }
   }
 
