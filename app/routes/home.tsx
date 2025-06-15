@@ -5,8 +5,8 @@ import { parseTimestamp } from '~/lib/utils'
 
 export function meta ({}: Route.MetaArgs) {
   return [
-    { title: 'New React Router App' },
-    { name: 'description', content: 'Welcome to React Router!' }
+    { title: title('Inicio') },
+    { name: 'description', content: 'Web no oficial de berruti. Proyecto de secundaria' }
   ]
 }
 
