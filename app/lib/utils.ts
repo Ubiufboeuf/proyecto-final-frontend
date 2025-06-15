@@ -9,3 +9,5 @@ export function parseTimestamp (timestamp: number) {
 }
 
 const padStart = (val: number, length: number, fill: string) => val.toString().padStart(length, fill)
+
+export const title = (title: string) => title ? `${title} - Berruti Turismo` : 'Berruti Turismo'
