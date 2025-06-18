@@ -16,7 +16,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  site: 'proyecto-final-frontend.pages.dev',
+  site: 'https://proyecto-final-frontend.pages.dev',
   output: 'static',
   adapter: cloudflare()
 })
