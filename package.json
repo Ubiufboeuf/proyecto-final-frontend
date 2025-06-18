@@ -8,7 +8,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.5.4",
     "@astrojs/preact": "^4.1.0",
     "@astrojs/sitemap": "^3.4.1",
     "@tailwindcss/vite": "^4.1.10",

@@ -6,8 +6,6 @@ import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 
-import cloudflare from '@astrojs/cloudflare'
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [preact(), sitemap()],
@@ -17,6 +15,5 @@ export default defineConfig({
   },
 
   site: 'https://proyecto-final-frontend.pages.dev',
-  output: 'static',
-  adapter: cloudflare()
+  output: 'static'
 })
