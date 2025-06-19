@@ -2,6 +2,7 @@
 import { SideBar } from '@/components/SideBar'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
+import '../styles/global.css'
 
 interface Props {
 	title: string
@@ -9,8 +10,6 @@ interface Props {
 
 const { title } = Astro.props
 const { originPathname: pathname } = Astro
-
-import '../styles/global.css'
 ---
 
 <html lang='es'>
