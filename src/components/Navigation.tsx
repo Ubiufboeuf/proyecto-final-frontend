@@ -22,7 +22,7 @@ export function Navigation ({ pathname }: { pathname: string }) {
                 <IconBus />
               </Icon>
               <div className='flex flex-col justify-start'>
-                <strong className='text-nowrap text-xl'>Berruti Turismo</strong>
+                <strong className='text-nowrap text-xl'>Berrutti Turismo</strong>
                 <span className='text-nowrap text-sm'>Acortando distancias</span>
               </div>
             </a>

@@ -10,7 +10,7 @@ export function parseTimestamp (timestamp: number) {
     ${padStart(zdt.day, 2, '0')}/${padStart(zdt.month, 2, '0')}/${padStart(zdt.year, 2, '0')}`
 }
 
-export const title = (title: string) => title ? `${title} - Berruti Turismo` : 'Berruti Turismo'
+export const title = (title: string) => title ? `${title} - Berrutti Turismo` : 'Berrutti Turismo'
 
 export const links = [
   { name: 'Inicio', link: '/' },
