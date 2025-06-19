@@ -19,3 +19,15 @@
   --spacing-navbar: 80px;
   --spacing-sidebar: 288px;
 }
+
+@custom-variant touch {
+  @media (pointer: coarse) {
+    @slot;
+  }
+}
+
+@custom-variant mobile {
+  &:where(.is-mobile-ua *) {
+    @slot;
+  }
+}
