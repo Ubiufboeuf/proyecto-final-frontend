@@ -1,16 +1,87 @@
 ---
+import { Icon } from '@/components/Icon'
+import { IconWifi, IconBus, IconClock, IconCoffee, IconLocation, IconPeople, IconShield, IconStar, IconAir, IconMail, IconPhone, IconPointerArrow } from '@/components/Icons'
+import { LinkPrimary } from '@/components/LinkPrimary'
+import Layout from '@/layouts/Layout.astro'
 
+const cards = [
+	{
+		icon: IconBus,
+		title: 'Servicio Regular',
+		subtitle: 'Viajes diarios a destinos principales',
+		tags: [
+			{ icon: IconClock, text: 'Horarios fijos' },
+			{ icon: IconPeople, text: 'Capacidad completa' },
+			{ icon: IconShield, text: 'Seguro incluido' }
+		]
+	},
+	{
+		icon: IconStar,
+		title: 'Servicio Ejecutivo',
+		subtitle: 'Comodidad premium para viajes largos',
+		tags: [
+			{ icon: IconAir, text: 'Aire acondicionado' },
+			{ icon: IconWifi, text: 'WiFi gratuito' },
+			{ icon: IconCoffee, text: 'Servicio a bordo' },
+		]
+	},
+	{
+		icon: IconPointerArrow,
+		title: 'Charters',
+		subtitle: 'Alquiler de vehículos para viajes personalizados',
+		tags: [
+			{ icon: IconPeople, text: 'Grupos privados' },
+			{ icon: IconLocation, text: 'Destinos personalizados' },
+			{ icon: IconClock, text: 'Horarios flexibles' },
+		]
+	}
+]
 ---
 
-<html lang='es'>
-	<head>
-		<meta charset='utf-8' />
-		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-		<meta name='viewport' content='width=device-width' />
-		<meta name='generator' content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		
-	</body>
-</html>
+<Layout title='Inicio'>
+	<main class='[&>*]:px-6'>
+		<section class='bg-linear-to-r from-primary-gradient-start to-primary-gradient-end h-100 flex flex-col items-center justify-center gap-6 text-white'>
+			<h1 class='text-5xl font-bold text-center'>Viaja con Confianza</h1>
+			<p class='text-center text-xl max-w-180'>Más de 30 años conectando ciudades y pueblos con el mejor servicio de transporte departamental. Su comodidad y seguridad son nuestra prioridad.</p>
+			<div class='flex gap-4'>
+				<LinkPrimary href='/schedules' class='text-lg font-medium px-6 bg-background active:bg-background/80'>Ver Horarios</a>
+				<LinkPrimary href='/reserve' class='text-lg font-medium px-6 hover:bg-background/90 active:bg-background/80'>Reservar Boletos</a>
+			</div>
+		</section>
+		<section class='mt-14 gap-14 flex flex-col items-center max-w-screen-xl mx-auto'>
+			<div class='max-w-124 text-center'>
+				<h1 class='text-3xl font-bold pb-4'>Nuestros Servicios</h1>
+				<p class='text-text/90'>Ofrecemos diferentes opciones de viaje para satisfacer todas sus necesiddes de transporte.</p>
+			</div>
+			<div class='w-full h-fit grid md:grid-cols-3 gap-8'>
+				{
+					cards.map(({ icon: CardIcon, title, subtitle, tags }) => (
+						<article class='w-full flex flex-col justify-between items-center text-text/80 border-primary/40 rounded-lg border-[1px] h-72 md:h-82 overflow-hidden hover:shadow-lg transition-shadow bg-white/50'>
+							<div class='h-16 mt-8 mb-2 w-fit mx-auto aspect-square overflow-hidden flex items-center justify-center rounded-full bg-primary/15'>
+								<Icon class='h-8 text-primary'>
+									<CardIcon />
+								</Icon>
+							</div>
+							<div>
+								<h1 class='text-2xl leading-4 pb-2 font-semibold text-primary text-center'>{title}</h1>
+								<span class='text-sm'>{subtitle}</span>
+							</div>
+							<ul class='h-25 w-full px-6'>
+								{
+									tags.map(({ icon: TagIcon, text }) => (
+										<li class='text-sm text-start flex items-center gap-2 py-1'>
+											<Icon class='h-4'>
+												<TagIcon />
+											</Icon>
+											{text}
+										</li>
+									))
+								}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</main>
+</Layout>
