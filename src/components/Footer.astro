@@ -1,0 +1,22 @@
+---
+import { ContactViaPhone } from '@/components/ContactViaPhone'
+import { Icon } from '@/components/Icon'
+import { IconBus, IconMail } from '@/components/Icons'
+
+---
+
+<footer class='w-full h-44 text-white bg-gray-800 flex flex-col items-center justify-center gap-2'>
+  <div class='flex items-center justify-center gap-2'>
+    <Icon class='size-6 text-orange-500'>
+      <IconBus />
+    </Icon>
+    <strong class='text-xl leading-8'>Berrutti</strong>
+  </div>
+  <ContactViaPhone client:load />
+  <div class='flex items-center justify-center w-fit h-fit gap-2'>
+    <Icon class='size-4'>
+      <IconMail />
+    </Icon>
+    <span>berruttiturismo@adinet.com.uy</span>
+  </div>
+</footer>
