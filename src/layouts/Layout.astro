@@ -21,8 +21,8 @@ const { originPathname: pathname } = Astro
 		<title>{title ? `${title} - Berrutti Turismo` : title}</title>
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black'>
-		<SideBar pathname={pathname} />
 		<Navigation pathname={pathname} />
+		<SideBar pathname={pathname} />
 		<slot />
 		<Footer />
 	</body>
