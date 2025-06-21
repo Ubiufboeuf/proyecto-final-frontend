@@ -1,29 +1,27 @@
 ---
 import { Icon } from './Icon'
-import { IconBus, IconMenu } from './Icons'
+import { IconBus } from './Icons'
 import { links } from '@/lib/utils'
+import { ToggleSidebar } from '@/components/ToggleSidebar'
 
-interface Props {
+interface Props { 
   pathname: string
 }
 
 const { pathname } = Astro.props
 ---
 
-<header class='z-[3] w-full h-navbar px-8 pl-4 bg-primary fixed top-0 left-0 flex justify-center items-center text-background'>
+<header class='z-[3] w-full h-navbar px-8 pl-4 bg-white text-gray-700 top-0 left-0 flex justify-center items-center text-background'>
   <div class='h-full w-full max-w-screen-xl flex items-center ml:justify-center justify-between'>
-    <aside class='h-full w-fit'>
-      <a href='/' class='aspect-square outline-0 h-full max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4'>
-        <Icon class='size-8'>
+    <aside class='h-full w-fit flex items-center justify-center'>
+      <a href='/' class='outline-0 h-fit max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4'>
+        <Icon class='size-8 text-orange-500'>
           <IconBus />
         </Icon>
-        <div class='flex flex-col justify-start'>
-          <strong class='text-nowrap text-xl'>Berrutti Turismo</strong>
-          <span class='text-nowrap text-sm'>Acortando distancias</span>
-        </div>
+        <strong class='text-nowrap text-xl'>Berrutti</strong>
       </a>
     </aside>
-    <nav class='h-full w-full flex-1 hidden ml:flex items-center justify-center gap-0'>
+    <nav class='h-full w-full flex-1 hidden ml:flex items-center justify-center'>
       {
         links.map(({ link, name }) => (
           <a
@@ -37,15 +35,10 @@ const { pathname } = Astro.props
         ))
       }
     </nav>
-    <aside class='h-full w-fit flex items-center justify-end gap-4'>
-      <a href='/reserve' class='bg-background text-nowrap rounded-lg text-primary p-2 px-4 hover:bg-background/90 transition-colors active:bg-background/80'>Reservar Ahora</a>
-      <button
-        class='h-fit w-fit p-2 hover:bg-background/15 active:bg-background/25 transition-colors rounded-lg flex ml:hidden items-center justify-center cursor-pointer'
-      >
-        <Icon>
-          <IconMenu />
-        </Icon>
-      </button>
+    <aside class='h-full w-fit flex items-center justify-end gap-2'>
+      <a href='/reserve' class='not-xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border'>Iniciar Sesión</a>
+      <a href='/reserve' class='not-xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors'>Registrarse</a>
+      <ToggleSidebar client:load />
     </aside>
   </div>
 </header>
