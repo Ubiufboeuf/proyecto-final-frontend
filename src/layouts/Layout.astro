@@ -20,7 +20,7 @@ const { originPathname: pathname } = Astro
 		<meta name='description' content='Web no oficial de Berrutti Turismo. Proyecto de fin de año' />
 		<title>{title ? `${title} - Berrutti Turismo` : title}</title>
 	</head>
-	<body class='relative h-[2000px] pt-20 bg-background text-text'>
+	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black'>
 		<SideBar pathname={pathname} />
 		<Navigation pathname={pathname} />
 		<slot />
