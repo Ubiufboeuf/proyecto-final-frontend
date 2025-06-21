@@ -1,0 +1,51 @@
+---
+import { Icon } from './Icon'
+import { IconBus, IconMenu } from './Icons'
+import { links } from '@/lib/utils'
+
+interface Props {
+  pathname: string
+}
+
+const { pathname } = Astro.props
+---
+
+<header class='z-[3] w-full h-navbar px-8 pl-4 bg-primary fixed top-0 left-0 flex justify-center items-center text-background'>
+  <div class='h-full w-full max-w-screen-xl flex items-center ml:justify-center justify-between'>
+    <aside class='h-full w-fit'>
+      <a href='/' class='aspect-square outline-0 h-full max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4'>
+        <Icon class='size-8'>
+          <IconBus />
+        </Icon>
+        <div class='flex flex-col justify-start'>
+          <strong class='text-nowrap text-xl'>Berrutti Turismo</strong>
+          <span class='text-nowrap text-sm'>Acortando distancias</span>
+        </div>
+      </a>
+    </aside>
+    <nav class='h-full w-full flex-1 hidden ml:flex items-center justify-center gap-0'>
+      {
+        links.map(({ link, name }) => (
+          <a
+            href={link}
+            class='hover:text-orange-100/80 hover:transition-colors p-2 px-3'
+          >
+            <span class={link === pathname ? 'border-b-2 pb-1 transition-[padding]' : ''}>
+              {name}
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+    <aside class='h-full w-fit flex items-center justify-end gap-4'>
+      <a href='/reserve' class='bg-background text-nowrap rounded-lg text-primary p-2 px-4 hover:bg-background/90 transition-colors active:bg-background/80'>Reservar Ahora</a>
+      <button
+        class='h-fit w-fit p-2 hover:bg-background/15 active:bg-background/25 transition-colors rounded-lg flex ml:hidden items-center justify-center cursor-pointer'
+      >
+        <Icon>
+          <IconMenu />
+        </Icon>
+      </button>
+    </aside>
+  </div>
+</header>
