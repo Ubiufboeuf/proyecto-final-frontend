@@ -4,8 +4,8 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  --breakpoint-ml: 56rem;
-  --breakpoint-ms: 37rem;
+  --breakpoint-ml: 896px;
+  --breakpoint-ms: 592px;
 
   --container-navbar: 80px;
   --container-sidebar: 288px;
