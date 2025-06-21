@@ -29,7 +29,8 @@ export default defineConfig([
       'comma-dangle': ['error', 'never'],
       '@stylistic/eol-last': ['error', 'always'],
       '@typescript-eslint/consistent-type-imports': 'error',
-      'space-before-function-paren': ['error', 'always']
+      'space-before-function-paren': ['error', 'always'],
+      'react/no-unknown-property': ['error', { ignore: ['class'] }]
     }
   }
 ])
