@@ -30,12 +30,9 @@ const { originPathname: pathname } = Astro
 				
 				const ua = navigator.userAgent
 				const mobileRegex = /(Mobi|Android(?!.*Nexus 7)|iPhone|iPod|Windows Phone|BlackBerry|Symbian|IEMobile|Opera Mini|Fennec|webOS|hpwos|avantgo|bada|blazer|compal|elaine|hiptop|kindle|lge|maemo|midp|mmp|netfront|palm|phone|plucker|pocket|psp|series60|treo|up\.browser|up\.link|vodafone|wap|windows ce|xda|xiino)/i
-				const tabletRegex = /(iPad|Android(?!.*mobile)|Kindle|Playbook|Silk|Tablet|hpw|webos|Nexus 7)/i
-			
+				
 				if (mobileRegex.test(ua) && !/iPad/i.test(ua)) {
 					deviceType = 'is-mobile-ua'
-				} else if (tabletRegex.test(ua)) {
-					deviceType = 'is-tablet-ua'
 				} else {
 					deviceType = 'is-laptop-ua'
 				}
