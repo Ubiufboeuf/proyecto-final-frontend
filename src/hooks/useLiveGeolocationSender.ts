@@ -37,6 +37,7 @@ export default function useLiveGeolocationSender (url: string, options: Options)
     ...options
   }
 
+  
   // se usa useCallback para evitar re-renderizados indeseados por el useEffect o cargas de más de la función
   const sendCoordinatesToServer = useCallback(async (coords: CustomCoords) => {
     try {
