@@ -34,8 +34,9 @@ export const IconMenu = () => (
     strokeLinejoin='round'
     className='h-full w-full max-h-full max-w-full aspect-square'
   >
-    <path d='M4 8l16 0' />
-    <path d='M4 16l16 0' />
+    <path d='M4 6l16 0' />
+    <path d='M4 12l16 0' />
+    <path d='M4 18l16 0' />
   </svg>
 )
 
