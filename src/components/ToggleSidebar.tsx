@@ -1,8 +1,9 @@
 import { Icon } from '@/components/Icon'
 import { IconMenu } from '@/components/Icons'
 import { useMenuStore } from '@/stores/useMenuStore'
+import type { CSSProperties } from 'preact/compat'
 
-export function ToggleSidebar () {
+export function ToggleSidebar ({ class: className, style }: { class?: string, style?: CSSProperties }) {
   const isMenuOpen = useMenuStore(state => state.isMenuOpen)
   const setIsMenuOpen = useMenuStore(state => state.setIsMenuOpen)
 
