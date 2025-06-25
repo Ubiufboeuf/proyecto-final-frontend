@@ -30,10 +30,12 @@ export function SideBar ({ pathname }: { pathname: string }) {
                 <span class={link === pathname ? 'text-orange-500' : ''}>
                   {name}
                 </span>
-              </a>   
+              </a>
             ))
           }
-        </div>
+          <a href='/login' class='xs:hidden w-full text-center text-nowrap mt-auto rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border'>Iniciar Sesión</a>
+          <a href='/register' class='xs:hidden w-full text-center text-nowrap mb-4 rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors'>Registrarse</a>
+        </main>
       </aside>
       <button
         class='fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 ml:hidden cursor-pointer'
