@@ -5,8 +5,8 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --breakpoint-ml: 896px;
-  --breakpoint-ms: 592px;
-  --breakpoint-xs: 416px;
+  --breakpoint-xs: 512px;
+  --breakpoint-xxs: 416px;
 
   --container-navbar: 80px;
   --container-sidebar: 288px;
