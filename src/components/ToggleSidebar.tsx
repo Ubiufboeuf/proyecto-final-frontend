@@ -13,7 +13,8 @@ export function ToggleSidebar ({ class: className, style }: { class?: string, st
   
   return (
     <button
-      class='h-fit w-fit p-2 hover:bg-background/15 active:bg-background/25 transition-colors rounded-lg flex ml:hidden items-center justify-center cursor-pointer'
+      class={`h-fit w-fit p-2 aspect-square min-h-10 hover:bg-gray-200 transition-colors rounded-lg flex items-center justify-center cursor-pointer ${className}`}
+      style={style}
       onClick={toggleMenu}
     >
       <Icon>
