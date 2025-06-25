@@ -1,6 +1,7 @@
 import { links } from '@/lib/utils'
 import { useMenuStore } from '@/stores/useMenuStore'
 import { useId } from 'preact/compat'
+import { CloseSidebar } from './CloseSidebar'
 
 export function SideBar ({ pathname }: { pathname: string }) {
   const isMenuOpen = useMenuStore(state => state.isMenuOpen)
@@ -13,9 +14,12 @@ export function SideBar ({ pathname }: { pathname: string }) {
   return (
     <>
       <aside
-        className={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-screen bg-white text-gray-800 flex flex-col justify-end ml:hidden duration-300 z-[2] px-8`}
+        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-screen bg-white text-gray-800 flex flex-col justify-end ml:hidden duration-300 z-[2] px-8`}
       >
-        <div className='h-full w-full bg-primary/90 flex flex-col items-center gap-2 py-4'>
+        <header class='h-navbar min-h-navbar w-full flex items-center justify-center'>
+          <CloseSidebar />
+        </header>
+        <main class='h-full w-full flex flex-col items-center gap-2 min-h-fit'>
           {
             links.map(({ link, name }) => (
               <a
@@ -32,7 +36,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
         </div>
       </aside>
       <button
-        className='fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 ml:hidden cursor-pointer'
+        class='fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 ml:hidden cursor-pointer'
         hidden={!isMenuOpen}
         onClick={toggleMenu}
       />
