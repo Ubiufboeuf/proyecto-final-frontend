@@ -13,7 +13,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
   return (
     <>
       <aside
-        className={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar transition-[right] fixed top-0 w-sidebar h-screen pt-navbar bg-black flex items-end ml:hidden duration-300 z-[2]`}
+        className={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-screen bg-white text-gray-800 flex flex-col justify-end ml:hidden duration-300 z-[2] px-8`}
       >
         <div className='h-full w-full bg-primary/90 flex flex-col items-center gap-2 py-4'>
           {
@@ -21,9 +21,9 @@ export function SideBar ({ pathname }: { pathname: string }) {
               <a
                 key={useId()}
                 href={link}
-                className='text-background hover:text-orange-100/80 hover:transition-colors p-2 w-full text-center px-4'
+                class='hover:text-orange-500 transition-colors p-2 w-full text-center'
               >
-                <span className={link === pathname ? 'border-b-2 pb-1 transition-[padding]' : ''}>
+                <span class={link === pathname ? 'text-orange-500' : ''}>
                   {name}
                 </span>
               </a>   
@@ -32,7 +32,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
         </div>
       </aside>
       <button
-        className='fixed h-screen w-screen z-[1] bg-black/40 ml:hidden cursor-pointer'
+        className='fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 ml:hidden cursor-pointer'
         hidden={!isMenuOpen}
         onClick={toggleMenu}
       />
