@@ -11,14 +11,14 @@ interface Props {
 const { pathname } = Astro.props
 ---
 
-<header class='z-[3] w-full h-navbar px-8 pl-4 bg-white text-gray-700 top-0 left-0 flex justify-center items-center text-background'>
-  <div class='h-full w-full max-w-screen-xl flex items-center ml:justify-center justify-between'>
-    <aside class='h-full w-fit flex items-center justify-center'>
-      <a href='/' class='outline-0 h-fit max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4'>
+<header class='w-full h-navbar px-8 pl-4 bg-white text-gray-700 top-0 left-0 flex justify-center items-center'>
+  <div class='h-full w-full max-w-screen-xl flex items-center ml:justify-center justify-between [&>*]:flex-1'>
+    <aside class='h-full w-fit flex items-center'>
+      <a href='/' class='h-fit max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4'>
         <Icon class='size-8 text-orange-500'>
           <IconBus />
         </Icon>
-        <strong class='text-nowrap text-xl'>Berrutti</strong>
+        <strong class='text-nowrap text-xl w-fit max-w-full'>Berrutti</strong>
       </a>
     </aside>
     <nav class='h-full w-full flex-1 hidden ml:flex items-center justify-center'>
@@ -26,9 +26,9 @@ const { pathname } = Astro.props
         links.map(({ link, name }) => (
           <a
             href={link}
-            class='hover:text-orange-100/80 hover:transition-colors p-2 px-3'
+            class='hover:text-orange-500 transition-colors p-2 px-3'
           >
-            <span class={link === pathname ? 'border-b-2 pb-1 transition-[padding]' : ''}>
+            <span class={link === pathname ? 'text-orange-500' : ''}>
               {name}
             </span>
           </a>
