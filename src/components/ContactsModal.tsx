@@ -2,8 +2,8 @@ import { useContactsStore } from '@/stores/useContactsStore'
 import { useEffect, useRef, type ChangeEvent } from 'preact/compat'
 
 export function ContactsModal () {
-  const isModalOpen = useContactsStore(state => state.isModalOpen)
-  const setIsModalOpen = useContactsStore(state => state.setIsModalOpen)
+  const isModalOpen = useContactsStore((state) => state.isModalOpen)
+  const setIsModalOpen = useContactsStore((state) => state.setIsModalOpen)
   const modalRef = useRef<HTMLDialogElement>(null)
 
   function closeModal (event: ChangeEvent<HTMLDialogElement>) {

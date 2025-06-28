@@ -4,8 +4,8 @@ import { useId } from 'preact/compat'
 import { CloseSidebar } from './CloseSidebar'
 
 export function SideBar ({ pathname }: { pathname: string }) {
-  const isMenuOpen = useMenuStore(state => state.isMenuOpen)
-  const setIsMenuOpen = useMenuStore(state => state.setIsMenuOpen)
+  const isMenuOpen = useMenuStore((state) => state.isMenuOpen)
+  const setIsMenuOpen = useMenuStore((state) => state.setIsMenuOpen)
 
   function toggleMenu () {
     setIsMenuOpen(!isMenuOpen)

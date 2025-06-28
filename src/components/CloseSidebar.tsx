@@ -2,8 +2,8 @@ import { useMenuStore } from '@/stores/useMenuStore'
 import type { CSSProperties } from 'preact/compat'
 
 export function CloseSidebar ({ class: className, style }: { class?: string, style?: CSSProperties }) {
-  const isMenuOpen = useMenuStore(state => state.isMenuOpen)
-  const setIsMenuOpen = useMenuStore(state => state.setIsMenuOpen)
+  const isMenuOpen = useMenuStore((state) => state.isMenuOpen)
+  const setIsMenuOpen = useMenuStore((state) => state.setIsMenuOpen)
 
   function toggleMenu () {
     setIsMenuOpen(!isMenuOpen)
