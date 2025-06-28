@@ -25,7 +25,7 @@ export function ContactViaPhone () {
         <Icon class='size-4'>
           <IconPhone />
         </Icon>
-        <span>Ver Teléfonos</span>
+        <span>Ver Contactos</span>
       </button>
     </>
   )
