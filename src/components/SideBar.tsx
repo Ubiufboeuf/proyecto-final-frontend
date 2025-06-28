@@ -14,7 +14,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
   return (
     <>
       <aside
-        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-screen bg-white text-gray-800 flex flex-col justify-end lg:hidden duration-300 z-[2] px-8`}
+        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-screen bg-white text-gray-800 flex flex-col lg:hidden duration-300 z-[2] px-8`}
       >
         <header class='h-navbar min-h-navbar w-full flex items-center justify-center'>
           <CloseSidebar />
