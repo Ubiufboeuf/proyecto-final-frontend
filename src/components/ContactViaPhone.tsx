@@ -5,8 +5,8 @@ import { createPortal } from 'preact/compat'
 import { ContactsModal } from './ContactsModal'
 
 export function ContactViaPhone () {
-  const isModalOpen = useContactsStore(state => state.isModalOpen)
-  const setIsModalOpen = useContactsStore(state => state.setIsModalOpen)
+  const isModalOpen = useContactsStore((state) => state.isModalOpen)
+  const setIsModalOpen = useContactsStore((state) => state.setIsModalOpen)
 
   function showPhoneContacts () {
     setIsModalOpen(!isModalOpen)
