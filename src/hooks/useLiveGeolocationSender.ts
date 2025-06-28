@@ -1,22 +1,5 @@
+import type { CustomCoords, Options } from '@/env'
 import { useCallback, useEffect, useState } from 'preact/compat'
-
-type Options = {
-  enableHighAccuracy?: boolean
-  timeout?: number // Tiempo máximo para obtener la posición (en ms)
-  maximumAge?: number // No usar posiciones cacheadas
-  sendCoordinates?: boolean
-}
-
-type CustomCoords = {
-  accuracy: number
-  altitude: number | null
-  altitudeAccuracy: number | null
-  heading: number | null
-  latitude: number
-  longitude: number
-  speed: number | null
-  timestamp: number
-}
 
 const DEFAULT_OPTIONS: Options = {
   enableHighAccuracy: true,
