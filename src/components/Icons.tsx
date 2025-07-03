@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'preact/compat'
+
 export const IconBus = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
@@ -265,5 +267,96 @@ export const IconCopy = () => (
   >
     <path d='M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z' />
     <path d='M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1' />
+  </svg>
+)
+
+export const IconArrowLeft = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    className='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M5 12l14 0' />
+    <path d='M5 12l6 6' />
+    <path d='M5 12l6 -6' />
+  </svg>
+)
+
+export const IconCheckbox = ({ checked = false, class: className, style, hidden = false }: { checked?: boolean | 'color', class?: string, style?: CSSProperties, hidden?: boolean }) => {
+  if (checked) {
+    return (
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='24'
+        height='24'
+        viewBox='0 0 24 24'
+        fill={checked === 'color' ? 'currentColor' : 'none'}
+        stroke='currentColor'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        className={`h-full w-full max-h-full max-w-full aspect-square ${className}`}
+        style={style}
+        hidden={hidden}
+      >
+        { checked === 'color' ? (
+          <>
+            <path d='M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12 a2 2 0 0 1 2 2 v6' />
+            <path d='M7 13l3 3l8 -8' stroke={checked === 'color' ? 'white' : ''} />
+          </>
+        ) : (
+          <>
+            <path d='M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9' />
+            <path d='M9 11l3 3l8 -8' />
+          </>
+        )}
+      </svg>
+    )
+  } else {
+    return (
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='24'
+        height='24'
+        viewBox='0 0 24 24'
+        fill='none'
+        stroke='currentColor'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        className={`h-full w-full max-h-full max-w-full aspect-square ${className}`}
+        style={style}
+        hidden={hidden}
+      >
+        <path d='M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z' />
+      </svg>
+    )
+  }
+}
+
+export const IconUser = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    className='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0' />
+    <path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2' />
+    <path d='M16 3.13a4 4 0 0 1 0 7.75' />
+    <path d='M21 21v-2a4 4 0 0 0 -3 -3.85' />
   </svg>
 )
