@@ -42,9 +42,6 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(@preact/compat@18.3.1(preact@10.26.9))(@preact/compat@18.3.1(preact@10.26.9))
     devDependencies:
-      '@babel/plugin-transform-react-jsx-source':
-        specifier: ^7.27.1
-        version: 7.27.1(@babel/core@7.27.7)
       '@eslint/css':
         specifier: 0.9.0
         version: 0.9.0
@@ -172,12 +169,6 @@ packages:
 
   '@babel/plugin-transform-react-jsx-development@7.27.1':
     resolution: {integrity: sha512-ykDdF5yI4f1WrAolLqeF3hmYU12j9ntLQl/AOG1HAS21jxyg1Q0/J/tpREuYLfatGdGmXp/3yS0ZA76kOlVq9Q==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
-  '@babel/plugin-transform-react-jsx-source@7.27.1':
-    resolution: {integrity: sha512-zbwoTsBruTeKB9hSq73ha66iFeJHuaFkUbwvqElnygoNbj/jHRsSeokowZFN3CZ64IvEqcmmkVe89OPXc7ldAw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -3397,11 +3388,6 @@ snapshots:
       '@babel/plugin-transform-react-jsx': 7.27.1(@babel/core@7.27.7)
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/plugin-transform-react-jsx-source@7.27.1(@babel/core@7.27.7)':
-    dependencies:
-      '@babel/core': 7.27.7
-      '@babel/helper-plugin-utils': 7.27.1
 
   '@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.7)':
     dependencies:
