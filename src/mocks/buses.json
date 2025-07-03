@@ -1,0 +1,15 @@
+{
+  "states": {
+    "inMovement": 1,
+    "delayed": 1,
+    "inTerminal": 1
+  },
+  "timestamp": 1751327996034,
+  "count": 4,
+  "data": [
+    { "id": "b123", "state": "En viaje", "driverId": "d123", "driver": "Bob Johnson" },
+    { "id": "b234", "state": "Atrasado", "driverId": "d123", "driver": "Bob Johnson" },
+    { "id": "b345", "state": "En terminal", "driverId": "d123", "driver": "Bob Johnson" },
+    { "id": "b456", "state": null, "driverId": "d123", "driver": "Bob Johnson" }
+  ]
+}
