@@ -16,7 +16,7 @@ export function PhoneContact ({ contact: { dept, maps, number, place } }: { cont
         </Icon>
         {place}
       </div>
-      <div class='flex items-center justify-between gap-2'>
+      <div class='flex flex-wrap items-center justify-between gap-2'>
         <div class='flex items-center text-gray-500 gap-2 text-sm'>
           <Icon class='size-4'>
             <IconPhone />
@@ -34,7 +34,7 @@ export function PhoneContact ({ contact: { dept, maps, number, place } }: { cont
         href={maps}
         target='_blank'
         rel='noreferrer noopener'
-        class='w-full h-8 flex items-center justify-center gap-4 border border-blue-400 text-blue-700 text-sm bg-blue-50 hover:bg-blue-100 rounded-lg'
+        class='w-full h-8 min-h-fit px-2 py-1 flex items-center justify-center gap-4 border border-blue-400 text-blue-700 text-sm bg-blue-50 hover:bg-blue-100 rounded-lg'
       >
         <Icon class='size-4'>
           <IconLocation />
