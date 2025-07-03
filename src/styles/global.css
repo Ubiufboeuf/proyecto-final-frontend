@@ -28,9 +28,7 @@
 }
 
 :root {
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  color-scheme: light;
 }
 
 h1,
