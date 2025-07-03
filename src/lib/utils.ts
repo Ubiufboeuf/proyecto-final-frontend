@@ -1,16 +1,36 @@
+import type { Output, ParseTimestampOptions } from '@/env'
 import { Temporal } from 'temporal-polyfill'
 
 const padStart = (val: number, length: number, fill: string) => val.toString().padStart(length, fill)
 
-export function parseTimestamp (timestamp: number) {
-  const zdt = Temporal.Instant.fromEpochMilliseconds(timestamp).toZonedDateTimeISO('America/Montevideo')
-  return `
-    ${padStart(zdt.hour, 2, '0')}:${padStart(zdt.minute, 2, '0')}:${padStart(zdt.second, 2, '0')}
-    -
-    ${padStart(zdt.day, 2, '0')}/${padStart(zdt.month, 2, '0')}/${padStart(zdt.year, 2, '0')}`
+const defaultOptions: ParseTimestampOptions = {
+  format: '24 hrs',
+  output: 'time-date'
 }
 
-export const title = (title: string) => title ? `${title} - Berrutti Turismo` : 'Berrutti Turismo'
+export function parseTimestamp (timestampInMiliseconds: number, options: ParseTimestampOptions = defaultOptions) {
+  const zdt = Temporal.Instant.fromEpochMilliseconds(timestampInMiliseconds).toZonedDateTimeISO('America/Montevideo')
+  let sufix = ''
+  let hour = zdt.hour
+  if (options.format === '12 hrs') {
+    sufix = zdt.hour > 12 ? 'PM' : 'AM'
+    hour = hour - 12
+  }
+
+  const hourMinute = `${padStart(hour, 1, '0')}:${padStart(zdt.minute, 2, '0')}`
+  const time = `${hourMinute}:${padStart(zdt.second, 2, '0')} ${sufix}`
+  const date = `${padStart(zdt.day, 2, '0')}/${padStart(zdt.month, 2, '0')}/${padStart(zdt.year, 2, '0')}`
+  
+  const outputs: { [key in Output]: string } = {
+    date,
+    time,
+    'hour-minute': `${hourMinute}`,
+    'date-time': `${date} - ${time}`,
+    'time-date': `${time} - ${date}`
+  }
+
+  return outputs[options.output]
+}
 
 export const links = [
   { name: 'Inicio', link: '/' },
