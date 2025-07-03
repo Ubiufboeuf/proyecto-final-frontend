@@ -22,3 +22,48 @@ export type CustomCoords = {
   speed: number | null
   timestamp: number
 }
+
+export type ParseTimestampOptions = {
+  format: '12 hrs' | '24 hrs'
+  output: Output
+}
+
+export type Output = 'date' | 'time' | 'date-time' | 'time-date' | 'hour-minute'
+
+export interface Buses {
+  inMovement?: number
+  inTerminal?: number
+  delayed?: number
+  selectedCount: number
+  count?: number
+  busesData: Array<BusData>
+  timestamp?: number
+}
+
+export interface BusData {
+  id: string
+  state: BusStates
+  driver: Driver
+  origin: {
+    location: string
+    timestamp: number
+  }
+  destination: {
+    location: string
+    timestamp: number
+  }
+  location: string
+  passengers: {
+    capacity: number,
+    onBoard: number
+  }
+  progress: number
+  selected: boolean
+}
+
+export type BusStates = 'En viaje' | 'En terminal' | 'Atrasado'
+
+export interface Driver {
+  id: string
+  name: string
+}
