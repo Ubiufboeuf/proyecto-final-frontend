@@ -1,7 +1,30 @@
 ---
-import Layout from '@/layouts/Layout.astro'
+import { Aside } from '@/components/tracking/Aside'
+import Header from '@/components/tracking/Header.astro'
+import { MainZone } from '@/components/tracking/MainZone'
+import { getBuses } from '@/services/busService'
+import { getDrivers } from '@/services/driverService'
+import '@/styles/global.css'
+
+const title = 'Seguir Ómnibus'
+const baseUrl = Astro.url.origin
+
+const buses = await getBuses()
+const drivers = await getDrivers()
 ---
 
-<Layout title='Seguir ómnibus'>
-  Seguir ómnibus
-</Layout>
+<html lang='es'>
+	<head>
+		<meta charset='utf-8' />
+		<link rel='icon' type='image/svg+xml' href='/favicon.webp' />
+		<meta name='viewport' content='width=device-width' />
+		<meta name='description' content='Web no oficial de Berrutti Turismo. Proyecto de fin de año' />
+		<title>{title ? `${title} - Berrutti Turismo` : title}</title>
+		<script src='../lib/detectDeviceType.js'></script>
+	</head>
+	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black h-full w-full'>
+    <Header buses={buses} />
+		<Aside buses={buses} client:load />
+		<MainZone client:load />
+	</body>
+</html>
