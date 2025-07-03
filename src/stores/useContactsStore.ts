@@ -1,4 +1,4 @@
-import { create } from './preactStores'
+import { create } from 'zustand'
 
 type ContactsStore = {
   isModalOpen: boolean,

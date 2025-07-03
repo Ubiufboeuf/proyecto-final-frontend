@@ -1,6 +1,4 @@
-// import { create } from 'zustand'
-
-import { create } from './preactStores'
+import { create } from 'zustand'
 
 type MenuStore = {
   isMenuOpen: boolean
