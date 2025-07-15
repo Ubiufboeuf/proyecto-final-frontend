@@ -3,10 +3,22 @@ import { defineConfig } from 'astro/config'
 import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
+import node from '@astrojs/node'
+import clerk from '@clerk/astro'
+// import { esUY } from '@clerk/localizations'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), sitemap()],
+  integrations: [preact(), sitemap(), clerk({
+    localization: {
+      signUp: {
+        start: {
+          title: 'lololol',
+          subtitle: 'xd?'
+        }
+      }
+    }
+  })],
 
   vite: {
     plugins: [tailwindcss()]
@@ -14,5 +26,11 @@ export default defineConfig({
 
   site: 'https://proyecto-final-frontend.pages.dev',
   output: 'static',
-  base: '/'
+
+  base: '/',
+  
+  // adapter: node
+  adapter: node({
+    mode: 'standalone'
+  })
 })
