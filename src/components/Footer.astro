@@ -5,7 +5,7 @@ import { IconBus, IconMail } from '@/components/Icons'
 
 ---
 
-<footer class='w-full h-44 text-white bg-gray-800 flex flex-col items-center justify-center gap-2'>
+<footer class='w-full h-fit min-h-44 text-white bg-gray-800 flex flex-col items-center justify-center gap-2'>
   <div class='flex items-center justify-center gap-2'>
     <Icon class='size-6 text-orange-500'>
       <IconBus />
@@ -13,16 +13,16 @@ import { IconBus, IconMail } from '@/components/Icons'
     <strong class='text-xl leading-8'>Berrutti</strong>
   </div>
   <ContactViaPhone client:load />
-  <div class='flex items-center justify-center w-full max-w-[calc(100%-32px)] h-fit gap-2'>
+  <a
+    href='mailto:berruttiturismo@adinet.com.uy?subject='
+    target='_blank'
+    class='flex items-center justify-center w-full max-w-[calc(100%-32px)] h-fit gap-2 hover:text-orange-400 transition-colors px-2 py-1 -my-1'
+  >
     <Icon class='size-4'>
       <IconMail />
     </Icon>
-    <a
-      href='mailto:berruttiturismo@adinet.com.uy?subject='
-      class='line-clamp-1 overflow-ellipsis max-w-full'
-      target='_blank'
-    >
+    <span class='line-clamp-1 overflow-ellipsis max-w-full'>
       berruttiturismo@adinet.com.uy
-    </a>
-  </div>
+    </span>
+  </a>
 </footer>
