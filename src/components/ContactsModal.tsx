@@ -57,8 +57,8 @@ export function ContactsModal () {
           </button>
         </header>
         <main class='flex flex-col gap-5 h-full min-h-fit w-full'>
-          <article class='w-full h-32 p-4 bg-orange-50 border rounded-lg border-orange-200 flex flex-col justify-center gap-2 px-6'>
-            <div class='[&>*]:text-orange-700 flex items-center gap-2'>
+          <article class='w-full h-32 p-4 border rounded-lg border-gray-300 flex flex-col justify-center gap-2 px-6'>
+            <div class='[&>*]:text-orange-500 flex items-center gap-2'>
               <Icon class='size-5'>
                 <IconMail />
               </Icon>
@@ -83,7 +83,7 @@ export function ContactsModal () {
             }
           </div>
         </main>
-        <footer class='flex gap-1 w-full h-30 p-2 flex-col border border-blue-200 bg-blue-50 rounded-lg text-blue-700 items-center justify-center min-h-30'>
+        <footer class='flex gap-1 w-full h-30 min-h-fit p-2 flex-col border border-blue-200 bg-blue-50 rounded-lg text-blue-700 items-center justify-center text-center'>
           <h1 class='font-semibold mb-1'>Horarios de Atención</h1>
           <p class='text-sm text-center'>Lunes a Viernes: 7:00 - 19:00 | Sábados: 8:00 - 12:00</p>
           <p class='text-xs text-center'>Los horarios pueden variar según la oficina</p>
