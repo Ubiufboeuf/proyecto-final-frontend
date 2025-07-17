@@ -1,7 +1,125 @@
 ---
+import { Icon } from '@/components/Icon'
+import { IconBus, IconCreditCard, IconBox, IconDolar, IconPeople, IconFile } from '@/components/Icons'
 import Layout from '@/layouts/Layout.astro'
+
+const services = [
+	{
+		icon: IconBus,
+		title: 'Líneas-Pasajes',
+		description: 'Venta de pasajes para todas nuestras rutas nacionales e internacionales. Ofrecemos diferentes categorías de servicio: común, semi-cama y cama ejecutivo. Reservas con hasta 30 días de anticipación.',
+		details: [
+			'Rutas nacionales e internacionales',
+			'Diferentes categorías de confort',
+			'Reservas anticipadas disponibles',
+			'Descuentos por compra anticipada',
+		]
+	},
+	{
+		icon: IconCreditCard,
+		title: 'Líneas-Abonos',
+		description: 'Abonos mensuales y semanales para viajeros frecuentes con importantes descuentos. Ideal para estudiantes, trabajadores y personas que viajan regularmente.',
+		details: [
+			'Abonos semanales y mensuales',
+			'Hasta 40% de descuento',
+			'Válido en rutas seleccionadas',
+			'Renovación automática disponible',
+		]
+	},
+	{
+		icon: IconBox,
+		title: 'Encomiendas',
+		description: 'Servicio de envío de paquetes, documentos y mercadería a todo el país. Seguimiento en línea y entrega puerta a puerta disponible en ciudades principales.',
+		details: [
+			'Envíos a todo Uruguay',
+			'Seguimiento en línea',
+			'Entrega puerta a puerta',
+			'Seguro incluido hasta $50.000',
+		]
+	},
+	{
+		icon: IconFile,
+		title: 'Trámites',
+		subtitle: 'Renovación C.I., Certificados de Antecedentes y Buena Conducta',
+		description: 'Gestión de trámites oficiales ante organismos públicos. Ahorra tiempo y evita filas. Servicio disponible en nuestras oficinas principales.',
+		details: [
+			'Renovación de Cédula de Identidad',
+			'Certificados de Antecedentes',
+			'Certificados de Buena Conducta',
+			'Gestión completa del trámite',
+		]
+	},
+	{
+		icon: IconPeople,
+		title: 'Partidas',
+		subtitle: 'Nacimiento, Defunción y Matrimonio',
+		description: 'Obtención de partidas oficiales del Registro Civil. Servicio rápido y confiable para todos tus trámites legales y administrativos.',
+		details: [
+			'Partidas de Nacimiento',
+			'Partidas de Defunción',
+			'Partidas de Matrimonio',
+			'Entrega en 24-48 horas',
+		]
+	},
+	{
+		icon: IconDolar,
+		title: 'Giros',
+		description: 'Envío y recepción de dinero de forma segura y rápida a través de nuestra red nacional. Sin necesidad de cuenta bancaria.',
+		details: [
+			'Envíos a toda la red nacional',
+			'Sin cuenta bancaria requerida',
+			'Comisiones competitivas',
+			'Disponible inmediatamente',
+		]
+	},
+]
+
+
 ---
 
 <Layout title='Servicios'>
-	Servicios
+	<main class='[&>*]:px-6 flex flex-col items-center'>
+		<section class='flex flex-col items-center w-full h-fit pb-8 pt-20'>
+			<h1 class='text-4xl font-bold text-gray-800 mb-4'>Nuestros Servicios</h1>
+			<p class='text-gray-600 text-xl text-center max-w-160'>Ofrecemos una amplia gama de servicios para satisfacer todas tus necesidades de transporte y gestión</p>
+		</section>
+		<section class='py-4 px-16 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6'>
+			{
+				services.map(({ icon: ServiceIcon, title, subtitle, description, details }) => (
+					<article class='w-full h-full p-6 flex flex-col items-center gap-4 bg-white border border-gray-300 rounded text-gray-700 text-sm'>
+						<div class='w-full h-fit flex items-center justify-center'>
+							<Icon class='size-12 text-orange-500'>
+								<ServiceIcon />
+							</Icon>
+						</div>
+						<div class='flex flex-col items-center'>
+							<h1 class='text-lg font-bold uppercase text-center'>{title}</h1>
+							<span class='text-orange-500 text-sm text-center flex px-2'>{subtitle}</span>
+						</div>
+						<div class='w-full max-w-140 flex justify-center h-fit'>
+							<p class='text-center'>{description}</p>
+						</div>
+						<div>
+							<ul class='list-disc text-center flex flex-col items-center'>
+								{ details.map((detail) => (
+										<li class='list-item text-center w-fit text-gray-500'>{detail}</li>
+								)) }
+							</ul>
+						</div>
+					</article>
+				))
+			}
+		</section>
+		<section class='bg-white w-full h-fit'>
+			<h1>Información Adicional</h1>
+			<div>
+				<div>
+					<h2 class='text-orange-500'>Horarios de atención</h2>
+					<ul>
+						<li>Lunes a Viernes: 6:00 - 22:00</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</main>
 </Layout>
