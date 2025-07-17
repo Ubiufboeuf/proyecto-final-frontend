@@ -13,7 +13,7 @@ export function HeaderInfo ({ buses }: { buses: Buses }) {
 
     const intervalId = setInterval(() => {
       setTimestamp(getTimestamp())
-    }, 1000)
+    }, 1000) // esto habría que cambiarlo por websockets
 
     return () => {
       clearInterval(intervalId)
