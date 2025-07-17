@@ -3,13 +3,11 @@ import { defineConfig } from 'astro/config'
 import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
-import clerk from '@clerk/astro'
 import node from '@astrojs/node'
-// import { esUY } from '@clerk/localizations'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), sitemap(), clerk()],
+  integrations: [preact(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()]
