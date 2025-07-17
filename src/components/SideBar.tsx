@@ -2,6 +2,7 @@ import { links } from '@/lib/utils'
 import { useMenuStore } from '@/stores/useMenuStore'
 import { useId } from 'preact/compat'
 import { CloseSidebar } from './CloseSidebar'
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/astro/react'
 
 export function SideBar ({ pathname }: { pathname: string }) {
   const isMenuOpen = useMenuStore((state) => state.isMenuOpen)
@@ -19,7 +20,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
         <header class='h-navbar min-h-navbar w-full flex items-center justify-center'>
           <CloseSidebar />
         </header>
-        <main class='h-full w-full flex flex-col items-center gap-2 min-h-fit'>
+        <main class='h-full w-full flex flex-col items-center gap-2 min-h-fit pb-4'>
           {
             links.map(({ link, name }) => (
               <a
@@ -33,8 +34,19 @@ export function SideBar ({ pathname }: { pathname: string }) {
               </a>
             ))
           }
-          <a href='/login' class='xs:hidden w-full text-center text-nowrap mt-auto rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border'>Iniciar Sesión</a>
-          <a href='/register' class='xs:hidden w-full text-center text-nowrap mb-4 rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors'>Registrarse</a>
+          <div class='mt-auto w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
+            <SignedOut>
+              <SignUpButton class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer'>
+                Registrarse
+              </SignUpButton>
+              <SignInButton class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border'>
+                Iniciar Sesión
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </main>
       </aside>
       <button
