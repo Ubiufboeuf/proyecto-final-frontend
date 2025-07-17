@@ -4,6 +4,7 @@ import preact from '@astrojs/preact'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import clerk from '@clerk/astro'
+import node from '@astrojs/node'
 // import { esUY } from '@clerk/localizations'
 
 // https://astro.build/config
@@ -15,9 +16,9 @@ export default defineConfig({
   },
 
   site: 'https://proyecto-final-frontend.pages.dev',
-  output: 'static',
+  output: 'server',
 
-  base: '/'
+  base: '/',
   
-  // adapter: node
+  adapter: node({ mode: 'standalone' })
 })
