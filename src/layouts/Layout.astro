@@ -1,6 +1,6 @@
 ---
 import { SideBar } from '@/components/SideBar'
-import Navigation from '@/components/Navigation.astro'
+import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import '../styles/global.css'
 
@@ -23,7 +23,7 @@ const { originPathname: pathname } = Astro
 		<script src='../lib/detectDeviceType.js'></script>
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black'>
-		<Navigation pathname={pathname} />
+		<Header pathname={pathname} />
 		<SideBar pathname={pathname} client:load />
 		<slot />
 		<Footer />
