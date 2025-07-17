@@ -5,7 +5,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start-build": "node ./dist/server/entry.mjs"
   },
   "dependencies": {
     "@astrojs/node": "^9.3.0",
