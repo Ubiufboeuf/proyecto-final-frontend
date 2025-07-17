@@ -1,4 +1,5 @@
 ---
+import { SignedIn, SignedOut, UserButton, SignInButton, SignUpButton } from '@clerk/astro/components'
 import { Icon } from './Icon'
 import { IconBus } from './Icons'
 import { links } from '@/lib/utils'
@@ -36,8 +37,17 @@ const { pathname } = Astro.props
       }
     </nav>
     <aside class='h-full w-fit flex items-center justify-end gap-2'>
-      <a href='/login' class='not-xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border'>Iniciar Sesión</a>
-      <a href='/register' class='not-xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors'>Registrarse</a>
+      <SignedOut class='flex items-center justify-center h-fit w-fit gap-2'>
+        <SignInButton mode='modal' class='not-xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border cursor-pointer'>
+          Iniciar Sesión
+        </SignInButton>
+        <SignUpButton mode='modal' class='not-xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer'>
+          Registrarse
+        </SignUpButton>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
       <ToggleSidebar class='lg:hidden' client:load />
     </aside>
   </div>
