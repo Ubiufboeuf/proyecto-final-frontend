@@ -25,7 +25,7 @@ export default defineConfig({
   },
 
   site: 'https://proyecto-final-frontend.pages.dev',
-  output: 'static',
+  output: 'server',
 
   base: '/',
   
