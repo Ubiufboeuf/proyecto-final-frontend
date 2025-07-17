@@ -16,7 +16,7 @@
     "@clerk/localizations": "3.18.1",
     "@preact/signals": "2.2.0",
     "@tailwindcss/vite": "4.1.10",
-    "astro": "5.9.3",
+    "astro": "5.12.0",
     "preact": "10.26.9",
     "react": "npm:@preact/compat@^18.3.1",
     "react-dom": "npm:@preact/compat@^18.3.1",
