@@ -34,10 +34,10 @@ export function SideBar ({ pathname }: { pathname: string }) {
             ))
           }
           <div class='mt-auto w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
-            <a class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer'>
+            <a class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
               Registrarse
             </a>
-            <a class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border'>
+            <a class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border text-center'>
               Iniciar Sesión
             </a>
           </div>
