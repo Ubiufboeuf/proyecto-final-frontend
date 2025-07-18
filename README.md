@@ -1,7 +1,7 @@
-# Proyecto de fin de año - Frontend
+# Proyecto Final - Frontend
 
 Web del proyecto.
-Inspirado en el diseño de Berrutti, con mejoras como el seguimiento de los ómnibus, y con un stack rápido con Astro, Preact, Tailwind y TypeScript.
+Inspirado en el diseño de Berrutti, con mejoras como el seguimiento de los ómnibus, y con un stack rápido potente: Astro, Preact, Tailwind y TypeScript.
 
 Equipo:
 - Matías Iturralde
@@ -13,8 +13,7 @@ Equipo:
 
 ```sh
 dev # Levanta el proyecto en el puerto 4321
-build # Compila el proyecto en dist/, y genera dist/client y dist/server
-start-build # Levanta el proyecto compilado en el puerto 4321
+build # Compila el proyecto en dist/, y genera todo lo necesario para desplegar en cloudflare pages
 ```
 
 ## Enlaces
