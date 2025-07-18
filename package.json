@@ -5,23 +5,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "start-build": "node ./dist/server/entry.mjs"
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.0",
-    "@astrojs/node": "^9.3.0",
+    "@astrojs/cloudflare": "12.6.0",
+    "@astrojs/node": "9.3.0",
     "@astrojs/preact": "4.1.0",
     "@astrojs/sitemap": "3.4.1",
     "@preact/signals": "2.2.0",
     "@tailwindcss/vite": "4.1.10",
     "astro": "5.12.0",
     "preact": "10.26.9",
-    "react": "npm:@preact/compat@^18.3.1",
-    "react-dom": "npm:@preact/compat@^18.3.1",
+    "react": "npm:@preact/compat@18.3.1",
+    "react-dom": "npm:@preact/compat@18.3.1",
     "tailwindcss": "4.1.10",
     "temporal-polyfill": "0.3.0",
-    "vaul": "^1.1.2"
+    "vaul": "1.1.2"
   },
   "devDependencies": {
     "@eslint/css": "0.9.0",
