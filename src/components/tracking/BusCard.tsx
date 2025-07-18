@@ -11,7 +11,7 @@ const states: { [key in BusStates]: string } = {
   'En viaje': 'inMovement'
 }
 
-export function BusCard ({ info: { id, driver, destination, state, selected, origin, location, passengers, progress } }: { info: BusData }) {
+export function BusCard ({ info: { id, driver, destination, state = 'En terminal', selected, origin, location, passengers, progress } }: { info: BusData }) {
   const [isSelected, setIsSelected] = useState<boolean>(selected)
   const busesData = useBusesStore((state) => state.busesData)
   const setData = useBusesStore((state) => state.setData)
@@ -42,20 +42,20 @@ export function BusCard ({ info: { id, driver, destination, state, selected, ori
       onClick={toggleIsSelected}
     >
       <section class='flex items-center w-full h-fit'>
-        <label onInput={toggleIsSelected} class='size-7 flex items-center justify-center'>
-          <input id={`checkbox-bus-${id}`} type='checkbox' hidden />
+        <div class='size-7 flex items-center justify-center'>
+          <input id={`checkbox-bus-${id}`} type='checkbox' hidden class='pointer-events-none' />
           <Icon class='size-5 text-gray-800 group-[.busSelected]:scale-110'>
             { isSelected
               ? <IconCheckbox class='text-orange-500' checked={'color'} />
               : <IconCheckbox />
             }
           </Icon>
-        </label>
+        </div>
         <div class='flex flex-col justify-center'>
           <span class='px-2 text-gray-800 font-semibold'>#{id}</span>
           <span class='text-xs px-2 text-gray-600'>{driver.name}</span>
         </div>
-        <span class={`${state ? states[state] : ''} ml-auto rounded-full text-xs font-semibold p-1 px-2.5
+        <span class={`${states[state]} ml-auto rounded-full text-xs font-semibold p-1 px-2.5
           [&.delayed]:text-red-700 [&.delayed]:bg-red-100
           [&.inTerminal]:text-blue-700 [&.inTerminal]:bg-blue-100
           [&.inMovement]:text-green-700 [&.inMovement]:bg-green-100
