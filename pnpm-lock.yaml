@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       '@astrojs/cloudflare':
-        specifier: ^12.6.0
+        specifier: 12.6.0
         version: 12.6.0(@types/node@24.0.14)(astro@5.12.0(@types/node@24.0.14)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.45.1)(typescript@5.8.3))(jiti@2.4.2)(lightningcss@1.30.1)
       '@astrojs/node':
-        specifier: ^9.3.0
+        specifier: 9.3.0
         version: 9.3.0(astro@5.12.0(@types/node@24.0.14)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.45.1)(typescript@5.8.3))
       '@astrojs/preact':
         specifier: 4.1.0
@@ -33,10 +33,10 @@ importers:
         specifier: 10.26.9
         version: 10.26.9
       react:
-        specifier: npm:@preact/compat@^18.3.1
+        specifier: npm:@preact/compat@18.3.1
         version: '@preact/compat@18.3.1(preact@10.26.9)'
       react-dom:
-        specifier: npm:@preact/compat@^18.3.1
+        specifier: npm:@preact/compat@18.3.1
         version: '@preact/compat@18.3.1(preact@10.26.9)'
       tailwindcss:
         specifier: 4.1.10
@@ -45,7 +45,7 @@ importers:
         specifier: 0.3.0
         version: 0.3.0
       vaul:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(@preact/compat@18.3.1(preact@10.26.9))(@preact/compat@18.3.1(preact@10.26.9))
     devDependencies:
       '@eslint/css':
