@@ -34,9 +34,9 @@ export function parseTimestamp (timestampInMiliseconds: number, options: ParseTi
 
 export const links = [
   { name: 'Inicio', link: '/' },
-  { name: 'Servicios', link: '/services' },
-  { name: 'Rutas', link: '/routes' },
-  { name: 'Seguimiento', link: '/track' },
-  { name: 'Nosotros', link: '/about' },
-  { name: 'Contacto', link: '/contact' }
+  { name: 'Servicios', link: '/services/' },
+  { name: 'Rutas', link: '/routes/' },
+  { name: 'Seguimiento', link: '/track/' },
+  { name: 'Nosotros', link: '/about/' },
+  { name: 'Contacto', link: '/contact/' }
 ]
