@@ -1,7 +1,8 @@
 ---
 import { Icon } from '@/components/Icon'
-import { IconBus, IconCreditCard, IconBox, IconDolar, IconPeople, IconFile } from '@/components/Icons'
+import { IconBus, IconCreditCard, IconBox, IconDolar, IconPeople, IconFile, IconWifi, IconSofa, IconTV } from '@/components/Icons'
 import Layout from '@/layouts/Layout.astro'
+import type { JSXInternal } from 'node_modules/preact/src/jsx'
 
 const services = [
 	{
@@ -74,7 +75,74 @@ const services = [
 	},
 ]
 
+type BusType = {
+  icon: () => JSXInternal.Element
+  title: string,
+  description: string
+  details: string[]
+  mainColor: string
+  bgColor: string
+  borderColor: string
+}
 
+const typesOfBuses: BusType[] = [
+	{
+		icon: IconBus,
+		title: 'Común',
+		description: 'Servicio estándar con asientos cómodos y reclinables',
+		details: [
+			'Asientos reclinables',
+			'Aire acondicionado',
+			'Música ambiental',
+			'Baño a bordo'
+		],
+		mainColor: '#1D4ED8',
+		bgColor: '#EFF6FF',
+		borderColor: '#BFDBFE'
+	},
+	{
+		icon: IconWifi,
+		title: 'Diferencial',
+		description: 'Mayor comodidad con servicios adicionales',
+		details: [
+			'Asientos más amplios',
+			'Mayor reclinación',
+			'WiFi gratuito',
+			'Servicio de refrigerios'
+		],
+		mainColor: '#15803D',
+		bgColor: '#F0FDF4',
+		borderColor: '#BBF7D0'
+	},
+	{
+		icon: IconSofa,
+		title: 'Semi-Cama',
+		description: 'Máximo confort para viajes largos',
+		details: [
+			'Asientos tipo semi-cama',
+			'Entretenimiento a bordo',
+			'Servicio de comidas',
+			'Mantas y almohadas'
+		],
+		mainColor: '#7E22CE',
+		bgColor: '#FAF5FF',
+		borderColor: '#E9D5FF'
+	},
+	{
+		icon: IconTV,
+		title: 'Cama Ejecutivo',
+		description: 'Lujo y comodidad premium',
+		details: [
+			'Asientos cama individuales',
+			'TV personal',
+			'Servicio gourmet',
+			'Atención personalizada'
+		],
+		mainColor: '#C2410C',
+		bgColor: '#FFF7ED',
+		borderColor: '#FED7AA'
+	},
+]
 ---
 
 <Layout title='Servicios'>
@@ -83,10 +151,10 @@ const services = [
 			<h1 class='text-4xl font-bold text-gray-800 mb-4 text-center'>Nuestros Servicios</h1>
 			<p class='text-gray-600 text-xl text-center max-w-160'>Ofrecemos una amplia gama de servicios para satisfacer todas tus necesidades de transporte y gestión</p>
 		</section>
-		<section class='py-4 px-16 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6'>
+		<section class='py-4 px-16 pb-8 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6'>
 			{
 				services.map(({ icon: ServiceIcon, title, subtitle, description, details }) => (
-					<article class='w-full h-full p-6 flex flex-col items-center gap-4 bg-white border border-gray-300 text-gray-700 text-sm rounded-xl'>
+					<article class='w-full max-w-160 h-full p-6 flex flex-col items-center gap-4 bg-white border border-gray-300 text-gray-700 text-sm rounded-xl'>
 						<div class='w-full h-fit flex items-center justify-center'>
 							<Icon class='size-12 text-orange-500'>
 								<ServiceIcon />
@@ -110,16 +178,82 @@ const services = [
 				))
 			}
 		</section>
-		<section class='bg-white w-full h-fit'>
-			<h1>Información Adicional</h1>
-			<div>
-				<div>
-					<h2 class='text-orange-500'>Horarios de atención</h2>
-					<ul>
-						<li>Lunes a Viernes: 6:00 - 22:00</li>
-					</ul>
+		<section class='w-full flex flex-col items-center px-4 gap-2 py-4'>
+			<h1 class='text-3xl font-bold text-gray-800 mb-4 text-center'>Tipos de Ómnibus</h1>
+			<p class='max-w-160 text-center text-gray-600'>Contamos con diferentes categorías de ómnibus para que elijas la que mejor se adapte a tu viaje y presupuesto</p>
+		</section>
+		<section class='py-4 pb-12 px-16 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 place-items-center gap-6'>
+			{
+				typesOfBuses.map(({ bgColor: backgroundColor, borderColor, description, details, icon: TypeIcon, mainColor: color, title }) => (
+					<article
+						class='w-full max-w-160 h-full p-6 flex flex-col items-center gap-5 bg-white border text-gray-700 text-sm rounded-xl'
+						style={{ borderColor, backgroundColor }}
+					>
+						<div class='w-full h-fit flex items-center justify-center'>
+							<Icon class='size-10' style={{ color }}>
+								<TypeIcon />
+							</Icon>
+						</div>
+						<div class='flex flex-col items-center'>
+							<h1
+								class='text-lg font-bold uppercase text-center pb-2'
+								style={{ color }}
+							>
+								{title}
+							</h1>
+							<p
+								class='text-center opacity-80'
+								style={{ color }}
+							>
+								{description}
+							</p>
+						</div>
+						<div class='w-full h-fit px-4'>
+							<ul class='list-disc flex flex-col items-center w-full gap-2'>
+								{ details.map((detail) => (
+										<li
+											class='list-none text-center flex items-center justify-start gap-2'
+											style={{ color }}
+										>
+											<div class='size-2 opacity-60 rounded-full' style={{ backgroundColor: color }} />
+											{detail}
+										</li>
+								)) }
+							</ul>
+						</div>
+					</article>
+				))
+			}
+		</section>
+		<section class='w-full h-fit px-6 pb-8 flex justify-center'>
+			<div class='bg-white w-full h-fit not-md:max-w-160 pt-8 pb-4 px-12 rounded-xl shadow-md'>
+				<h1 class='text-2xl font-bold text-center text-gray-800'>Información Adicional</h1>
+				<div class='w-full py-6 flex gap-x-4 not-md:flex-col gap-y-8'>
+					<div class='flex w-full flex-1 gap-2 flex-col items-center md:items-start'>
+						<h2 class='text-orange-500 text-lg font-semibold'>Horarios de Atención</h2>
+						<ul class='flex flex-col gap-2 text-gray-600 list-disc list-inside'>
+							<li class='min-w-fit text-nowrap'>Lunes a Viernes: 6:00 - 22:00</li>
+							<li class='min-w-fit text-nowrap'>Sábados: 6:00 - 20:00</li>
+							<li class='min-w-fit text-nowrap'>Domingos: 7:00 - 21:00</li>
+							<li class='min-w-fit text-nowrap'>Feriados: Horarios especial</li>
+						</ul>
+					</div>
+					<div class='flex w-full flex-1 gap-2 flex-col items-center md:items-start'>
+						<h2 class='text-orange-500 text-lg font-semibold'>Formas de Pago</h2>
+						<ul class='flex flex-col gap-2 text-gray-600 list-disc list-inside'>
+							<li class='min-w-fit text-nowrap'>Lunes a Viernes: 6:00 - 22:00</li>
+							<li class='min-w-fit text-nowrap'>Sábados: 6:00 - 20:00</li>
+							<li class='min-w-fit text-nowrap'>Domingos: 7:00 - 21:00</li>
+							<li class='min-w-fit text-nowrap'>Feriados: Horarios especial</li>
+						</ul>
+					</div>
 				</div>
 			</div>
+		</section>
+		<section class='w-full h-fit min-h-fit py-8 pb-16 flex flex-col gap-4 justify-center items-center'>
+			<h1 class='text-2xl font-bold text-gray-800'>¿Necesitas más información?</h1>
+			<p class='text-gray-700 pb-4'>Contáctanos para conocer más detalles sobre nuestros servicios</p>
+			<a href='/contact' class='rounded-lg py-3 px-8 h-fit w-fit hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer'>Contactar</a>
 		</section>
 	</main>
 </Layout>
