@@ -1,7 +1,210 @@
 ---
+import type { Ruta } from '@/env'
 import Layout from '@/layouts/Layout.astro'
+import { RouteCard } from '@/components/RouteCard'
+
+const rutas: Ruta[] = [
+  {
+    id: 'b5abaf5b-2cf7-4bf5-8b99-29d46b23ef33',
+    tipo: 'directo',
+    precio: 450,
+    origen: 'Montevideo',
+    destino: 'Punta del Este',
+    duracion_en_minutos: 150,
+    frecuencia_en_texto: 'Cada 30 min',
+    horas: [
+      { hora: '06:00', momento: 'mañana' },
+      { hora: '06:30', momento: 'mañana' },
+      { hora: '07:00', momento: 'mañana' },
+      { hora: '07:30', momento: 'mañana' },
+      { hora: '08:00', momento: 'mañana' },
+      { hora: '08:30', momento: 'mañana' },
+      { hora: '09:00', momento: 'mañana' },
+      { hora: '09:30', momento: 'mañana' },
+      { hora: '10:00', momento: 'mañana' },
+      { hora: '10:30', momento: 'mañana' },
+      { hora: '11:00', momento: 'mañana' },
+      { hora: '11:30', momento: 'mañana' },
+      { hora: '12:00', momento: 'tarde' },
+      { hora: '12:30', momento: 'tarde' },
+      { hora: '13:00', momento: 'tarde' },
+      { hora: '13:30', momento: 'tarde' },
+      { hora: '14:00', momento: 'tarde' },
+      { hora: '14:30', momento: 'tarde' },
+      { hora: '15:00', momento: 'tarde' },
+      { hora: '15:30', momento: 'tarde' },
+      { hora: '16:00', momento: 'tarde' },
+      { hora: '16:30', momento: 'tarde' },
+      { hora: '17:00', momento: 'tarde' },
+      { hora: '17:30', momento: 'tarde' },
+      { hora: '18:00', momento: 'noche' },
+      { hora: '18:30', momento: 'noche' },
+      { hora: '19:00', momento: 'noche' },
+      { hora: '19:30', momento: 'noche' },
+      { hora: '20:00', momento: 'noche' },
+      { hora: '20:30', momento: 'noche' },
+      { hora: '21:00', momento: 'noche' },
+      { hora: '21:30', momento: 'noche' },
+      { hora: '22:00', momento: 'noche' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: '859073e8-21e7-472c-a324-629a108df5b7',
+    tipo: 'directo',
+    precio: 380,
+    origen: 'Montevideo',
+    destino: 'Colonia',
+    duracion_en_minutos: 195,
+    frecuencia_en_texto: 'Cada 1 hora',
+    horas: [
+      { hora: '06:00', momento: 'mañana' },
+      { hora: '07:00', momento: 'mañana' },
+      { hora: '08:00', momento: 'mañana' },
+      { hora: '09:00', momento: 'mañana' },
+      { hora: '10:00', momento: 'mañana' },
+      { hora: '11:00', momento: 'mañana' },
+      { hora: '12:00', momento: 'tarde' },
+      { hora: '13:00', momento: 'tarde' },
+      { hora: '14:00', momento: 'tarde' },
+      { hora: '15:00', momento: 'tarde' },
+      { hora: '16:00', momento: 'tarde' },
+      { hora: '17:00', momento: 'tarde' },
+      { hora: '18:00', momento: 'noche' },
+      { hora: '19:00', momento: 'noche' },
+      { hora: '20:00', momento: 'noche' },
+      { hora: '21:00', momento: 'noche' },
+      { hora: '22:00', momento: 'noche' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: '6d063aba-5a76-491c-80b0-bf37a697a034',
+    tipo: 'semi-directo',
+    precio: 720,
+    origen: 'Montevideo',
+    destino: 'Paysandú',
+    duracion_en_minutos: 345,
+    frecuencia_en_texto: '3 por día',
+    horas: [
+      { hora: '07:30', momento: 'mañana' },
+      { hora: '14:00', momento: 'tarde' },
+      { hora: '21:30', momento: 'noche' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: '4cbd5f88-dc48-4964-a277-1889033b1a18',
+    tipo: 'semi-directo',
+    precio: 850,
+    origen: 'Montevideo',
+    destino: 'Salto',
+    duracion_en_minutos: 390,
+    frecuencia_en_texto: '2 por día',
+    horas: [
+      { hora: '08:00', momento: 'mañana' },
+      { hora: '22:00', momento: 'noche' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: 'a99b8cfb-801d-4710-bf09-a17071f80ee0',
+    tipo: 'semi-directo',
+    precio: 920,
+    origen: 'Montevideo',
+    destino: 'Rivera',
+    duracion_en_minutos: 435,
+    frecuencia_en_texto: '2 por día',
+    horas: [
+      { hora: '07:00', momento: 'mañana' },
+      { hora: '21:00', momento: 'noche' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: 'f8613521-4a94-490f-8976-afb0c10975c9',
+    tipo: 'semi-directo',
+    precio: 680,
+    origen: 'Montevideo',
+    destino: 'Tacuarembó',
+    duracion_en_minutos: 330,
+    frecuencia_en_texto: '2 por día',
+    horas: [
+      { hora: '08:30', momento: 'mañana' },
+      { hora: '20:30', momento: 'noche' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: 'd93dd86c-eb5b-43ec-84e2-d2409ec91796',
+    tipo: 'semi-directo',
+    precio: 780,
+    origen: 'Montevideo',
+    destino: 'Melo',
+    duracion_en_minutos: 405,
+    frecuencia_en_texto: '1 por día',
+    horas: [
+      { hora: '09:00', momento: 'mañana' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: '08927e6f-7227-4142-9f86-724614e4f505',
+    tipo: 'directo',
+    precio: 520,
+    origen: 'Montevideo',
+    destino: 'Rocha',
+    duracion_en_minutos: 225,
+    frecuencia_en_texto: '4 por día',
+    horas: [
+      { hora: '07:00', momento: 'mañana' },
+      { hora: '11:30', momento: 'mañana' },
+      { hora: '15:00', momento: 'tarde' },
+      { hora: '18:30', momento: 'tarde' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: '6fad0aa9-879d-4f45-8389-b1b6282282e5',
+    tipo: 'internacional',
+    precio: 1200,
+    origen: 'Montevideo',
+    destino: 'Buenos Aires',
+    duracion_en_minutos: 510,
+    frecuencia_en_texto: 'Diario',
+    horas: [
+      { hora: '22:30', momento: 'noche' }
+    ],
+    falta: 'feriado'
+  },
+  {
+    id: 'e0ff46db-dca2-4e8d-831d-d89fe4f1bd1d',
+    tipo: 'internacional',
+    precio: 2800,
+    origen: 'Montevideo',
+    destino: 'São Paulo',
+    duracion_en_minutos: 1125,
+    frecuencia_en_texto: '3 por semana',
+    horario: 'Lun, Mié, Vie: 20:00',
+    falta: 'feriado'
+  }
+]
 ---
 
 <Layout title='Rutas'>
-	Rutas
+	<section class='w-full h-fit py-12 pt-20 flex flex-col items-center gap-4'>
+		<h1 class='text-4xl font-bold text-gray-800 text-center'>Nuestras Rutas</h1>
+		<p class='text-gray-600 text-lg text-center max-w-160'>Conectamos todo Uruguay y principales destinos internacionales con servicios regulares y confiables</p>
+	</section>
+	<section class='overflow-hidden w-full mx-auto max-w-screen-2xl h-fit px-4 flex flex-col gap-6'>
+		<h2 class='text-2xl font-bold text-gray-800'>Rutas Nacionales</h2>
+		<div class='grid w-full h-fit grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+			{
+				rutas.map((ruta) => {
+					if (ruta.tipo === 'internacional') return
+					return <RouteCard {...ruta} />
+				})
+			}
+		</div>
+	</section>
 </Layout>
