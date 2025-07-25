@@ -35,7 +35,7 @@ export function ContactsModal () {
       class='fixed left-0 top-0 w-full h-full flex items-center justify-center bg-black/80'
       onClick={closeModal}
     >
-      <section class='h-130 w-224 max-h-full max-w-full bg-white hover:[background-image:unset] rounded-lg text-neutral-700 [&_.icon]:max-h-10 overflow-y-auto p-6 [scrollbar-color:gray_white] gap-6 flex flex-col'>
+      <section class='h-130 w-224 max-h-full max-w-full bg-white rounded-lg text-neutral-700 [&_.icon]:max-h-10 overflow-y-auto p-6 [scrollbar-color:gray_white] gap-6 flex flex-col'>
         <header class='h-15 flex items-start justify-between min-h-fit'>
           <div class='px-2'>
             <div class='flex items-center gap-2 pb-1.5'>
