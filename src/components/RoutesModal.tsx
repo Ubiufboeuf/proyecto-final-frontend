@@ -3,21 +3,21 @@ import { useEffect } from 'preact/hooks'
 
 export function RoutesModal () {
   const isModalOpen = useRoutesModal((state) => state.isModalOpen)
+  const modalInfo = useRoutesModal((state) => state.modalInfo)
   const setIsModalOpen = useRoutesModal((state) => state.setIsModalOpen)
 
   function hideModal () {
     setIsModalOpen(false)
   }
 
-  useEffect(() => {
-    if (isModalOpen) {
-      document.documentElement.style.overflow = 'hidden'
-      document.documentElement.style.scrollbarGutter = 'stable'
-    } else {
-      document.documentElement.style.overflow = 'auto'
-      document.documentElement.style.scrollbarGutter = 'stable'
-    }
-  }, [isModalOpen])
+  function handleHideModal (event: TargetedEvent<HTMLDialogElement>) {
+    if (event.target !== event.currentTarget) return
+    hideModal()
+  }
+
+  if (!modalInfo) return
+
+  const { id, precio, origen, destino, duracion_en_minutos, horas } = modalInfo
 
   return (
     <dialog

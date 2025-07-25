@@ -4,12 +4,16 @@ import { IconArrowLeft, IconBus, IconClock, IconCalendar } from '@/components/Ic
 import { parseTimeInMinutes } from '@/lib/utils'
 import { useRoutesModal } from '@/stores/useRoutesModal'
 
-export function RouteCard ({ id, tipo, precio, origen, destino, duracion_en_minutos, horas, horario, falta, frecuencia_en_texto }: Ruta) {
+export function RouteCard (ruta: Ruta) {
+  const { id, tipo, precio, origen, destino, duracion_en_minutos, horas, horario, falta, frecuencia_en_texto } = ruta
+  
   const isModalOpen = useRoutesModal((state) => state.isModalOpen)
   const setIsModalOpen = useRoutesModal((state) => state.setIsModalOpen)
+  const setModalInfo = useRoutesModal((state) => state.setModalInfo)
 
   function toggleModal () {
     setIsModalOpen(!isModalOpen)
+    setModalInfo(ruta)
   }
 
   return (
