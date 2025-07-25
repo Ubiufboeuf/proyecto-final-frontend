@@ -13,10 +13,7 @@ export function RouteCard ({ id, tipo, precio, origen, destino, duracion_en_minu
   }
 
   return (
-    <article
-      class={`${falta ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} h-80 w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}
-      onClick={toggleModal}
-    >
+    <article class={`${falta ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} h-80 w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}>
       <section class='h-10 w-full flex justify-between items-start'>
         <span class={`${falta ? 'text-gray-700 bg-gray-100' : 'text-orange-700 bg-orange-100'} h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold`}>{tipo}</span>
         <span class={`${falta ? 'text-gray-500' : 'text-orange-500'} font-bold text-lg`}>${precio}</span>
@@ -59,7 +56,15 @@ export function RouteCard ({ id, tipo, precio, origen, destino, duracion_en_minu
                     {hora}
                   </span>
                 )) }
-              { (horas && horas.length > 6) && <button class={`${falta ? 'text-gray-700' : 'text-orange-500 hover:bg-orange-100'} text-xs p-1 px-1.5 cursor-pointer rounded-md transition-colors`}>+{horas.length - 6} más</button>}
+              { (horas && horas.length > 6) && (
+                  <button
+                    class={`${falta ? 'text-gray-700' : 'text-orange-500 hover:bg-orange-100'} text-xs p-1 px-1.5 cursor-pointer rounded-md transition-colors`}
+                    onClick={toggleModal}
+                  >
+                    +{horas.length - 6} más
+                  </button>
+                )
+              }
               </div>
             </>
           }
