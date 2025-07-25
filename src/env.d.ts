@@ -67,3 +67,19 @@ export interface Driver {
   id: string
   name: string
 }
+
+export type Ruta = {
+  id: string
+  tipo: 'directo' | 'semi-directo' | 'internacional',
+  precio: number,
+  origen: string,
+  destino: string,
+  duracion_en_minutos: number
+  frecuencia_en_texto: string
+  horas?: {
+    hora: string,
+    momento: 'mañana' | 'tarde' | 'noche'
+  }[]
+  horario?: string
+  falta?: 'feriado' | 'roto'
+}
