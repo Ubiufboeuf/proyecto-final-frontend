@@ -18,10 +18,7 @@ export function RouteCard ({ id, tipo, precio, origen, destino, duracion_en_minu
       onClick={toggleModal}
     >
       <section class='h-10 w-full flex justify-between items-start'>
-        <div class='flex items-center gap-1 w-fit h-fit'>
-          <span class={`${falta ? 'text-gray-700 bg-gray-100' : 'text-orange-700 bg-orange-100'} h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold`}>{tipo}</span>
-          { falta && <span class={`${falta ? 'text-gray-700 bg-gray-100' : 'text-orange-700 bg-orange-100'} h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold`}>Falta por {falta}</span> }
-        </div>
+        <span class={`${falta ? 'text-gray-700 bg-gray-100' : 'text-orange-700 bg-orange-100'} h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold`}>{tipo}</span>
         <span class={`${falta ? 'text-gray-500' : 'text-orange-500'} font-bold text-lg`}>${precio}</span>
       </section>
       <section class='gap-2 h-fit flex flex-col'>
@@ -73,7 +70,10 @@ export function RouteCard ({ id, tipo, precio, origen, destino, duracion_en_minu
           href={falta ? undefined : `/buy-ticket/${id}`}
           class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'hover:bg-orange-600 bg-orange-500 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
         >
-          Comprar pasaje
+          { falta
+            ? `Falta por ${falta}`
+            : 'Comprar pasaje'
+          }
         </a>
       </section>
     </article>
