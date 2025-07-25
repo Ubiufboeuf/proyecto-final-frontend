@@ -2,11 +2,20 @@ import type { Ruta } from '@/env'
 import { Icon } from '@/components/Icon'
 import { IconArrowLeft, IconBus, IconClock, IconCalendar } from '@/components/Icons'
 import { parseTimeInMinutes } from '@/lib/utils'
+import { useRoutesModal } from '@/stores/useRoutesModal'
 
 export function RouteCard ({ id, tipo, precio, origen, destino, duracion_en_minutos, horas, horario, falta, frecuencia_en_texto }: Ruta) {
+  const isModalOpen = useRoutesModal((state) => state.isModalOpen)
+  const setIsModalOpen = useRoutesModal((state) => state.setIsModalOpen)
+
+  function toggleModal () {
+    setIsModalOpen(!isModalOpen)
+  }
+
   return (
     <article
       class={`${falta ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} h-80 w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}
+      onClick={toggleModal}
     >
       <section class='h-10 w-full flex justify-between items-start'>
         <div class='flex items-center gap-1 w-fit h-fit'>

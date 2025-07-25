@@ -2,6 +2,7 @@
 import type { Ruta } from '@/env'
 import Layout from '@/layouts/Layout.astro'
 import { RouteCard } from '@/components/RouteCard'
+import { RoutesModal } from '@/components/RoutesModal'
 
 const rutas: Ruta[] = [
   {
@@ -183,6 +184,7 @@ const rutas: Ruta[] = [
 ---
 
 <Layout title='Rutas'>
+  <RoutesModal client:load />
 	<section class='w-full h-fit py-12 pt-20 flex flex-col items-center gap-4'>
 		<h1 class='text-4xl font-bold text-gray-800 text-center'>Nuestras Rutas</h1>
 		<p class='text-gray-600 text-lg text-center max-w-160'>Conectamos todo Uruguay y principales destinos internacionales con servicios regulares y confiables</p>
@@ -193,7 +195,7 @@ const rutas: Ruta[] = [
 			{
 				rutas.map((ruta) => {
 					if (ruta.tipo === 'internacional') return
-					return <RouteCard {...ruta} />
+					return <RouteCard {...ruta} client:load />
 				})
 			}
 		</div>
