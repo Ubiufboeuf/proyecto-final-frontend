@@ -17,9 +17,9 @@ export function RouteCard (ruta: Ruta) {
   }
 
   return (
-    <article class={`${falta ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} h-80 w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}>
-      <section class='h-10 w-full flex justify-between items-start'>
-        <span class={`${falta ? 'text-gray-700 bg-gray-100' : 'text-orange-700 bg-orange-100'} h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold`}>{tipo}</span>
+    <article class={`${falta ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} h-full w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}>
+      <section class='h-fit w-full flex justify-between items-start'>
+        <span class={`${falta ? 'text-gray-700 bg-gray-100' : tipo === 'internacional' ? 'text-blue-700 bg-blue-100' : 'text-orange-700 bg-orange-100'} h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold`}>{tipo}</span>
         <span class={`${falta ? 'text-gray-500' : 'text-orange-500'} font-bold text-lg`}>${precio}</span>
       </section>
       <section class='gap-2 h-fit flex flex-col'>
@@ -49,8 +49,9 @@ export function RouteCard (ruta: Ruta) {
             </Icon>
             <span class='text-sm text-gray-600'>Horarios:</span>
           </div>
-          { horario ||
-            <>
+          { horario
+            ? <span class='text-gray-600 text-sm'>{horario}</span>
+            : <>
               <div class='flex gap-1 px-5 flex-wrap'>
                 { [...horas || []].slice(0, 6).map(({ hora }) => (
                   <span
@@ -74,7 +75,7 @@ export function RouteCard (ruta: Ruta) {
           }
         </div>
       </section>
-      <section class='h-fit flex w-full items-end'>
+      <section class='h-fit min-h-fit flex-1 flex w-full items-end'>
         <a
           href={falta ? undefined : `/buy-ticket/${id}`}
           class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'hover:bg-orange-600 bg-orange-500 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
