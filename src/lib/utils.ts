@@ -40,3 +40,18 @@ export const links = [
   { name: 'Nosotros', link: '/about/' },
   { name: 'Contacto', link: '/contact/' }
 ]
+
+export function parseTimeInMinutes (time: number, output: 'h-mm') {
+  const t = time
+
+  const hour = `${Math.floor(t / 60)}`
+  const minute = `${t % 60}`
+
+  const h_mm = `${hour}h ${minute.padStart(2, '0')}min`
+
+  const outputs = {
+    'h-mm': `${h_mm}`
+  }
+
+  return outputs[output]
+}
