@@ -17,7 +17,7 @@ export function RouteCard (ruta: Ruta) {
   }
 
   return (
-    <article class={`${falta ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} h-full w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}>
+    <article class={`${falta ? 'bg-gray-200' : 'bg-white'} h-full w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}>
       <section class='h-fit w-full flex justify-between items-start'>
         <span class={`${falta ? 'text-gray-700 bg-gray-100' : tipo === 'internacional' ? 'text-blue-700 bg-blue-100' : 'text-orange-700 bg-orange-100'} h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold`}>{tipo}</span>
         <span class={`${falta ? 'text-gray-500' : 'text-orange-500'} font-bold text-lg`}>${precio}</span>
