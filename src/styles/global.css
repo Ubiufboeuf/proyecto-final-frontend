@@ -51,3 +51,10 @@ h6 {
 p {
   text-wrap: pretty;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    /* no hace falta el important, pero por si acaso que quede */
+    transition-duration: 0ms !important;
+  }
+}
