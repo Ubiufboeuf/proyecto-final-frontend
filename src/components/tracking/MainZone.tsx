@@ -1,25 +1,45 @@
+import 'leaflet/dist/leaflet.css'
 import type { BusStates } from '@/env'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { useEffect, useRef, useState } from 'preact/hooks'
+import type { Map } from 'leaflet'
+import { Icon } from '../Icon'
+import { IconWideArrowUp } from '../Icons'
 
 export function MainZone () {
   const mapRef = useRef<HTMLDivElement>(null)
-  const [state, setState] = useState<BusStates>('En viaje')
+  const [state] = useState<BusStates>('En viaje')
   const updateBusState = useBusesStore((state) => state.updateBusState)
   const setDelayed = useBusesStore((state) => state.setDelayed)
   const setInMovement = useBusesStore((state) => state.setInMovement)
   const setInTerminal = useBusesStore((state) => state.setInTerminal)
   const busesData = useBusesStore((state) => state.busesData)
   
-  // function change () {
-  //   if (state === 'En viaje') {
-  //     setState('En terminal')
-  //   } else if (state === 'En terminal') {
-  //     setState('Atrasado')
-  //   } else {
-  //     setState('En viaje')
-  //   }
-  // }
+  async function loadMap () {
+    let L
+    try {
+      L = await import('leaflet')
+    } catch (err) {
+      console.error('error importando leaflet:', err)
+      return
+    }
+
+    const { tileLayer, map, control } = L
+    const $map: Map = map('map', {
+      zoomControl: false
+    }).setView([-34.471, -57.830], 15)
+
+    control.zoom({ position: 'topright' }).addTo($map)
+    $map.locate({ setView: true, maxZoom: 16 })
+
+    tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+    }).addTo($map)
+  }
+
+  useEffect(() => {
+    loadMap()
+  }, [])
 
   useEffect(() => {
     const bus = busesData[0]
@@ -38,14 +58,19 @@ export function MainZone () {
   }, [busesData])
 
   return (
-    <main class='h-full w-full absolute left-0 top-0 z-0 pt-16 pl-80'>
+    <main class='h-full w-full absolute right-0 top-0 z-0 pt-16 lg:pl-80'>
       <div class='h-full w-full flex justify-center items-center'>
         <div
           ref={mapRef}
           id='map'
-          class='w-full h-full'
+          class='w-full h-full max-w-full max-h-full overflow-hidden z-0'
         />
       </div>
+      <button class='lg:hidden active:bg-gray-200 active:transition-colors absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1 rounded-xl'>
+        <Icon class='size-10'>
+          <IconWideArrowUp />
+        </Icon>
+      </button>
     </main>
   )
 }
