@@ -495,3 +495,20 @@ export const IconCalendar = () => (
     <path d='M3 10h18' />
   </svg>
 )
+
+export const IconWideArrowUp = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    className='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M4 13l8 -3l8 3' />
+  </svg>
+)
