@@ -31,7 +31,7 @@ export function Aside ({ buses: _buses }: { buses: Buses | null }) {
   }, [busesData])
 
   return (
-    <aside class='relative z-10 flex flex-col justify-between h-[calc(100%-64px)] max-h-[calc(100%-64px)] overflow-hidden w-80 border-r border-gray-200 bg-white'>
+    <aside class='relative lg:left-0 -left-80 top-0 z-10 flex flex-col justify-between h-[calc(100%-64px)] max-h-[calc(100%-64px)] overflow-hidden w-80 border-r border-gray-200 bg-white [transition:left_250ms_ease]'>
       <AsideHeader />
       <section class='p-4 overflow-y-auto [scrollbar-width:thin] h-full flex flex-col gap-4'>
         {
