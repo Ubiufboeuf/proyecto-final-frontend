@@ -3,6 +3,8 @@ import type { Ruta } from '@/env'
 import Layout from '@/layouts/Layout.astro'
 import { RouteCard } from '@/components/RouteCard'
 import { RoutesModal } from '@/components/RoutesModal'
+import { IconBus, IconClock, IconLocation } from '@/components/Icons'
+import { Icon } from '@/components/Icon'
 
 const rutas: Ruta[] = [
   {
@@ -181,6 +183,54 @@ const rutas: Ruta[] = [
     horario: 'Lun, Mié, Vie: 20:00'
   }
 ]
+
+const horariosDestacados = [
+  {
+    title: 'Servicios Matutinos',
+    description: 'Primeras salidas del día',
+    hours: ['06:00', '06:30', '07:00', '07:30'],
+    bgColor: '#EFF6FF',
+    bg2Color: '#DBEAFE',
+    mainColor: '#1E40AF',
+    color: '#1D4ED8'
+  },
+  {
+    title: 'Servicios Ejecutivos',
+    description: 'Horarios premium',
+    hours: ['08:00', '14:00', '18:00', '22:00'],
+    bgColor: '#F0FDF4',
+    bg2Color: '#DCFCE7',
+    mainColor: '#166534',
+    color: '#15803D'
+  },
+  {
+    title: 'Servicios Nocturnos',
+    description: 'Últimas salidas',
+    hours: ['20:00', '21:00', '22:00', '22:30'],
+    bgColor: '#FFF7ED',
+    bg2Color: '#FFEDD5',
+    mainColor: '#9A3412',
+    color: '#C2410C'
+  }
+]
+
+const informacionImportante = [
+  {
+    Icon: IconLocation,
+    title: 'Terminal Principal',
+    description: 'Terminal Tres Cruces Montevideo'
+  },
+  {
+    Icon: IconClock,
+    title: 'Recomendaciones',
+    description: 'Llegar 30 min antes para viajes nacionales'
+  },
+  {
+    Icon: IconBus,
+    title: 'Equipaje',
+    description: 'Hasta 20kg incluido en el pasaje'
+  }
+]
 ---
 
 <Layout title='Rutas'>
@@ -211,4 +261,52 @@ const rutas: Ruta[] = [
 			}
 		</div>
 	</section>
+  <section class='w-full h-fit px-4 pb-8 flex justify-center max-w-screen-2xl mx-auto'>
+    <div class='bg-white w-full h-fit py-8 px-12 rounded-xl shadow-md'>
+      <h1 class='text-2xl font-bold text-gray-800 text-center'>Horarios Destacados</h1>
+      <div class='w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 h-fit place-items-center py-6 px-8 gap-6'>
+        {
+          horariosDestacados.map(({ description, hours, title, bg2Color, bgColor, color, mainColor }) => (
+            <article class='w-full h-fit flex flex-col items-center py-4 gap-2 rounded-lg' style={{ background: bgColor }}>
+              <h1 class='text-md font-semibold' style={{ color: mainColor }}>{title}</h1>
+              <p class='text-sm' style={{ color }}>{description}</p>
+              <div class='w-fit max-w-full flex gap-1 flex-wrap px-4 justify-center'>
+                { hours.map((hora) => (
+                  <span class='text-[13px] h-fit w-fit px-2 py-0.5 rounded-md' style={{ background: bg2Color }}>{hora}</span>
+                )) }
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <p class='text-sm text-gray-600 text-center mb-2'>
+        <strong>Nota:</strong>
+        Los horarios pueden variar según la temporada y condiciones especiales.
+      </p>
+      <p class='text-sm text-gray-600 text-center'>Se recomienda confirmar horarios al momento de la compra del pasaje.</p>
+    </div>
+  </section>
+  <section class='w-full h-fit px-4 pb-8 flex justify-center max-w-screen-2xl mx-auto'>
+    <div class='bg-white w-full h-fit py-4 pt-8 px-12 gap-2 rounded-xl shadow-md'>
+      <h1 class='text-2xl font-bold text-gray-800 text-center'>Información Importante</h1>
+      <div class='w-full grid md:grid-cols-3 grid-cols-1 h-fit min-h-fit place-items-center py-2 px-8 gap-4'>
+        {
+          informacionImportante.map(({ Icon: InfoIcon, description, title }) => (
+            <article class='w-fit h-fit flex flex-col items-center px-4 py-2 gap-2 rounded-lg'>
+              <Icon class='size-8 text-orange-500'>
+                <InfoIcon />
+              </Icon>
+              <h1 class='text-md font-semibold text-gray-800'>{title}</h1>
+              <p class='text-[13px] text-gray-600 text-center'>{description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section class='w-full h-fit min-h-fit py-8 pb-16 flex flex-col gap-4 justify-center items-center'>
+    <h1 class='text-2xl font-bold text-gray-800'>¿No encuentras tu destino?</h1>
+    <p class='text-gray-700 pb-4'>Contáctanos para consultar sobre rutas especiales o conexiones</p>
+    <a href='/contact' class='rounded-lg py-3 px-8 h-fit w-fit hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer'>Consultar Ruta</a>
+  </section>
 </Layout>
