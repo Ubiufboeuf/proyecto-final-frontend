@@ -23,7 +23,7 @@ const { originPathname: pathname } = Astro
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black'>
 		<Header pathname={pathname} />
-		<SideBar pathname={pathname} client:load />
+		<SideBar pathname={pathname} client:idle />
 		<slot />
 		<Footer />
 	</body>
