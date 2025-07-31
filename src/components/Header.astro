@@ -12,8 +12,8 @@ const { pathname } = Astro.props
 ---
 
 <header class='w-full h-navbar px-8 pl-4 bg-white text-gray-700 top-0 left-0 flex justify-center items-center'>
-  <div class='h-full w-full max-w-screen-2xl flex items-center ml:justify-center justify-between [&>*]:flex-1'>
-    <aside class='h-full w-full flex items-center'>
+  <div class='h-full w-full max-w-screen-2xl flex items-center ml:justify-center justify-between'>
+    <aside class='h-full w-fit flex items-center'>
       <a href='/' class='h-fit max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4'>
         <Icon class='size-8 text-orange-500'>
           <IconBus />
@@ -21,7 +21,7 @@ const { pathname } = Astro.props
         <strong class='text-nowrap text-xl w-fit max-w-full'>Berrutti</strong>
       </a>
     </aside>
-    <nav class='h-full w-full hidden lg:flex items-center justify-center px-4'>
+    <nav class='h-full w-full flex-1 hidden lg:flex items-center justify-center px-4'>
       {
         links.map(({ link, name }) => (
           <a
@@ -35,7 +35,7 @@ const { pathname } = Astro.props
         ))
       }
     </nav>
-    <aside class='h-full w-full flex items-center justify-end gap-2'>
+    <aside class='h-full w-fit flex items-center justify-end gap-2'>
       <a class='not-xs:hidden xl:flex lg:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border cursor-pointer'>
         Iniciar Sesión
       </a>
