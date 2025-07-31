@@ -14,7 +14,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
   return (
     <>
       <aside
-        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-screen bg-white text-gray-800 flex flex-col lg:hidden duration-300 z-[2] px-8`}
+        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-screen bg-white text-gray-800 flex flex-col xl:hidden duration-300 z-[2] px-8 [scrollbar-width:thin]`}
       >
         <header class='h-navbar min-h-navbar w-full flex items-center justify-center'>
           <CloseSidebar />
@@ -34,17 +34,17 @@ export function SideBar ({ pathname }: { pathname: string }) {
             ))
           }
           <div class='mt-auto w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
-            <a class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
+            <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
               Registrarse
             </a>
-            <a class='w-full xs:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border text-center'>
+            <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border text-center'>
               Iniciar Sesión
             </a>
           </div>
         </main>
       </aside>
       <button
-        class='fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 lg:hidden cursor-pointer'
+        class='fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 xl:hidden cursor-pointer'
         hidden={!isMenuOpen}
         onClick={toggleMenu}
       />

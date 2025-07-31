@@ -36,6 +36,7 @@ export const links = [
   { name: 'Inicio', link: '/' },
   { name: 'Servicios', link: '/services/' },
   { name: 'Rutas', link: '/routes/' },
+  { name: 'Viajes Personalizados', link: '/custom-trips/' },
   { name: 'Seguimiento', link: '/track/' },
   { name: 'Nosotros', link: '/about/' },
   { name: 'Contacto', link: '/contact/' }
