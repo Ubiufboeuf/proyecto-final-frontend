@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'preact/hooks'
 import type { Map } from 'leaflet'
 import { Icon } from '../Icon'
 import { IconWideArrowUp } from '../Icons'
+import { Button } from '../devices/Button'
 
 export function MainZone () {
   const mapRef = useRef<HTMLDivElement>(null)
@@ -66,11 +67,11 @@ export function MainZone () {
           class='w-full h-full max-w-full max-h-full overflow-hidden z-0'
         />
       </div>
-      <button class='lg:hidden active:bg-gray-200 active:transition-colors absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1 rounded-xl'>
+      <Button class='lg:hidden [&.inClick]:bg-gray-200 hover:bg-gray-100 not-touch:transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1 rounded-xl'>
         <Icon class='size-10'>
           <IconWideArrowUp />
         </Icon>
-      </button>
+      </Button>
     </main>
   )
 }
