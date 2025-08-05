@@ -19,5 +19,8 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare({
     imageService: 'compile'
-  })
+  }),
+  redirects: {
+    '/buy-ticket/': '/routes/'
+  }
 })
