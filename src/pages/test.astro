@@ -1,5 +1,6 @@
 ---
 import VaulDrawer from '@/components/Drawer'
+import { PruebaSeguimiento } from '@/components/PruebaSeguimiento'
 import '@/styles/global.css'
 ---
 
@@ -12,12 +13,13 @@ import '@/styles/global.css'
 		<script src='../lib/detectDeviceType.js'></script>
 	</head>
   <body>
-    <VaulDrawer client:load />
+    <!-- <VaulDrawer client:load /> -->
+		 <PruebaSeguimiento client:only='preact' />
   </body>
 </html>
 
 <style>
-  :root {
+  /* :root {
     color-scheme: dark;
-  }
+  } */
 </style>
