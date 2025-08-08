@@ -13,6 +13,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+  server: {
+    allowedHosts: true
+  },
 
   site: 'https://proyecto-final-frontend.pages.dev',
   base: '/',
