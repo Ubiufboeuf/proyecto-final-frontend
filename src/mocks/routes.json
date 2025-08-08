@@ -367,7 +367,6 @@
     "destino": "São Paulo",
     "duracion": 1125,
     "frecuencia": "3 por semana",
-    // "horario": "Lun, Mié, Vie: 20:00",
     "dias": [1, 3, 5],
     "horas": [
       {
