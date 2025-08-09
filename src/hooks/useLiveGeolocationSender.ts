@@ -1,5 +1,5 @@
+import { useState, useEffect, useMemo, useCallback } from 'preact/compat'
 import type { CustomCoords, Options } from '@/env'
-import { useCallback, useEffect, useState } from 'preact/compat'
 
 const DEFAULT_OPTIONS: Options = {
   enableHighAccuracy: true,
@@ -10,17 +10,17 @@ const DEFAULT_OPTIONS: Options = {
 
 export default function useLiveGeolocationSender (url: string, options: Options) {
   const [coordinates, setCoordinates] = useState<CustomCoords | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [isTracking, setIsTracking] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isWatching, setIsWatching] = useState<boolean>(false)
   const [watchId, setWatchId] = useState<number | null>(null)
 
-  const finalOptions = {
+  // Memoizamos finalOptions para evitar recrear objeto y efectos innecesarios
+  const finalOptions = useMemo(() => ({
     ...DEFAULT_OPTIONS,
     ...options
-  }
+  }), [options.enableHighAccuracy, options.timeout, options.maximumAge, options.sendCoordinates])
 
-  
   // se usa useCallback para evitar re-renderizados indeseados por el useEffect o cargas de más de la función
   const sendCoordinatesToServer = useCallback(async (coords: CustomCoords) => {
     try {
@@ -35,33 +35,57 @@ export default function useLiveGeolocationSender (url: string, options: Options)
       }
       setError(null)
     } catch (err: unknown) {
-      // Intentando un buen manejo de errores :P
       if (err instanceof Error) {
         setError(err.message)
       } else if (typeof err === 'string') {
         setError(err)
       } else {
-        console.error('Surgió un error inesperado al enviar las coordenadas al servidor.')
         setError('Ocurrió un error inesperado.')
       }
     } finally {
       // setLoading(false)
     }
   }, [url])
-  
-  const startWatching = useCallback(() => {
+
+  // Iniciar seguimiento (simplemente cambia isWatching a true)
+  function startWatching () {
     if (!navigator.geolocation) {
       setError('La geolocalización no está soportada por tu navegador.')
       return
     }
 
     if (isWatching) return // Evitar iniciar si ya está observando
-
+    
     setError(null)
-    setLoading(true)
+    setIsTracking(true)
+    setIsWatching(true)
+  }
 
-    async function successHandler (position: GeolocationPosition) {
-      const { accuracy, altitude, altitudeAccuracy, heading, latitude, longitude, speed } = position.coords
+  // Detener seguimiento
+  function stopWatching () {
+    if (watchId !== null) {
+      navigator.geolocation.clearWatch(watchId)
+      setWatchId(null)
+    }
+    setIsTracking(false)
+    setIsWatching(false)
+  }
+
+  // Efecto que maneja el watchPosition y reinicia al cambiar opciones o isWatching
+  useEffect(() => {
+    if (!isWatching) return
+
+    const successHandler = async (position: GeolocationPosition) => {
+      const {
+        accuracy,
+        altitude,
+        altitudeAccuracy,
+        heading,
+        latitude,
+        longitude,
+        speed
+      } = position.coords
+
       const newCoordinates: CustomCoords = {
         accuracy,
         altitude,
@@ -72,46 +96,45 @@ export default function useLiveGeolocationSender (url: string, options: Options)
         speed,
         timestamp: position.timestamp
       }
+
       setCoordinates(newCoordinates)
 
       if (finalOptions.sendCoordinates) {
-        setLoading(true)
         await sendCoordinatesToServer(newCoordinates)
-        setLoading(false)
-      } else {
-        setLoading(false)
       }
-
-      // No se puede usar el mismo setLoading porque el primero espera, el segundo no
     }
 
-    function errorHandler (err: GeolocationPositionError) {
+    const errorHandler = (err: GeolocationPositionError) => {
       setError(err.message)
-      setLoading(false)
+      setIsTracking(false)
       setIsWatching(false)
       console.error('Error obteniendo la ubicación:', err)
     }
 
-    const newWatchId = navigator.geolocation.watchPosition(successHandler, errorHandler, finalOptions)
-    setWatchId(newWatchId)
-    setIsWatching(true)
+    const id = navigator.geolocation.watchPosition(successHandler, errorHandler, finalOptions)
+    setWatchId(id)
+
+    return () => {
+      navigator.geolocation.clearWatch(id)
+      setWatchId(null)
+      setIsWatching(false)
+    }
   }, [isWatching, finalOptions])
 
-  function stopWatching () {
-    if (watchId !== null) {
-      navigator.geolocation.clearWatch(watchId)
-      setWatchId(null)
+  // Cleanup cuando se desmonta el hook o componente
+    useEffect(() => {
+    return () => {
+      if (watchId !== null) {
+        navigator.geolocation.clearWatch(watchId)
+      }
     }
-
-    setIsWatching(false)
-    setLoading(false)
-  }
+  }, [watchId])
 
   useEffect(() => {
     return () => {
       stopWatching()
     }
   }, [])
-  
-  return { coordinates, loading, error, isWatching, startWatching, stopWatching }
+
+  return { coordinates, isTracking, error, isWatching, startWatching, stopWatching }
 }

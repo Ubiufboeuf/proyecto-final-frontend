@@ -17,7 +17,7 @@ export function DriverDashboard () {
   const [serverUrl] = useState('https://5f1e5019bc9b.ngrok-free.app')
   const [highAccuracy, setHighAccuracy] = useState(true)
 
-  const { coordinates, loading, error, isWatching, startWatching, stopWatching } = useLiveGeolocationSender(serverUrl, {
+  const { coordinates, isTracking, error, isWatching, startWatching, stopWatching } = useLiveGeolocationSender(serverUrl, {
     enableHighAccuracy: highAccuracy,
     timeout: 10000,
     maximumAge: 30000,
@@ -29,9 +29,9 @@ export function DriverDashboard () {
 
   useEffect(() => {
     if (isWatching && !error) setConnectionStatus('connected')
-    else if (loading) setConnectionStatus('connecting')
+    else if (isTracking) setConnectionStatus('connecting')
     else setConnectionStatus('disconnected')
-  }, [isWatching, loading, error])
+  }, [isWatching, isTracking, error])
 
   useEffect(() => {
     if (coordinates) setLastUpdate(new Date())
@@ -147,7 +147,7 @@ export function DriverDashboard () {
                       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
                         highAccuracy ? 'bg-orange-500' : 'bg-gray-300'
                       }`}
-                      disabled={loading}
+                      disabled={isTracking}
                     >
                       <span
                         className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -172,10 +172,10 @@ export function DriverDashboard () {
 
                   <button
                     onClick={startWatching}
-                    disabled={isWatching || loading}
+                    disabled={isWatching || isTracking}
                     className='flex-1 bg-orange-500 hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors'
                   >
-                    {loading ? 'Iniciando...' : 'Iniciar Seguimiento'}
+                    {isTracking ? 'Iniciando...' : 'Iniciar Seguimiento'}
                   </button>
                 </div>
 
