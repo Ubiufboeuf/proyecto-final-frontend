@@ -9,7 +9,7 @@ import { getAllRoutes } from '@/services/routeService'
 
 let rutas: Ruta[] = []
 try {
-  rutas = await getAllRoutes()
+  rutas = await getAllRoutes(Astro.url.origin)
 } catch (err) {
   console.error(err)
 }

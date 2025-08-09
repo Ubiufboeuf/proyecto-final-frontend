@@ -1,3 +1,3 @@
 export const ENDPOINTS = {
-  ROUTES: '.'
+  ROUTES: 'mocks/routes.json'
 }
