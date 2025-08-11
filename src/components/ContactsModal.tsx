@@ -12,7 +12,7 @@ export function ContactsModal () {
   const [offices] = useState([
     { dept: 'Colonia', place: 'Local Nº 401 - Terminal de Ómnibus', number: '4522 5301', maps: 'https://goo.gl/maps/n6dJaecYFAoNUNkw7' },
     { dept: 'Carmelo', place: 'Uruguay 337', number: '4542 2504', maps: 'https://goo.gl/maps/ekq5ueUK5CLCVyQq6' },
-    { dept: 'Nueva', place: 'Gral Artigas 1193, esq.Eloy García', number: '4544 6181', maps: 'https://goo.gl/maps/URc34cnf6J6xDNuT6' },
+    { dept: 'Nueva palmira', place: 'Gral Artigas 1193, esq.Eloy García', number: '4544 6181', maps: 'https://goo.gl/maps/URc34cnf6J6xDNuT6' },
     { dept: 'Dolores', place: 'Artigas esq. Pbro. Bonofacio Redruello', number: '4534 4179', maps: 'https://goo.gl/maps/YmXeak5CnUxg1VFK8' },
     { dept: 'Mercedes', place: 'Local Nº 7 -Terminal Shopping', number: '4532 6449', maps: 'https://goo.gl/maps/FuTGqrJsBcDDrVSY7' },
     { dept: 'Ombúes', place: 'Zorrilla 1036 Bis', number: '4576 2859', maps: 'https://goo.gl/maps/NEh2aDkewo6HxLs69' }
