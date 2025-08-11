@@ -25,7 +25,7 @@ export function RouteCard (ruta: Ruta) {
               ? 'text-gray-700 bg-gray-100'
               : tipo === 'internacional'
                 ? 'text-blue-700 bg-blue-100'
-                : 'text-purple-700 bg-purple-100'
+                : 'text-amber-700 bg-orange-100'
               }
               h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold
             `}
