@@ -1,14 +1,26 @@
 import { useState, useEffect } from 'preact/compat'
 import useLiveGeolocationSender from '@/hooks/useLiveGeolocationSender'
 
-interface DriverInfo {
-  name: string
-  vehicleId: string
-  route: string
+const connectionColors = {
+  connected: 'bg-green-500',
+  connecting: 'bg-yellow-500',
+  disconnected: 'bg-red-500'
 }
 
+const connectionsTexts = {
+  connected: 'Conectado',
+  connecting: 'Conectando...',
+  disconnected: 'Desconectado'
+}
+
+const connectionStates = {
+  connected: 'connected',
+  disconnected: 'disconnected',
+  connecting: 'connecting'
+} as const
+
 export function DriverDashboard () {
-  const [driverInfo] = useState<DriverInfo>({
+  const [driverInfo] = useState({
     name: 'Juan Pérez',
     vehicleId: 'BER-001',
     route: 'Montevideo - Punta del Este'
@@ -17,21 +29,21 @@ export function DriverDashboard () {
   const [serverUrl] = useState('https://5f1e5019bc9b.ngrok-free.app')
   const [highAccuracy, setHighAccuracy] = useState(true)
 
-  const { coordinates, isTracking, error, isWatching, startWatching, stopWatching } = useLiveGeolocationSender(serverUrl, {
+  const { coordinates, isTracking, isLoadingTracking, error, isWatching, startWatching, stopWatching } = useLiveGeolocationSender(serverUrl, {
     enableHighAccuracy: highAccuracy,
     timeout: 10000,
     maximumAge: 30000,
     sendCoordinates: true
   })
 
-  const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected' | 'connecting'>('disconnected')
+  const [connectionStatus, setConnectionStatus] = useState<keyof typeof connectionStates>('disconnected')
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null)
 
   useEffect(() => {
     if (isWatching && !error) setConnectionStatus('connected')
     else if (isTracking) setConnectionStatus('connecting')
     else setConnectionStatus('disconnected')
-  }, [isWatching, isTracking, error])
+  }, [isWatching, isTracking, isLoadingTracking, error])
 
   useEffect(() => {
     if (coordinates) setLastUpdate(new Date())
@@ -40,24 +52,9 @@ export function DriverDashboard () {
   const formatCoordinate = (coord: number | null) => (coord ? coord.toFixed(6) : 'N/A')
   const formatTime = (date: Date | null) => (date ? date.toLocaleTimeString('es-UY') : 'N/A')
 
-  const getStatusColor = () => {
-    switch (connectionStatus) {
-      case 'connected': return 'bg-green-500'
-      case 'connecting': return 'bg-yellow-500'
-      default: return 'bg-red-500'
-    }
-  }
-
-  const getStatusText = () => {
-    switch (connectionStatus) {
-      case 'connected': return 'Conectado'
-      case 'connecting': return 'Conectando...'
-      default: return 'Desconectado'
-    }
-  }
-
   // Simplificamos: sólo cambiamos highAccuracy y el hook reinicia seguimiento si está activo
   const handlePrecisionChange = (newHighAccuracy: boolean) => {
+    setConnectionStatus(connectionStates.disconnected)
     setHighAccuracy(newHighAccuracy)
   }
 
@@ -84,8 +81,10 @@ export function DriverDashboard () {
             </div>
 
             <div className='flex items-center space-x-3'>
-              <div className={`w-3 h-3 rounded-full ${getStatusColor()}`}></div>
-              <span className='text-sm font-medium text-gray-700'>{getStatusText()}</span>
+              {/* <div className={`w-3 h-3 rounded-full ${getStatusColor()}`}></div> */}
+              <div className={`${connectionColors[connectionStatus]} w-3 h-3 rounded-full`}></div>
+              {/* <span className='text-sm font-medium text-gray-700'>{getStatusText()}</span> */}
+              <span className='text-sm font-medium text-gray-700'>{connectionsTexts[connectionStatus]}</span>
             </div>
           </div>
         </div>
@@ -102,15 +101,15 @@ export function DriverDashboard () {
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
               <div>
                 <label className='text-sm font-medium text-gray-500'>Conductor</label>
-                <p className='text-lg font-semibold text-gray-900'>{driverInfo.name}</p>
+                <p className='text-lg font-semibold text-gray-900'>{driverInfo?.name}</p>
               </div>
               <div>
                 <label className='text-sm font-medium text-gray-500'>Vehículo</label>
-                <p className='text-lg font-semibold text-gray-900'>{driverInfo.vehicleId}</p>
+                <p className='text-lg font-semibold text-gray-900'>{driverInfo?.vehicleId}</p>
               </div>
               <div>
                 <label className='text-sm font-medium text-gray-500'>Ruta</label>
-                <p className='text-lg font-semibold text-gray-900'>{driverInfo.route}</p>
+                <p className='text-lg font-semibold text-gray-900'>{driverInfo?.route}</p>
               </div>
             </div>
           </div>
@@ -147,7 +146,7 @@ export function DriverDashboard () {
                       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
                         highAccuracy ? 'bg-orange-500' : 'bg-gray-300'
                       }`}
-                      disabled={isTracking}
+                      // disabled={isTracking}
                     >
                       <span
                         className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -165,17 +164,17 @@ export function DriverDashboard () {
                   <button
                     onClick={stopWatching}
                     disabled={!isWatching}
-                    className='flex-1 bg-red-500 hover:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors'
+                    className='flex-1 bg-red-500 hover:bg-red-600 touch:active:bg-red-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors'
                   >
                     Detener Seguimiento
                   </button>
 
                   <button
                     onClick={startWatching}
-                    disabled={isWatching || isTracking}
-                    className='flex-1 bg-orange-500 hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors'
+                    disabled={isWatching || isLoadingTracking}
+                    className='flex-1 bg-orange-500 hover:bg-orange-600 touch:active:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-lg transition-colors'
                   >
-                    {isTracking ? 'Iniciando...' : 'Iniciar Seguimiento'}
+                    {isLoadingTracking ? 'Iniciando...' : 'Iniciar Seguimiento'}
                   </button>
                 </div>
 
@@ -253,8 +252,8 @@ export function DriverDashboard () {
           <div className='px-6 py-4'>
             <div className='flex items-center justify-between'>
               <div className='flex items-center space-x-2'>
-                <div className={`w-2 h-2 rounded-full ${getStatusColor()}`}></div>
-                <span className='text-sm text-gray-600'>Sistema de seguimiento {getStatusText().toLowerCase()}</span>
+                <div className={`w-2 h-2 rounded-full ${connectionColors[connectionStatus]}`}></div>
+                <span className='text-sm text-gray-600'>Sistema de seguimiento {`${connectionsTexts[connectionStatus]}`.toLowerCase()}</span>
               </div>
               <div className='text-sm text-gray-500'>Berrutti © 2024 - Panel de Conductor</div>
             </div>
