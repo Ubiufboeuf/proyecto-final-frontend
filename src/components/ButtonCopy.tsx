@@ -6,8 +6,8 @@ export function ButtonCopy ({ id, copy, setCopied, children, class: className, s
       await navigator.clipboard.writeText(copy)
       setCopied(id)
       setTimeout(() => setCopied(null), 1000)
-    } catch (err) {
-      console.error(err)
+    } catch {
+      alert('No puedes copiar cosas en desarrollo (http) de esta forma (con botones), si quieres copiar hazlo a mano.')
     }
   }
   
