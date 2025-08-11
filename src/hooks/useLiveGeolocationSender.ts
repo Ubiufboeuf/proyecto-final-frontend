@@ -8,9 +8,10 @@ const DEFAULT_OPTIONS: Options = {
   sendCoordinates: true
 }
 
-export default function useLiveGeolocationSender (url: string, options: Options) {
+export default function useLiveGeolocationSender (url: string, options: Options) {  
   const [coordinates, setCoordinates] = useState<CustomCoords | null>(null)
   const [isTracking, setIsTracking] = useState(false)
+  const [isLoadingTracking, setIsLoadingTracking] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isWatching, setIsWatching] = useState<boolean>(false)
   const [watchId, setWatchId] = useState<number | null>(null)
@@ -59,6 +60,7 @@ export default function useLiveGeolocationSender (url: string, options: Options)
     setError(null)
     setIsTracking(true)
     setIsWatching(true)
+    setIsLoadingTracking(true)
   }
 
   // Detener seguimiento
@@ -69,6 +71,7 @@ export default function useLiveGeolocationSender (url: string, options: Options)
     }
     setIsTracking(false)
     setIsWatching(false)
+    setIsLoadingTracking(false)
   }
 
   // Efecto que maneja el watchPosition y reinicia al cambiar opciones o isWatching
@@ -98,6 +101,7 @@ export default function useLiveGeolocationSender (url: string, options: Options)
       }
 
       setCoordinates(newCoordinates)
+      setIsLoadingTracking(false)
 
       if (finalOptions.sendCoordinates) {
         await sendCoordinatesToServer(newCoordinates)
@@ -108,6 +112,7 @@ export default function useLiveGeolocationSender (url: string, options: Options)
       setError(err.message)
       setIsTracking(false)
       setIsWatching(false)
+      setIsLoadingTracking(false)
       console.error('Error obteniendo la ubicación:', err)
     }
 
@@ -136,5 +141,5 @@ export default function useLiveGeolocationSender (url: string, options: Options)
     }
   }, [])
 
-  return { coordinates, isTracking, error, isWatching, startWatching, stopWatching }
+  return { coordinates, isTracking, isLoadingTracking, error, isWatching, startWatching, stopWatching }
 }
