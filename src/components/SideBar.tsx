@@ -25,7 +25,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
               <a
                 key={useId()}
                 href={link}
-                class='hover:text-orange-500 transition-colors p-2 w-full text-center'
+                class='hover:text-orange-500 touch:active:text-orange-500 transition-colors p-2 w-full text-center'
               >
                 <span class={link === pathname ? 'text-orange-500' : ''}>
                   {name}
@@ -35,10 +35,10 @@ export function SideBar ({ pathname }: { pathname: string }) {
           }
         </main>
         <div class='pb-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
-          <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
+          <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
             Registrarse
           </a>
-          <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 text-orange-500 hover:text-gray-800 transition-colors border-orange-500 border text-center'>
+          <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 touch:active:bg-orange-50 text-orange-500 hover:text-gray-800 touch:active:text-gray-800 transition-colors border-orange-500 border text-center'>
             Iniciar Sesión
           </a>
         </div>

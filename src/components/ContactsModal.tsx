@@ -47,7 +47,7 @@ export function ContactsModal () {
             <p class='text-sm text-gray-500'>Encuentra el teléfono y dirección de nuestras oficinas en todo el país</p>
           </div>
           <button
-            class='h-fit w-fit p-2 hover:bg-gray-200 rounded-lg cursor-pointer'
+            class='h-fit w-fit p-2 hover:bg-gray-200 touch:active:bg-gray-200 rounded-lg cursor-pointer'
             title='Cerrar'
             onClick={closeModal}
           >

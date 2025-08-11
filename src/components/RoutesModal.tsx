@@ -47,7 +47,7 @@ export function RoutesModal () {
             </h1>
           </div>
           <button
-            class='h-fit w-fit p-2 hover:bg-gray-200 rounded-lg cursor-pointer'
+            class='h-fit w-fit p-2 hover:bg-gray-200 touch:active:bg-gray-200 rounded-lg cursor-pointer'
             title='Cerrar'
             onClick={hideModal}
           >

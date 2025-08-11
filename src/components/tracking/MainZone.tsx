@@ -66,7 +66,7 @@ export function MainZone () {
           class='w-full h-full max-w-full max-h-full overflow-hidden z-0'
         />
       </div>
-      <button class='lg:hidden [&.inClick]:bg-gray-200 hover:bg-gray-100 not-touch:transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1 rounded-xl'>
+      <button class='lg:hidden hover:bg-gray-100 touch:active:bg-gray-100 transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1 rounded-xl'>
         <Icon class='size-10'>
           <IconWideArrowUp />
         </Icon>

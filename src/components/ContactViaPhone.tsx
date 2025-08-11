@@ -19,7 +19,7 @@ export function ContactViaPhone () {
         document.body
       )}
       <button
-        class='flex items-center justify-center w-fit h-fit gap-2 cursor-pointer hover:text-gray-700 hover:bg-white rounded-lg transition-colors px-4 py-2'
+        class='flex items-center justify-center w-fit h-fit gap-2 cursor-pointer hover:text-gray-700 touch:active:text-gray-700 hover:bg-white touch:active:bg-white rounded-lg transition-colors px-4 py-2'
         onClick={showPhoneContacts}
       >
         <Icon class='size-4'>

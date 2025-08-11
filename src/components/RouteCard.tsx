@@ -86,7 +86,7 @@ export function RouteCard (ruta: Ruta) {
                 )) }
               { (horas && horas.length > 6) && (
                   <button
-                    class={`${falta ? 'text-gray-700' : 'text-orange-500 hover:bg-orange-100'} text-xs p-1 px-1.5 cursor-pointer rounded-md transition-colors`}
+                    class={`${falta ? 'text-gray-700' : 'text-orange-500 hover:bg-orange-100 touch:active:bg-orange-100'} text-xs p-1 px-1.5 cursor-pointer rounded-md transition-colors`}
                     onClick={toggleModal}
                   >
                     +{horas.length - 6} más
@@ -101,7 +101,7 @@ export function RouteCard (ruta: Ruta) {
       <section class='h-fit min-h-fit flex-1 flex w-full items-end'>
         <a
           href={falta ? undefined : `/buy-ticket/${id}`}
-          class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'hover:bg-orange-600 bg-orange-500 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
+          class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
         >
           { falta
             ? `Falta por ${falta}`
