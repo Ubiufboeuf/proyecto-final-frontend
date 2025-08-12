@@ -6,7 +6,7 @@ import type { Map } from 'leaflet'
 import { Icon } from '../Icon'
 import { IconWideArrowUp } from '../Icons'
 
-export function MainZone () {
+export function MainZone ({ lat = 0, lng = 0 }: { lat: number, lng: number }) {
   const mapRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [state] = useState<BusStates>('En viaje')
@@ -32,9 +32,19 @@ export function MainZone () {
       $map = createMap('map', { zoomControl: false })
         .setView([lat || -34.4707, lng || -57.8515], 16) 
       setMap($map)
-    control.zoom({ position: 'topright' }).addTo($map)
+      control.zoom({ position: 'topright' }).addTo($map)
     }
-    $map.locate({ setView: true, maxZoom: 16 })
+
+    // $map.locate({ setView: true, maxZoom: 16 })
+
+    $map.on('moveend', () => {
+      const { origin } = location
+      const { lat, lng } = $map.getCenter()
+
+      const newState = { page: '/track/' }
+      const newUrl = `${origin}/track/${lat.toFixed(6)}/${lng.toFixed(6)}`
+      history.pushState(newState, '', newUrl)
+    })
 
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
