@@ -75,7 +75,7 @@ export function MainZone ({ lat = 0, lng = 0 }: { lat: number, lng: number }) {
 
   return (
     <main class='h-full w-full absolute right-0 top-0 z-0 pt-16 lg:pl-80 [transition:padding-left_ease_250ms]'>
-      <div class='h-full w-full flex justify-center items-center'>
+      <div class='h-full w-full flex justify-center items-center relative'>
         <div
           ref={mapRef}
           id='map'
@@ -97,11 +97,6 @@ export function MainZone ({ lat = 0, lng = 0 }: { lat: number, lng: number }) {
         </header>
         <VaulDrawer />
       </div>
-      <button class='lg:hidden hover:bg-gray-100 touch:active:bg-gray-100 transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1 rounded-xl'>
-        <Icon class='size-10'>
-          <IconWideArrowUp />
-        </Icon>
-      </button>
     </main>
   )
 }
