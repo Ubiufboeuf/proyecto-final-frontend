@@ -37,7 +37,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
             ))
           }
         </main>
-        <div class='pb-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
+        <div class='py-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
           <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
             Registrarse
           </a>
