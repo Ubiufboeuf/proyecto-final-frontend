@@ -1,3 +1,4 @@
+import { IconBus, IconCheckList, IconHome, IconMapPin, IconPeople, IconPhone, IconSettings } from '@/components/Icons'
 import type { Output, ParseTimestampOptions } from '@/env'
 import { Temporal } from 'temporal-polyfill'
 
@@ -33,13 +34,13 @@ export function parseTimestamp (timestampInMiliseconds: number, options: ParseTi
 }
 
 export const links = [
-  { name: 'Inicio', link: '/' },
-  { name: 'Servicios', link: '/services/' },
-  { name: 'Rutas', link: '/routes/' },
-  { name: 'Viajes Personalizados', link: '/custom-trips/' },
-  { name: 'Seguimiento', link: '/track/' },
-  { name: 'Nosotros', link: '/about/' },
-  { name: 'Contacto', link: '/contact/' }
+  { name: 'Inicio', link: '/', Icon: IconHome },
+  { name: 'Servicios', link: '/services/', Icon: IconCheckList },
+  { name: 'Rutas', link: '/routes/', Icon: IconBus },
+  { name: 'Viajes Personalizados', link: '/custom-trips/', Icon: IconSettings },
+  { name: 'Seguimiento', link: '/track/', Icon: IconMapPin },
+  { name: 'Nosotros', link: '/about/', Icon: IconPeople },
+  { name: 'Contacto', link: '/contact/', Icon: IconPhone }
 ]
 
 export function parseTimeInMinutes (time: number, output: 'h-mm') {

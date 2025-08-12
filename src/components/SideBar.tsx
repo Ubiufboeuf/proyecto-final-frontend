@@ -21,13 +21,16 @@ export function SideBar ({ pathname }: { pathname: string }) {
         </header>
         <main class='h-fit w-full flex flex-col items-center gap-2 min-h-fit'>
           {
-            links.map(({ link, name }) => (
+            links.map(({ link, name, Icon }) => (
               <a
                 key={useId()}
                 href={link}
-                class='hover:text-orange-500 touch:active:text-orange-500 transition-colors p-2 w-full text-center'
+                class={`${link === pathname ? 'text-orange-500' : ''} hover:text-orange-500 touch:active:text-orange-500 transition-colors p-2 w-full text-center flex items-center gap-4`}
               >
-                <span class={link === pathname ? 'text-orange-500' : ''}>
+                <div class='size-6 flex items-center justify-center'>
+                  <Icon />
+                </div>
+                <span>
                   {name}
                 </span>
               </a>

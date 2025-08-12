@@ -512,3 +512,82 @@ export const IconWideArrowUp = () => (
     <path d='M4 13l8 -3l8 3' />
   </svg>
 )
+
+export const IconNavigation = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='currentColor'
+    className='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M11.092 2.581a1 1 0 0 1 1.754 -.116l.062 .116l8.005 17.365c.198 .566 .05 1.196 -.378 1.615a1.53 1.53 0 0 1 -1.459 .393l-7.077 -2.398l-6.899 2.338a1.535 1.535 0 0 1 -1.52 -.231l-.112 -.1c-.398 -.386 -.556 -.954 -.393 -1.556l.047 -.15l7.97 -17.276z' />
+  </svg>
+)
+
+export const IconSettings = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    className='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0' />
+    <path d='M6 4v4' />
+    <path d='M6 12v8' />
+    <path d='M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0' />
+    <path d='M12 4v10' />
+    <path d='M12 18v2' />
+    <path d='M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0' />
+    <path d='M18 4v1' />
+    <path d='M18 9v11' />
+  </svg>
+)
+
+export const IconCheckList = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    className='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M3.5 5.5l1.5 1.5l2.5 -2.5' />
+    <path d='M3.5 11.5l1.5 1.5l2.5 -2.5' />
+    <path d='M3.5 17.5l1.5 1.5l2.5 -2.5' />
+    <path d='M11 6l9 0' />
+    <path d='M11 12l9 0' />
+    <path d='M11 18l9 0' />
+  </svg>
+)
+
+export const IconHome = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    className='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M5 12l-2 0l9 -9l9 9l-2 0' />
+    <path d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7' />
+    <path d='M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6' />
+  </svg>
+)
