@@ -4,7 +4,7 @@ import { useBusesStore } from '@/stores/useBusesStore'
 import { useEffect, useRef, useState } from 'preact/hooks'
 import type { Map } from 'leaflet'
 import { Icon } from '../Icon'
-import { IconWideArrowUp } from '../Icons'
+import { IconEye, IconFocus } from '../Icons'
 
 export function MainZone ({ lat = 0, lng = 0 }: { lat: number, lng: number }) {
   const mapRef = useRef<HTMLDivElement>(null)
@@ -80,6 +80,21 @@ export function MainZone ({ lat = 0, lng = 0 }: { lat: number, lng: number }) {
           id='map'
           class='w-full h-full max-w-full max-h-full overflow-hidden z-0'
         />
+        <header class='w-fit absolute left-2.5 top-2.5 bg-white rounded-lg px-4 py-3 flex items-center gap-2 h-fit [&>button]:flex [&>button]:items-center [&>button]:max-h-full [&>button]:w-fit [&>button]:p-2 [&>button]:px-3 [&>button]:border [&>button]:border-gray-300 [&>button]:rounded-lg [&>button]:gap-2 [&>button]:text-gray-800 [&>button]:cursor-pointer [&>button]:text-sm [&>button]:hover:bg-gray-200 [&>button]:transition-colors'>
+          <button>
+            <Icon class='size-5'>
+              <IconEye />
+            </Icon>
+            <span>Vista Satélite</span>
+          </button>
+          <button>
+            <Icon class='size-5'>
+              <IconFocus />
+            </Icon>
+            <span>Ubícame</span>
+          </button>
+        </header>
+        <VaulDrawer />
       </div>
       <button class='lg:hidden hover:bg-gray-100 touch:active:bg-gray-100 transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1 rounded-xl'>
         <Icon class='size-10'>
