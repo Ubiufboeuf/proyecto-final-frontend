@@ -3,14 +3,14 @@ import { Aside } from '@/components/tracking/Aside'
 import Header from '@/components/tracking/Header.astro'
 import { MainZone } from '@/components/tracking/MainZone'
 import { getBuses } from '@/services/busService'
-import { getDrivers } from '@/services/driverService'
 import '@/styles/global.css'
 
-const title = 'Seguir Ómnibus'
-const baseUrl = Astro.url.origin
+export const prerender = false
+const { location } = Astro.params
+const [lat, lng] = location?.toString().split('/') ?? '/'
 
+const title = 'Seguir Ómnibus'
 const buses = await getBuses()
-const drivers = await getDrivers()
 ---
 
 <html lang='es'>
@@ -20,11 +20,11 @@ const drivers = await getDrivers()
 		<meta name='viewport' content='width=device-width' />
 		<meta name='description' content='Web no oficial de Berrutti Turismo. Proyecto de fin de año' />
 		<title>{title ? `${title} - Berrutti Turismo` : title}</title>
-		<script src='../lib/detectDeviceType.js'></script>
+		<script src='../../lib/detectDeviceType.js'></script>
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black h-full w-full'>
     <Header buses={buses} />
 		<Aside buses={buses} client:load />
-		<MainZone client:load />
+		<MainZone lat={Number(lat)} lng={Number(lng)} client:load />
 	</body>
 </html>
