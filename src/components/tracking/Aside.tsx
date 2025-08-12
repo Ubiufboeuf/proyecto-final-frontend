@@ -40,26 +40,26 @@ export function Aside ({ buses: _buses }: { buses: Buses | null }) {
           ))
         }
       </section>
-      <legend class='min-h-fit border-t border-gray-200 text-gray-700 p-2 px-4 flex flex-col gap-1'>
+      <section class='min-h-fit border-t border-gray-200 text-gray-700 p-2 px-4 flex flex-col gap-1'>
         <strong class='text-xs font-semibold my-1'>Estado de los ómnibus:</strong>
         <div class='flex items-center h-fit w-full justify-between'>
-        <span class='text-xs flex items-center gap-2'>
-          <div class='size-2 rounded-full bg-green-500' />
-          En viaje
-          <span class={`${inMovement ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 text-green-700`}>{inMovement ?? 0}</span>
-        </span>
-        <span class='text-xs flex items-center gap-2'>
-          <div class='size-2 rounded-full bg-blue-500' />
-          En terminal
-          <span class={`${inTerminal ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 text-blue-700`}>{inTerminal ?? 0}</span>
-        </span>
-        <span class='text-xs flex items-center gap-2'>
-          <div class='size-2 rounded-full bg-red-500' />
-          Atrasado
-          <span class={`${delayed ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 text-red-700`}>{delayed ?? 0}</span>
-        </span>
+          <span class='text-xs flex items-center gap-2'>
+            <div class='size-2 rounded-full bg-green-500' />
+            En viaje
+            <span class={`${inMovement ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 text-green-700`}>{inMovement ?? 0}</span>
+          </span>
+          <span class='text-xs flex items-center gap-2'>
+            <div class='size-2 rounded-full bg-blue-500' />
+            En terminal
+            <span class={`${inTerminal ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 text-blue-700`}>{inTerminal ?? 0}</span>
+          </span>
+          <span class='text-xs flex items-center gap-2'>
+            <div class='size-2 rounded-full bg-red-500' />
+            Atrasado
+            <span class={`${delayed ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 text-red-700`}>{delayed ?? 0}</span>
+          </span>
         </div>
-      </legend>
+      </section>
     </aside>
   )
 }
