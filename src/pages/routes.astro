@@ -3,7 +3,7 @@ import type { Ruta } from '@/env'
 import Layout from '@/layouts/Layout.astro'
 import { RouteCard } from '@/components/RouteCard'
 import { RoutesModal } from '@/components/RoutesModal'
-import { IconBus, IconClock, IconLocation } from '@/components/Icons'
+import { IconBus, IconClock, IconMapPin } from '@/components/Icons'
 import { Icon } from '@/components/Icon'
 import { getAllRoutes } from '@/services/routeService'
 
@@ -46,7 +46,7 @@ const horariosDestacados = [
 
 const informacionImportante = [
   {
-    Icon: IconLocation,
+    Icon: IconMapPin,
     title: 'Terminal Principal',
     description: 'Terminal Tres Cruces Montevideo'
   },

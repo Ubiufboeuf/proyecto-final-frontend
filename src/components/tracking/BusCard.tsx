@@ -1,5 +1,5 @@
 import type { BusData, BusStates } from '@/env'
-import { IconCheckbox, IconClock, IconLocation, IconUser } from '../Icons'
+import { IconCheckbox, IconClock, IconMapPin, IconUser } from '../Icons'
 import { Icon } from '../Icon'
 import { useEffect, useState } from 'preact/hooks'
 import { parseTimestamp } from '@/lib/utils'
@@ -68,7 +68,7 @@ export function BusCard ({ info: { id, driver, destination, state = 'En terminal
         <h2 class='text-gray-800 text-sm font-medium'>{origin.location} - {destination.location}</h2>
         <span class='flex items-center text-xs gap-2'>
           <Icon class='size-3'>
-            <IconLocation />
+            <IconMapPin />
           </Icon>
           <span>{location}</span>
         </span>
