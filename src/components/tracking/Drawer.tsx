@@ -1,15 +1,17 @@
-'use client'
-
 import { Drawer } from 'vaul'
+import { Icon } from '../Icon'
+import { IconWideArrowUp } from '../Icons'
 
 export default function VaulDrawer () {
   return (
     <Drawer.Root>
-      <Drawer.Trigger className='relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] touch:active:bg-[#FAFAFA] dark:bg-[#161615] dark:hover:bg-[#1A1A19] dark:touch:active:bg-[#1A1A19] dark:text-white'>
-        Open Drawer
+      <Drawer.Trigger className='lg:hidden hover:bg-gray-100 touch:active:bg-gray-100 transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1.5 rounded-xl'>
+        <Icon class='w-10 h-8'>
+          <IconWideArrowUp />
+        </Icon>
       </Drawer.Trigger>
       <Drawer.Portal>
-        <Drawer.Overlay className='fixed inset-0 bg-black/40' />
+        <Drawer.Overlay className='fixed max-h-full inset-0 bg-black/40' />
         <Drawer.Content className='bg-gray-100 flex flex-col rounded-t-[10px] mt-24 h-fit fixed bottom-0 left-0 right-0 outline-none'>
           <div className='p-4 bg-white rounded-t-[10px] flex-1'>
             <div aria-hidden className='mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-gray-300 mb-8' />
