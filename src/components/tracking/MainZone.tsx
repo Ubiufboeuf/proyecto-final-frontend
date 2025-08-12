@@ -8,6 +8,7 @@ import { IconWideArrowUp } from '../Icons'
 
 export function MainZone () {
   const mapRef = useRef<HTMLDivElement>(null)
+  const [map, setMap] = useState<Map | null>(null)
   const [state] = useState<BusStates>('En viaje')
   const updateBusState = useBusesStore((state) => state.updateBusState)
   const setDelayed = useBusesStore((state) => state.setDelayed)
@@ -24,12 +25,15 @@ export function MainZone () {
       return
     }
 
-    const { tileLayer, map, control } = L
-    const $map: Map = map('map', {
-      zoomControl: false
-    }).setView([-34.471, -57.830], 15)
+    const { tileLayer, map: createMap, control } = L
 
+    let $map = map
+    if (!$map) {
+      $map = createMap('map', { zoomControl: false })
+        .setView([lat || -34.4707, lng || -57.8515], 16) 
+      setMap($map)
     control.zoom({ position: 'topright' }).addTo($map)
+    }
     $map.locate({ setView: true, maxZoom: 16 })
 
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -38,6 +42,7 @@ export function MainZone () {
   }
 
   useEffect(() => {
+    if (map) return
     loadMap()
   }, [])
 
