@@ -33,12 +33,14 @@ export function Aside ({ buses: _buses, class: className }: { buses: Buses | nul
   return (
     <aside class={className}>
       <AsideHeader />
-      <section class='p-4 overflow-y-auto [scrollbar-width:thin] h-full flex flex-col gap-4'>
-        {
-          busesData.map((bus) => (
-            <BusCard key={useId()} info={bus} />
-          ))
-        }
+      <section class='overflow-y-scroll h-full max-h-full [scrollbar-width:thin]'>
+        <div id='buses-cards-wrapper' class='p-4 h-fit min-h-fit grid grid-cols-1 gap-4'>
+          {
+            busesData.map((bus) => (
+              <BusCard key={useId()} info={bus} />
+            ))
+          }
+        </div>
       </section>
       <section class='min-h-fit border-t border-gray-200 text-gray-700 p-2 px-4 flex flex-col gap-1'>
         <strong class='text-xs font-semibold my-1'>Estado de los ómnibus:</strong>
