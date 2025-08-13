@@ -7,8 +7,8 @@ import type { Buses } from '@/env'
 export default function VaulDrawer ({ buses }: { buses: Buses }) {
   return (
     <Drawer.Root>
-      <Drawer.Trigger className='lg:hidden hover:bg-gray-100 touch:active:bg-gray-100 transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-6 py-1.5 rounded-xl'>
-        <Icon class='w-10 h-8'>
+      <Drawer.Trigger className='lg:hidden hover:bg-gray-100 touch:active:bg-gray-100 transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-8 py-1.5 rounded-xl'>
+        <Icon class='w-10 h-10'>
           <IconWideArrowUp />
         </Icon>
       </Drawer.Trigger>
