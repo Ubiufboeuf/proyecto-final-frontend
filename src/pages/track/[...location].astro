@@ -24,7 +24,11 @@ const buses = await getBuses()
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black h-full w-full'>
     <Header buses={buses} />
-		<Aside buses={buses} client:load />
+		<Aside
+			class='relative lg:left-0 -left-80 top-0 z-10 flex flex-col justify-between h-[calc(100%-64px)] max-h-[calc(100%-64px)] overflow-hidden w-80 border-r border-gray-200 bg-white [transition:left_250ms_ease]'
+			buses={buses}
+			client:load
+			/>
 		<MainZone lat={Number(lat)} lng={Number(lng)} client:load />
 	</body>
 </html>

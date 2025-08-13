@@ -5,7 +5,7 @@ import type { Buses } from '@/env'
 import { BusCard } from './BusCard'
 import { useId } from 'preact/hooks'
 
-export function Aside ({ buses: _buses }: { buses: Buses | null }) {
+export function Aside ({ buses: _buses, class: className }: { buses: Buses | null, class: string }) {
   const [buses, setBuses] = useState(_buses)
   const busesData = useBusesStore((state) => state.busesData)
   const setSelectedCount = useBusesStore((state) => state.setSelectedCount)
@@ -31,7 +31,7 @@ export function Aside ({ buses: _buses }: { buses: Buses | null }) {
   }, [busesData])
 
   return (
-    <aside class='relative lg:left-0 -left-80 top-0 z-10 flex flex-col justify-between h-[calc(100%-64px)] max-h-[calc(100%-64px)] overflow-hidden w-80 border-r border-gray-200 bg-white [transition:left_250ms_ease]'>
+    <aside class={className}>
       <AsideHeader />
       <section class='p-4 overflow-y-auto [scrollbar-width:thin] h-full flex flex-col gap-4'>
         {
