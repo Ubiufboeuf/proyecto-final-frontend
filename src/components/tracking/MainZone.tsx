@@ -48,8 +48,21 @@ export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: numb
     })
 
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'    
     }).addTo($map)
+  }
+
+  function handleLocateMe () {
+    console.log(map)
+    if (!map) return
+
+    map.locate({ setView: false })
+    map.once('locationfound', (e) => {
+      map.setView(e.latlng, map.getZoom())
+    })
+    map.once('locationerror', (err) => {
+      alert(`Error obteniendo ubicación: ${err.message}`)
+    })
   }
 
   useEffect(() => {
@@ -88,7 +101,7 @@ export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: numb
             </Icon>
             <span>Vista Satélite</span>
           </button>
-          <button>
+          <button onClick={handleLocateMe}>
             <Icon class='size-5'>
               <IconFocus />
             </Icon>
