@@ -343,36 +343,5 @@
         "momento": "tarde"
       }
     ]
-  },
-  {
-    "id": "6fad0aa9-879d-4f45-8389-b1b6282282e5",
-    "tipo": "internacional",
-    "precio": 1200,
-    "origen": "Montevideo",
-    "destino": "Buenos Aires",
-    "duracion": 510,
-    "frecuencia": "Diario",
-    "horas": [
-      {
-        "hora": "22:30",
-        "momento": "noche"
-      }
-    ]
-  },
-  {
-    "id": "e0ff46db-dca2-4e8d-831d-d89fe4f1bd1d",
-    "tipo": "internacional",
-    "precio": 2800,
-    "origen": "Montevideo",
-    "destino": "São Paulo",
-    "duracion": 1125,
-    "frecuencia": "3 por semana",
-    "dias": [1, 3, 5],
-    "horas": [
-      {
-        "hora": "20:00",
-        "momento": "noche"
-      }
-    ]
   }
 ]
