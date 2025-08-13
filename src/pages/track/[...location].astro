@@ -29,6 +29,6 @@ const buses = await getBuses()
 			buses={buses}
 			client:load
 			/>
-		<MainZone lat={Number(lat)} lng={Number(lng)} client:load />
+		<MainZone buses={buses} lat={Number(lat)} lng={Number(lng)} client:load />
 	</body>
 </html>

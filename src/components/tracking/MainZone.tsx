@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css'
-import type { BusStates } from '@/env'
+import type { Buses, BusStates } from '@/env'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { useEffect, useRef, useState } from 'preact/hooks'
 import type { Map } from 'leaflet'
@@ -7,7 +7,7 @@ import VaulDrawer from './Drawer'
 import { Icon } from '../Icon'
 import { IconEye, IconFocus } from '../Icons'
 
-export function MainZone ({ lat = 0, lng = 0 }: { lat: number, lng: number }) {
+export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: number, lng: number }) {
   const mapRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [state] = useState<BusStates>('En viaje')
@@ -95,7 +95,7 @@ export function MainZone ({ lat = 0, lng = 0 }: { lat: number, lng: number }) {
             <span>Ubícame</span>
           </button>
         </header>
-        <VaulDrawer />
+        <VaulDrawer buses={buses} />
       </div>
     </main>
   )
