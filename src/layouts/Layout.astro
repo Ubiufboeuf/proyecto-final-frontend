@@ -24,7 +24,7 @@ const { originPathname: pathname } = Astro
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black'>
 		<Header pathname={pathname} />
 		<SideBar pathname={pathname} client:idle />
-		<main class='[&>*]:px-6 flex flex-col items-center'>
+		<main class={`[&>*]:px-6 flex flex-col items-center ${className}`}>
 			<slot />
 		</main>
 		<Footer />
