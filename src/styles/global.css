@@ -52,6 +52,34 @@ p {
   text-wrap: pretty;
 }
 
+.loading {
+  position: relative;
+
+  & > div {
+    height: 1000%;
+    width: 48px;
+    background: #fffa;
+    top: 50%;
+    transform: translateY(-50%) rotateZ(69deg);
+    left: -200%;
+    animation: loading-animation 4s ease infinite forwards;
+    position: absolute;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000a 90%,
+      transparent
+    );
+  }
+}
+
+@keyframes loading-animation {
+  66%, 100% {
+    left: 200%;
+    /* transform: translate(100%, -50%) rotateZ(45deg); */
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     /* no hace falta el important, pero por si acaso que quede */

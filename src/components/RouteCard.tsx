@@ -42,6 +42,9 @@ export function RouteCard (ruta: Ruta) {
           >
             Falta en 2 días
           </span>
+          <div ref={missingLoadingRef} class='h-6 w-16 bg-gray-200 overflow-hidden rounded-full loading'>
+            <div />
+          </div>
         </div>
         <span class={`${falta ? 'text-gray-500' : 'text-orange-500'} font-bold text-lg`}>${precio}</span>
       </section>
