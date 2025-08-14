@@ -6,9 +6,10 @@ import '../styles/global.css'
 
 interface Props {
 	title: string
+	class?: string
 }
 
-const { title } = Astro.props
+const { title, class: className = '' } = Astro.props
 const { originPathname: pathname } = Astro
 ---
 
