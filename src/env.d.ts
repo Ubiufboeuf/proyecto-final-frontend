@@ -81,5 +81,9 @@ export type Ruta = {
     momento: 'mañana' | 'tarde' | 'noche'
   }[]
   horario?: string
-  falta?: 'feriado' | 'roto'
+  faltas: {
+    fecha: string,
+    miliseconds: number
+    motivo: 'feriado' | 'roto' | 'fin de semana'
+  }[] | [undefined | null] | undefined | null
 }

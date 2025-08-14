@@ -141,7 +141,13 @@
         "momento": "noche"
       }
     ],
-    "falta": "feriado"
+    "faltas": [
+      {
+        "fecha": "14/8/2025",
+        "miliseconds": 1755187160778,
+        "motivo": "feriado"
+      }
+    ]
   },
   {
     "id": "859073e8-21e7-472c-a324-629a108df5b7",
@@ -243,7 +249,8 @@
         "hora": "21:30",
         "momento": "noche"
       }
-    ]
+    ],
+    "falta": "feriado"
   },
   {
     "id": "4cbd5f88-dc48-4964-a277-1889033b1a18",

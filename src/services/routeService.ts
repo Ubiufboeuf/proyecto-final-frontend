@@ -25,7 +25,7 @@ export async function getAllRoutes (origin: string) {
           origen: item.origen ?? 'undefined',
           precio: item.precio ?? 0,
           tipo: item.tipo ?? 'directo',
-          falta: item.falta ?? undefined,
+          faltas: item.faltas ?? undefined,
           horario: item.horario ?? undefined,
           horas: item.horas ?? undefined
         })
