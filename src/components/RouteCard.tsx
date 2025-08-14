@@ -51,6 +51,7 @@ export function RouteCard (ruta: Ruta) {
     else if (days) missingTime = `en ${days} día`
     else if (hours > 1) missingTime = `en ${hours} horas`
     else if (hours) missingTime = `en ${hours} hora`
+    else if (minutes > 10) missingTime = `en ${minutes} minutos`
 
     return missingTime
   }
