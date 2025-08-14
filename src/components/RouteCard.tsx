@@ -3,18 +3,90 @@ import { Icon } from '@/components/Icon'
 import { IconArrowLeft, IconBus, IconClock, IconCalendar } from '@/components/Icons'
 import { parseTimeInMinutes } from '@/lib/utils'
 import { useRoutesModal } from '@/stores/useRoutesModal'
+import { Temporal } from 'temporal-polyfill'
+import { useEffect, useRef, useState } from 'preact/compat'
+
+// const hoy = Temporal.Now.instant()
+// // console.log(hoy.epochMilliseconds)
+// const { day, month, year } = hoy.toZonedDateTimeISO(Temporal.Now.timeZoneId())
+// // const { day, month, year } = Temporal.Now.zonedDateTimeISO()
 
 export function RouteCard (ruta: Ruta) {
-  const { id, tipo, precio, origen, destino, duracion_en_minutos, horas, horario, falta, frecuencia_en_texto } = ruta
+  const { id, tipo, precio, origen, destino, duracion_en_minutos, horas, horario, faltas: absence_data, frecuencia_en_texto } = ruta
   
   const isModalOpen = useRoutesModal((state) => state.isModalOpen)
   const setIsModalOpen = useRoutesModal((state) => state.setIsModalOpen)
   const setModalInfo = useRoutesModal((state) => state.setModalInfo)
+  const [falta, setFalta] = useState(false)
+  const [loadingMissingState, setLoadingMissingState] = useState(true)
+  const missingIndicatorRef = useRef<HTMLSpanElement>(null)
+  const missingLoadingRef = useRef<HTMLDivElement>(null)
 
   function toggleModal () {
     setIsModalOpen(!isModalOpen)
     setModalInfo(ruta)
   }
+
+  function getWhenMissing (hoy: Temporal.Instant = Temporal.Now.instant()) {
+    if (!absence_data?.[0]?.miliseconds) return
+    console.log(absence_data)
+    // const hoy = Temporal.Now.instant()
+    console.log(absence_data?.[0]?.miliseconds > hoy.epochMilliseconds)
+
+    const timeZone = Temporal.Now.timeZoneId()
+    const savedInstant = Temporal.Instant.fromEpochMilliseconds(absence_data?.[0]?.miliseconds || 0)
+    const savedZDT = savedInstant.toZonedDateTimeISO(timeZone)
+    const zdt = hoy.toZonedDateTimeISO(timeZone)
+    const { years, months, weeks, days, hours, minutes, seconds } = zdt.until(savedZDT, { smallestUnit: 'second', largestUnit: 'years' })
+    console.log(`${days}/${months}/${years} - ${hours}:${minutes}:${seconds}`)
+
+    let missingTime = 'ahora'
+    if (years > 1) missingTime = `en ${years} años`
+    else if (years) missingTime = `en ${years} año`
+    else if (months > 1) missingTime = `en ${months} meses`
+    else if (months) missingTime = `en ${months} mes`
+    else if (weeks > 1) missingTime = `en ${weeks} semanas`
+    else if (weeks) missingTime = `en ${weeks} semana`
+    else if (days > 1) missingTime = `en ${days} días`
+    else if (days) missingTime = `en ${days} día`
+    else if (hours > 1) missingTime = `en ${hours} horas`
+    else if (hours) missingTime = `en ${hours} hora`
+
+    return missingTime
+  }
+
+  function updateWhenMissing (hoy: Temporal.Instant) {
+    if (!missingIndicatorRef.current) return
+    const ref = missingIndicatorRef.current
+    const missingTime = getWhenMissing(hoy)
+    if (ref.textContent !== `Falta ${missingTime}`) {
+      ref.textContent = `Falta ${missingTime}`
+    }
+  }
+
+  function intervalFn () {
+    const hoy = Temporal.Now.instant()
+    const { day, month, year } = hoy.toZonedDateTimeISO(Temporal.Now.timeZoneId())
+    setFalta(absence_data?.[0]?.fecha === `${day}/${month}/${year}` && absence_data?.[0]?.miliseconds > hoy.epochMilliseconds)
+    updateWhenMissing(hoy)
+  }
+
+  useEffect(() => {
+    intervalFn()
+    
+    const id = setInterval(intervalFn, 900000)
+
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (loadingMissingState && missingLoadingRef.current) {
+      setLoadingMissingState(false)
+      missingLoadingRef.current.hidden = true
+    }
+  }, [falta])
 
   return (
     <article class={`${falta ? 'bg-gray-200' : 'bg-white'} h-full w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}>
@@ -33,14 +105,16 @@ export function RouteCard (ruta: Ruta) {
             {tipo}
           </span>
           <span
+            ref={missingIndicatorRef}
             class={`${falta
               ? 'text-gray-700 bg-gray-100'
               : 'text-yellow-700 bg-yellow-100'
               }
               h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold
             `}
+            hidden={!falta}
           >
-            Falta en 2 días
+            Falta {getWhenMissing()}
           </span>
           <div ref={missingLoadingRef} class='h-6 w-16 bg-gray-200 overflow-hidden rounded-full loading'>
             <div />
@@ -107,7 +181,7 @@ export function RouteCard (ruta: Ruta) {
           class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
         >
           { falta
-            ? `Falta por ${falta}`
+            ? `Falta por ${absence_data?.[0]?.motivo}`
             : 'Comprar pasaje'
           }
         </a>
