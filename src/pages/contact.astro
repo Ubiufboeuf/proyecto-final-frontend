@@ -1,7 +1,183 @@
 ---
+import { Icon } from '@/components/Icon'
+import { IconMail, IconMapPin, IconClock, IconPhone } from '@/components/Icons'
 import Layout from '@/layouts/Layout.astro'
+import { MessageForm } from '@/components/contact/MessageForm'
+
+const selectOptions = [
+	{ text: 'Consulta General', value: 'general-inquiry' },
+	{ text: 'Reserva de Pasaje', value: 'ticket-reservation' },
+	{ text: 'Reclamo', value: 'reclaim' },
+	{ text: 'Sugerencia', value: 'suggestion' },
+	{ text: 'Equipaje Perdido', value: 'lost-luggage' },
+	{ text: 'Otro', value: 'other' }
+]
+
+const contactInfo = [
+	{ Icon: IconPhone, title: 'Teléfono Principal', details: '2902 0505' },
+	{ Icon: IconMail, title: 'Email General', details: 'berruttiturismo@adinet.com.uy' },
+	{ Icon: IconMapPin, title: 'Oficina Central', details: 'Bv. Artigas 1825, Montevideo' },
+	{ Icon: IconClock, title: 'Atencion al Cliente', details: 'Lunes a Viernes: 7:00 - 19:00' },
+]
+
+const offices = [
+  {
+    dept: 'Colonia',
+    info: [
+      { icon: IconMapPin, text: 'Local Nº 401 - Terminal de Ómnibus' },
+      { icon: IconPhone, text: '4522 5301' },
+      { icon: IconClock, text: 'Lun-Dom | 6:00 - 21:00' }
+    ]
+  },
+  {
+    dept: 'Carmelo',
+    info: [
+      { icon: IconMapPin, text: 'Uruguay 337' },
+      { icon: IconPhone, text: '4542 2504' },
+      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
+    ]
+  },
+  {
+    dept: 'Nueva Palmira',
+    info: [
+      { icon: IconMapPin, text: 'Gral Artigas 1193, esq.Eloy García' },
+      { icon: IconPhone, text: '4544 6181' },
+      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
+    ]
+  },
+  {
+    dept: 'Dolores',
+    info: [
+      { icon: IconMapPin, text: 'Artigas esq. Pbro. Bonofacio Redruello' },
+      { icon: IconPhone, text: '4534 4179' },
+      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
+    ]
+  },
+  {
+    dept: 'Mercedes',
+    info: [
+      { icon: IconMapPin, text: 'Local Nº 7 - Terminal Shopping' },
+      { icon: IconPhone, text: '4532 6449' },
+      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
+    ]
+  },
+  {
+    dept: 'Ombúes',
+    info: [
+      { icon: IconMapPin, text: 'Zorrilla 1036 Bis' },
+      { icon: IconPhone, text: '4576 2859' },
+      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
+    ]
+  }
+]
+
+const faq = [
+	[
+		{
+			title: '¿Cómo puedo comprar un pasaje?',
+			description: 'Puedes comprar pasajes en nuestras oficinas, por teléfono o próximamente a través de nuestra plataforma online.'
+		},
+		{
+			title: '¿Puedo cambiar mi pasaje?',
+			description: 'Sí, puedes cambiar tu pasaje hasta 2 horas antes de la salida, sujeto a disponibilidad y posibles diferencias de precio.'
+		},
+		{
+			title: '¿Qué equipaje puedo llevar?',
+			description: 'Cada pasajero puede llevar hasta 20kg de equipaje sin costo adicional, más equipaje de mano.'
+		},
+	],
+	[
+		{
+			title: '¿Los ómnibus tienen WiFi?',
+			description: 'Sí, la mayoría de nuestros ómnibus cuentan con WiFi gratuito para los pasajeros.'
+		},
+		{
+			title: '¿Qué pasa si pierdo mi equipaje?',
+			description: 'Contáctanos inmediatamente. Tenemos un sistema de seguimiento de equipaje para ayudarte a recuperarlo.'
+		},
+		{
+			title: '¿Hay descuentos disponibles?',
+			description: 'Ofrecemos descuentos para estudiantes, jubilados y abonos para viajeros frecuentes.'
+		}
+	]
+]
 ---
 
-<Layout title='Contáctanos'>
-	Contacto
+<Layout title='Contáctanos' class='gap-8'>
+	<section class='flex flex-col items-center w-full h-fit pt-20 pb-2'>
+		<h1 class='text-4xl font-bold text-gray-800 mb-4 text-center'>Contacto</h1>
+		<p class='text-gray-600 text-xl text-center max-w-160'>Estamos aquí para ayudarte. Contáctanos por cualquier consulta, sugerencia o información que necesites</p>
+	</section>
+	<section class='flex flex-col lg:flex-row gap-6 h-fit w-full max-w-screen-2xl justify-between pb-8'>
+		<MessageForm
+			selectOptions={selectOptions}
+			client:load
+		/>
+		<aside class='flex flex-col w-full flex-1 lg:max-w-4/5 gap-6'>
+			<div class='bg-white rounded-lg border border-gray-200 flex flex-col p-6 gap-6'>
+				<h1 class='text-xl font-semibold'>Información de Contacto</h1>
+				{ contactInfo.map(({ Icon: InfoIcon, details, title }) => (
+						<article class='flex items-center gap-4'>
+							<Icon class='size-5 text-orange-500'>
+								<InfoIcon />
+							</Icon>
+							<div class='flex flex-col'>
+								<strong class='font-medium'>{title}</strong>
+								<span class='text-gray-600'>{details}</span>
+							</div>
+						</article>
+				)) }
+			</div>
+			<div class='bg-red-50 rounded-lg border border-red-200 flex flex-col p-6 gap-6'>
+				<h1 class='text-red-800 font-semibold text-xl'>Contacto de Emergencia</h1>
+				<article class='flex items-center gap-4'>
+					<Icon class='size-5 text-red-500'>
+						<IconPhone />
+					</Icon>
+					<div class='flex flex-col'>
+						<span class='font-medium text-red-700'>Linea de Emergencia 24/7</span>
+						<strong class='text-red-600'>911 o 2902 0911</strong>
+						<span class='text-red-600 text-sm'>Para emergencias durante el viaje</span>
+					</div>
+				</article>
+			</div>
+		</aside>
+	</section>
+	<section class='max-w-screen-2xl w-full'>
+		<h1 class='text-3xl font-bold text-gray-800 mb-4 text-center pb-2'>Nuestras Oficinas</h1>
+		<div class='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] w-full h-fit gap-6'>
+			{ offices.map(({ dept, info }) => (
+				<article class='h-full w-full border border-gray-200 rounded-lg bg-white flex flex-col p-6 gap-6'>
+					<h1 class='text-lg text-orange-500 font-semibold'>{dept}</h1>
+					<div class='flex flex-col gap-4'>
+						{ info.map(({ icon: InfoIcon, text }) => (
+								<div class='flex items-center gap-3 text-sm text-gray-600'>
+									<Icon class='size-5'>
+										<InfoIcon />
+									</Icon>
+									<span class=''>{text}</span>
+								</div>
+						)) }
+					</div>
+				</article>
+			)) }
+		</div>
+	</section>
+	<section class='max-w-screen-2xl w-full mt-4 p-4 mb-12'>
+		<div class='bg-white border border-gray-200 rounded-lg p-6 sm:px-12'>
+			<h1 class='text-2xl font-bold text-gray-800 mb-4 text-center pb-2'>Preguntas Frecuentes</h1>
+			<div class='flex not-md:flex-col w-full h-fit gap-x-8'>
+				{ faq.map(part => (
+						<div class='w-full'>
+							{ part.map(({ title, description }) => (
+								<article class='py-2 flex flex-col gap-1.5'>
+									<h1 class='text-orange-500 font-semibold'>{title}</h1>
+									<p class='text-sm text-gray-600'>{description}</p>
+								</article>	
+							)) }
+						</div>
+				)) }
+			</div>
+		</div>
+	</section>
 </Layout>
