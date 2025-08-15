@@ -43,7 +43,7 @@ export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: numb
       const { lat, lng } = $map.getCenter()
 
       const newState = { page: '/track/' }
-      const newUrl = `${origin}/track/${lat.toFixed(6)}/${lng.toFixed(6)}`
+      const newUrl = `${origin}/track/${lat.toFixed(6)}/${lng.toFixed(6)}/`
       history.pushState(newState, '', newUrl)
     })
 
