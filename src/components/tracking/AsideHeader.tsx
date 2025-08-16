@@ -3,25 +3,25 @@ import { IconCheckbox } from '@/components/Icons'
 import { useBusesStore } from '@/stores/useBusesStore'
 
 export function AsideHeader () {
-  const busesData = useBusesStore((state) => state.busesData)
-  const setData = useBusesStore((state) => state.setData)
+  const buses = useBusesStore((state) => state.buses)
+  const setBuses = useBusesStore((state) => state.setBuses)
 
   function selectAll () {
-    const newBusesData = [...busesData]
-    for (const busIdx in busesData) {
-      const bus = busesData[busIdx]
+    const newBuses = [...buses]
+    for (const busIdx in buses) {
+      const bus = buses[busIdx]
       bus.selected = true
     }
-    setData(newBusesData)
+    setBuses(newBuses)
   }
   
   function unselectAll () {
-    const newBusesData = [...busesData]
-    for (const busIdx in busesData) {
-      const bus = busesData[busIdx]
+    const newBuses = [...buses]
+    for (const busIdx in buses) {
+      const bus = buses[busIdx]
       bus.selected = false
     }
-    setData(newBusesData)
+    setBuses(newBuses)
   }
   
   return (

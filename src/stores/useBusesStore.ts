@@ -1,20 +1,20 @@
-import type { BusData, Buses, BusStates } from '@/env'
+import type { Bus, BusesData, BusStates } from '@/env'
 import { create } from 'zustand'
-import { getBuses } from '@/services/busService'
+import { getBusesData } from '@/services/busService'
 
-const buses = await getBuses()
+const busesData = await getBusesData()
 
-interface BusesStore extends Buses {
+interface BusesStore extends BusesData {
   setCount: (newValue: number) => void
   setInMovement: (newValue: number) => void
   setInTerminal: (newValue: number) => void
   setDelayed: (newValue: number) => void
   setSelectedCount: (newValue: number) => void
   setTimestamp: (newValue: number) => void
-  setData: (newValue: Array<BusData>) => void
-  updateBusData: (newBusData: BusData) => BusData[]
-  addBusData: (newBus: BusData) => BusData[]
-  removeBusData: (busId: string) => BusData[]
+  setBuses: (newValue: Array<Bus>) => void
+  updateBuses: (newBuses: Bus) => Bus[]
+  addBus: (newBus: Bus) => Bus[]
+  removeBus: (busId: string) => Bus[]
   updateBusState: (busId: string, newState: BusStates) => void
   /* count: 12,
   inMovement: 5,
@@ -25,39 +25,39 @@ interface BusesStore extends Buses {
 }
 
 export const useBusesStore = create<BusesStore>((set, get) => ({
-  ...buses,
+  ...busesData,
   setCount: (newValue) => set({ count: newValue }),
   setInMovement: (newValue) => set({ inMovement: newValue }),
   setInTerminal: (newValue) => set({ inTerminal: newValue }),
   setDelayed: (newValue) => set({ delayed: newValue }),
   setSelectedCount: (newValue) => set({ selectedCount: newValue }),
   setTimestamp: (newValue) => set({ timestamp: newValue }),
-  setData: (newValue) => set({ busesData: newValue }),
-  updateBusData (newBusData) {
-    const buses = get().busesData
+  setBuses: (newValue) => set({ buses: newValue }),
+  updateBuses (newBusData) {
+    const buses = get().buses
     const newBuses = [...buses]
     for (const busIdx in buses) {
       const bus = buses[busIdx]
       if (newBusData.id === bus.id) {
         newBuses[busIdx] = newBusData
-        set({ busesData: newBuses })
+        set({ buses: newBuses })
       }
     }
     return newBuses
   },
-  addBusData (newBus) {
-    const newBuses = [...get().busesData, newBus]
-    set({ busesData: newBuses })
+  addBus (newBus) {
+    const newBuses = [...get().buses, newBus]
+    set({ buses: newBuses })
     return newBuses
   },
-  removeBusData (busId) {
-    const newBuses = get().busesData.filter((bus) => bus.id !== busId)
-    set({ busesData: newBuses })
+  removeBus (busId) {
+    const newBuses = get().buses.filter((bus) => bus.id !== busId)
+    set({ buses: newBuses })
     return newBuses
   },
   updateBusState (busId, newState) {
     set({
-      busesData: get().busesData.map((bus) => {
+      buses: get().buses.map((bus) => {
         if (bus.id === busId) {
           bus.state = newState
         }

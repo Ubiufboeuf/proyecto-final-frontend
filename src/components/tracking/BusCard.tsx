@@ -1,4 +1,4 @@
-import type { BusData, BusStates } from '@/env'
+import type { Bus, BusStates } from '@/env'
 import { IconCheckbox, IconClock, IconMapPin, IconUser } from '../Icons'
 import { Icon } from '../Icon'
 import { useEffect, useState } from 'preact/hooks'
@@ -11,25 +11,25 @@ const states: { [key in BusStates]: string } = {
   'En viaje': 'inMovement'
 }
 
-export function BusCard ({ info: { id, driver, destination, state = 'En terminal', selected, origin, location, passengers, progress } }: { info: BusData }) {
+export function BusCard ({ bus: { id, driver, destination, state = 'En terminal', selected, origin, location, passengers, progress } }: { bus: Bus }) {
   const [isSelected, setIsSelected] = useState<boolean>(selected)
-  const busesData = useBusesStore((state) => state.busesData)
-  const setData = useBusesStore((state) => state.setData)
+  const buses = useBusesStore((state) => state.buses)
+  const setBuses = useBusesStore((state) => state.setBuses)
   
   function toggleIsSelected () {
     setIsSelected((isSelected) => !isSelected)
   }
 
   useEffect(() => {
-    const dataIdx = busesData.findIndex((bus) => bus.id === id)
-    const currentData = busesData[dataIdx]
-    const newData: BusData = {
-      ...currentData,
+    const dataIdx = buses.findIndex((bus) => bus.id === id)
+    const currentBus = buses[dataIdx]
+    const newBus: Bus = {
+      ...currentBus,
       selected: isSelected
     }
-    const newFullData = [...busesData]
-    newFullData[dataIdx] = newData
-    setData(newFullData)
+    const newBuses = [...buses]
+    newBuses[dataIdx] = newBus
+    setBuses(newBuses)
   }, [isSelected])
 
   useEffect(() => {

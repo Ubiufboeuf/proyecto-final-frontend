@@ -1,13 +1,13 @@
-import type { Buses, BusStates } from '@/env'
+import type { BusesData, BusStates } from '@/env'
 
-const BUSES: Buses = {
+const BUSES_DATA: BusesData = {
   count: 12,
   inMovement: 0,
   selectedCount: 0,
   inTerminal: 0,
   delayed: 0,
   timestamp: 0,
-  busesData: [
+  buses: [
     {
       id: 'b123',
       state: 'En terminal',
@@ -103,16 +103,16 @@ const BUSES: Buses = {
   ]
 }
 
-export async function getBuses () {
+export async function getBusesData () {
   const busStates: { [key in BusStates]: number } = { 'En terminal': 0, 'En viaje': 0, Atrasado: 0 }
 
-  const buses: Buses = { ...BUSES }
-  const data = buses.busesData
-  for (const busIdx in data) {
-    const bus = data[busIdx]
+  const busesData: BusesData = { ...BUSES_DATA }
+  const { buses } = busesData
+  for (const busIdx in buses) {
+    const bus = buses[busIdx]
     if (bus.state) {
       busStates[bus.state]++
     }
   }
-  return buses
+  return busesData
 }

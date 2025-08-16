@@ -30,17 +30,17 @@ export type ParseTimestampOptions = {
 
 export type Output = 'date' | 'time' | 'date-time' | 'time-date' | 'hour-minute'
 
-export interface Buses {
+export interface BusesData {
   inMovement?: number
   inTerminal?: number
   delayed?: number
   selectedCount: number
   count?: number
-  busesData: Array<BusData>
+  buses: Array<Bus>
   timestamp?: number
 }
 
-export interface BusData {
+export interface Bus {
   id: string
   state: BusStates
   driver: Driver

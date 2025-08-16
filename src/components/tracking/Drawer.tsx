@@ -2,9 +2,9 @@ import { Drawer } from 'vaul'
 import { Icon } from '../Icon'
 import { IconWideArrowUp } from '../Icons'
 import { Aside } from './Aside'
-import type { Buses } from '@/env'
+import type { BusesData } from '@/env'
 
-export default function VaulDrawer ({ buses }: { buses: Buses }) {
+export default function VaulDrawer ({ busesData }: { busesData: BusesData }) {
   return (
     <Drawer.Root>
       <Drawer.Trigger className='lg:hidden hover:bg-gray-100 touch:active:bg-gray-100 transition-colors cursor-pointer absolute bottom-6 left-1/2 [transform:translateX(-50%)] z-10 bg-white h-fit w-fit px-8 py-1.5 rounded-xl'>
@@ -20,7 +20,7 @@ export default function VaulDrawer ({ buses }: { buses: Buses }) {
             <div className='mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-gray-300 mb-3' />
             <Aside
               class='relative lg:hidden flex flex-col justify-between h-full max-h-full w-full overflow-hidden border border-gray-200 bg-white [transition:left_250ms_ease] [&_#buses-cards-wrapper]:lg:grid-cols-1 [&_#buses-cards-wrapper]:sm:grid-cols-2'
-              buses={buses}
+              busesData={busesData}
             />
           </div>
         </Drawer.Content>

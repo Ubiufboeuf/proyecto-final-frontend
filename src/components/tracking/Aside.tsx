@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'preact/hooks'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { AsideHeader } from '@/components/tracking/AsideHeader'
-import type { Buses } from '@/env'
+import type { BusesData } from '@/env'
 import { BusCard } from './BusCard'
 import { useId } from 'preact/hooks'
 
-export function Aside ({ buses: _buses, class: className }: { buses: Buses | null, class: string }) {
-  const [buses, setBuses] = useState(_buses)
-  const busesData = useBusesStore((state) => state.busesData)
+export function Aside ({ busesData: _busesData, class: className }: { busesData: BusesData | null, class: string }) {
+  const [busesData, setBusesData] = useState(_busesData)
+  const buses = useBusesStore((state) => state.buses)
   const setSelectedCount = useBusesStore((state) => state.setSelectedCount)
   const delayed = useBusesStore((state) => state.delayed)
   const inTerminal = useBusesStore((state) => state.inTerminal)
@@ -15,20 +15,20 @@ export function Aside ({ buses: _buses, class: className }: { buses: Buses | nul
 
   useEffect(() => {
     let selected = 0
-    for (const bus of busesData) {
+    for (const bus of buses) {
       if (bus.selected) {
         selected++
       }
     }
     setSelectedCount(selected)
 
-    const newBuses: Buses = {
-      ...buses,
-      busesData,
+    const newBusesData: BusesData = {
+      ...busesData,
+      buses: buses,
       selectedCount: selected || 0
     }
-    setBuses(newBuses)
-  }, [busesData])
+    setBusesData(newBusesData)
+  }, [buses])
 
   return (
     <aside class={className}>
@@ -36,8 +36,8 @@ export function Aside ({ buses: _buses, class: className }: { buses: Buses | nul
       <section class='overflow-y-scroll h-full max-h-full [scrollbar-width:thin]'>
         <div id='buses-cards-wrapper' class='p-4 h-fit min-h-fit grid grid-cols-1 gap-4'>
           {
-            busesData.map((bus) => (
-              <BusCard key={useId()} info={bus} />
+            buses.map((bus) => (
+              <BusCard key={useId()} bus={bus} />
             ))
           }
         </div>

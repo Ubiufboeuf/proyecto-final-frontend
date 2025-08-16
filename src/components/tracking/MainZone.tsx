@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css'
-import type { Buses, BusStates } from '@/env'
+import type { BusesData, BusStates } from '@/env'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { useEffect, useRef, useState } from 'preact/hooks'
 import type { Map } from 'leaflet'
@@ -7,7 +7,7 @@ import VaulDrawer from './Drawer'
 import { Icon } from '../Icon'
 import { IconEye, IconFocus } from '../Icons'
 
-export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: number, lng: number }) {
+export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesData, lat: number, lng: number }) {
   const mapRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [state] = useState<BusStates>('En viaje')
@@ -15,7 +15,7 @@ export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: numb
   const setDelayed = useBusesStore((state) => state.setDelayed)
   const setInMovement = useBusesStore((state) => state.setInMovement)
   const setInTerminal = useBusesStore((state) => state.setInTerminal)
-  const busesData = useBusesStore((state) => state.busesData)
+  const buses = useBusesStore((state) => state.buses)
   
   async function loadMap () {
     let L
@@ -71,20 +71,20 @@ export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: numb
   }, [])
 
   useEffect(() => {
-    const bus = busesData[0]
+    const bus = buses[0]
     updateBusState(bus.id, state)
   }, [state])
 
   useEffect(() => {
     const busStates: { [key in BusStates]: number } = { 'En terminal': 0, 'En viaje': 0, Atrasado: 0 }
-    for (const bus of busesData) {
+    for (const bus of buses) {
       if (!bus.state) continue
       busStates[bus.state]++
     }
     setDelayed(busStates.Atrasado)
     setInMovement(busStates['En viaje'])
     setInTerminal(busStates['En terminal'])
-  }, [busesData])
+  }, [buses])
 
   return (
     <main class='h-full w-full absolute right-0 top-0 z-0 pt-16 lg:pl-80 [transition:padding-left_ease_250ms]'>
@@ -108,7 +108,7 @@ export function MainZone ({ buses, lat = 0, lng = 0 }: { buses: Buses, lat: numb
             <span>Ubícame</span>
           </button>
         </header>
-        <VaulDrawer buses={buses} />
+        <VaulDrawer busesData={busesData} />
       </div>
     </main>
   )
