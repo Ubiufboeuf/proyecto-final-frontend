@@ -1,8 +1,13 @@
 import type { Bus, BusesData, BusStates } from '@/env'
 import { create } from 'zustand'
-import { getBusesData } from '@/services/busService'
+import { getBaseBusesData, getBusesData } from '@/services/busService'
 
-const busesData = await getBusesData()
+let busesData: BusesData = getBaseBusesData()
+try {
+  busesData = await getBusesData()
+} catch (err) {
+  console.error(err)
+}
 
 interface BusesStore extends BusesData {
   setCount: (newValue: number) => void
