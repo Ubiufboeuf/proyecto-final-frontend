@@ -10,7 +10,6 @@ export const prerender = false
 const { location } = Astro.params
 const [lat, lng] = location?.toString().split('/') ?? '/'
 
-const title = 'Seguir Ómnibus'
 let busesData: BusesData = getBaseBusesData()
 try {
 	busesData = await getBusesData()
@@ -25,7 +24,7 @@ try {
 		<link rel='icon' type='image/svg+xml' href='/favicon.webp' />
 		<meta name='viewport' content='width=device-width' />
 		<meta name='description' content='Web no oficial de Berrutti Turismo. Proyecto de fin de año' />
-		<title>{title ? `${title} - Berrutti Turismo` : title}</title>
+		<title>Seguir Ómnibus - Berrutti Turismo</title>
 		<script src='../../lib/detectDeviceType.js'></script>
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black h-full w-full'>
