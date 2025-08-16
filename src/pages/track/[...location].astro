@@ -2,7 +2,8 @@
 import { Aside } from '@/components/tracking/Aside'
 import Header from '@/components/tracking/Header.astro'
 import { MainZone } from '@/components/tracking/MainZone'
-import { getBusesData } from '@/services/busService'
+import type { BusesData } from '@/env'
+import { getBaseBusesData, getBusesData } from '@/services/busService'
 import '@/styles/global.css'
 
 export const prerender = false
@@ -10,7 +11,12 @@ const { location } = Astro.params
 const [lat, lng] = location?.toString().split('/') ?? '/'
 
 const title = 'Seguir Ómnibus'
-const busesData = await getBusesData()
+let busesData: BusesData = getBaseBusesData()
+try {
+	busesData = await getBusesData()
+} catch (err) {
+	console.error(err)
+}
 ---
 
 <html lang='es'>
