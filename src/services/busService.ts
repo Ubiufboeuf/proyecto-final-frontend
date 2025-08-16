@@ -2,7 +2,7 @@ import type { BusesData, BusStates } from '@/env'
 
 export function getBaseBusesData (): BusesData {
   return {
-    buses: [],
+    buses: null,
     selectedCount: 0,
     count: 0,
     delayed: 0,
@@ -17,6 +17,9 @@ export async function getBusesData () {
 
   const busesData: BusesData = getBaseBusesData()
   const { buses } = busesData
+  
+  if (!buses) return busesData
+  
   for (const busIdx in buses) {
     const bus = buses[busIdx]
     if (bus.state) {

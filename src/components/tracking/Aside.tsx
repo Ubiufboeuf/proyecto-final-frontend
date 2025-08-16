@@ -14,6 +14,8 @@ export function Aside ({ busesData: _busesData, class: className }: { busesData:
   const inMovement = useBusesStore((state) => state.inMovement)
 
   useEffect(() => {
+    if (!buses) return
+
     let selected = 0
     for (const bus of buses) {
       if (bus.selected) {
@@ -36,7 +38,7 @@ export function Aside ({ busesData: _busesData, class: className }: { busesData:
       <section class='overflow-y-scroll h-full max-h-full [scrollbar-width:thin]'>
         <div id='buses-cards-wrapper' class='p-4 h-fit min-h-fit grid grid-cols-1 gap-4'>
           {
-            buses.map((bus) => (
+            buses?.map((bus) => (
               <BusCard key={useId()} bus={bus} />
             ))
           }

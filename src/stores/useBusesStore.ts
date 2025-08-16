@@ -34,7 +34,10 @@ export const useBusesStore = create<BusesStore>((set, get) => ({
   setTimestamp: (newValue) => set({ timestamp: newValue }),
   setBuses: (newValue) => set({ buses: newValue }),
   updateBuses (newBusData) {
-    const buses = get().buses
+    const { buses } = get()
+    
+    if (!buses) return []
+    
     const newBuses = [...buses]
     for (const busIdx in buses) {
       const bus = buses[busIdx]
@@ -46,18 +49,26 @@ export const useBusesStore = create<BusesStore>((set, get) => ({
     return newBuses
   },
   addBus (newBus) {
-    const newBuses = [...get().buses, newBus]
+    const newBuses = [...get().buses ?? [], newBus]
     set({ buses: newBuses })
     return newBuses
   },
   removeBus (busId) {
-    const newBuses = get().buses.filter((bus) => bus.id !== busId)
+    const { buses } = get()
+
+    if (!buses) return []
+
+    const newBuses = buses.filter((bus) => bus.id !== busId)
     set({ buses: newBuses })
     return newBuses
   },
   updateBusState (busId, newState) {
+    const { buses } = get()
+    
+    if (!buses) return
+    
     set({
-      buses: get().buses.map((bus) => {
+      buses: buses.map((bus) => {
         if (bus.id === busId) {
           bus.state = newState
         }

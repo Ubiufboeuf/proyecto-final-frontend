@@ -71,11 +71,14 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   }, [])
 
   useEffect(() => {
-    const bus = buses[0]
-    updateBusState(bus.id, state)
+    const bus = buses?.[0]
+    if (bus?.id) {
+      updateBusState(bus.id, state)
+    }
   }, [state])
 
   useEffect(() => {
+    if (!buses) return
     const busStates: { [key in BusStates]: number } = { 'En terminal': 0, 'En viaje': 0, Atrasado: 0 }
     for (const bus of buses) {
       if (!bus.state) continue

@@ -36,7 +36,7 @@ export interface BusesData {
   delayed?: number
   selectedCount: number
   count?: number
-  buses: Array<Bus>
+  buses: Array<Bus> | null
   timestamp?: number
 }
 
