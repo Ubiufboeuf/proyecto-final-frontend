@@ -8,6 +8,7 @@ Equipo:
 - Luis Quevedo
 - Matías Giménez
 - Federico Artencio
+- Emanuel Cordeiro
 
 ## Comandos del proyecto
 
