@@ -1,8 +1,8 @@
 import type { Ruta } from '@/env'
 import { ENDPOINTS } from '@/lib/constants'
 
-export async function getAllRoutes (origin: string) {
-  return fetch(`${origin}/${ENDPOINTS.ROUTES}`)
+export async function getAllRoutes () {
+  return fetch(ENDPOINTS.ROUTES)
     .catch((err) => {
       console.log(err)
       throw new Error('Error consiguiendo las rutas')
