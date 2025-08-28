@@ -44,7 +44,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
 
       const newState = { page: '/track/' }
       const newUrl = `${origin}/track/${lat.toFixed(6)}/${lng.toFixed(6)}/`
-      history.pushState(newState, '', newUrl)
+      history.replaceState(newState, '', newUrl)
     })
 
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
