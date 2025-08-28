@@ -27,6 +27,12 @@
   }
 }
 
+@custom-variant dark {
+  &:where(.theme-dark *) {
+    @slot;
+  }
+}
+
 :root {
   color-scheme: dark light;
 }
