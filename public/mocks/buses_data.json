@@ -1,0 +1,102 @@
+{
+  "count": 12,
+  "inMovement": 0,
+  "selectedCount": 0,
+  "inTerminal": 0,
+  "delayed": 0,
+  "timestamp": 0,
+  "buses": [
+    {
+      "id": "b123",
+      "state": "En terminal",
+      "driver": {
+        "id": "d123",
+        "name": "Bob Johnson"
+      },
+      "destination": {
+        "location": "Punta del Este",
+        "timestamp": 0
+      },
+      "location": "Canelones",
+      "origin": {
+        "location": "Montevideo",
+        "timestamp": 0
+      },
+      "passengers": {
+        "capacity": 48,
+        "onBoard": 24
+      },
+      "progress": 65,
+      "selected": false
+    },
+    {
+      "id": "b234",
+      "state": "En terminal",
+      "driver": {
+        "id": "d123",
+        "name": "Bob Johnson"
+      },
+      "destination": {
+        "location": "Punta del Este",
+        "timestamp": 0
+      },
+      "location": "Canelones",
+      "origin": {
+        "location": "Montevideo",
+        "timestamp": 0
+      },
+      "passengers": {
+        "capacity": 48,
+        "onBoard": 24
+      },
+      "progress": 65,
+      "selected": false
+    },
+    {
+      "id": "b345",
+      "state": "En terminal",
+      "driver": {
+        "id": "d123",
+        "name": "Bob Johnson"
+      },
+      "destination": {
+        "location": "Punta del Este",
+        "timestamp": 0
+      },
+      "location": "Canelones",
+      "origin": {
+        "location": "Montevideo",
+        "timestamp": 0
+      },
+      "passengers": {
+        "capacity": 48,
+        "onBoard": 24
+      },
+      "progress": 65,
+      "selected": false
+    },
+    {
+      "id": "b456",
+      "state": "En terminal",
+      "driver": {
+        "id": "d123",
+        "name": "Bob Johnson"
+      },
+      "destination": {
+        "location": "Punta del Este",
+        "timestamp": 0
+      },
+      "location": "Canelones",
+      "origin": {
+        "location": "Montevideo",
+        "timestamp": 0
+      },
+      "passengers": {
+        "capacity": 48,
+        "onBoard": 24
+      },
+      "progress": 65,
+      "selected": false
+    }
+  ]
+}
