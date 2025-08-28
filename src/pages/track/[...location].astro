@@ -1,9 +1,7 @@
 ---
-import { Aside } from '@/components/tracking/Aside'
-import Header from '@/components/tracking/Header.astro'
-import { MainZone } from '@/components/tracking/MainZone'
+import { Track } from '@/components/tracking/Track'
 import type { BusesData } from '@/env'
-import { getBaseBusesData, getBusesData } from '@/services/busService'
+import { getBaseBusesData } from '@/services/busService'
 import '@/styles/global.css'
 
 export const prerender = false
@@ -11,11 +9,6 @@ const { location } = Astro.params
 const [lat, lng] = location?.toString().split('/') ?? '/'
 
 let busesData: BusesData = getBaseBusesData()
-try {
-	busesData = await getBusesData()
-} catch (err) {
-	console.error(err)
-}
 ---
 
 <html lang='es'>
@@ -28,12 +21,11 @@ try {
 		<script src='../../lib/detectDeviceType.js'></script>
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black h-full w-full'>
-    <Header busesData={busesData} />
-		<Aside
-			class='relative lg:left-0 -left-80 top-0 z-10 flex flex-col justify-between h-[calc(100%-64px)] max-h-[calc(100%-64px)] overflow-hidden w-80 border-r border-gray-200 bg-white [transition:left_250ms_ease]'
+		<Track
 			busesData={busesData}
+			lat={Number(lat)}
+			lng={Number(lng)}
 			client:load
-			/>
-		<MainZone busesData={busesData} lat={Number(lat)} lng={Number(lng)} client:load />
+		/>
 	</body>
 </html>
