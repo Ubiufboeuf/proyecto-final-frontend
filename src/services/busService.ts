@@ -1,4 +1,6 @@
 import type { BusesData, BusStates } from '@/env'
+import { ENDPOINTS } from '@/lib/constants'
+import { errorHandler } from '@/lib/utils'
 
 export function getBaseBusesData (): BusesData {
   return {
@@ -15,7 +17,28 @@ export function getBaseBusesData (): BusesData {
 export async function getBusesData () {
   const busStates: { [key in BusStates]: number } = { 'En terminal': 0, 'En viaje': 0, Atrasado: 0 }
 
-  const busesData: BusesData = getBaseBusesData()
+  let data
+  try {
+    const res = await fetch(ENDPOINTS.BUSES_DATA)
+    data = await res.json()
+  } catch (err) {
+    errorHandler('Error consiguiendo la información', err)
+  }
+
+  // console.log('data', data)
+
+  if (!data) return getBaseBusesData()
+  
+  const busesData: BusesData = {
+    buses: data.buses,
+    selectedCount: data.selectedCount,
+    count: data.count,
+    delayed: data.delayed,
+    inMovement: data.inMovement,
+    inTerminal: data.inTerminal,
+    timestamp: data.timestamp
+  }
+
   const { buses } = busesData
   
   if (!buses) return busesData
@@ -26,5 +49,6 @@ export async function getBusesData () {
       busStates[bus.state]++
     }
   }
+
   return busesData
 }
