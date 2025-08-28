@@ -7,6 +7,7 @@ import { Temporal } from 'temporal-polyfill'
 export function HeaderInfo ({ busesData }: { busesData: BusesData }) {
   const [timestampInMiliseconds, setTimestamp] = useState<number>(0)
   const selectedCount = useBusesStore((state) => state.selectedCount)
+  const count = useBusesStore((state) => state.count)
 
   useEffect(() => {
     setTimestamp(getTimestamp())
@@ -30,7 +31,7 @@ export function HeaderInfo ({ busesData }: { busesData: BusesData }) {
   return (
     <section class='flex items-center justify-center w-fit h-fit max-h-full p-3 gap-3'>
       <span class={`
-        ${busesData.count ? 'hasBuses' : ''} [&.hasBuses]:text-blue-700 [&.hasBuses]:bg-blue-100 [&.hasBuses]:border-blue-300 text-gray-700 bg-gray-100 border-gray-300
+        ${count || busesData.count ? 'hasBuses' : ''} [&.hasBuses]:text-blue-700 [&.hasBuses]:bg-blue-100 [&.hasBuses]:border-blue-300 text-gray-700 bg-gray-100 border-gray-300
          rounded-full text-xs p-2 px-4 font-semibold border w-fit text-center`}>
         { selectedCount }
         <span class='not-sm:hidden'> ómnibus</span>
