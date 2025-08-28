@@ -21,6 +21,7 @@ interface BusesStore extends BusesData {
   addBus: (newBus: Bus) => Bus[]
   removeBus: (busId: string) => Bus[]
   updateBusState: (busId: string, newState: BusStates) => void
+  setBusesData: (busesData: BusesData) => void
   /* count: 12,
   inMovement: 5,
   selected: 0,
@@ -31,6 +32,7 @@ interface BusesStore extends BusesData {
 
 export const useBusesStore = create<BusesStore>((set, get) => ({
   ...busesData,
+  setBusesData: (busesData) => set({...busesData}),
   setCount: (newValue) => set({ count: newValue }),
   setInMovement: (newValue) => set({ inMovement: newValue }),
   setInTerminal: (newValue) => set({ inTerminal: newValue }),
