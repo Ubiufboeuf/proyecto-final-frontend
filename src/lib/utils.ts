@@ -57,3 +57,14 @@ export function parseTimeInMinutes (time: number, output: 'h-mm') {
 
   return outputs[output]
 }
+
+export function errorHandler (publicMessage: string, devMessage: unknown = '') {
+  const { DEV } = import.meta.env
+
+  if (DEV) {
+    console.error(publicMessage, devMessage)
+    return
+  }
+
+  console.error(publicMessage)
+}
