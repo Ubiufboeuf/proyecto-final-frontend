@@ -649,3 +649,60 @@ export const IconSend = () => (
     <path d='M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5' />
   </svg>
 )
+
+export const IconMoon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    class='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z' />
+  </svg>
+)
+
+export const IconSun = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    class='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0' />
+    <path d='M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7' />
+  </svg>
+)
+
+export const IconSunAndMoon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    class='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M9.173 14.83a4 4 0 1 1 5.657 -5.657' />
+    <path d='M11.294 12.707l.174 .247a7.5 7.5 0 0 0 8.845 2.492a9 9 0 0 1 -14.671 2.914' />
+    <path d='M3 12h1' />
+    <path d='M12 3v1' />
+    <path d='M5.6 5.6l.7 .7' />
+    <path d='M3 21l18 -18' />
+  </svg>
+)
