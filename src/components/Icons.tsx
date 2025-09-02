@@ -685,7 +685,7 @@ export const IconSun = () => (
   </svg>
 )
 
-export const IconSunAndMoon = () => (
+export const IconComputer = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='24'
@@ -698,11 +698,11 @@ export const IconSunAndMoon = () => (
     strokeLinejoin='round'
     class='h-full w-full max-h-full max-w-full aspect-square'
   >
-    <path d='M9.173 14.83a4 4 0 1 1 5.657 -5.657' />
-    <path d='M11.294 12.707l.174 .247a7.5 7.5 0 0 0 8.845 2.492a9 9 0 0 1 -14.671 2.914' />
-    <path d='M3 12h1' />
-    <path d='M12 3v1' />
-    <path d='M5.6 5.6l.7 .7' />
-    <path d='M3 21l18 -18' />
+    <path d='M10 15h-6a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h6' />
+    <path d='M13 4m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z' />
+    <path d='M7 19l3 0' />
+    <path d='M17 8l0 .01' />
+    <path d='M17 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0' />
+    <path d='M9 15l0 4' />
   </svg>
 )
