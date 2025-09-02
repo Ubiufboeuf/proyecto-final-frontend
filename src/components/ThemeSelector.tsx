@@ -69,7 +69,7 @@ export function ThemeSelector () {
       document.removeEventListener('click', handleClickToCloseList)
     }
   }, [])
-  
+
   useEffect(() => {
     localStorage.setItem('berrutti-web-theme', theme)
     // console.log(theme)
@@ -88,7 +88,7 @@ export function ThemeSelector () {
               key={`themeOption-${themeOption}`}
               class={`${themeOption === theme ? 'selected' : ''} [&.selected]:bg-gray-50 flex items-center justify-start gap-2 w-full h-fit p-2 px-3 active:bg-gray-50 hover:bg-gray-50 cursor-pointer transition-colors rounded-lg text-gray-700`}
               onClick={changeTheme(themeOption)}
-              tabIndex={themeListIsOpen ? 0 : -1}
+              tabIndex={isThemeListOpen ? 0 : -1}
             >
               <Icon class='size-6'>
                 <ThemeIcon />
