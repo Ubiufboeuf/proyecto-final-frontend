@@ -14,7 +14,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
   return (
     <>
       <aside
-        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar h-full bg-white text-gray-800 flex flex-col xl:hidden duration-300 z-[2] px-8 [scrollbar-width:thin]`}
+        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar min-w-fit h-full bg-white text-gray-800 flex flex-col xl:hidden duration-300 z-[2] px-8 [scrollbar-width:thin]`}
       >
         <header class='h-navbar min-h-navbar w-full flex items-center justify-center'>
           <CloseSidebar />
@@ -30,7 +30,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
                 <div class='size-6 flex items-center justify-center'>
                   <Icon />
                 </div>
-                <span>
+                <span class='text-nowrap'>
                   {name}
                 </span>
               </a>
