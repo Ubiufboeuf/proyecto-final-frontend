@@ -23,13 +23,12 @@ const themeOptions: ThemeOptions[] = [
 ]
 
 export function ThemeSelector () {
-  const [themeListIsOpen, setSelectIsOpen] = useState(false)
+  const [isThemeListOpen, setIsThemeListOpen] = useState(false)
   const setTheme = useThemeStore((state) => state.setTheme)
   const theme = useThemeStore((state) => state.theme)
 
   function toggleSelect () {
-    const isOpen = themeListIsOpen
-    setSelectIsOpen(!isOpen)
+    setIsThemeListOpen((isOpen) => !isOpen)
   }
 
   const changeTheme = (theme: ColorTheme) => () => {
@@ -38,6 +37,16 @@ export function ThemeSelector () {
   
   function isValidTheme (themeStr: unknown): themeStr is ColorTheme {
     return themeStr === 'light' || themeStr === 'dark' || themeStr === 'system'
+  }
+
+  function handleClickToCloseList (event: MouseEvent) {
+    const element = event.target
+    if (!(element instanceof HTMLElement)) return
+    
+    const themeList = document.querySelector('#themeList')
+    if (themeList?.outerHTML.includes(element.outerHTML) || element.id === 'toggleTheme') return
+
+    setIsThemeListOpen(false)
   }
 
   useEffect(() => {
@@ -53,6 +62,12 @@ export function ThemeSelector () {
     } catch {
       // ↑ Solo para que el usuario no vea el error, pero no hace falta mostrar o hacer nada acá
     }
+
+    document.addEventListener('click', handleClickToCloseList)
+
+    return () => {
+      document.removeEventListener('click', handleClickToCloseList)
+    }
   }, [])
   
   useEffect(() => {
@@ -63,7 +78,10 @@ export function ThemeSelector () {
 
   return (
     <section class='h-fit w-full relative'>
-      <section class={`${themeListIsOpen ? 'themeListOpen' : ''} [&.themeListOpen]:h-fit [&.themeListOpen]:py-2 h-0 overflow-hidden [transition:height_250ms_ease,padding-block_250ms_ease] [interpolate-size:allow-keywords] absolute bottom-13 right-0 bg-gray-200 rounded-lg py-0 px-2 gap-1.5 flex flex-col`}>
+      <section
+        id='themeList'
+        class={`${isThemeListOpen ? 'themeListOpen' : ''} [&.themeListOpen]:h-fit [&.themeListOpen]:py-2 h-0 overflow-hidden [transition:height_250ms_ease,padding-block_250ms_ease] [interpolate-size:allow-keywords] absolute bottom-13 right-0 bg-gray-200 rounded-lg py-0 px-2 gap-1.5 flex flex-col`}
+      >
         {
           themeOptions.map(({ icon: ThemeIcon, name, theme: themeOption }) => (
             <button
@@ -81,6 +99,7 @@ export function ThemeSelector () {
         }
       </section>
       <button
+        id='toggleTheme'
         class='h-fit w-fit p-2 aspect-square min-h-10 hover:bg-gray-200 dark:hover:bg-neutral-800 dark:touch:active:bg-neutral-800 touch:active:bg-gray-200 transition-colors rounded-lg flex items-center justify-center cursor-pointer ml-auto border-gray-200 border-2'
         onClick={toggleSelect}
       >
