@@ -2,6 +2,7 @@ import { links } from '@/lib/utils'
 import { useMenuStore } from '@/stores/useMenuStore'
 import { useId } from 'preact/compat'
 import { CloseSidebar } from './CloseSidebar'
+import { ThemeSelector } from './ThemeSelector'
 
 export function SideBar ({ pathname }: { pathname: string }) {
   const isMenuOpen = useMenuStore((state) => state.isMenuOpen)
@@ -38,6 +39,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
           }
         </main>
         <div class='py-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
+          <ThemeSelector />
           <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
             Registrarse
           </a>
