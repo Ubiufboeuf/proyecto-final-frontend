@@ -63,12 +63,12 @@ export function ThemeSelector () {
 
   return (
     <section class='h-fit w-full relative'>
-      <section class={`${themeListIsOpen ? 'themeListOpen' : ''} [&.themeListOpen]:h-fit [&.themeListOpen]:py-2 h-0 overflow-hidden [transition:height_250ms_ease,padding-block_250ms_ease] [interpolate-size:allow-keywords] absolute bottom-13 right-0 bg-gray-200 rounded-lg py-0 px-2`}>
+      <section class={`${themeListIsOpen ? 'themeListOpen' : ''} [&.themeListOpen]:h-fit [&.themeListOpen]:py-2 h-0 overflow-hidden [transition:height_250ms_ease,padding-block_250ms_ease] [interpolate-size:allow-keywords] absolute bottom-13 right-0 bg-gray-200 rounded-lg py-0 px-2 gap-1.5 flex flex-col`}>
         {
           themeOptions.map(({ icon: ThemeIcon, name, theme: themeOption }) => (
             <button
               key={`themeOption-${themeOption}`}
-              class='flex items-center justify-start gap-2 w-full h-fit p-2 px-3 active:bg-gray-50 hover:bg-gray-50 cursor-pointer transition-colors rounded-lg text-gray-700'
+              class={`${themeOption === theme ? 'selected' : ''} [&.selected]:bg-gray-50 flex items-center justify-start gap-2 w-full h-fit p-2 px-3 active:bg-gray-50 hover:bg-gray-50 cursor-pointer transition-colors rounded-lg text-gray-700`}
               onClick={changeTheme(themeOption)}
               tabIndex={themeListIsOpen ? 0 : -1}
             >
