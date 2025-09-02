@@ -27,9 +27,15 @@
   }
 }
 
-@custom-variant dark {
-  &:where(.theme-dark *) {
+@variant dark {
+  &:where([theme=dark] *) {
     @slot;
+  }
+
+  &:where([theme=system] *) {
+    @media (prefers-color-scheme: dark) {
+      @slot;
+    }
   }
 }
 

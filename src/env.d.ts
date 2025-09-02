@@ -87,3 +87,11 @@ export type Ruta = {
     motivo: 'feriado' | 'roto' | 'fin de semana'
   }[] | [undefined | null] | undefined | null
 }
+
+export type ColorTheme = 'dark' | 'light' | 'system'
+
+export type ThemeOptions = {
+  name: string
+  theme: ColorTheme
+  icon: ({ hidden }: { hidden?: boolean }) => JSX.Element  
+}
