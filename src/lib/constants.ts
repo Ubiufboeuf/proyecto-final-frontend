@@ -1,4 +1,4 @@
-const origen = import.meta.env.ORIGIN
+const origen = import.meta.env.PUBLIC_ORIGIN
 
 export const ENDPOINTS = {
   ROUTES: `${origen}/mocks/routes.json`,
