@@ -28,11 +28,11 @@
 }
 
 @variant dark {
-  &:where([theme=dark] *) {
+  &:where([data-theme=dark] *) {
     @slot;
   }
 
-  &:where([theme=system] *) {
+  &:where([data-theme=system] *) {
     @media (prefers-color-scheme: dark) {
       @slot;
     }

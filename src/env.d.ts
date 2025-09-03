@@ -95,3 +95,14 @@ export type ThemeOptions = {
   theme: ColorTheme
   icon: ({ hidden }: { hidden?: boolean }) => JSX.Element  
 }
+
+export type Cookie = {
+  cookie: string
+  value: string
+}
+
+export type CookieParams = {
+  path: string
+  secure: boolean
+  samesite: 'strict' | 'lax'
+}

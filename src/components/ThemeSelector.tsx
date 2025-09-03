@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { Icon } from './Icon'
 import { IconMoon, IconSun, IconComputer } from './Icons'
 import type { ColorTheme, ThemeOptions } from '@/env'
-import { useThemeStore } from '@/stores/useThemeStore'
+import { getCookie, setCookie } from '@/lib/theme'
 
 const themeOptions: ThemeOptions[] = [
   {
@@ -24,14 +24,14 @@ const themeOptions: ThemeOptions[] = [
 
 export function ThemeSelector () {
   const [isThemeListOpen, setIsThemeListOpen] = useState(false)
-  const setTheme = useThemeStore((state) => state.setTheme)
-  const theme = useThemeStore((state) => state.theme)
+  const [theme, setTheme] = useState<ColorTheme>()
 
   function toggleSelect () {
     setIsThemeListOpen((isOpen) => !isOpen)
   }
 
   const changeTheme = (theme: ColorTheme) => () => {
+    setCookie('berrutti-web-theme', theme)
     setTheme(theme)
   }
   
@@ -53,7 +53,8 @@ export function ThemeSelector () {
     let theme: ColorTheme = 'system'
 
     try {
-      const themeStr = localStorage.getItem('berrutti-web-theme') || 'system'
+      const themeStr = getCookie('berrutti-web-theme').value || 'system'
+
       if (isValidTheme(themeStr)) {
         theme = themeStr
       }
@@ -71,9 +72,17 @@ export function ThemeSelector () {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('berrutti-web-theme', theme)
-    // console.log(theme)
-    document.documentElement.setAttribute('theme', theme)
+    if (theme) {
+      setCookie('berrutti-web-theme', theme, {
+        path: '/',
+        secure: true,
+        samesite: 'strict'
+      })
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+
+    const cookie = getCookie('berrutti-web-theme')
+    document.documentElement.setAttribute('data-theme', cookie.value)
   }, [theme])
 
   return (
