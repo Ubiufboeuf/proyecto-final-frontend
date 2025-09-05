@@ -73,11 +73,7 @@ export function ThemeSelector () {
 
   useEffect(() => {
     if (theme) {
-      setCookie('berrutti-web-theme', theme, {
-        path: '/',
-        secure: true,
-        samesite: 'strict'
-      })
+      setCookie('berrutti-web-theme', theme)
       document.documentElement.setAttribute('data-theme', theme)
     }
 

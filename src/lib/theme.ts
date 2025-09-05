@@ -1,4 +1,4 @@
-import type { Cookie, CookieParams } from '@/env'
+import type { Cookie } from '@/env'
 
 export function getCookie (cookieName: string): Cookie {
   const cookies = document.cookie.split(';')
@@ -6,20 +6,14 @@ export function getCookie (cookieName: string): Cookie {
 
   return {
     cookie: cookie?.[0] ?? cookieName,
-    value: cookie?.[1] ?? ''
+    value: cookie?.[1] ?? 'system'
   }
 }
 
-export function setCookie (cookieName: string, value: string, cookieParams?: CookieParams) {
+export function setCookie (cookieName: string, value: string) {
   if (!cookieName || !value) return
 
-  const parts = [`${cookieName}=${value}`]
-
-  if (cookieParams?.path) parts.push(`path=${cookieParams.path}`)
-  if (cookieParams?.secure) parts.push('Secure')
-  if (cookieParams?.samesite) parts.push(`SameSite=${cookieParams.samesite.charAt(0).toUpperCase() + cookieParams.samesite.slice(1)}`)
-
-  document.cookie = parts.join('; ')
+  document.cookie = `${cookieName}=${value}; path=/; Secure; SameSite=Strict`
 
   console.log('Set cookie:', document.cookie)
 }
