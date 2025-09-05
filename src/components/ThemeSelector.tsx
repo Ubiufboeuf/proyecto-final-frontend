@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { Icon } from './Icon'
 import { IconMoon, IconSun, IconComputer } from './Icons'
 import type { ColorTheme, ThemeOptions } from '@/env'
-import { getCookie, setCookie } from '@/lib/theme'
+import { getThemeCookie, setThemeCookie } from '@/lib/theme'
 
 const themeOptions: ThemeOptions[] = [
   {
@@ -31,7 +31,7 @@ export function ThemeSelector () {
   }
 
   const changeTheme = (theme: ColorTheme) => () => {
-    setCookie('berrutti-web-theme', theme)
+    setThemeCookie('berrutti-web-theme', theme)
     setTheme(theme)
   }
   
@@ -53,7 +53,7 @@ export function ThemeSelector () {
     let theme: ColorTheme = 'system'
 
     try {
-      const themeStr = getCookie('berrutti-web-theme').value || 'system'
+      const themeStr = getThemeCookie('berrutti-web-theme').value || 'system'
 
       if (isValidTheme(themeStr)) {
         theme = themeStr
@@ -73,11 +73,11 @@ export function ThemeSelector () {
 
   useEffect(() => {
     if (theme) {
-      setCookie('berrutti-web-theme', theme)
+      setThemeCookie('berrutti-web-theme', theme)
       document.documentElement.setAttribute('data-theme', theme)
     }
 
-    const cookie = getCookie('berrutti-web-theme')
+    const cookie = getThemeCookie('berrutti-web-theme')
     document.documentElement.setAttribute('data-theme', cookie.value)
   }, [theme])
 

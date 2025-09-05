@@ -1,6 +1,6 @@
 import type { Cookie } from '@/env'
 
-export function getCookie (cookieName: string): Cookie {
+export function getThemeCookie (cookieName: string): Cookie {
   const cookies = document.cookie.split(';')
   const cookie = cookies.find((cookie) => cookie.includes(cookieName))?.split('=')
 
@@ -10,7 +10,7 @@ export function getCookie (cookieName: string): Cookie {
   }
 }
 
-export function setCookie (cookieName: string, value: string) {
+export function setThemeCookie (cookieName: string, value: string) {
   if (!cookieName || !value) return
 
   document.cookie = `${cookieName}=${value}; path=/; Secure; SameSite=Strict`
