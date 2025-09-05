@@ -53,7 +53,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   }
 
   function handleLocateMe () {
-    console.log(map)
+    // console.log(map)
     if (!map) return
 
     map.locate({ setView: false })

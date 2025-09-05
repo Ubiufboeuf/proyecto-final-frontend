@@ -3,8 +3,7 @@ import { ENDPOINTS } from '@/lib/constants'
 
 export async function getAllRoutes () {
   return fetch(ENDPOINTS.ROUTES)
-    .catch((err) => {
-      console.log(err)
+    .catch(() => {
       throw new Error('Error consiguiendo las rutas')
     })
     .then((res) => res.json())

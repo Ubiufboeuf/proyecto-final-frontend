@@ -14,7 +14,5 @@ export function setThemeCookie (cookieName: string, value: string) {
   if (!cookieName || !value) return
 
   document.cookie = `${cookieName}=${value}; path=/; Secure; SameSite=Strict`
-
-  console.log('Set cookie:', document.cookie)
 }
 

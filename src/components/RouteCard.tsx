@@ -29,16 +29,16 @@ export function RouteCard (ruta: Ruta) {
 
   function getWhenMissing (hoy: Temporal.Instant = Temporal.Now.instant()) {
     if (!absence_data?.[0]?.miliseconds) return
-    console.log(absence_data)
+    // console.log(absence_data)
     // const hoy = Temporal.Now.instant()
-    console.log(absence_data?.[0]?.miliseconds > hoy.epochMilliseconds)
+    // console.log(absence_data?.[0]?.miliseconds > hoy.epochMilliseconds)
 
     const timeZone = Temporal.Now.timeZoneId()
     const savedInstant = Temporal.Instant.fromEpochMilliseconds(absence_data?.[0]?.miliseconds || 0)
     const savedZDT = savedInstant.toZonedDateTimeISO(timeZone)
     const zdt = hoy.toZonedDateTimeISO(timeZone)
     const { years, months, weeks, days, hours, minutes, seconds } = zdt.until(savedZDT, { smallestUnit: 'second', largestUnit: 'years' })
-    console.log(`${days}/${months}/${years} - ${hours}:${minutes}:${seconds}`)
+    // console.log(`${days}/${months}/${years} - ${hours}:${minutes}:${seconds}`)
 
     let missingTime = 'ahora'
     if (years > 1) missingTime = `en ${years} años`
