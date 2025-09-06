@@ -45,6 +45,12 @@
   &[data-theme=dark] {
     color-scheme: dark;
   }
+
+  &[data-theme=system] {
+    @media (prefers-color-scheme: dark) {
+      color-scheme: dark;
+    }
+  }
 }
 
 html,

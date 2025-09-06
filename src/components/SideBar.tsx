@@ -3,6 +3,8 @@ import { useMenuStore } from '@/stores/useMenuStore'
 import { useId } from 'preact/compat'
 import { CloseSidebar } from './CloseSidebar'
 import { ThemeSelector } from './ThemeSelector'
+import { LoginButton } from './LoginButton'
+import { RegisterButton } from './RegisterButton'
 
 export function SideBar ({ pathname }: { pathname: string }) {
   const isMenuOpen = useMenuStore((state) => state.isMenuOpen)
@@ -15,7 +17,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
   return (
     <>
       <aside
-        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar min-w-fit h-full bg-white text-gray-800 flex flex-col xl:hidden duration-300 z-[2] px-8 [scrollbar-width:thin]`}
+        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar min-w-fit h-full flex flex-col xl:hidden duration-300 z-[2] px-8 [scrollbar-width:thin] bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100`}
       >
         <header class='h-navbar min-h-navbar w-full flex items-center justify-center'>
           <CloseSidebar />
@@ -40,12 +42,8 @@ export function SideBar ({ pathname }: { pathname: string }) {
         </main>
         <div class='py-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
           <ThemeSelector />
-          <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer text-center'>
-            Registrarse
-          </a>
-          <a class='w-full text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 touch:active:bg-orange-50 text-orange-500 hover:text-gray-800 touch:active:text-gray-800 transition-colors border-orange-500 border text-center'>
-            Iniciar Sesión
-          </a>
+          <RegisterButton class='w-full text-center' />
+          <LoginButton class='w-full text-center' />
         </div>
       </aside>
       <button

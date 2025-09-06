@@ -3,6 +3,8 @@ import { Icon } from './Icon'
 import { IconBus } from './Icons'
 import { links } from '@/lib/utils'
 import { ToggleSidebar } from '@/components/ToggleSidebar'
+import { RegisterButton } from './RegisterButton'
+import { LoginButton } from './LoginButton'
 
 interface Props { 
   pathname: string
@@ -11,11 +13,11 @@ interface Props {
 const { pathname } = Astro.props
 ---
 
-<header class='w-full h-navbar px-8 pl-4 bg-white dark:bg-transparent text-gray-700 dark:text-gray-100 not-dark:border-b border-gray-300 top-0 left-0 flex justify-center items-center'>
+<header class='w-full h-navbar px-8 pl-4 bg-transparent text-gray-700 dark:text-gray-100 flex justify-center items-center'>
   <div class='h-full w-full max-w-screen-2xl flex items-center ml:justify-center justify-between'>
     <aside class='h-full w-fit not-xl:flex-1 flex items-center'>
-      <a href='/' class='h-fit max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-800 touch:active:bg-gray-200 dark:touch:active:bg-neutral-800 transition-colors'>
-        <Icon class='size-8 text-orange-500 dark:text-orange-600'>
+      <a href='/' class='h-fit max-h-full w-fit p-2 px-4 flex items-center justify-center gap-4 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 touch:active:bg-gray-200 dark:touch:active:bg-gray-700 transition-colors'>
+        <Icon class='size-8 text-orange-500'>
           <IconBus />
         </Icon>
         <strong class='text-nowrap text-xl w-fit max-w-full'>Berrutti</strong>
@@ -26,9 +28,9 @@ const { pathname } = Astro.props
         links.map(({ link, name }) => (
           <a
             href={link}
-            class='hover:text-orange-500 touch:active:text-orange-500 dark:hover:text-orange-600 dark:touch:active:text-orange-600 transition-colors p-2 px-3 w-fit min-w-fit'
+            class='hover:text-orange-500 touch:active:text-orange-500 transition-colors p-2 px-3 w-fit min-w-fit'
           >
-            <span class={link === pathname ? 'text-orange-500 dark:text-orange-600' : ''}>
+            <span class={link === pathname ? 'text-orange-500' : ''}>
               {name}
             </span>
           </a>
@@ -36,12 +38,8 @@ const { pathname } = Astro.props
       }
     </nav>
     <aside class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
-      <a class='not-xs:hidden xl:flex lg:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 dark:hover:bg-neutral-800 touch:active:bg-orange-50 dark:touch:active:bg-neutral-800 text-orange-500 hover:text-gray-800 dark:hover:text-orange-50 dark:touch:active:text-orange-50 touch:active:text-gray-800 transition-colors border-orange-500 dark:hover:border-orange-50 dark:touch:active:border-orange-50 border cursor-pointer'>
-        Iniciar Sesión
-      </a>
-      <a class='not-xs:hidden xl:flex lg:hidden text-nowrap rounded-lg p-2 px-4 hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 dark:bg-orange-700 dark:hover:bg-orange-600 dark:touch:active:bg-orange-600 text-white transition-colors cursor-pointer'>
-        Registrarse
-      </a>
+      <LoginButton class='not-xs:hidden xl:flex lg:hidden' />
+      <RegisterButton class='not-xs:hidden xl:flex lg:hidden' />
       <ToggleSidebar class='xl:hidden' client:load />
     </aside>
   </div>
