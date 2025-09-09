@@ -100,7 +100,7 @@ export function ThemeSelector () {
               <Icon class='size-6'>
                 <ThemeIcon />
               </Icon>
-              <span>{name}</span>
+              <span class='text-nowrap'>{name}</span>
             </button>
           ))
         }
