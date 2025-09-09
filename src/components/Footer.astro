@@ -2,6 +2,7 @@
 import { ContactViaPhone } from '@/components/ContactViaPhone'
 import { Icon } from '@/components/Icon'
 import { IconBus, IconMail } from '@/components/Icons'
+import { ThemeSelector } from './ThemeSelector'
 
 ---
 
@@ -12,7 +13,10 @@ import { IconBus, IconMail } from '@/components/Icons'
     </Icon>
     <strong class='text-xl leading-8'>Berrutti</strong>
   </div>
-  <ContactViaPhone client:idle />
+  <div class='flex gap-4 items-center justify-center min-w-fit'>
+    <ContactViaPhone client:idle />
+    <ThemeSelector client:idle />
+  </div>
   <a
     href='mailto:berruttiturismo@adinet.com.uy'
     target='_blank'
