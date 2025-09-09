@@ -3,6 +3,7 @@ import { Icon } from './Icon'
 import { IconMoon, IconSun, IconComputer } from './Icons'
 import type { ColorTheme, ThemeOptions } from '@/env'
 import { getThemeCookie, setThemeCookie } from '@/lib/theme'
+import type { ChangeEvent } from 'preact/compat'
 
 const themeOptions: ThemeOptions[] = [
   {
@@ -26,7 +27,8 @@ export function ThemeSelector () {
   const [isThemeListOpen, setIsThemeListOpen] = useState(false)
   const [theme, setTheme] = useState<ColorTheme>()
 
-  function toggleSelect () {
+  function toggleSelect (event: ChangeEvent<HTMLButtonElement>) {
+    event.stopPropagation()
     setIsThemeListOpen((isOpen) => !isOpen)
   }
 
@@ -44,7 +46,7 @@ export function ThemeSelector () {
     if (!(element instanceof HTMLElement)) return
     
     const themeList = document.querySelector('#themeList')
-    if (themeList?.outerHTML.includes(element.outerHTML) || element.id === 'toggleTheme') return
+    if (themeList?.contains(element) || element.id === 'toggleTheme') return
 
     setIsThemeListOpen(false)
   }
