@@ -19,7 +19,7 @@ export function ContactViaPhone () {
         document.body
       )}
       <button
-        class='flex items-center justify-center w-fit min-w-fit h-fit gap-2 cursor-pointer hover:text-gray-700 touch:active:text-gray-700 hover:bg-white dark:hover:bg-neutral-600 dark:touch:active:bg-neutral-600 dark:hover:text-gray-50 dark:touch:active:text-gray-50 touch:active:bg-white rounded-lg transition-colors px-4 py-2'
+        class='flex items-center justify-center w-fit min-w-fit h-fit gap-2 cursor-pointer hover:text-gray-700 touch:active:text-gray-700 hover:bg-white dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:hover:text-gray-50 dark:touch:active:text-gray-50 touch:active:bg-white rounded-lg transition-colors px-4 py-2'
         onClick={showPhoneContacts}
       >
         <Icon class='size-4'>
