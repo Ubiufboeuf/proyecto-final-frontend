@@ -1,18 +1,20 @@
 import type { Cookie } from '@/env'
 
-export function getThemeCookie (cookieName: string): Cookie {
+const COOKIE_NAME = 'berrutti-web-theme'
+
+export function getThemeCookie (): Cookie {
   const cookies = document.cookie.split(';')
-  const cookie = cookies.find((cookie) => cookie.includes(cookieName))?.split('=')
+  const cookie = cookies.find((cookie) => cookie.includes(COOKIE_NAME))?.split('=')
 
   return {
-    cookie: cookie?.[0] ?? cookieName,
+    cookie: cookie?.[0] ?? COOKIE_NAME,
     value: cookie?.[1] ?? 'system'
   }
 }
 
-export function setThemeCookie (cookieName: string, value: string) {
-  if (!cookieName || !value) return
+export function setThemeCookie (newValue: string) {
+  if (!COOKIE_NAME || !newValue) return
 
-  document.cookie = `${cookieName}=${value}; path=/; Secure; SameSite=Strict`
+  document.cookie = `${COOKIE_NAME}=${newValue}; path=/; Secure; SameSite=Strict`
 }
 

@@ -33,7 +33,7 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
   }
 
   const changeTheme = (theme: ColorTheme) => () => {
-    setThemeCookie('berrutti-web-theme', theme)
+    setThemeCookie(theme)
     setTheme(theme)
   }
   
@@ -55,7 +55,7 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
     let theme: ColorTheme = 'system'
 
     try {
-      const themeStr = getThemeCookie('berrutti-web-theme').value || 'system'
+      const themeStr = getThemeCookie().value || 'system'
 
       if (isValidTheme(themeStr)) {
         theme = themeStr
@@ -75,11 +75,11 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
 
   useEffect(() => {
     if (theme) {
-      setThemeCookie('berrutti-web-theme', theme)
+      setThemeCookie(theme)
       document.documentElement.setAttribute('data-theme', theme)
     }
 
-    const cookie = getThemeCookie('berrutti-web-theme')
+    const cookie = getThemeCookie()
     document.documentElement.setAttribute('data-theme', cookie.value)
   }, [theme])
 
