@@ -7,6 +7,13 @@
     "destino": "Punta del Este",
     "duracion": 150,
     "frecuencia": "Cada 30 min",
+    "faltas": [
+      {
+        "fecha": "12/9/2025",
+        "miliseconds": 1757792212000,
+        "motivo": "feriado"
+      }
+    ],
     "horas": [
       {
         "hora": "06:00",
@@ -140,13 +147,6 @@
         "hora": "22:00",
         "momento": "noche"
       }
-    ],
-    "faltas": [
-      {
-        "fecha": "14/8/2025",
-        "miliseconds": 1755189160778,
-        "motivo": "feriado"
-      }
     ]
   },
   {
@@ -249,8 +249,7 @@
         "hora": "21:30",
         "momento": "noche"
       }
-    ],
-    "falta": "feriado"
+    ]
   },
   {
     "id": "4cbd5f88-dc48-4964-a277-1889033b1a18",
@@ -287,6 +286,13 @@
       {
         "hora": "21:00",
         "momento": "noche"
+      }
+    ],
+    "faltas": [
+      {
+        "fecha": "12/8/2025",
+        "miliseconds": 1757792212000,
+        "motivo": "feriado"
       }
     ]
   },
