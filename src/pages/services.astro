@@ -142,12 +142,12 @@ const typesOfBuses: BusType[] = [
 ]
 ---
 
-<Layout title='Servicios'>
+<Layout title='Servicios' class='px-6'>
 	<section class='flex flex-col items-center w-full h-fit pb-8 pt-20'>
 		<h1 class='text-4xl font-bold text-gray-800 dark:text-gray-50 mb-4 text-center'>Nuestros Servicios</h1>
 		<p class='text-gray-700 dark:text-gray-300 text-xl text-center max-w-160'>Ofrecemos una amplia gama de servicios para satisfacer todas tus necesidades de transporte y gestión</p>
 	</section>
-	<section class='py-4 px-16 pb-8 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6'>
+	<section class='py-4 pb-8 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6'>
 		{
 			services.map(({ icon: ServiceIcon, title, subtitle, description, details }) => (
 				<article class='w-full max-w-160 h-full p-6 flex flex-col items-center gap-4 bg-white dark:bg-gray-700/50 border border-gray-300 text-gray-700 text-sm rounded-xl dark:border-0'>
@@ -178,7 +178,7 @@ const typesOfBuses: BusType[] = [
 		<h1 class='text-3xl font-bold text-gray-800 mb-4 text-center dark:text-gray-50'>Tipos de Ómnibus</h1>
 		<p class='max-w-160 text-center text-gray-600 dark:text-gray-100'>Contamos con diferentes categorías de ómnibus para que elijas la que mejor se adapte a tu viaje y presupuesto</p>
 	</section>
-	<section class='py-4 pb-12 px-16 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 place-items-center gap-6'>
+	<section class='py-4 pb-12 px-0 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 place-items-center gap-6'>
 		{
 			typesOfBuses.map((busType) => (
 				<BusTypeLight busType={busType} />
@@ -186,7 +186,7 @@ const typesOfBuses: BusType[] = [
 			))
 		}
 	</section>
-	<section class='w-full h-fit px-6 pb-8 max-w-screen-2xl flex justify-center'>
+	<section class='w-full h-fit pb-8 max-w-screen-2xl flex justify-center'>
 		<div class='bg-white dark:bg-gray-700/50 w-full h-fit pt-8 pb-4 xs:px-24 px-4 rounded-xl shadow-md'>
 			<h1 class='text-2xl font-bold text-center text-gray-800 dark:text-gray-50'>Información Adicional</h1>
 			<div class='w-full justify-around gap py-6 flex gap-x-40 flex-wrap gap-y-8'>
