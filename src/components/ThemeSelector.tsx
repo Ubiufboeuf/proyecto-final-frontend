@@ -24,6 +24,8 @@ const themeOptions: ThemeOptions[] = [
   }
 ]
 
+let clickedSameButton = false
+
 export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
   const [isThemeListOpen, setIsThemeListOpen] = useState(false)
   const [theme, setTheme] = useState<ColorTheme>()
@@ -33,9 +35,20 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
     setIsThemeListOpen((isOpen) => !isOpen)
   }
 
-  const changeTheme = (theme: ColorTheme) => () => {
-    setThemeCookie(theme)
-    setTheme(theme)
+  const changeTheme = (newTheme: ColorTheme) => (event: MouseEvent) => {
+    const button = event.currentTarget
+
+    if (!(button instanceof HTMLElement))return
+
+    if (newTheme === theme) {
+      clickedSameButton = true
+      return
+    }
+
+    clickedSameButton = false
+    
+    setThemeCookie(newTheme)
+    setTheme(newTheme)
   }
   
   function isValidTheme (themeStr: unknown): themeStr is ColorTheme {
@@ -45,9 +58,13 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
   function handleClickToCloseList (event: MouseEvent) {
     const element = event.target
     if (!(element instanceof HTMLElement)) return
-    
+
     const themeList = document.querySelector('#themeList')
-    if (themeList?.contains(element) || element.id === 'toggleTheme') return
+
+    // Evitar cerrar lista si:
+    if (themeList?.contains(element) || element.id === 'toggleTheme' || element.id === 'themeList' || clickedSameButton) {
+      return
+    }
 
     setIsThemeListOpen(false)
   }
@@ -96,6 +113,7 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
               class={`${themeOption === theme ? 'selected' : ''} [&.selected]:bg-gray-50 dark:[&.selected]:bg-gray-600 flex items-center justify-start gap-2 w-full h-fit p-2 px-3 touch:active:bg-gray-50 hover:bg-gray-50 dark:touch:active:bg-gray-600 dark:hover:bg-gray-600 cursor-pointer transition-colors rounded-lg text-gray-700 dark:text-gray-100`}
               onClick={changeTheme(themeOption)}
               tabIndex={isThemeListOpen ? 0 : -1}
+              data-theme={themeOption}
             >
               <Icon class='size-6'>
                 <ThemeIcon />
