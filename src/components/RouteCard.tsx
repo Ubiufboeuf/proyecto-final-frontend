@@ -98,7 +98,7 @@ export function RouteCard (ruta: Ruta) {
               ? 'text-gray-700 bg-gray-100 dark:text-gray-200 dark:bg-gray-500/50'
               : tipo === 'internacional'
                 ? 'text-blue-700 bg-blue-100'
-                : 'text-amber-700 bg-orange-100 dark:bg-orange-600-light dark:text-gray-100'
+                : 'text-amber-700 bg-orange-100 dark:bg-orange-600/90 dark:text-gray-100'
               }
               h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold
             `}
@@ -179,7 +179,7 @@ export function RouteCard (ruta: Ruta) {
       <section class='h-fit min-h-fit flex-1 flex w-full items-end'>
         <a
           href={falta ? undefined : `/buy-ticket/${id}`}
-          class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600 touch:active:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-600/80 dark:touch:active:bg-orange-600/80 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
+          class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600 touch:active:bg-orange-600 dark:bg-orange-600/90 dark:hover:bg-orange-600/70 dark:touch:active:bg-orange-600/70 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
         >
           { falta
             ? `Falta por ${absence_data?.[0]?.motivo}`
