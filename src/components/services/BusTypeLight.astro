@@ -1,0 +1,49 @@
+---
+import type { BusType } from '@/env'
+import { Icon } from '../Icon'
+
+interface Props {
+	busType: BusType
+}
+
+const { busType } = Astro.props
+const { bgColor: backgroundColor, borderColor, description, details, icon: TypeIcon, mainColor: color, title } = busType
+---
+
+<article
+	class='dark:hidden w-full max-w-160 h-full p-6 flex flex-col items-center gap-5 bg-white border text-gray-700 text-sm rounded-xl'
+	style={{ borderColor, backgroundColor }}
+>
+	<div class='w-full h-fit flex items-center justify-center'>
+		<Icon class='size-10' style={{ color }}>
+			<TypeIcon />
+		</Icon>
+	</div>
+	<div class='flex flex-col items-center'>
+		<h1
+			class='text-lg font-bold uppercase text-center pb-2'
+			style={{ color }}
+		>
+			{title}
+		</h1>
+		<p
+			class='text-center opacity-80'
+			style={{ color }}
+		>
+			{description}
+		</p>
+	</div>
+	<div class='w-full h-fit px-4'>
+		<ul class='list-disc flex flex-col items-center w-full gap-2'>
+			{ details.map((detail) => (
+					<li
+						class='list-none text-center flex items-center justify-start gap-2'
+						style={{ color }}
+					>
+						<div class='size-2 opacity-60 rounded-full' style={{ backgroundColor: color }} />
+						{detail}
+					</li>
+			)) }
+		</ul>
+	</div>
+</article>

@@ -1,6 +1,9 @@
 ---
 import { Icon } from '@/components/Icon'
 import { IconBus, IconCreditCard, IconBox, IconDolar, IconPeople, IconFile, IconWifi, IconSofa, IconTV } from '@/components/Icons'
+import BusTypeDark from '@/components/services/BusTypeDark.astro'
+import BusTypeLight from '@/components/services/BusTypeLight.astro'
+import type { BusType } from '@/env'
 import Layout from '@/layouts/Layout.astro'
 import type { JSXInternal } from 'node_modules/preact/src/jsx'
 
@@ -88,7 +91,8 @@ const typesOfBuses: BusType[] = [
 		],
 		mainColor: '#1D4ED8',
 		bgColor: '#EFF6FF',
-		borderColor: '#BFDBFE'
+		borderColor: '#BFDBFE',
+		darkColor: '#335FDC'
 	},
 	{
 		icon: IconWifi,
@@ -102,7 +106,8 @@ const typesOfBuses: BusType[] = [
 		],
 		mainColor: '#15803D',
 		bgColor: '#F0FDF4',
-		borderColor: '#BBF7D0'
+		borderColor: '#BBF7D0',
+		darkColor: '#2C8C50'
 	},
 	{
 		icon: IconSofa,
@@ -116,7 +121,8 @@ const typesOfBuses: BusType[] = [
 		],
 		mainColor: '#7E22CE',
 		bgColor: '#FAF5FF',
-		borderColor: '#E9D5FF'
+		borderColor: '#E9D5FF',
+		darkColor: '#8B38D3'
 	},
 	{
 		icon: IconTV,
@@ -130,36 +136,37 @@ const typesOfBuses: BusType[] = [
 		],
 		mainColor: '#C2410C',
 		bgColor: '#FFF7ED',
-		borderColor: '#FED7AA'
+		borderColor: '#FED7AA',
+		darkColor: '#C85424'
 	},
 ]
 ---
 
 <Layout title='Servicios'>
 	<section class='flex flex-col items-center w-full h-fit pb-8 pt-20'>
-		<h1 class='text-4xl font-bold text-gray-800 mb-4 text-center'>Nuestros Servicios</h1>
-		<p class='text-gray-600 text-xl text-center max-w-160'>Ofrecemos una amplia gama de servicios para satisfacer todas tus necesidades de transporte y gestión</p>
+		<h1 class='text-4xl font-bold text-gray-800 dark:text-gray-50 mb-4 text-center'>Nuestros Servicios</h1>
+		<p class='text-gray-700 dark:text-gray-300 text-xl text-center max-w-160'>Ofrecemos una amplia gama de servicios para satisfacer todas tus necesidades de transporte y gestión</p>
 	</section>
 	<section class='py-4 px-16 pb-8 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6'>
 		{
 			services.map(({ icon: ServiceIcon, title, subtitle, description, details }) => (
-				<article class='w-full max-w-160 h-full p-6 flex flex-col items-center gap-4 bg-white border border-gray-300 text-gray-700 text-sm rounded-xl'>
+				<article class='w-full max-w-160 h-full p-6 flex flex-col items-center gap-4 bg-white dark:bg-gray-700/50 border border-gray-300 text-gray-700 text-sm rounded-xl dark:border-0'>
 					<div class='w-full h-fit flex items-center justify-center'>
-						<Icon class='size-12 text-orange-500'>
+						<Icon class='size-12 text-orange-500 dark:text-orange-600-light'>
 							<ServiceIcon />
 						</Icon>
 					</div>
 					<div class='flex flex-col items-center'>
-						<h1 class='text-lg font-bold uppercase text-center'>{title}</h1>
-						<span class='text-orange-500 text-sm text-center flex px-2'>{subtitle}</span>
+						<h1 class='text-lg font-bold uppercase text-center dark:text-gray-50'>{title}</h1>
+						<span class='text-orange-500 text-sm text-center flex px-2 dark:text-gray-100'>{subtitle}</span>
 					</div>
-					<div class='w-full max-w-140 flex justify-center h-fit'>
+					<div class='w-full max-w-140 flex justify-center h-fit dark:text-gray-100'>
 						<p class='text-center'>{description}</p>
 					</div>
 					<div>
 						<ul class='list-disc text-center flex flex-col items-center'>
 							{ details.map((detail) => (
-									<li class='list-item text-center w-fit text-gray-500'>{detail}</li>
+									<li class='list-item text-center w-fit text-gray-500 dark:text-gray-100'>{detail}</li>
 							)) }
 						</ul>
 					</div>
@@ -168,59 +175,24 @@ const typesOfBuses: BusType[] = [
 		}
 	</section>
 	<section class='w-full flex flex-col items-center px-4 gap-2 py-4'>
-		<h1 class='text-3xl font-bold text-gray-800 mb-4 text-center'>Tipos de Ómnibus</h1>
-		<p class='max-w-160 text-center text-gray-600'>Contamos con diferentes categorías de ómnibus para que elijas la que mejor se adapte a tu viaje y presupuesto</p>
+		<h1 class='text-3xl font-bold text-gray-800 mb-4 text-center dark:text-gray-50'>Tipos de Ómnibus</h1>
+		<p class='max-w-160 text-center text-gray-600 dark:text-gray-100'>Contamos con diferentes categorías de ómnibus para que elijas la que mejor se adapte a tu viaje y presupuesto</p>
 	</section>
 	<section class='py-4 pb-12 px-16 max-w-screen-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 place-items-center gap-6'>
 		{
-			typesOfBuses.map(({ bgColor: backgroundColor, borderColor, description, details, icon: TypeIcon, mainColor: color, title }) => (
-				<article
-					class='w-full max-w-160 h-full p-6 flex flex-col items-center gap-5 bg-white border text-gray-700 text-sm rounded-xl'
-					style={{ borderColor, backgroundColor }}
-				>
-					<div class='w-full h-fit flex items-center justify-center'>
-						<Icon class='size-10' style={{ color }}>
-							<TypeIcon />
-						</Icon>
-					</div>
-					<div class='flex flex-col items-center'>
-						<h1
-							class='text-lg font-bold uppercase text-center pb-2'
-							style={{ color }}
-						>
-							{title}
-						</h1>
-						<p
-							class='text-center opacity-80'
-							style={{ color }}
-						>
-							{description}
-						</p>
-					</div>
-					<div class='w-full h-fit px-4'>
-						<ul class='list-disc flex flex-col items-center w-full gap-2'>
-							{ details.map((detail) => (
-									<li
-										class='list-none text-center flex items-center justify-start gap-2'
-										style={{ color }}
-									>
-										<div class='size-2 opacity-60 rounded-full' style={{ backgroundColor: color }} />
-										{detail}
-									</li>
-							)) }
-						</ul>
-					</div>
-				</article>
+			typesOfBuses.map((busType) => (
+				<BusTypeLight busType={busType} />
+				<BusTypeDark busType={busType} />
 			))
 		}
 	</section>
 	<section class='w-full h-fit px-6 pb-8 max-w-screen-2xl flex justify-center'>
-		<div class='bg-white w-full h-fit pt-8 pb-4 xs:px-24 px-4 rounded-xl shadow-md'>
-			<h1 class='text-2xl font-bold text-center text-gray-800'>Información Adicional</h1>
+		<div class='bg-white dark:bg-gray-700/50 w-full h-fit pt-8 pb-4 xs:px-24 px-4 rounded-xl shadow-md'>
+			<h1 class='text-2xl font-bold text-center text-gray-800 dark:text-gray-50'>Información Adicional</h1>
 			<div class='w-full justify-around gap py-6 flex gap-x-40 flex-wrap gap-y-8'>
 				<div class='flex gap-2 flex-col items-center md:items-center'>
 					<h2 class='text-orange-500 text-lg font-semibold'>Horarios de Atención</h2>
-					<ul class='flex flex-col gap-2 text-gray-600 list-disc list-inside'>
+					<ul class='flex flex-col gap-2 text-gray-600 dark:text-gray-100 list-disc list-inside'>
 						<li class='min-w-fit text-nowrap'>Lunes a Viernes: 6:00 - 22:00</li>
 						<li class='min-w-fit text-nowrap'>Sábados: 6:00 - 20:00</li>
 						<li class='min-w-fit text-nowrap'>Domingos: 7:00 - 21:00</li>
@@ -229,7 +201,7 @@ const typesOfBuses: BusType[] = [
 				</div>
 				<div class='flex gap-2 flex-col items-center md:items-center'>
 					<h2 class='text-orange-500 text-lg font-semibold'>Formas de Pago</h2>
-					<ul class='flex flex-col gap-2 text-gray-600 list-disc list-inside'>
+					<ul class='flex flex-col gap-2 text-gray-600 dark:text-gray-100 list-disc list-inside'>
 						<li class='min-w-fit text-nowrap'>Lunes a Viernes: 6:00 - 22:00</li>
 						<li class='min-w-fit text-nowrap'>Sábados: 6:00 - 20:00</li>
 						<li class='min-w-fit text-nowrap'>Domingos: 7:00 - 21:00</li>
@@ -240,8 +212,8 @@ const typesOfBuses: BusType[] = [
 		</div>
 	</section>
 	<section class='w-full h-fit min-h-fit py-8 px-4 pb-16 flex flex-col gap-4 justify-center items-center'>
-		<h1 class='text-2xl font-bold text-gray-800 text-center'>¿Necesitas más información?</h1>
-		<p class='text-gray-700 pb-4 text-center'>Contáctanos para conocer más detalles sobre nuestros servicios</p>
-		<a href='/contact' class='rounded-lg py-3 px-8 h-fit w-fit hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer'>Contactar</a>
+		<h1 class='text-2xl font-bold text-gray-800 dark:text-gray-50 text-center'>¿Necesitas más información?</h1>
+		<p class='text-gray-700 dark:text-gray-100 pb-4 text-center'>Contáctanos para conocer más detalles sobre nuestros servicios</p>
+		<a href='/contact' class='h-fit w-fit p-3 px-8 rounded-lg transition-colors cursor-pointer bg-orange-500 text-white hover:bg-orange-600 touch:active:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-600/80 dark:touch:active:bg-orange-600/80'>Contactar</a>
 	</section>
 </Layout>
