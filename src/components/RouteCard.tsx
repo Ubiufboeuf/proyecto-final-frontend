@@ -90,15 +90,15 @@ export function RouteCard (ruta: Ruta) {
   }, [falta])
 
   return (
-    <article class={`${falta ? 'bg-gray-200' : 'bg-white'} h-full w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4`}>
+    <article class={`${falta ? 'bg-gray-200 dark:bg-gray-700/50' : 'bg-white dark:bg-gray-700/50'} h-full w-full overflow-hidden flex flex-col justify-between rounded-lg boder border border-gray-300 py-6 px-6 gap-4 dark:border-0`}>
       <section class='h-fit w-full flex justify-between items-center'>
         <div class='flex h-fit w-fit flex-wrap gap-1 items-center'>
           <span
             class={`${falta
-              ? 'text-gray-700 bg-gray-100'
+              ? 'text-gray-700 bg-gray-100 dark:text-gray-200 dark:bg-gray-500/50'
               : tipo === 'internacional'
                 ? 'text-blue-700 bg-blue-100'
-                : 'text-amber-700 bg-orange-100'
+                : 'text-amber-700 bg-orange-100 dark:bg-orange-600-light dark:text-gray-100'
               }
               h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold
             `}
@@ -108,7 +108,7 @@ export function RouteCard (ruta: Ruta) {
           <span
             ref={missingIndicatorRef}
             class={`${falta
-              ? 'text-gray-700 bg-gray-100'
+              ? 'text-gray-700 bg-gray-100 dark:text-gray-200 dark:bg-gray-500/50'
               : 'text-yellow-700 bg-yellow-100'
               }
               h-fit overflow-hidden w-fit text-xs first-letter:uppercase p-1 px-3 rounded-full font-semibold
@@ -121,50 +121,50 @@ export function RouteCard (ruta: Ruta) {
             <div />
           </div>
         </div>
-        <span class={`${falta ? 'text-gray-500' : 'text-orange-500'} font-bold text-lg`}>${precio}</span>
+        <span class={`${falta ? 'text-gray-500 dark:text-gray-300' : 'text-orange-500 dark:text-orange-600-light'} font-bold text-lg`}>${precio}</span>
       </section>
       <section class='gap-2 h-fit flex flex-col'>
         <div class='items-center justify-start h-fit w-fit flex gap-2'>
-          <span class={`${falta ? 'text-gray-700' : 'text-gray-800'} font-semibold text-lg mb-1`}>{origen}</span>
-          <Icon class='size-4 rotate-180 text-gray-400'>
+          <span class={`${falta ? 'text-gray-700 dark:text-gray-300' : 'text-gray-800 dark:text-gray-100'} font-semibold text-lg`}>{origen}</span>
+          <Icon class='size-4 rotate-180 text-gray-400 dark:text-gray-200'>
             <IconArrowLeft />
           </Icon>
-          <span class={`${falta ? 'text-gray-700' : 'text-gray-800'} font-semibold text-lg`}>{destino}</span>
+          <span class={`${falta ? 'text-gray-700 dark:text-gray-300' : 'text-gray-800 dark:text-gray-100'} font-semibold text-lg`}>{destino}</span>
         </div>
         <div class='flex items-center h-fit w-fit gap-2'>
-          <Icon class='size-4 text-gray-600'>
+          <Icon class='size-4 text-gray-600 dark:text-gray-300'>
             <IconClock />
           </Icon>
-          <span class='text-sm text-gray-600'>Duración: {parseTimeInMinutes(duracion_en_minutos, 'h-mm')}</span>
+          <span class='text-sm text-gray-600 dark:text-gray-300'>Duración: {parseTimeInMinutes(duracion_en_minutos, 'h-mm')}</span>
         </div>
         <div class='flex items-center h-fit w-fit gap-2'>
-          <Icon class='size-4 text-gray-600'>
+          <Icon class='size-4 text-gray-600 dark:text-gray-300'>
             <IconBus />
           </Icon>
-          <span class='text-sm text-gray-600'>Frecuencia: {frecuencia_en_texto}</span>
+          <span class='text-sm text-gray-600 dark:text-gray-300'>Frecuencia: {frecuencia_en_texto}</span>
         </div>
         <div class={`${horario ? '' : 'flex-col items-start'} flex items-center h-fit w-fit gap-2`}>
           <div class='flex items-center w-fit h-fit gap-2'>
-            <Icon class='size-4 text-gray-600'>
+            <Icon class='size-4 text-gray-600 dark:text-gray-300'>
               <IconCalendar />
             </Icon>
-            <span class='text-sm text-gray-600'>Horarios:</span>
+            <span class='text-sm text-gray-600 dark:text-gray-300'>Horarios:</span>
           </div>
           { horario
-            ? <span class='text-gray-600 text-sm'>{horario}</span>
+            ? <span class='text-gray-600 dark:text-gray-300 text-sm'>{horario}</span>
             : <>
               <div class='flex gap-1 px-5 flex-wrap'>
                 { [...horas || []].slice(0, 6).map(({ hora }) => (
                   <span
                     key={`route-card-hora-${hora}`}
-                    class='h-fit w-fit rounded-md px-2 p-1 text-gray-600 bg-gray-100 text-xs'
+                    class='h-fit w-fit rounded-md px-2 p-1 text-gray-600 bg-gray-100 dark:text-gray-100 dark:bg-gray-500/50 text-xs'
                   >
                     {hora}
                   </span>
                 )) }
               { (horas && horas.length > 6) && (
                   <button
-                    class={`${falta ? 'text-gray-700' : 'text-orange-500 hover:bg-orange-100 touch:active:bg-orange-100'} text-xs p-1 px-1.5 cursor-pointer rounded-md transition-colors`}
+                    class={`${falta ? 'text-gray-700 hover:bg-gray-100 touch:active:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-500/50 dark:touch:active:bg-gray-500/50' : 'text-orange-500 hover:bg-orange-100 touch:active:bg-orange-100 dark:text-orange-400 dark:hover:text-orange-50 dark:hover:bg-gray-500/50 dark:touch:active:text-orange-50 dark:touch:active:bg-gray-500/50'} text-xs p-1 px-1.5 cursor-pointer rounded-md transition-colors`}
                     onClick={toggleModal}
                   >
                     +{horas.length - 6} más
@@ -179,7 +179,7 @@ export function RouteCard (ruta: Ruta) {
       <section class='h-fit min-h-fit flex-1 flex w-full items-end'>
         <a
           href={falta ? undefined : `/buy-ticket/${id}`}
-          class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
+          class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600 touch:active:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-600/80 dark:touch:active:bg-orange-600/80 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
         >
           { falta
             ? `Falta por ${absence_data?.[0]?.motivo}`
