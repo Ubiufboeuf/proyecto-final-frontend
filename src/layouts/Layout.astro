@@ -12,10 +12,10 @@ interface Props {
 const { title, class: className = '' } = Astro.props
 const { originPathname: pathname } = Astro
 
-const _coookie_theme = Astro.cookies.get('berrutti-web-theme')
+const themeCookie = Astro.cookies.get('berrutti-web-theme')
 ---
 
-<html lang='es' data-theme={_coookie_theme?.value || 'system'}>
+<html lang='es' data-theme={themeCookie?.value || 'system'}>
 	<head>
 		<meta charset='utf-8' />
 		<link rel='icon' type='image/svg+xml' href='/favicon.webp' />
