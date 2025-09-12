@@ -37,7 +37,7 @@ export function RouteCard (ruta: Ruta) {
     const savedInstant = Temporal.Instant.fromEpochMilliseconds(absence_data?.[0]?.miliseconds || 0)
     const savedZDT = savedInstant.toZonedDateTimeISO(timeZone)
     const zdt = hoy.toZonedDateTimeISO(timeZone)
-    const { years, months, weeks, days, hours, minutes, seconds } = zdt.until(savedZDT, { smallestUnit: 'second', largestUnit: 'years' })
+    const { years, months, weeks, days, hours, minutes } = zdt.until(savedZDT, { smallestUnit: 'second', largestUnit: 'years' })
     // console.log(`${days}/${months}/${years} - ${hours}:${minutes}:${seconds}`)
 
     let missingTime = 'ahora'
