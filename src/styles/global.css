@@ -13,6 +13,8 @@
 
   --spacing-navbar: 80px;
   --spacing-sidebar: 288px;
+
+  --color-orange-600-light: #F65C1A;
 }
 
 @custom-variant touch {
