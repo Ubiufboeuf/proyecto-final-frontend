@@ -9,16 +9,47 @@ const { location } = Astro.params
 const [lat, lng] = location?.toString().split('/') ?? '/'
 
 let busesData: BusesData = getBaseBusesData()
+
+const _coookie_theme = Astro.cookies.get('berrutti-web-theme')
 ---
 
-<html lang='es'>
+<html lang='es' data-theme={_coookie_theme?.value || 'system'}>
 	<head>
 		<meta charset='utf-8' />
 		<link rel='icon' type='image/svg+xml' href='/favicon.webp' />
 		<meta name='viewport' content='width=device-width' />
 		<meta name='description' content='Web no oficial de Berrutti Turismo. Proyecto de fin de año' />
 		<title>Seguir Ómnibus - Berrutti Turismo</title>
-		<script src='../../lib/detectDeviceType.js'></script>
+		<script>
+			(function() {
+				let deviceType = localStorage.getItem('deviceType')
+				if (deviceType) {
+					document.body.classList.add(deviceType)
+					return
+				}
+				
+				const ua = navigator.userAgent
+				const mobileRegex = /(Mobi|Android(?!.*Nexus 7)|iPhone|iPod|Windows Phone|BlackBerry|Symbian|IEMobile|Opera Mini|Fennec|webOS|hpwos|avantgo|bada|blazer|compal|elaine|hiptop|kindle|lge|maemo|midp|mmp|netfront|palm|phone|plucker|pocket|psp|series60|treo|up\.browser|up\.link|vodafone|wap|windows ce|xda|xiino)/i
+				
+				if (mobileRegex.test(ua) && !/iPad/i.test(ua)) {
+					deviceType = 'is-mobile-ua'
+				} else {
+					deviceType = 'is-laptop-ua'
+				}
+
+				document.body.classList.add(deviceType)
+				localStorage.setItem('deviceType', deviceType)
+			})()
+		</script>
+		<script>
+			(function() {
+				const theme = document.cookie
+					.split('; ')
+					.find(c => c.startsWith('berrutti-web-theme='))
+					?.split('=')[1] || 'system'
+				document.documentElement.dataset.theme = theme
+			})()
+		</script>
 	</head>
 	<body class='relative bg-gradient-to-br from-blue-50 to-orange-50 text-black h-full w-full'>
 		<Track
