@@ -4,6 +4,7 @@ import { IconMoon, IconSun, IconComputer } from './Icons'
 import type { ColorTheme, ThemeOptions } from '@/env'
 import { getThemeCookie, setThemeCookie } from '@/lib/theme'
 import type { ChangeEvent } from 'preact/compat'
+import { errorHandler } from '@/lib/utils'
 
 const themeOptions: ThemeOptions[] = [
   {
@@ -51,20 +52,19 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
     setIsThemeListOpen(false)
   }
 
-  useEffect(() => {
-    let theme: ColorTheme = 'system'
-
+  function updateTheme (newValue: string = 'system') {
     try {
-      const themeStr = getThemeCookie().value || 'system'
-
-      if (isValidTheme(themeStr)) {
-        theme = themeStr
+      if (isValidTheme(newValue)) {
+        setTheme(newValue)
       }
-
-      setTheme(theme)
-    } catch {
-      // ↑ Solo para que el usuario no vea el error, pero no hace falta mostrar o hacer nada acá
+    } catch (err) {
+      errorHandler('Error al cambiar el tema', err)
     }
+  }
+
+  useEffect(() => {
+    const theme = getThemeCookie()
+    updateTheme(theme.value)
 
     document.addEventListener('click', handleClickToCloseList)
 
