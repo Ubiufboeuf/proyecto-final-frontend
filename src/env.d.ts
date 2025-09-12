@@ -100,3 +100,14 @@ export type Cookie = {
   cookie: string
   value: string
 }
+
+export interface BusType {
+  icon: () => JSXInternal.Element
+  title: string,
+  description: string
+  details: string[]
+  mainColor: string
+  bgColor: string
+  borderColor: string
+  darkColor: string
+}
