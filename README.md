@@ -49,6 +49,6 @@ setInterval(() => {
 
 ## Enlaces
 - [Documento de entrega](https://docs.google.com/document/d/1_Y1R1E1OG2PVn79fYFMBiSY__FAvEOf6Qnb7Yd-YyUY/edit?usp=sharing)
-- [Documentación del proyecto](#)
+- [Documentación del proyecto](https://documentacion-tecnica.pages.dev)
 - [Repositorio del Frontend](https://github.com/Ubiufboeuf/proyecto-final-frontend)
 - [Repositorio del Backend](https://github.com/Ubiufboeuf/proyecto-final-backend)
