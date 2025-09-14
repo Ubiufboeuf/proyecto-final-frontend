@@ -20,8 +20,11 @@ export function ContactsModal () {
   const [copied, setCopied] = useState<string | null>(null)
   
   useEffect(() => {
-    if (!modalRef.current || isModalOpen) return
-    modalRef.current.hidden = true
+    if (isModalOpen) document.body.style.overflowY = 'hidden'
+
+    return () => {
+      document.body.style.overflowY = 'auto'
+    }
   }, [isModalOpen])
 
   function closeModal (event: ChangeEvent<HTMLDialogElement | HTMLButtonElement>) {
