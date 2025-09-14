@@ -117,7 +117,7 @@ export function RouteCard (ruta: Ruta) {
           >
             Falta {getWhenMissing()}
           </span>
-          <div ref={missingLoadingRef} class='h-6 w-16 bg-gray-200 overflow-hidden rounded-full loading'>
+          <div ref={missingLoadingRef} class='h-6 w-16 bg-gray-200 dark:bg-gray-700 overflow-hidden rounded-full loading'>
             <div />
           </div>
         </div>
