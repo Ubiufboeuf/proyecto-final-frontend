@@ -35,37 +35,37 @@ export function ContactsModal () {
       class='fixed left-0 top-0 w-full h-full flex items-center justify-center bg-black/80'
       onClick={closeModal}
     >
-      <section class='h-130 w-224 max-h-full max-w-full bg-white rounded-lg text-neutral-700 [&_.icon]:max-h-10 overflow-y-auto p-6 [scrollbar-color:gray_white] gap-6 flex flex-col'>
+      <section class='h-130 w-224 max-h-full max-w-full bg-white dark:bg-gray-800 rounded-lg text-neutral-700 dark:text-gray-300 [&_.icon]:max-h-10 overflow-y-auto p-6 gap-6 flex flex-col'>
         <header class='h-15 flex items-start justify-between min-h-fit'>
           <div class='px-2'>
             <div class='flex items-center gap-2 pb-1.5'>
               <Icon class='size-6 text-orange-500'>
                 <IconPhone />
               </Icon>
-              <h1 class='text-2xl font-bold'>Contactos Berrutti</h1>
+              <h1 class='text-2xl font-bold dark:text-gray-50'>Contactos Berrutti</h1>
             </div>
-            <p class='text-sm text-gray-500'>Encuentra el teléfono y dirección de nuestras oficinas en todo el país</p>
+            <p class='text-sm text-gray-500 dark:text-gray-300'>Encuentra el teléfono y dirección de nuestras oficinas en todo el país</p>
           </div>
           <button
-            class='h-fit w-fit p-2 hover:bg-gray-200 touch:active:bg-gray-200 rounded-lg cursor-pointer'
+            class='h-fit w-fit p-2 hover:bg-gray-200 touch:active:bg-gray-200 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 rounded-lg cursor-pointer transition'
             title='Cerrar'
             onClick={closeModal}
           >
-            <Icon class='size-6 text-gray-800'>
+            <Icon class='size-6 text-gray-800 dark:text-gray-100'>
               <IconX />
             </Icon>
           </button>
         </header>
         <main class='flex flex-col gap-5 h-full min-h-fit w-full'>
-          <article class='w-full h-32 p-4 border rounded-lg border-gray-300 flex flex-col justify-center gap-2 px-6'>
-            <div class='[&>*]:text-orange-500 flex items-center gap-2'>
-              <Icon class='size-5'>
+          <article class='w-full h-32 p-4 border dark:border-0 rounded-lg border-gray-300 dark:bg-gray-700/50 flex flex-col justify-center gap-2 px-6'>
+            <div class='flex items-center gap-2'>
+              <Icon class='size-5 text-orange-500 dark:text-orange-600-light'>
                 <IconMail />
               </Icon>
-              <span class='text-lg font-semibold line-clamp-1 max-w-full'>Email Principal</span>
+              <span class='text-lg font-semibold line-clamp-1 max-w-full text-orange-500 dark:text-orange-600-light'>Email Principal</span>
             </div>
             <div class='flex items-center justify-between flex-wrap gap-2'>
-              <span class='line-clamp-1 text-ellipsis'>berruttiturismo@adinet.com.uy</span>
+              <span class='line-clamp-1 text-ellipsis dark:text-gray-200'>berruttiturismo@adinet.com.uy</span>
               <ButtonCopy id='mail' setCopied={setCopied} copy='berruttiturismo@adinet.com.uy'>
                 <Icon class='size-4'>
                   <IconCopy />
@@ -74,7 +74,7 @@ export function ContactsModal () {
               </ButtonCopy>
             </div>
           </article>
-          <h2 class='text-lg font-semibold text-gray-800'>Nuestras Oficinas</h2>
+          <h2 class='text-lg font-semibold text-gray-800 dark:text-gray-100'>Nuestras Oficinas</h2>
           <div class='grid md:grid-cols-2 gap-4'>
             {
               offices.map((contact) => (
@@ -83,8 +83,8 @@ export function ContactsModal () {
             }
           </div>
         </main>
-        <footer class='flex gap-1 w-full h-30 min-h-fit p-2 flex-col border border-blue-200 bg-blue-50 rounded-lg text-blue-700 items-center justify-center text-center'>
-          <h1 class='font-semibold mb-1'>Horarios de Atención</h1>
+        <footer class='flex gap-1 w-full h-30 min-h-fit p-2 flex-col border border-blue-200 bg-blue-50 rounded-lg text-blue-700 items-center justify-center text-center dark:bg-gray-700/50 dark:border-0 dark:text-gray-300'>
+          <h1 class='font-semibold mb-1 dark:text-gray-100'>Horarios de Atención</h1>
           <p class='text-sm text-center'>Lunes a Viernes: 7:00 - 19:00 | Sábados: 8:00 - 12:00</p>
           <p class='text-xs text-center'>Los horarios pueden variar según la oficina</p>
         </footer>
