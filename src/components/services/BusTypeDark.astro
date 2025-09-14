@@ -32,7 +32,7 @@ const { description, details, icon: TypeIcon, title, darkColor } = busType
 		<ul class='list-disc flex flex-col items-center w-full gap-2'>
 			{ details.map((detail) => (
 					<li class='list-none text-center flex items-center justify-start gap-2'>
-						<div class='size-2 opacity-60 rounded-full' />
+						<div class='size-2 opacity-60 rounded-full' style={{ backgroundColor: darkColor }} />
 						{detail}
 					</li>
 			)) }
