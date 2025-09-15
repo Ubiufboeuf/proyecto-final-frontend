@@ -5,6 +5,7 @@ import type { ColorTheme, ThemeOptions } from '@/env'
 import { getThemeCookie, setThemeCookie } from '@/lib/theme'
 import type { ChangeEvent } from 'preact/compat'
 import { errorHandler } from '@/lib/utils'
+import { useThemeStore } from '@/stores/useThemeStore'
 
 const themeOptions: ThemeOptions[] = [
   {
@@ -28,7 +29,8 @@ let clickedSameButton = false
 
 export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
   const [isThemeListOpen, setIsThemeListOpen] = useState(false)
-  const [theme, setTheme] = useState<ColorTheme>()
+  const theme = useThemeStore((state) => state.theme)
+  const setTheme = useThemeStore((state) => state.setTheme)
 
   function toggleSelect (event: ChangeEvent<HTMLButtonElement>) {
     event.stopPropagation()
