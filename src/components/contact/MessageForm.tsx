@@ -44,7 +44,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 				{/* min y max height del textarea están en css para añadir fallbacks */}
 				<textarea
 					id='contact-message-textarea'
-					class='h-full w-full border border-gray-200 dark:border-0 dark:outline-0 dark:bg-gray-700/50 dark:group-hover:bg-gray-700 dark:touch:group-active:bg-gray-700 rounded p-2 resize-none [scrollbar-width:thin] group-hover:border-gray-300 group-active:border-gray-300 transition-colors'
+					class='h-full w-full border border-gray-200 dark:border-0 dark:outline-0 dark:bg-gray-700/50 dark:group-hover:bg-gray-700 dark:touch:group-active:bg-gray-700 dark:focus-visible:bg-gray-800/50 rounded p-2 resize-none [scrollbar-width:thin] group-hover:border-gray-300 group-active:border-gray-300 transition-colors'
 					placeholder='Escribe tu mensaje acá...'
 				/>
 			</label>
