@@ -21,6 +21,8 @@ export function BusCard ({ bus: { id, driver, destination, state = 'En terminal'
   }
 
   useEffect(() => {
+    if (!buses) return
+    
     const dataIdx = buses.findIndex((bus) => bus.id === id)
     const currentBus = buses[dataIdx]
     const newBus: Bus = {
