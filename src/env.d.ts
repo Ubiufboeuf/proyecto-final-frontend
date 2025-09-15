@@ -111,3 +111,14 @@ export interface BusType {
   borderColor: string
   darkColor: string
 }
+
+export interface HorarioDestacado {
+  title: string
+  description: string
+  hours: (`${number}:${number}`)[]
+  bgColor: `#${string}`
+  bg2Color: `#${string}`
+  mainColor: `#${string}`
+  color: `#${string}`
+  darkColor: `#${string}`
+}

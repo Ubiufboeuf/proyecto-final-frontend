@@ -1,11 +1,13 @@
 ---
-import type { Ruta } from '@/env'
+import type { Ruta, HorarioDestacado } from '@/env'
 import Layout from '@/layouts/Layout.astro'
 import { RouteCard } from '@/components/RouteCard'
 import { RoutesModal } from '@/components/RoutesModal'
 import { IconBus, IconClock, IconMapPin } from '@/components/Icons'
 import { Icon } from '@/components/Icon'
 import { getAllRoutes } from '@/services/routeService'
+import FeaturedScheduleLight from '@/components/FeaturedScheduleLight.astro'
+import FeaturedScheduleDark from '@/components/FeaturedScheduleDark.astro'
 
 let rutas: Ruta[] = []
 try {
@@ -14,7 +16,7 @@ try {
   console.error(err)
 }
 
-const horariosDestacados = [
+const horariosDestacados: HorarioDestacado[] = [
   {
     title: 'Servicios Matutinos',
     description: 'Primeras salidas del día',
@@ -22,7 +24,8 @@ const horariosDestacados = [
     bgColor: '#EFF6FF',
     bg2Color: '#DBEAFE',
     mainColor: '#1E40AF',
-    color: '#1D4ED8'
+    color: '#1D4ED8',
+    darkColor: '#3D66EB',
   },
   {
     title: 'Servicios Ejecutivos',
@@ -31,7 +34,8 @@ const horariosDestacados = [
     bgColor: '#F0FDF4',
     bg2Color: '#DCFCE7',
     mainColor: '#166534',
-    color: '#15803D'
+    color: '#15803D',
+    darkColor: '#38b763'
   },
   {
     title: 'Servicios Nocturnos',
@@ -40,7 +44,8 @@ const horariosDestacados = [
     bgColor: '#FFF7ED',
     bg2Color: '#FFEDD5',
     mainColor: '#9A3412',
-    color: '#C2410C'
+    color: '#C2410C',
+    darkColor: '#ef623b'
   }
 ]
 
@@ -81,16 +86,9 @@ const informacionImportante = [
       <h1 class='text-2xl font-bold text-gray-800 dark:text-gray-50 text-center'>Horarios Destacados</h1>
       <div class='w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 h-fit place-items-center py-6 gap-6'>
         {
-          horariosDestacados.map(({ description, hours, title, bg2Color, bgColor, color, mainColor }) => (
-            <article class='w-full h-fit max-w-lg flex flex-col items-center py-4 gap-2 rounded-lg' style={{ background: bgColor }}>
-              <h1 class='text-md font-semibold' style={{ color: mainColor }}>{title}</h1>
-              <p class='text-sm' style={{ color }}>{description}</p>
-              <div class='w-fit max-w-full flex gap-1 flex-wrap px-4 justify-center'>
-                { hours.map((hora) => (
-                  <span class='text-[13px] h-fit w-fit px-2 py-0.5 rounded-md' style={{ background: bg2Color }}>{hora}</span>
-                )) }
-              </div>
-            </article>
+          horariosDestacados.map((horario) => (
+            <FeaturedScheduleLight schedule={horario} />
+            <FeaturedScheduleDark schedule={horario} />
           ))
         }
       </div>

@@ -1,0 +1,20 @@
+---
+import type { HorarioDestacado } from '@/env'
+
+interface Props {
+  schedule: HorarioDestacado
+}
+
+const { schedule } = Astro.props
+const { description, hours, title, bg2Color, color, mainColor, bgColor } = schedule
+---
+
+<article class='dark:hidden w-full h-fit max-w-lg flex flex-col items-center py-4 gap-2 rounded-lg' style={{ background: bgColor }}>
+  <h1 class='text-md font-semibold' style={{ color: mainColor }}>{title}</h1>
+  <p class='text-sm' style={{ color }}>{description}</p>
+  <div class='w-fit max-w-full flex gap-1 flex-wrap px-4 justify-center'>
+    { hours.map((hora) => (
+      <span class='text-[13px] h-fit w-fit px-2 py-0.5 rounded-md' style={{ background: bg2Color }}>{hora}</span>
+    )) }
+  </div>
+</article>
