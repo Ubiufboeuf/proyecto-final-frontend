@@ -97,18 +97,18 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
           id='map'
           class='w-full h-full max-w-full max-h-full overflow-hidden z-0'
         />
-        <header class='w-fit absolute left-2.5 top-2.5 bg-white dark:bg-gray-800 dark:[&>button]:text-gray-200 dark:[&>button]:hover:bg-gray-700 dark:[&>button]:touch:active:bg-gray-700 rounded-lg px-4 py-3 flex items-center gap-2 h-fit [&>button]:flex [&>button]:items-center [&>button]:max-h-full [&>button]:w-fit [&>button]:p-2 [&>button]:px-3 [&>button]:border [&>button]:border-gray-300 [&>button]:rounded-lg [&>button]:gap-2 [&>button]:text-gray-800 [&>button]:cursor-pointer [&>button]:text-sm [&>button]:hover:bg-gray-200 [&>button]:transition-colors'>
+        <header class='w-fit absolute left-2.5 top-2.5 bg-white dark:bg-gray-800 dark:[&>button]:text-gray-200 dark:[&>button]:hover:bg-gray-700 dark:[&>button]:touch:active:bg-gray-700 rounded-lg px-4 py-3 flex items-center gap-2 h-fit [&>button]:flex [&>button]:items-center [&>button]:max-h-full [&>button]:w-fit [&>button]:p-2 [&>button]:px-3 [&>button]:border [&>button]:border-gray-300 [&>button]:rounded-lg [&>button]:gap-2 [&>button]:text-gray-800 [&>button]:cursor-pointer [&>button]:text-sm [&>button]:hover:bg-gray-200 [&>button]:transition-colors mr-14'>
           <button>
             <Icon class='size-5'>
               <IconEye />
             </Icon>
-            <span>Vista Satélite</span>
+            <span class='hidden us:inline'>Vista Satélite</span>
           </button>
           <button onClick={handleLocateMe}>
             <Icon class='size-5'>
               <IconFocus />
             </Icon>
-            <span>Ubícame</span>
+            <span class='hidden us:inline'>Ubícame</span>
           </button>
         </header>
         <VaulDrawer busesData={busesData} />
