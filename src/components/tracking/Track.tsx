@@ -7,6 +7,8 @@ import { useEffect } from 'preact/hooks'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { errorHandler } from '@/lib/utils'
 
+let wasOpen = false
+
 export function Track ({ busesData, lat, lng }: { busesData: BusesData, lat: number, lng: number }) {
   const setBusesData = useBusesStore((state) => state.setBusesData)
 
@@ -21,9 +23,34 @@ export function Track ({ busesData, lat, lng }: { busesData: BusesData, lat: num
       setBusesData(busesData)
     }
   }
+
+  function handleResize () {
+    const drawerOverlay = document.querySelector('[data-vaul-overlay]')
+    const drawerTrigger = document.querySelector('#trigger')
+
+    if (!(drawerTrigger instanceof HTMLElement)) return
+    
+    const isOpen = drawerOverlay?.getAttribute('data-state') === 'open'
+
+    if (window.outerWidth >= 1024 && isOpen) {
+      drawerTrigger.click()
+      wasOpen = true
+    }
+    
+    if (window.outerWidth < 1024 && wasOpen) {
+      drawerTrigger.click()
+      wasOpen = false
+    }
+  }
   
   useEffect(() => {
     loadBusesData()
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
   
   return (
