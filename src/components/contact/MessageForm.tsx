@@ -8,12 +8,12 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 		
   return (
     <form
-			class='bg-white rounded-lg w-full h-fit flex-1 border border-gray-200 flex flex-col p-6 gap-6 [&_h1:not(&>h1)]:font-medium
-				[&_input]:h-10 [&_input]:w-full [&_input]:group-hover:outline-gray-300 [&_input]:group-active:outline-gray-300 [&_input]:focus-visible:outline-black [&_input]:transition-colors [&_input]:outline [&_input]:outline-transparent [&_input]:border [&_input]:border-gray-200 [&_input]:rounded [&_input]:px-2
+			class='bg-white dark:bg-gray-700/50 dark:text-gray-200 dark:border-0 rounded-lg w-full h-fit flex-1 border border-gray-200 flex flex-col p-6 gap-6 [&_h1:not(&>h1)]:font-medium
+				[&_input]:h-10 [&_input]:w-full [&_input]:group-hover:outline-gray-300 [&_input]:group-active:outline-gray-300 [&_input]:focus-visible:outline-black [&_input]:transition-colors [&_input]:outline [&_input]:outline-transparent [&_input]:border [&_input]:border-gray-200 [&_input]:rounded [&_input]:px-2 dark:[&_input]:border-0 dark:[&_input]:bg-gray-700/50 dark:[&_input]:focus-visible:outline-0 dark:[&_input]:focus-visible:bg-gray-800/50 dark:[&_input]:outline-0 dark:[&_label]:hover:[&_input]:bg-gray-700 dark:[&_label]:touch:active:[&_input]:bg-gray-700
 			'
 			onSubmit={handleSubmitForm}
 		>
-			<h1 class='text-xl font-semibold'>Envíanos un Mensaje</h1>
+			<h1 class='text-xl font-semibold dark:text-gray-100'>Envíanos un Mensaje</h1>
 			<div class='flex items-center justify-between w-full h-fit gap-4 md:flex-row flex-col'>
 				<label class='group w-full max-w-full'>
 					<h1>Nombre Completo</h1>
@@ -31,7 +31,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 			<label class='group'>
 				<h1>Asunto</h1>
 				<select
-					class='w-full border border-gray-200 group-hover:border-gray-300 transition-colors rounded h-fit p-2'
+					class='w-full border border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700 transition-colors rounded h-fit p-2'
 				>
 					<option selected value='default' disabled>Selecciona una opción</option>
 					{ selectOptions.map(({ text, value }) => (
@@ -44,11 +44,11 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 				{/* min y max height del textarea están en css para añadir fallbacks */}
 				<textarea
 					id='contact-message-textarea'
-					class='h-full w-full border border-gray-200 rounded p-2 resize-none [scrollbar-width:thin] group-hover:border-gray-300 group-active:border-gray-300 transition-colors'
+					class='h-full w-full border border-gray-200 dark:border-0 dark:outline-0 dark:bg-gray-700/50 dark:group-hover:bg-gray-700 dark:touch:group-active:bg-gray-700 rounded p-2 resize-none [scrollbar-width:thin] group-hover:border-gray-300 group-active:border-gray-300 transition-colors'
 					placeholder='Escribe tu mensaje acá...'
 				/>
 			</label>
-			<button class='flex items-center justify-center gap-4 font-semibold text-white bg-orange-500 rounded-lg h-fit w-full py-3 cursor-pointer transition-colors hover:bg-orange-600 active:bg-orange-600'>
+			<button class='flex items-center justify-center gap-4 font-semibold text-white bg-orange-500 rounded-lg h-fit w-full py-3 cursor-pointer transition-colors hover:bg-orange-600 active:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-600/80 dark:touch:active:bg-orange-600/80'>
 				<Icon class='size-5'>
 					<IconSend />
 				</Icon>
