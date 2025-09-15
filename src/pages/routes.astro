@@ -99,8 +99,8 @@ const informacionImportante = [
     </div>
   </section>
   <section class='w-full h-fit px-4 pb-8 flex justify-center max-w-screen-2xl mx-auto'>
-    <div class='bg-white w-full h-fit py-4 pt-8 gap-2 rounded-xl shadow-md'>
-      <h1 class='text-2xl font-bold text-gray-800 text-center'>Información Importante</h1>
+    <div class='bg-white dark:bg-gray-700/50 w-full h-fit py-4 pt-8 gap-2 rounded-xl shadow-md'>
+      <h1 class='text-2xl font-bold text-gray-800 dark:text-gray-50 text-center'>Información Importante</h1>
       <div class='w-full grid md:grid-cols-3 grid-cols-1 h-fit min-h-fit place-items-center py-4 px-8 gap-4'>
         {
           informacionImportante.map(({ Icon: InfoIcon, description, title }) => (
@@ -108,8 +108,8 @@ const informacionImportante = [
               <Icon class='size-8 text-orange-500'>
                 <InfoIcon />
               </Icon>
-              <h1 class='text-md font-semibold text-gray-800'>{title}</h1>
-              <p class='text-[13px] text-gray-600 text-center'>{description}</p>
+              <h1 class='text-md font-semibold text-gray-800 dark:text-gray-100'>{title}</h1>
+              <p class='text-[13px] text-gray-600 dark:text-gray-300 text-center'>{description}</p>
             </article>
           ))
         }
@@ -117,8 +117,8 @@ const informacionImportante = [
     </div>
   </section>
   <section class='w-full h-fit min-h-fit py-8 px-4 pb-16 flex flex-col gap-4 justify-center items-center'>
-    <h1 class='text-2xl font-bold text-gray-800 text-center'>¿No encuentras tu destino?</h1>
-    <p class='text-gray-700 pb-4 text-center'>Contáctanos para consultar sobre rutas especiales o conexiones</p>
-    <a href='/contact' class='rounded-lg py-3 px-8 h-fit w-fit hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 text-white transition-colors cursor-pointer'>Consultar Ruta</a>
+    <h1 class='text-2xl font-bold text-gray-800 dark:text-gray-50 text-center'>¿No encuentras tu destino?</h1>
+    <p class='text-gray-700 dark:text-gray-300 pb-4 text-center'>Contáctanos para consultar sobre rutas especiales o conexiones</p>
+      <a href='/contact' class='h-fit w-fit p-3 px-8 rounded-lg transition-colors cursor-pointer bg-orange-500 text-white hover:bg-orange-600 touch:active:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-600/80 dark:touch:active:bg-orange-600/80'>Consultar Ruta</a>
   </section>
 </Layout>
