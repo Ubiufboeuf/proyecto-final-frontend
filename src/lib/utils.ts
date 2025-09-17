@@ -58,13 +58,27 @@ export function parseTimeInMinutes (time: number, output: 'h-mm') {
   return outputs[output]
 }
 
-export function errorHandler (publicMessage: string, devMessage: unknown = '') {
-  const { DEV } = import.meta.env
+export function errorHandler (err: unknown, baseMessage?: string | null, canShow = import.meta.env.DEV, ignoreNoMessage = false) {
+  let errorToShow: string | unknown = ''
 
-  if (DEV) {
-    console.error(publicMessage, devMessage)
-    return
+  if (err instanceof Error && baseMessage) {
+    errorToShow = `${baseMessage}: ${err.message}`
+  } else if (err instanceof Error) {
+    errorToShow = err.message
+  } else if (err && baseMessage) {
+    errorToShow = `${baseMessage}: ${err}`
+  } else if (baseMessage) {
+    errorToShow = baseMessage
+  } else if (!ignoreNoMessage) {
+    errorToShow = `Error desconocido: ${err}`
+  } else {
+    errorToShow = err
   }
 
-  console.error(publicMessage)
+  if (canShow) {
+    console.error('errorToShow', errorToShow)
+    return errorToShow
+  }
+
+  return errorToShow
 }
