@@ -709,3 +709,46 @@ export const IconComputer = ({ hidden = false }: { hidden?: boolean }) => (
     <path d='M9 15l0 4' />
   </svg>
 )
+
+export const IconBed = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    class='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M7 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0' />
+    <path d='M22 17v-3h-20' />
+    <path d='M2 8v9' />
+    <path d='M12 14h10v-2a3 3 0 0 0 -3 -3h-7v5z' />
+  </svg>
+)
+
+export const IconWC = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    class='h-full w-full max-h-full max-w-full aspect-square'
+  >
+    <path d='M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z' />
+    <path d='M6.5 9l.5 6l2 -4l2 4l.5 -6' />
+    <path d='M17 10.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0' />
+  </svg>
+)
+
+export const IconNoWC = () => (
+  <svg  xmlns='http://www.w3.org/2000/svg'  width='24'  height='24'  viewBox='0 0 24 24'  fill='none'  stroke='currentColor'  strokeWidth='2'  strokeLinecap='round'  strokeLinejoin='round'  class='icon icon-tabler icons-tabler-outline icon-tabler-toilet-paper-off'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M4.27 4.28c-.768 1.27 -1.27 3.359 -1.27 5.72c0 3.866 1.343 7 3 7s3 -3.134 3 -7c0 -.34 -.01 -.672 -.03 -1' /><path d='M21 10c0 -3.866 -1.343 -7 -3 -7' /><path d='M7 3h11' /><path d='M21 10v7m-1.513 2.496l-1.487 -.496l-3 2l-3 -3l-3 2v-10' /><path d='M6 10h.01' /><path d='M3 3l18 18' /></svg>
+)
