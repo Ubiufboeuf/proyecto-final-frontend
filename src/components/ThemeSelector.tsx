@@ -127,7 +127,7 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
       </section>
       <button
         id='toggleTheme'
-        class={`${buttonClass} h-fit w-fit p-2 px-3 gap-3 min-h-10 transition-colors rounded-lg flex items-center justify-center cursor-pointer ml-auto text-gray-700 hover:bg-gray-200 touch:active:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-orange-50 dark:touch:active:bg-gray-700 dark:touch:active:text-orange-50 `}
+        class={`${buttonClass} h-fit w-fit p-2 px-4 gap-3 min-h-10 transition-colors rounded-lg flex items-center justify-center cursor-pointer ml-auto text-gray-700 hover:bg-gray-200 touch:active:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-orange-50 dark:touch:active:bg-gray-700 dark:touch:active:text-orange-50 `}
         onClick={toggleSelect}
       >
         <strong>Tema</strong>
