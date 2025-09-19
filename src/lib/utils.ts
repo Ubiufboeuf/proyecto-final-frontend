@@ -1,5 +1,6 @@
 import { IconBus, IconCheckList, IconHome, IconMapPin, IconPeople, IconPhone, IconSettings } from '@/components/Icons'
 import type { Output, ParseTimestampOptions } from '@/env'
+import { DEV } from '@/lib/constants'
 import { Temporal } from 'temporal-polyfill'
 
 const padStart = (val: number, length: number, fill: string) => val.toString().padStart(length, fill)
@@ -58,7 +59,7 @@ export function parseTimeInMinutes (time: number, output: 'h-mm') {
   return outputs[output]
 }
 
-export function errorHandler (err: unknown, baseMessage?: string | null, canShow = import.meta.env.DEV, ignoreNoMessage = false) {
+export function errorHandler (err: unknown, baseMessage?: string | null, canShow = DEV, ignoreNoMessage = false) {
   let errorToShow: string | unknown = ''
 
   if (err instanceof Error && baseMessage) {
