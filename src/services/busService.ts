@@ -22,7 +22,7 @@ export async function getBusesData () {
     const res = await fetch(ENDPOINTS.BUSES_DATA)
     data = await res.json()
   } catch (err) {
-    errorHandler('Error consiguiendo la información', err)
+    errorHandler(err, 'Error consiguiendo la información')
   }
 
   // console.log('data', data)

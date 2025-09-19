@@ -16,7 +16,7 @@ export function Track ({ busesData, lat, lng }: { busesData: BusesData, lat: num
     try {
       busesData = await getBusesData()
     } catch (err) {
-      errorHandler('Error cargando los datos de los buses', err)
+      errorHandler(err, 'Error cargando los datos de los buses')
     }
 
     if (busesData) {

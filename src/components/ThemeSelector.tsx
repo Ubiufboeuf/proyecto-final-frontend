@@ -77,7 +77,7 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
         setTheme(newValue)
       }
     } catch (err) {
-      errorHandler('Error al cambiar el tema', err)
+      errorHandler(err, 'Error al cambiar el tema')
     }
   }
 
