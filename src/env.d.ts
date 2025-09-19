@@ -1,3 +1,5 @@
+import type { JSX } from 'preact/jsx-runtime'
+
 export interface Contact {
   dept: string
   place: string
@@ -101,11 +103,16 @@ export type Cookie = {
   value: string
 }
 
+export type BusTypesIcons = Record<string, () => JSX.Element>
+
 export interface BusType {
-  icon: () => JSXInternal.Element
-  title: string,
+  icon: string
+  type: string
+  title: string
   description: string
   details: string[]
+  capacity: number
+  tags: { tag: string, title: string }[]
   mainColor: string
   bgColor: string
   borderColor: string
