@@ -1,7 +1,10 @@
 ---
 import { Icon } from '@/components/Icon'
-import { IconMapPin } from '@/components/Icons'
+import { IconBus, IconMapPin } from '@/components/Icons'
+import { SelectableBusTypeLight } from '@/components/custom-trips/SelectableBusTypeLight'
+import { SelectableBusTypeDark } from '@/components/custom-trips/SelectableBusTypeDark'
 import Layout from '@/layouts/Layout.astro'
+import { typesOfBuses } from '@/lib/typesOfBuses'
 
 const tripTypes = [
   { title: 'Excursion de un día', description: 'Viaje de ida y vuelta en el mismo día' },
@@ -17,9 +20,9 @@ const tripTypes = [
 <Layout title='Viajes Personalizados' class='px-6 mb-12'>
   <section class='flex flex-col items-center w-full h-fit pb-8 pt-20'>
 		<h1 class='text-4xl font-bold text-gray-800 dark:text-gray-50 mb-4 text-center'>Viajes Personalizados</h1>
-		<p class='text-gray-700 dark:text-gray-300 text-xl text-center max-w-160'>Diseña tu viaje perfecto. Elige el tipo de ómnibus, servicios y destinos que mejor se adapten a tus necesidades</p>
+		<p class='text-gray-700 dark:text-gray-300 text-xl text-center max-w-160'>Diseña tu viaje perfecto. Elige el tipo de ómnibus, servicios y detalles que mejor se adapten a tus necesidades</p>
 	</section>
-  <section class='h-fit w-full p-4 gap-4 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
+  <section class='h-fit w-full flex flex-col p-6 my-4 gap-6 mb-8 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
     <header class='flex items-center gap-3 w-fit h-fit text-orange-500 dark:text-orange-600-light'>
       <Icon class='size-6'>
         <IconMapPin />
@@ -28,11 +31,25 @@ const tripTypes = [
     </header>
     <main class='grid md:grid-cols-2 grid-cols-1 gap-4'>
       { tripTypes.map(({ title, description }) => (
-          <label class='flex flex-col h-fit w-full border rounded-lg p-4 border-gray-300 dark:border-0 text-gray-600 dark:text-gray-300 dark:bg-gray-700/50'>
+          <label class='flex flex-col h-fit w-full border-2 rounded-lg p-4 border-gray-200 dark:border-0 text-gray-600 dark:text-gray-300 dark:bg-gray-700/50 cursor-pointer transition-all hover:border-orange-500/50 has-checked:border-orange-400 has-checked:bg-orange-100 dark:has-checked:bg-gray-600'>
             <input type='radio' name='inputTripType' hidden />
             <strong class='text-gray-700 dark:text-gray-200'>{title}</strong>
-            <span>{description}</span>
+            <span class='text-sm'>{description}</span>
           </label>
+      )) }
+    </main>
+  </section>
+  <section class='h-fit w-full flex flex-col p-6 gap-6 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
+    <header class='flex items-center gap-3 w-fit h-fit text-orange-500 dark:text-orange-600-light'>
+      <Icon class='size-6'>
+        <IconBus />
+      </Icon>
+      <h1 class='text-2xl font-bold text-gray-800 dark:text-gray-100'>Selecciona tu Ómnibus</h1>
+    </header>
+    <main class='grid md:grid-cols-2 grid-cols-1 gap-4'>
+      { typesOfBuses.map((busType) => (
+          <SelectableBusTypeLight busType={busType} client:idle />
+          <SelectableBusTypeDark busType={busType} client:idle />
       )) }
     </main>
   </section>
