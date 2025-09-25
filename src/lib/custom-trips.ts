@@ -1,9 +1,9 @@
-// import { IconBed, IconBus, IconNoWC, IconWC } from '@/components/Icons'
-import type { BusType } from '@/env'
+import { IconBed, IconBus, IconNoWC, IconWC } from '@/components/Icons'
+import type { BusType, TripDetail, TripType, UruguayDepartments } from '@/env'
 
 export const typesOfBuses: BusType[] = [
 	{
-		icon: 'IconBus',
+		icon: IconBus,
 		type: 'comun',
 		title: 'Común',
 		description: 'Servicio estándar con asientos cómodos y reclinables',
@@ -30,7 +30,7 @@ export const typesOfBuses: BusType[] = [
 		darkColor: '#335FDC'
 	},
 	{
-		icon: 'IconBed',
+		icon: IconBed,
 		type: 'bed',
 		title: 'Común - Semicama',
 		description: 'Mayor comodidad con servicios adicionales',
@@ -58,7 +58,7 @@ export const typesOfBuses: BusType[] = [
 		darkColor: '#2C8C50'
 	},
 	{
-		icon: 'IconWC',
+		icon: IconWC,
 		type: 'micro',
 		title: 'Micro',
 		description: 'Máximo confort para viajes largos',
@@ -83,7 +83,7 @@ export const typesOfBuses: BusType[] = [
 		darkColor: '#9b57d5'
 	},
 	{
-		icon: 'IconNoWC',
+		icon: IconNoWC,
 		type: 'nowc',
 		title: 'Micro - Sin Baño',
 		description: 'Lujo y comodidad premium',
@@ -106,4 +106,39 @@ export const typesOfBuses: BusType[] = [
 		borderColor: '#FED7AA',
 		darkColor: '#C85424'
 	}
+]
+
+export const tripTypes: TripType[] = [
+  { id: 'day-trip', title: 'Excursion de un día', description: 'Viaje de ida y vuelta en el mismo día' },
+  { id: 'weekend', title: 'Fin de semana', description: 'Viaje de 2-3 días con estadía' },
+  { id: 'business-trip', title: 'Viaje corporativo', description: 'Transporte para empresas y eventos' },
+  { id: 'school-trip', title: 'Viaje escolar', description: 'Transporte educativo y excursiones escolares' },
+  { id: 'tourism', title: 'Turismo', description: 'Paquetes turísticos con múltiples destinos' },
+  { id: 'special-event', title: 'Evento especial', description: 'Bodas, cumpleaños, celebraciones' }
+]
+
+const uruguayDepartments: UruguayDepartments[] = [
+  { id: 'punta-del-este', name: 'Punta del Este' },
+  { id: 'colonia-del-sacramento', name: 'Colonia del Sacramento' },
+  { id: 'montevideo', name: 'Montevideo' },
+  { id: 'paysandu', name: 'Paysandú' },
+  { id: 'salto', name: 'Salto' },
+  { id: 'rivera', name: 'Rivera' },
+  { id: 'tacuarembo', name: 'Tacuarembó' },
+  { id: 'melo', name: 'Melo' },
+  { id: 'rocha', name: 'Rocha' },
+  { id: 'la-paloma', name: 'La Paloma' },
+  { id: 'cabo-polonio', name: 'Cabo Polonio' },
+  { id: 'termas-del-dayman', name: 'Termas del Daymán' },
+  { id: 'buenos-aires-argentina', name: 'Buenos Aires (Argentina)' },
+  { id: 'sao-paulo-brasil', name: 'São Paulo (Brasil)' },
+  { id: 'otro', name: 'Otro destino' }
+]
+
+export const tripDetails: TripDetail[] = [
+	{ id: 'origin', title: 'Origen', type: 'select', options: uruguayDepartments, defaultOption: 'Selecciona origen' },
+	{ id: 'desination', title: 'Destino', type: 'select', options: uruguayDepartments, defaultOption: 'Selecciona destino' },
+	{ id: 'departure-date', title: 'Fecha de Ida', type: 'date-picker', epochMiliseconds: 0 },
+	{ id: 'return-date', title: 'Fecha de Vuelta (Opcional)', type: 'date-picker', epochMiliseconds: 0 },
+	{ id: 'passengers-capacity', title: 'Número de Pasajeros', type: 'number', placeholder: 'Ej: 25' }
 ]
