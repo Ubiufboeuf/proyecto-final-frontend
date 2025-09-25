@@ -140,5 +140,7 @@ export const tripDetails: TripDetail[] = [
 	{ id: 'desination', title: 'Destino', type: 'select', options: uruguayDepartments, defaultOption: 'Selecciona destino' },
 	{ id: 'departure-date', title: 'Fecha de Ida', type: 'date-picker', epochMiliseconds: 0 },
 	{ id: 'return-date', title: 'Fecha de Vuelta (Opcional)', type: 'date-picker', epochMiliseconds: 0 },
+	{ id: 'departure-time', title: 'Hora de Ida', type: 'time-picker' },
+	{ id: 'return-time', title: 'Hora de Vuelta', type: 'time-picker' },
 	{ id: 'passengers-capacity', title: 'Número de Pasajeros', type: 'number', placeholder: 'Ej: 25' }
 ]

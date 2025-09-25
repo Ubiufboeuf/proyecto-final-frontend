@@ -163,6 +163,12 @@ export interface TripDetailDatePicker {
   epochMiliseconds: number
 }
 
+export interface TripDetailTimePicker {
+  id: string
+  title: string
+  type: 'time-picker'
+}
+
 export interface TripDetailInputNumber {
   id: string
   title: string
@@ -170,4 +176,4 @@ export interface TripDetailInputNumber {
   placeholder: string
 }
 
-export type TripDetail = TripDetailSelect | TripDetailDatePicker | TripDetailInputNumber
+export type TripDetail = TripDetailSelect | TripDetailDatePicker | TripDetailInputNumber | TripDetailTimePicker
