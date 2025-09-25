@@ -106,7 +106,7 @@ export type Cookie = {
 export type BusTypesIcons = Record<string, () => JSX.Element>
 
 export interface BusType {
-  icon: string
+  icon: () => JSX.Elememnt
   type: string
   title: string
   description: string
@@ -129,3 +129,45 @@ export interface HorarioDestacado {
   color: `#${string}`
   darkColor: `#${string}`
 }
+
+export type TripTypeId = 'day-trip' | 'weekend' | 'business-trip' | 'school-trip' | 'tourism' | 'special-event'
+
+export interface TripType {
+  id: TripTypeId
+  title: string
+  description: string
+}
+
+export interface UruguayDepartments {
+  id: string
+  name: string
+}
+
+export interface PreferredTimeOptions {
+  id: string
+  epochMiliseconds: number
+}
+
+export interface TripDetailSelect {
+  id: string
+  title: string
+  type: 'select'
+  options: UruguayDepartments[]
+  defaultOption: string
+}
+
+export interface TripDetailDatePicker {
+  id: string
+  title: string
+  type: 'date-picker'
+  epochMiliseconds: number
+}
+
+export interface TripDetailInputNumber {
+  id: string
+  title: string
+  type: 'number'
+  placeholder: string
+}
+
+export type TripDetail = TripDetailSelect | TripDetailDatePicker | TripDetailInputNumber
