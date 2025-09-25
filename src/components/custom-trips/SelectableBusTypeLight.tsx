@@ -1,27 +1,8 @@
 import { Icon } from '@/components/Icon'
-import type { BusType, BusTypesIcons } from '@/env'
+import type { BusType } from '@/env'
 import { useEffect, useId } from 'preact/hooks'
-import { IconBed, IconBus, IconNoWC, IconWC } from '@/components/Icons'
-import type { JSX } from 'preact/jsx-runtime'
 
-const typesIcons: BusTypesIcons = {
-  'IconBus': IconBus,
-  'IconBed': IconBed,
-  'IconWC': IconWC,
-  'IconNoWC': IconNoWC
-}
-
-export function SelectableBusTypeLight ({ busType: { icon, type, title, description, borderColor, bgColor: backgroundColor, mainColor: color, capacity, tags } }: { busType: BusType }) {
-
-  let TypeIcon: null | (() => JSX.Element) = null
-  if (isValidTypeIconKey(icon)) {
-    TypeIcon = typesIcons[icon]
-  }
-
-  function isValidTypeIconKey (icon: unknown): icon is keyof BusTypesIcons {
-    return Object.keys(typesIcons).some((k) => k === icon)
-  }
-  
+export function SelectableBusTypeLight ({ busType: { icon: TypeIcon, type, title, description, borderColor, bgColor: backgroundColor, mainColor: color, capacity, tags } }: { busType: BusType }) {
   function matchSelectableBusType () {
     const selectedBusType = document.querySelector('label:has([name=inputBusTypeLight]:checked)')
     if (!(selectedBusType instanceof HTMLElement)) return
@@ -45,13 +26,13 @@ export function SelectableBusTypeLight ({ busType: { icon, type, title, descript
         '--bgColor': backgroundColor,
         '--color': color
       }}
-      onInput={matchSelectableBusType}
+      onChange={matchSelectableBusType}
       data-type={type}
     >
       <input type='radio' name='inputBusTypeLight' hidden  />
       <div class='w-full h-fit flex items-center gap-2'>
         <Icon class='size-6' style={{ color }}>
-          { TypeIcon && <TypeIcon /> }
+          <TypeIcon />
         </Icon>
         <h1 class='flex items-center justify-center text-lg font-bold uppercase text-center'>
           {title}
