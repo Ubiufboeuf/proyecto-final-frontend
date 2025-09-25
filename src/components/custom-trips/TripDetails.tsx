@@ -21,14 +21,18 @@ export function TripDetails () {
   )
 }
 
-function TripDetailSelect ({ detail: { id: detailId, options, title, defaultOption } }: { detail: TripDetailSelect }) {
+function TripDetailSelect ({ detail: { id: tripDetailId, options, title, defaultOption } }: { detail: TripDetailSelect }) {
   return (
     <label class='flex flex-col gap-1 dark:text-gray-300 group'>
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
-      <select class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700 '>
+      <select
+        id={tripDetailId}
+        name={tripDetailId}
+        class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
+      >
         <option selected value='default' disabled>{defaultOption}</option>
         { options.map(({ id, name }) => (
-            <option key={`trip-detail-select-${detailId}-option-${id}`}>
+            <option key={`trip-detail-select-${tripDetailId}-option-${id}`}>
               {name}
             </option>
         )) }
@@ -37,11 +41,13 @@ function TripDetailSelect ({ detail: { id: detailId, options, title, defaultOpti
   )
 }
 
-export function TripDetailDatePicker ({ detail: { title } }: { detail: TripDetailDatePicker }) {
+export function TripDetailDatePicker ({ detail: { title, id } }: { detail: TripDetailDatePicker }) {
   return (
     <label class='flex flex-col gap-1 dark:text-gray-300 group'>
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
       <input
+        id={id}
+        name={id}
         type='date'
         class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
       />
@@ -49,11 +55,13 @@ export function TripDetailDatePicker ({ detail: { title } }: { detail: TripDetai
   )
 }
 
-export function TripDetailTimePicker ({ detail: { title } }: { detail: TripDetailTimePicker }) {
+export function TripDetailTimePicker ({ detail: { title, id } }: { detail: TripDetailTimePicker }) {
   return (
     <label class='flex flex-col gap-1 dark:text-gray-300 group'>
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
       <input
+        id={id}
+        name={id}
         type='time'
         class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
       />
@@ -61,11 +69,13 @@ export function TripDetailTimePicker ({ detail: { title } }: { detail: TripDetai
   )
 }
 
-export function TripDetailNumber ({ detail: { title } }: { detail: TripDetailInputNumber }) {
+export function TripDetailNumber ({ detail: { title, id } }: { detail: TripDetailInputNumber }) {
   return (
     <label class='flex flex-col gap-1 dark:text-gray-300 group'>
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
       <input
+        id={id}
+        name={id}
         type='number'
         placeholder='Ejemplo: 45'
         class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
