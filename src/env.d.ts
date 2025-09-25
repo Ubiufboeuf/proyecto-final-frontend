@@ -177,3 +177,12 @@ export interface TripDetailInputNumber {
 }
 
 export type TripDetail = TripDetailSelect | TripDetailDatePicker | TripDetailInputNumber | TripDetailTimePicker
+
+export interface TripTextarea {
+  id: string
+  title: string
+  type: 'textarea'
+  placeholder: string
+}
+
+export type TripInfo = TripTextarea

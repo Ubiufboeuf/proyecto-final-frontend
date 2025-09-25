@@ -1,5 +1,5 @@
 import { IconBed, IconBus, IconNoWC, IconWC } from '@/components/Icons'
-import type { BusType, TripDetail, TripType, UruguayDepartments } from '@/env'
+import type { BusType, TripDetail, TripInfo, TripType, UruguayDepartments } from '@/env'
 
 export const typesOfBuses: BusType[] = [
 	{
@@ -143,4 +143,14 @@ export const tripDetails: TripDetail[] = [
 	{ id: 'departure-time', title: 'Hora de Ida', type: 'time-picker' },
 	{ id: 'return-time', title: 'Hora de Vuelta', type: 'time-picker' },
 	{ id: 'passengers-capacity', title: 'Número de Pasajeros', type: 'number', placeholder: 'Ej: 25' }
+]
+
+export const tripInfo: TripInfo[] = [
+	{ id: 'comments', title: 'Comentarios o Solicitudes Especiales', type: 'textarea', placeholder: 'Describe cualquier requerimiento especial, paradas adicionales, o información relevante para tu viaje...' }
+	// { id: 'desination', title: 'Destino', type: 'select', options: uruguayDepartments, defaultOption: 'Selecciona destino' },
+	// { id: 'departure-date', title: 'Fecha de Ida', type: 'date-picker', epochMiliseconds: 0 },
+	// { id: 'return-date', title: 'Fecha de Vuelta (Opcional)', type: 'date-picker', epochMiliseconds: 0 },
+	// { id: 'departure-time', title: 'Hora de Ida', type: 'time-picker' },
+	// { id: 'return-time', title: 'Hora de Vuelta', type: 'time-picker' },
+	// { id: 'passengers-capacity', title: 'Número de Pasajeros', type: 'number', placeholder: 'Ej: 25' }
 ]

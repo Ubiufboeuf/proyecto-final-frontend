@@ -5,6 +5,7 @@ import Layout from '@/layouts/Layout.astro'
 import { TypesOfBuses } from '@/components/custom-trips/TypesOfBuses'
 import { TripTypes } from '@/components/custom-trips/TripTypes'
 import { TripDetails } from '@/components/custom-trips/TripDetails'
+import { TripInfo } from '@/components/custom-trips/TripInfo'
 --- 
 
 <Layout title='Viajes Personalizados' class='px-6 mb-12 gap-8'>
@@ -38,5 +39,11 @@ import { TripDetails } from '@/components/custom-trips/TripDetails'
       <h1 class='text-2xl font-bold text-gray-800 dark:text-gray-100'>Detalles del Viaje</h1>
     </header>
     <TripDetails client:idle />
+  </section>
+  <section class='h-fit w-full flex flex-col p-6 gap-6 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
+    <header class='flex items-center gap-3 w-fit h-fit text-orange-500 dark:text-orange-600-light'>
+      <h1 class='text-2xl font-bold text-gray-800 dark:text-gray-100'>Información Adicional</h1>
+    </header>
+    <TripInfo client:idle />
   </section>
 </Layout>
