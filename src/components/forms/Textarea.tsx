@@ -8,7 +8,7 @@ export function FormTextarea ({ detail: { id, placeholder, title } }: { detail: 
         id={id}
         name={id}
         placeholder={placeholder}
-        class='w-full h-fit min-h-[6lh] max-h-[12lh] field-sizing-content p-2.5 sm:text-sm rounded border resize-none cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 group-hover:bg-gray-100 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
+        class='w-full h-fit min-h-[6lh] max-h-[12lh] field-sizing-content p-2.5 px-4 sm:text-sm rounded border resize-none cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 group-hover:bg-gray-100 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
       />
     </label>
   )
