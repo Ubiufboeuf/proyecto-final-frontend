@@ -35,14 +35,27 @@ function TripDetailSelect ({ detail: { id: detailId, options, title, defaultOpti
   )
 }
 
-export function TripDetailDatePicker ({ detail }: { detail: TripDetailDatePicker }) {
+export function TripDetailDatePicker ({ detail: { title } }: { detail: TripDetailDatePicker }) {
   return (
-    'a'
+    <label class='flex flex-col gap-1 dark:text-gray-300 group'>
+      <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
+      <input
+        type='date'
+        class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
+      />
+    </label>
   )
 }
 
-export function TripDetailNumber ({ detail }: { detail: TripDetailInputNumber }) {
+export function TripDetailNumber ({ detail: { title } }: { detail: TripDetailInputNumber }) {
   return (
-    'b'
+    <label class='flex flex-col gap-1 dark:text-gray-300 group'>
+      <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
+      <input
+        type='number'
+        placeholder='Ejemplo: 45'
+        class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
+      />
+    </label>
   )
 }
