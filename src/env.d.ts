@@ -148,7 +148,7 @@ export interface PreferredTimeOptions {
   epochMiliseconds: number
 }
 
-export interface TripDetailSelect {
+export interface FormSelect {
   id: string
   title: string
   type: 'select'
@@ -156,33 +156,33 @@ export interface TripDetailSelect {
   defaultOption: string
 }
 
-export interface TripDetailDatePicker {
+export interface FormDatePicker {
   id: string
   title: string
   type: 'date-picker'
   epochMiliseconds: number
 }
 
-export interface TripDetailTimePicker {
+export interface FormTimePicker {
   id: string
   title: string
   type: 'time-picker'
 }
 
-export interface TripDetailInputNumber {
+export interface FormInputNumber {
   id: string
   title: string
   type: 'number'
   placeholder: string
 }
 
-export type TripDetail = TripDetailSelect | TripDetailDatePicker | TripDetailInputNumber | TripDetailTimePicker
+export type TripDetail = FormSelect | FormDatePicker | FormTimePicker | FormInputNumber
 
-export interface TripTextarea {
+export interface FormTextarea {
   id: string
   title: string
   type: 'textarea'
   placeholder: string
 }
 
-export type TripInfo = TripTextarea
+export type TripInfo = FormTextarea

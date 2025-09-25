@@ -1,5 +1,8 @@
-import type { TripDetailDatePicker, TripDetailInputNumber, TripDetailSelect, TripDetailTimePicker } from '@/env'
 import { tripDetails } from '@/lib/custom-trips'
+import { FormSelect } from '../forms/Select'
+import { FormDatePicker } from '../forms/DatePicker'
+import { FormTimePicker } from '../forms/TimePicker'
+import { FormInputNumber } from '../forms/InputNumber'
 
 export function TripDetails () {
   return (
@@ -7,79 +10,16 @@ export function TripDetails () {
       {
         tripDetails.map((detail) => {
           if (detail.type === 'select') {
-            return <TripDetailSelect key={`trip-detail-select-${detail.id}`} detail={detail} />
+            return <FormSelect key={`trip-detail-select-${detail.id}`} detail={detail} />
           } else if (detail.type === 'date-picker') {
-            return <TripDetailDatePicker key={`trip-detail-date-picker-${detail.id}`} detail={detail} />
+            return <FormDatePicker key={`trip-detail-date-picker-${detail.id}`} detail={detail} />
           } else if (detail.type === 'time-picker') {
-            return <TripDetailTimePicker key={`trip-detail-time-picker-${detail.id}`} detail={detail} />
+            return <FormTimePicker key={`trip-detail-time-picker-${detail.id}`} detail={detail} />
           } else if (detail.type === 'number') {
-            return <TripDetailNumber key={`trip-detail-number-${detail.id}`} detail={detail} />
+            return <FormInputNumber key={`trip-detail-number-${detail.id}`} detail={detail} />
           }
         })
       }
     </main>
-  )
-}
-
-function TripDetailSelect ({ detail: { id: tripDetailId, options, title, defaultOption } }: { detail: TripDetailSelect }) {
-  return (
-    <label class='flex flex-col gap-1 dark:text-gray-300 group'>
-      <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
-      <select
-        id={tripDetailId}
-        name={tripDetailId}
-        class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
-      >
-        <option selected value='default' disabled>{defaultOption}</option>
-        { options.map(({ id, name }) => (
-            <option key={`trip-detail-select-${tripDetailId}-option-${id}`}>
-              {name}
-            </option>
-        )) }
-      </select>
-    </label>
-  )
-}
-
-export function TripDetailDatePicker ({ detail: { title, id } }: { detail: TripDetailDatePicker }) {
-  return (
-    <label class='flex flex-col gap-1 dark:text-gray-300 group'>
-      <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
-      <input
-        id={id}
-        name={id}
-        type='date'
-        class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
-      />
-    </label>
-  )
-}
-
-export function TripDetailTimePicker ({ detail: { title, id } }: { detail: TripDetailTimePicker }) {
-  return (
-    <label class='flex flex-col gap-1 dark:text-gray-300 group'>
-      <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
-      <input
-        id={id}
-        name={id}
-        type='time'
-        class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
-      />
-    </label>
-  )
-}
-
-export function TripDetailNumber ({ detail: { title, id } }: { detail: TripDetailInputNumber }) {
-  return (
-    <label class='flex flex-col gap-1 dark:text-gray-300 group'>
-      <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-sm'>{title}</h1>
-      <input
-        id={id}
-        name={id}
-        type='number'
-        placeholder='Ejemplo: 45'
-        class='w-full h-fit p-2.5 text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
-      />
-    </label>
   )
 }
