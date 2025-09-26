@@ -146,11 +146,9 @@ export const tripDetails: TripDetail[] = [
 ]
 
 export const tripInfo: TripInfo[] = [
-	{ id: 'comments', title: 'Comentarios o Solicitudes Especiales', type: 'textarea', placeholder: 'Describe cualquier requerimiento especial, paradas adicionales, o información relevante para tu viaje...' }
-	// { id: 'desination', title: 'Destino', type: 'select', options: uruguayDepartments, defaultOption: 'Selecciona destino' },
-	// { id: 'departure-date', title: 'Fecha de Ida', type: 'date-picker', epochMiliseconds: 0 },
-	// { id: 'return-date', title: 'Fecha de Vuelta (Opcional)', type: 'date-picker', epochMiliseconds: 0 },
-	// { id: 'departure-time', title: 'Hora de Ida', type: 'time-picker' },
-	// { id: 'return-time', title: 'Hora de Vuelta', type: 'time-picker' },
-	// { id: 'passengers-capacity', title: 'Número de Pasajeros', type: 'number', placeholder: 'Ej: 25' }
+	{ id: 'comments', title: 'Comentarios o Solicitudes Especiales', type: 'textarea', placeholder: 'Describe cualquier requerimiento especial, paradas adicionales, o información relevante para tu viaje...' },
+	{ id: 'full-name', title: 'Nombre Completo', type: 'text', placeholder: 'Juan Pérez' },
+	{ id: 'company', title: 'Companía (opcional)', type: 'text', placeholder: 'Mi Empresa S.A.' },
+	{ id: 'phone', title: 'Teléfono', type: 'tel', placeholder: '123 456 789' },
+	{ id: 'mail', title: 'Email', type: 'email', placeholder: 'juanperez@mail.com' }
 ]

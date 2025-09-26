@@ -185,4 +185,26 @@ export interface FormTextarea {
   placeholder: string
 }
 
-export type TripInfo = FormTextarea
+export interface FormInputText {
+  id: string
+  title: string
+  type: 'text'
+  placeholder: string
+}
+
+export interface FormInputEmail {
+  id: string
+  title: string
+  type: 'email'
+  placeholder: string
+}
+
+export interface FormInputPhone {
+  id: string
+  title: string
+  type: 'tel'
+  placeholder: string
+}
+
+export type FormInput = FormInputText | FormInputNumber | FormInputEmail | FormInputPhone
+export type TripInfo = FormTextarea | FormInputText | FormInputEmail | FormInputPhone
