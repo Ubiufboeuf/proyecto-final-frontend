@@ -2,7 +2,7 @@ import { tripDetails } from '@/lib/custom-trips'
 import { FormSelect } from '../forms/Select'
 import { FormDatePicker } from '../forms/DatePicker'
 import { FormTimePicker } from '../forms/TimePicker'
-import { FormInputNumber } from '../forms/InputNumber'
+import { FormInput } from '../forms/Input'
 
 export function TripDetails () {
   return (
@@ -16,7 +16,7 @@ export function TripDetails () {
           } else if (detail.type === 'time-picker') {
             return <FormTimePicker key={`trip-detail-time-picker-${detail.id}`} detail={detail} />
           } else if (detail.type === 'number') {
-            return <FormInputNumber key={`trip-detail-number-${detail.id}`} detail={detail} />
+            return <FormInput key={`trip-detail-number-${detail.id}`} detail={detail} />
           }
         })
       }
