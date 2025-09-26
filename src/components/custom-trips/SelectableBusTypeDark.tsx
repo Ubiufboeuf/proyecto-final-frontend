@@ -20,7 +20,7 @@ export function SelectableBusTypeDark ({ busType: { icon: TypeIcon, type, title,
 
   return (
     <label
-      class='hidden dark:flex w-full max-w-160 h-full p-6 flex-col items-center gap-4 text-sm rounded-xl cursor-pointer transition-colors bg-gray-700/50 text-gray-300 has-checked:bg-gray-600'
+      class='hidden dark:flex w-full max-w-160 h-full p-6 flex-col items-center gap-4 text-sm rounded-xl cursor-pointer transition-colors bg-gray-700/50 text-gray-300 has-checked:bg-gray-600 hover:bg-gray-600/50 touch:active:bg-gray-600/50'
       onInput={matchSelectableBusType}
       data-type={type}
     >
