@@ -9,7 +9,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
   return (
     <form
 			class='bg-white dark:bg-gray-700/50 dark:text-gray-200 dark:border-0 rounded-lg w-full h-fit flex-1 border border-gray-200 flex flex-col p-6 gap-6 [&_h1:not(&>h1)]:font-medium
-				[&_input]:h-10 [&_input]:w-full [&_input]:group-hover:outline-gray-300 [&_input]:group-active:outline-gray-300 [&_input]:focus-visible:outline-black [&_input]:transition-colors [&_input]:outline [&_input]:outline-transparent [&_input]:border [&_input]:border-gray-200 [&_input]:rounded [&_input]:px-2 dark:[&_input]:border-0 dark:[&_input]:bg-gray-700/50 dark:[&_input]:focus-visible:outline-0 dark:[&_input]:focus-visible:bg-gray-800/50 dark:[&_input]:outline-0 dark:[&_label]:hover:[&_input]:not-focus-visible:bg-gray-700 dark:[&_label]:touch:active:[&_input]:bg-gray-700
+				[&_input]:h-10 [&_input]:w-full [&_input]:group-hover:outline-gray-300 [&_input]:group-active:outline-gray-300 [&_input]:focus-visible:outline-black [&_input]:transition-colors [&_input]:outline [&_input]:outline-transparent [&_input]:border [&_input]:border-gray-200 [&_input]:rounded [&_input]:px-2 dark:[&_input]:border-0 dark:[&_input]:bg-gray-700/50 dark:[&_input]:focus-visible:outline-0 dark:[&_input]:focus-visible:bg-gray-800 dark:[&_input]:outline-0 dark:[&_label]:hover:[&_input]:not-focus-visible:bg-gray-700 dark:[&_label]:touch:active:[&_input]:bg-gray-700
 			'
 			onSubmit={handleSubmitForm}
 		>
@@ -44,7 +44,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 				{/* min y max height del textarea están en css para añadir fallbacks */}
 				<textarea
 					id='contact-message-textarea'
-					class='h-full w-full border border-gray-200 dark:border-0 dark:outline-0 dark:bg-gray-700/50 dark:group-hover:bg-gray-700 dark:touch:group-active:bg-gray-700 dark:focus-visible:bg-gray-800/50 rounded p-2 resize-none [scrollbar-width:thin] group-hover:border-gray-300 group-active:border-gray-300 transition-colors'
+					class='h-full w-full border border-gray-200 dark:border-0 dark:outline-0 dark:bg-gray-700/50 dark:group-hover:bg-gray-700 dark:touch:group-active:bg-gray-700 dark:focus-visible:bg-gray-800 rounded p-2 resize-none [scrollbar-width:thin] group-hover:border-gray-300 group-active:border-gray-300 transition-colors'
 					placeholder='Escribe tu mensaje acá...'
 				/>
 			</label>

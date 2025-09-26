@@ -9,7 +9,7 @@ export function FormInput ({ detail: { title, id, placeholder, type } }: { detai
         name={id}
         type={type}
         placeholder={placeholder}
-        class='w-full h-fit p-2.5 sm:text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:focus-visible:bg-gray-800/50'
+        class='w-full h-fit p-2.5 sm:text-sm rounded border cursor-pointer transition-colors border-gray-200 group-hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:focus-visible:bg-gray-800'
       />
     </label>
   )
