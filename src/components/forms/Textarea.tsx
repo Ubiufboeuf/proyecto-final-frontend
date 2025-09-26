@@ -2,7 +2,7 @@ import type { FormTextarea } from '@/env'
 
 export function FormTextarea ({ detail: { id, placeholder, title } }: { detail: FormTextarea }) {
   return (
-    <label class='flex flex-col gap-1 dark:text-gray-300 group col-start-1 col-end-3'>
+    <label class='flex flex-col gap-1 dark:text-gray-300 group col-start-1 md:col-end-3'>
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold sm:text-sm'>{title}</h1>
       <textarea
         id={id}
