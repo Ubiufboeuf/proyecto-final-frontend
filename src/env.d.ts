@@ -1,6 +1,6 @@
 import type { JSX } from 'preact/jsx-runtime'
 
-export interface Contact {
+export type Contact = {
   dept: string
   place: string
   number: string
@@ -32,7 +32,7 @@ export type ParseTimestampOptions = {
 
 export type Output = 'date' | 'time' | 'date-time' | 'time-date' | 'hour-minute'
 
-export interface BusesData {
+export type BusesData = {
   inMovement?: number
   inTerminal?: number
   delayed?: number
@@ -42,7 +42,7 @@ export interface BusesData {
   timestamp?: number
 }
 
-export interface Bus {
+export type Bus = {
   id: string
   state: BusStates
   driver: Driver
@@ -65,7 +65,7 @@ export interface Bus {
 
 export type BusStates = 'En viaje' | 'En terminal' | 'Atrasado'
 
-export interface Driver {
+export type Driver = {
   id: string
   name: string
 }
@@ -105,7 +105,7 @@ export type Cookie = {
 
 export type BusTypesIcons = Record<string, () => JSX.Element>
 
-export interface BusType {
+export type BusType = {
   icon: () => JSX.Elememnt
   type: string
   title: string
@@ -119,7 +119,7 @@ export interface BusType {
   darkColor: string
 }
 
-export interface HorarioDestacado {
+export type HorarioDestacado = {
   title: string
   description: string
   hours: (`${number}:${number}`)[]
@@ -132,23 +132,23 @@ export interface HorarioDestacado {
 
 export type TripTypeId = 'day-trip' | 'weekend' | 'business-trip' | 'school-trip' | 'tourism' | 'special-event'
 
-export interface TripType {
+export type TripType = {
   id: TripTypeId
   title: string
   description: string
 }
 
-export interface UruguayDepartments {
+export type UruguayDepartments = {
   id: string
   name: string
 }
 
-export interface PreferredTimeOptions {
+export type PreferredTimeOptions = {
   id: string
   epochMiliseconds: number
 }
 
-export interface FormSelect {
+export type FormSelect = {
   id: string
   title: string
   type: 'select'
@@ -156,20 +156,20 @@ export interface FormSelect {
   defaultOption: string
 }
 
-export interface FormDatePicker {
+export type FormDatePicker = {
   id: string
   title: string
   type: 'date-picker'
   epochMiliseconds: number
 }
 
-export interface FormTimePicker {
+export type FormTimePicker = {
   id: string
   title: string
   type: 'time-picker'
 }
 
-export interface FormInputNumber {
+export type FormInputNumber = {
   id: string
   title: string
   type: 'number'
@@ -178,28 +178,28 @@ export interface FormInputNumber {
 
 export type TripDetail = FormSelect | FormDatePicker | FormTimePicker | FormInputNumber
 
-export interface FormTextarea {
+export type FormTextarea = {
   id: string
   title: string
   type: 'textarea'
   placeholder: string
 }
 
-export interface FormInputText {
+export type FormInputText = {
   id: string
   title: string
   type: 'text'
   placeholder: string
 }
 
-export interface FormInputEmail {
+export type FormInputEmail = {
   id: string
   title: string
   type: 'email'
   placeholder: string
 }
 
-export interface FormInputPhone {
+export type FormInputPhone = {
   id: string
   title: string
   type: 'tel'

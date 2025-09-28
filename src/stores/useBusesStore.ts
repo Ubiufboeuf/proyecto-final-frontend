@@ -9,7 +9,7 @@ try {
   console.error(err)
 }
 
-interface BusesStore extends BusesData {
+type BusesStore = BusesData & {
   setCount: (newValue: number) => void
   setInMovement: (newValue: number) => void
   setInTerminal: (newValue: number) => void
