@@ -6,13 +6,6 @@ export const typesOfBuses: BusType[] = [
 		icon: IconBus,
 		type: 'comun',
 		title: 'Común',
-		description: 'Servicio estándar con asientos cómodos y reclinables',
-		details: [
-			'Asientos reclinables',
-			'Aire acondicionado',
-			'Música ambiental',
-			'Baño a bordo'
-		],
 		capacity: 46,
 		tags: [
 			{ tag: 'A/C', title: 'Aire Acondicionado' },
@@ -33,13 +26,6 @@ export const typesOfBuses: BusType[] = [
 		icon: IconBed,
 		type: 'bed',
 		title: 'Común - Semicama',
-		description: 'Mayor comodidad con servicios adicionales',
-		details: [
-			'Asientos más amplios',
-			'Mayor reclinación',
-			'WiFi gratuito',
-			'Servicio de refrigerios'
-		],
 		capacity: 42,
 		tags: [
 			{ tag: 'A/C', title: 'Aire Acondicionado' },
@@ -61,13 +47,6 @@ export const typesOfBuses: BusType[] = [
 		icon: IconWC,
 		type: 'micro',
 		title: 'Micro',
-		description: 'Máximo confort para viajes largos',
-		details: [
-			'Asientos tipo semi-cama',
-			'Entretenimiento a bordo',
-			'Servicio de comidas',
-			'Mantas y almohadas'
-		],
 		capacity: 28,
 		tags: [
 			{ tag: 'A/C', title: 'Aire Acondicionado' },
@@ -86,13 +65,6 @@ export const typesOfBuses: BusType[] = [
 		icon: IconNoWC,
 		type: 'nowc',
 		title: 'Micro - Sin Baño',
-		description: 'Lujo y comodidad premium',
-		details: [
-			'Asientos cama individuales',
-			'TV personal',
-			'Servicio gourmet',
-			'Atención personalizada'
-		],
 		capacity: 22,
 		tags: [
 			{ tag: 'A/C', title: 'Aire Acondicionado' },

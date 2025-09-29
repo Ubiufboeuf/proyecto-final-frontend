@@ -109,8 +109,6 @@ export type BusType = {
   icon: () => JSX.Elememnt
   type: string
   title: string
-  description: string
-  details: string[]
   capacity: number
   tags: { tag: string, title: string }[]
   mainColor: string

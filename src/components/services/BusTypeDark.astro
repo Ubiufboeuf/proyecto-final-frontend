@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { busType } = Astro.props
-const { description, details, icon: TypeIcon, title, darkColor } = busType
+const { capacity, tags, icon: TypeIcon, title, darkColor } = busType
 ---
 
 <!-- Como esta card solo se muestra en tema oscuro, no hace falta especificar el dark: -->
@@ -25,17 +25,19 @@ const { description, details, icon: TypeIcon, title, darkColor } = busType
 			{title}
 		</h1>
 		<p class='text-center text-gray-300'>
-			{description}
+			Capacidad para {capacity} personas
 		</p>
 	</div>
 	<div class='w-full h-fit px-4'>
-		<ul class='list-disc flex flex-col items-center w-full gap-2'>
-			{ details.map((detail) => (
-					<li class='list-none text-center flex items-center justify-start gap-2'>
-						<div class='size-2 opacity-60 rounded-full' style={{ backgroundColor: darkColor }} />
-						{detail}
-					</li>
+		<div class='w-full flex flex-wrap justify-center gap-1'>
+			{ tags.map(({ tag, title }) => (
+					<span
+						title={title}
+						class='text-xs bg-white dark:bg-gray-500/50 px-2 p-1 rounded md:flex-auto text-center cursor-default'
+					>
+						{tag}
+					</span>
 			)) }
-		</ul>
+		</div>
 	</div>
 </article>
