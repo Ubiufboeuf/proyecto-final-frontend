@@ -1,8 +1,11 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { Icon } from '@/components/Icon'
+import { IconPeople, IconClock, IconStar, IconShield } from '@/components/Icons'
 ---
 
-<Layout title='Sobre nosotros'>
+
+<Layout title='Sobre nosotros' class='px-6'>
   <section class='my-12'>
     <h1 class='text-4xl font-bold text-center text-gray-900'>Sobre Nosotros</h1>
     <p class='text-xl text-center text-gray-600 mt-4 max-w-2xl mx-auto'>
@@ -55,26 +58,30 @@ import Layout from '@/layouts/Layout.astro'
     <h2 class='text-4xl font-bold text-center text-gray-900 mb-12'>Nuestros Valores</h2>
     <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
       <div class='bg-white p-6 rounded-lg shadow-md text-center'>
-        <div class='bg-orange-500 p-3 rounded-full inline-block'>
+        <div class='inline-block'>
         </div>
+        <Icon class='size-12 text-orange-500 inline-block' > <IconClock /> </Icon>
         <h3 class='text-xl font-bold text-gray-900 mt-4'>Puntualidad</h3>
         <p class='text-gray-600 mt-2'>Cumplimos con los horarios establecidos para que llegues a tiempo a tu destino.</p>
       </div>
-      <div class='bg-white p-6 rounded-lg shadow-md text-center'>
-        <div class='bg-orange-500 p-3 rounded-full inline-block'>
+      <div class='bg-white p-6 rounded-lg shadow-md text-center inline-block'>
+        <div class='inline-block'>
         </div>
+         <Icon class='size-12 text-orange-500 inline-block' > <IconPeople /> </Icon>
         <h3 class='text-xl font-bold text-gray-900 mt-4'>Atención al Cliente</h3>
         <p class='text-gray-600 mt-2'>Nuestro equipo está siempre dispuesto a brindarte la mejor atención y servicio.</p>
       </div>
       <div class='bg-white p-6 rounded-lg shadow-md text-center'>
-        <div class='bg-orange-500 p-3 rounded-full inline-block'>
+        <div class='inline-block'>
         </div>
+          <Icon class='size-12 text-orange-500 inline-block' > <IconStar /> </Icon>
         <h3 class='text-xl font-bold text-gray-900 mt-4'>Calidad</h3>
         <p class='text-gray-600 mt-2'>Mantenemos los más altos estándares de calidad en nuestros servicios y flota.</p>
       </div>
       <div class='bg-white p-6 rounded-lg shadow-md text-center'>
-        <div class='bg-orange-500 p-3 rounded-full inline-block'>
+        <div class='inline-block'>
         </div>
+        <Icon class='size-12 text-orange-500 inline-block' > <IconShield /> </Icon>
         <h3 class='text-xl font-bold text-gray-900 mt-4'>Seguridad</h3>
         <p class='text-gray-600 mt-2'>Tu seguridad es nuestra prioridad, con conductores capacitados y vehículos en óptimas condiciones.</p>
       </div>
@@ -82,125 +89,102 @@ import Layout from '@/layouts/Layout.astro'
   </section>
 
   <section class='my-16'>
-    <h2 class='text-4xl font-bold text-center text-gray-900 mb-12'>Nuestra Trayectoria</h2>
-    <div class='relative px-4'>
-      <div class='max-w-7xl mx-auto'>
-        <div class='flex flex-col items-center justify-start relative'>
-          <div class='absolute top-0 left-1/2 w-0.5 bg-orange-500 h-full transform -translate-x-1/2'></div>
-          
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'>
-              <h3 class='text-xl font-bold text-gray-900'>Fundación de la Empresa</h3>
-              <p class='text-base text-gray-600 mt-1'>El 01 de Octubre de 1960, Ricardo Tassara y Henry Nubel Berrutti compran la empresa “MIGUELITO” con un ómnibus Chevrolet de 1946 para la línea Nueva Palmira a Carmelo.</p>
-            </div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              1960
-            </div>
-            <div class='w-1/2 pl-8'></div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'></div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              1970
-            </div>
-            <div class='w-1/2 pl-8'>
-              <h3 class='text-xl font-bold text-gray-900'>Henry Berrutti, Único Socio</h3>
-              <p class='text-base text-gray-600 mt-1'>Henry Nubel Berrutti se convierte en el único socio, expandiendo los servicios a turismo nacional además de la línea original.</p>
-            </div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'>
-              <h3 class='text-xl font-bold text-gray-900'>Nueva Línea: N.Palmira a Agraciada</h3>
-              <p class='text-base text-gray-600 mt-1'>Se inaugura el servicio de línea entre Nueva Palmira y Agraciada.</p>
-            </div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              1971
-            </div>
-            <div class='w-1/2 pl-8'></div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'></div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              1976
-            </div>
-            <div class='w-1/2 pl-8'>
-              <h3 class='text-xl font-bold text-gray-900'>Transformación de Sociedad</h3>
-              <p class='text-base text-gray-600 mt-1'>La empresa se transforma en H.N. Berrutti y Cia. Mantiene el nombre de "MIGUELITO" hasta 1980.</p>
-            </div>
-          </div>
-          
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'>
-              <h3 class='text-xl font-bold text-gray-900'>Primer Viaje Internacional</h3>
-              <p class='text-base text-gray-600 mt-1'>Se realiza el primer servicio de turismo internacional, marcando el inicio de la expansión de la empresa.</p>
-            </div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              1980
-            </div>
-            <div class='w-1/2 pl-8'></div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'></div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              1986
-            </div>
-            <div class='w-1/2 pl-8'>
-              <h3 class='text-xl font-bold text-gray-900'>Adquisición de Mazzeo y Cia</h3>
-              <p class='text-base text-gray-600 mt-1'>Se adquiere la Empresa Mazzeo y Cia, sumando tres ómnibus y el servicio de línea entre Carmelo y Mercedes.</p>
-            </div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'>
-              <h3 class='text-xl font-bold text-gray-900'>Expansión a Colonia</h3>
-              <p class='text-base text-gray-600 mt-1'>Se inician los servicios de línea entre Nueva Palmira y Colonia.</p>
-            </div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              1990
-            </div>
-            <div class='w-1/2 pl-8'></div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'></div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              2002
-            </div>
-            <div class='w-1/2 pl-8'>
-              <h3 class='text-xl font-bold text-gray-900'>Ampliación de Rutas</h3>
-              <p class='text-base text-gray-600 mt-1'>Se inaugura la línea de servicio de Ombúes de Lavalle a Radial, rutas 55 y 21.</p>
-            </div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'>
-              <h3 class='text-xl font-bold text-gray-900'>Nuevas Combinaciones</h3>
-              <p class='text-base text-gray-600 mt-1'>Comienzan a ofrecerse las combinaciones desde Conchillas a Radial Ruta 21.</p>
-            </div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              2018
-            </div>
-            <div class='w-1/2 pl-8'></div>
-          </div>
-
-          <div class='relative flex items-center justify-between w-full mb-12'>
-            <div class='w-1/2 pr-8 text-right'></div>
-            <div class='absolute left-1/2 w-12 h-12 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center -ml-6'>
-              Hoy
-            </div>
-            <div class='w-1/2 pl-8'>
-              <h3 class='text-xl font-bold text-gray-900'>Tercera Generación</h3>
-              <p class='text-base text-gray-600 mt-1'>Ambas empresas, Berrutti y Cia y Berrutti Srl, trabajan bajo el nombre de “BERRUTTI TURISMO”, con la tercera generación de la familia al frente.</p>
-            </div>
-          </div>
-
-        </div>
+<div class="bg-white rounded-lg shadow-md p-8 mb-12">
+  <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">Nuestra Trayectoria</h2>
+  <div class="space-y-6">
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        1960
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Fundación de la Empresa</h3>
+        <p class="text-gray-600">Ricardo Tassara y Henry Nubel Berrutti compran la empresa "MIGUELITO" con un ómnibus Chevrolet de 1946 para la línea Nueva Palmira a Carmelo</p>
       </div>
     </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        1970
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Henry Berrutti, Único Socio</h3>
+        <p class="text-gray-600">Henry Nubel Berrutti se convierte en el único socio, expandiendo los servicios a turismo nacional además de la línea original</p>
+      </div>
+    </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        1971
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Nueva Línea: N.Palmira a Agraciada</h3>
+        <p class="text-gray-600">Se inaugura el servicio de línea entre Nueva Palmira y Agraciada</p>
+      </div>
+    </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        1976
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Transformación de Sociedad</h3>
+        <p class="text-gray-600">La empresa se transforma en H.N. Berrutti y Cia. Mantiene el nombre de "MIGUELITO" hasta 1980</p>
+      </div>
+    </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        1980
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Primer Viaje Internacional</h3>
+        <p class="text-gray-600">Se realiza el primer servicio de turismo internacional, marcando el inicio de la expansión de la empresa</p>
+      </div>
+    </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        1986
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Adquisición de Mazzeo y Cia</h3>
+        <p class="text-gray-600">Se adquiere la Empresa Mazzeo y Cia, sumando tres ómnibus y el servicio de línea entre Carmelo y Mercedes</p>
+      </div>
+    </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        1990
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Expansión a Colonia</h3>
+        <p class="text-gray-600">Se inician los servicios de línea entre Nueva Palmira y Colonia</p>
+      </div>
+    </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        2002
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Ampliación de Rutas</h3>
+        <p class="text-gray-600">Se inaugura la línea de servicio de Ombúes de Lavalle a Radial, rutas 55 y 21</p>
+      </div>
+    </div>
+
+    <div class="flex items-start space-x-4">
+      <div class="bg-orange-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm flex-shrink-0">
+        2018
+      </div>
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">Nuevas Combinaciones</h3>
+        <p class="text-gray-600">Comienzan a ofrecerse las combinaciones desde Conchillas a Radial Ruta 21</p>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
   </section>
 
   <section class='my-16'>
