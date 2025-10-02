@@ -6,7 +6,7 @@ export function TripSummary () {
     <div class='w-full h-fit flex flex-col gap-4'>
       <section class='
         rounded-lg p-4 px-5 flex text-sm flex-col gap-2 bg-orange-50 text-orange-700 dark:bg-gray-700/70 dark:text-gray-300
-        [&_span]:flex [&_span]:items-center [&_span]:justify-center [&_span]:min-w-6 [&_span]:size-6 [&_span]:text-xs [&_span]:font-semibold [&_span]:rounded-full [&_span]:bg-orange-200 dark:[&_span]:bg-gray-800/70
+        [&_span]:flex [&_span]:items-center [&_span]:justify-center [&_span]:min-w-6 [&_span]:size-6 [&_span]:text-xs [&_span]:font-semibold [&_span]:rounded-full [&_span]:bg-orange-200 dark:[&_span]:bg-gray-800/50
       '>
         <h1 class='font-semibold mb-2 text-base text-orange-800 dark:text-gray-200'>¿Cómo funciona?</h1>
         <div class='flex items-start gap-2'>

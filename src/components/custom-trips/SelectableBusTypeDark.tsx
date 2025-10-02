@@ -20,7 +20,7 @@ export function SelectableBusTypeDark ({ busType: { icon: TypeIcon, type, title,
 
   return (
     <label
-      class='hidden dark:flex w-full max-w-160 h-full p-6 flex-col items-center gap-4 text-sm rounded-xl cursor-pointer transition-colors bg-gray-700/50 text-gray-300 has-checked:bg-gray-600 hover:bg-gray-600/50 touch:active:bg-gray-600/50'
+      class='hidden dark:flex w-full max-w-160 h-full p-6 flex-col items-center gap-4 text-sm rounded-xl cursor-pointer transition-colors bg-gray-700/50 text-gray-300 has-checked:bg-gray-600 hover:bg-gray-600/70 has-checked:hover:bg-gray-600/70 touch:active:bg-gray-600/70'
       onInput={matchSelectableBusType}
       data-type={type}
     >
@@ -33,13 +33,8 @@ export function SelectableBusTypeDark ({ busType: { icon: TypeIcon, type, title,
           {title}
         </h1>
       </div>
-      <div class='flex items-center w-full'>
-        <p class='opacity-80'>
-          {description}
-        </p>
-      </div>
+      <p class='opacity-80 w-full'>Capacidad: <strong>{capacity}</strong> pasajeros</p>
       <div class='flex flex-col justify-center w-full gap-2'>
-        <p class='text-xs opacity-80'>Capacidad: {capacity} pasajeros</p>
         <div class='w-full flex flex-wrap gap-1'>
           { tags.map(({ tag, title }) => (
               <span
