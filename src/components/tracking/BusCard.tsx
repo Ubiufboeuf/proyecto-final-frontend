@@ -40,7 +40,7 @@ export function BusCard ({ bus: { id, driver, destination, state = 'En terminal'
 
   return (
     <article
-      class={`${isSelected ? 'busSelected' : ''} h-fit min-h-fit p-4 w-full border flex-col border-gray-200 rounded-lg flex cursor-pointer group bg-transparent outline-2 [&.busSelected]:outline-orange-500 [&.busSelected]:bg-orange-50 outline-transparent transition-all gap-2 dark:border-0 dark:bg-gray-700/50 dark:hover:bg-gray-600/70 dark:touch:active:bg-gray-600/70 dark:outline-0 dark:[&.busSelected]:bg-gray-600/70`}
+      class={`${isSelected ? 'busSelected' : ''} h-fit min-h-fit p-4 w-full border flex-col border-gray-200 rounded-lg flex cursor-pointer group bg-transparent outline-2 [&.busSelected]:outline-orange-500 [&.busSelected]:bg-orange-50 outline-transparent transition-all gap-2 dark:border-0 dark:bg-gray-700/50 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:outline-0 dark:[&.busSelected]:bg-gray-600`}
       onClick={toggleIsSelected}
     >
       <section class='flex items-center w-full h-fit'>
