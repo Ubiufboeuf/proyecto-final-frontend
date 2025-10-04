@@ -6,11 +6,14 @@ import { getBusesData } from '@/services/busService'
 import { useEffect } from 'preact/hooks'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { errorHandler } from '@/lib/utils'
+import { useBusTrackingSocket } from '@/hooks/useBusTrackingSocket'
 
 let wasOpen = false
 
 export function Track ({ busesData, lat, lng }: { busesData: BusesData, lat: number, lng: number }) {
   const setBusesData = useBusesStore((state) => state.setBusesData)
+
+  useBusTrackingSocket()
 
   async function loadBusesData () {
     try {
