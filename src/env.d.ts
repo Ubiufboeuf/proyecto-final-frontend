@@ -8,11 +8,12 @@ export type Contact = {
   maps: string
 }
 
-export type Options = {
-  enableHighAccuracy?: boolean
-  timeout?: number // Tiempo máximo para obtener la posición (en ms)
-  maximumAge?: number // No usar posiciones cacheadas
-  sendCoordinates?: boolean
+export type LiveGeolocationSenderOptions = {
+  id: string | null
+  enableHighAccuracy: boolean
+  timeout: number
+  maximumAge: number
+  sendCoordinates: boolean
 }
 
 export type CustomCoords = {
@@ -31,7 +32,7 @@ export type ParseTimestampOptions = {
   output: Output
 }
 
-export type Output = 'date' | 'time' | 'date-time' | 'time-date' | 'hour-minute'
+export type Output = 'date' | 'time' | 'date-time' | 'time-date' | 'hour-minute' | 'hh:mm:ss'
 
 export type BusesData = {
   inMovement?: number
