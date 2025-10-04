@@ -42,6 +42,11 @@ export type BusesData = {
   timestamp?: number
 }
 
+export type Point = {
+  x: number
+  y: number
+}
+
 export type Bus = {
   id: string
   state: BusStates
@@ -54,7 +59,15 @@ export type Bus = {
     location: string
     timestamp: number
   }
-  location: string
+  location: {
+    city: string
+    country: string
+    position: Point
+  }
+  route: {
+    current: Point[]
+    planned: Point[]
+  }
   passengers: {
     capacity: number,
     onBoard: number

@@ -7,6 +7,10 @@ import VaulDrawer from './Drawer'
 import { Icon } from '../Icon'
 import { IconEye, IconFocus } from '../Icons'
 
+const DEFAULT_LAT = -34.4707
+const DEFAULT_LNG = -57.8515
+const DEFAULT_ZOOM = 16
+
 export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesData, lat: number, lng: number }) {
   const mapRef = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<Map | null>(null)
@@ -16,8 +20,10 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   const setInMovement = useBusesStore((state) => state.setInMovement)
   const setInTerminal = useBusesStore((state) => state.setInTerminal)
   const buses = useBusesStore((state) => state.buses)
-  
-  async function loadMap () {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+  const [leaflet, setLeaflet] = useState<typeof import('/home/mango/proyecto-final/frontend/node_modules/.pnpm/@types+leaflet@1.9.20/node_modules/@types/leaflet/index')>()
+
+  async function importLeaflet () {
     let L
     try {
       L = await import('leaflet')
@@ -26,12 +32,18 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
       return
     }
 
-    const { tileLayer, map: createMap, control } = L
+    setLeaflet(L)
+  }
+  
+  async function loadMap () {
+    if (!leaflet) return
+
+    const { tileLayer, map: createMap, control } = leaflet
 
     let $map = map
     if (!$map) {
       $map = createMap('map', { zoomControl: false })
-        .setView([lat || -34.4707, lng || -57.8515], 16) 
+        .setView([lat || DEFAULT_LAT, lng || DEFAULT_LNG], DEFAULT_ZOOM)
       setMap($map)
       control.zoom({ position: 'topright' }).addTo($map)
     }
@@ -65,10 +77,39 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     })
   }
 
+  async function handleBusesAndRoutes () {
+    if (!leaflet || !buses) return
+
+    const { map: createMap, control, marker } = leaflet
+
+    let $map = map
+    if (!$map) {
+      $map = createMap('map', { zoomControl: false })
+        .setView([lat || DEFAULT_LAT, lng || DEFAULT_LNG], DEFAULT_ZOOM)
+      setMap($map)
+      control.zoom({ position: 'topright' }).addTo($map)
+    }
+
+    for (const { location } of buses) {
+      // console.log(bus.location)
+      const { x, y } = location.position
+      console.log({ x, y })
+      const busMarker = marker({ lat: y, lng: x }).addTo($map)
+      console.log(busMarker)      
+    }    
+  }
+
   useEffect(() => {
     if (map) return
-    loadMap()
+
+    importLeaflet()
   }, [])
+
+  useEffect(() => {
+    if (!leaflet) return
+
+    loadMap()  
+  }, [leaflet])
 
   useEffect(() => {
     const bus = buses?.[0]
@@ -87,6 +128,8 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     setDelayed(busStates.Atrasado)
     setInMovement(busStates['En viaje'])
     setInTerminal(busStates['En terminal'])
+
+    handleBusesAndRoutes()
   }, [buses])
 
   return (

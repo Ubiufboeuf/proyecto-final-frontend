@@ -72,7 +72,7 @@ export function BusCard ({ bus: { id, driver, destination, state = 'En terminal'
           <Icon class='size-3'>
             <IconMapPin />
           </Icon>
-          <span>{location}</span>
+          <span>{location.city}</span>
         </span>
         <span class='flex items-center text-xs gap-2'>
           <Icon class='size-3'>

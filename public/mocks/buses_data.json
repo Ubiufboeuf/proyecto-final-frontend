@@ -17,7 +17,14 @@
         "location": "Punta del Este",
         "timestamp": 0
       },
-      "location": "Canelones",
+      "location": {
+        "city": "Canelones",
+        "country": "Uruguay",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
       "origin": {
         "location": "Montevideo",
         "timestamp": 0
@@ -40,7 +47,14 @@
         "location": "Punta del Este",
         "timestamp": 0
       },
-      "location": "Canelones",
+      "location": {
+        "city": "Canelones",
+        "country": "Uruguay",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
       "origin": {
         "location": "Montevideo",
         "timestamp": 0
@@ -63,7 +77,14 @@
         "location": "Punta del Este",
         "timestamp": 0
       },
-      "location": "Canelones",
+      "location": {
+        "city": "Canelones",
+        "country": "Uruguay",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
       "origin": {
         "location": "Montevideo",
         "timestamp": 0
@@ -86,7 +107,14 @@
         "location": "Punta del Este",
         "timestamp": 0
       },
-      "location": "Canelones",
+      "location": {
+        "city": "Canelones",
+        "country": "Uruguay",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
       "origin": {
         "location": "Montevideo",
         "timestamp": 0
