@@ -77,7 +77,7 @@ export function errorHandler (err: unknown, baseMessage?: string | null, canShow
   }
 
   if (canShow) {
-    console.error('errorToShow', errorToShow)
+    console.error(errorToShow)
     return errorToShow
   }
 
