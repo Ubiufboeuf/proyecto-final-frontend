@@ -20,6 +20,7 @@ export function parseTimestamp (timestampInMiliseconds: number, options: ParseTi
   }
 
   const hourMinute = `${padStart(hour, 1, '0')}:${padStart(zdt.minute, 2, '0')}`
+  const hourMinuteSecond = `${padStart(hour, 2, '0')}:${padStart(zdt.minute, 2, '0')}:${padStart(zdt.second, 2, '0')}`
   const time = `${hourMinute}:${padStart(zdt.second, 2, '0')} ${sufix}`
   const date = `${padStart(zdt.day, 2, '0')}/${padStart(zdt.month, 2, '0')}/${padStart(zdt.year, 2, '0')}`
   
@@ -28,7 +29,8 @@ export function parseTimestamp (timestampInMiliseconds: number, options: ParseTi
     time,
     'hour-minute': `${hourMinute}`,
     'date-time': `${date} - ${time}`,
-    'time-date': `${time} - ${date}`
+    'time-date': `${time} - ${date}`,
+    'hh:mm:ss': `${hourMinuteSecond}`
   }
 
   return outputs[options.output]
