@@ -117,6 +117,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
 
   useEffect(() => {
     if (!buses) return
+
     const busStates: { [key in BusStates]: number } = { 'En terminal': 0, 'En viaje': 0, Atrasado: 0 }
     for (const bus of buses) {
       if (!bus.state) continue
