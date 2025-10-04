@@ -68,7 +68,11 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     // console.log(map)
     if (!map) return
 
-    map.locate({ setView: false })
+    map.locate({
+      setView: false,
+      enableHighAccuracy: true,
+      maximumAge: 0
+    })
     map.once('locationfound', (e) => {
       map.setView(e.latlng, map.getZoom())
     })
