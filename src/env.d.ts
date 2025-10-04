@@ -1,5 +1,6 @@
 import type { Marker } from 'leaflet'
 import type { JSX } from 'preact/jsx-runtime'
+import type { WS_RESPONSE_TYPE } from '@/lib/constants'
 
 export type Contact = {
   dept: string
@@ -59,7 +60,18 @@ export type BusLocation = {
 // Este lo recibe del servidor
 export type BusLocationFromServer = BusLocation & {
   id: string
-  type: string
+  type: typeof WS_RESPONSE_TYPE[keyof typeof WS_RESPONSE_TYPE]
+}
+
+// Este lo envía al servidor
+export type BusLocationForServer = {
+  id: string
+  type: typeof WS_RESPONSE_TYPE[keyof typeof WS_RESPONSE_TYPE]
+  position: Point
+  gpsTimestamp: number
+  appTimestamp: number
+  accuracy: number
+  speed: number | null
 }
 
 export type Bus = {
