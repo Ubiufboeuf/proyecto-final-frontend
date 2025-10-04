@@ -1,4 +1,4 @@
-import type { Bus, BusesData, BusStates } from '@/env'
+import type { Bus, BusesData, BusStates, Point } from '@/env'
 import { create } from 'zustand'
 import { getBaseBusesData, getBusesData } from '@/services/busService'
 
@@ -21,6 +21,7 @@ type BusesStore = BusesData & {
   addBus: (newBus: Bus) => Bus[]
   removeBus: (busId: string) => Bus[]
   updateBusState: (busId: string, newState: BusStates) => void
+  updateBusPosition: (busId: string, newPosition: Point) => void
   setBusesData: (busesData: BusesData) => void
   /* count: 12,
   inMovement: 5,
@@ -54,6 +55,20 @@ export const useBusesStore = create<BusesStore>((set, get) => ({
       }
     }
     return newBuses
+  },
+  updateBusPosition (busId, newPosition) {
+    const { buses } = get()
+    
+    if (!buses) return
+    
+    set({
+      buses: buses.map((bus) => {
+        if (bus.id === busId) {
+          bus.location.position = newPosition
+        }
+        return bus
+      })
+    }) 
   },
   addBus (newBus) {
     const newBuses = [...get().buses ?? [], newBus]
