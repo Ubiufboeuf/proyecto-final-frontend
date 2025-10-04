@@ -12,4 +12,6 @@ export {
   DEV
 }
 
-export const WS_TYPE_BUS_POSITION = 'WS_TYPE_BUS_POSITION'
+export const WS_RESPONSE_TYPE = {
+  BUS_POSITION: 'WS_TYPE_BUS_POSITION'
+} as const

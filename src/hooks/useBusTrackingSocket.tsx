@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'preact/hooks'
 import { io, type Socket } from 'socket.io-client'
 import type { BusLocationFromServer } from '@/env'
-import { ENDPOINTS, WS_TYPE_BUS_POSITION } from '@/lib/constants'
+import { ENDPOINTS, WS_RESPONSE_TYPE } from '@/lib/constants'
 import { errorHandler } from '@/lib/utils'
 import { useBusesStore } from '@/stores/useBusesStore'
 
@@ -30,7 +30,7 @@ export function useBusTrackingSocket () {
 
     socket.on('bus-location', (data) => {
       try {
-        if (data.type === WS_TYPE_BUS_POSITION) {
+        if (data.type === WS_RESPONSE_TYPE.BUS_POSITION) {
           const bus: BusLocationFromServer = data
           
           if (!bus.id) return
