@@ -17,8 +17,25 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
 
   // Estados
   const [error, setError] = useState<[(Error | null), (string | null)]>([null, null])
+
+  // Funciones para la conexión
+  function startWatching () {
+
+  }
+
+  function stopWatching () {
+    
+  }
+
+  function successCallback () {
+
+  }
+
+  function errorCallback () {
+
+  }
   
-  // Establecer conexión al servidor WebSocket
+  // Effect principal - Establecer conexión al servidor WebSocket
   useEffect(() => {
     const choferId = options.id
     if (!choferId || !options.sendCoordinates) return
@@ -48,7 +65,9 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
       }
     }
   }, [options.id, options.sendCoordinates, url])
-}
 
-// Esto es simplemente para no cambiar ahora la prueba de seguimiento, luego lo borro
-export default useLiveGeolocationSender
+  return {
+    startWatching,
+    stopWatching
+  }
+}

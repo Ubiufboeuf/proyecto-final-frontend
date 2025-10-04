@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/compat'
-import useLiveGeolocationSender from '@/hooks/useLiveGeolocationSender'
+import { useLiveGeolocationSender } from '@/hooks/useLiveGeolocationSender'
 
 // ID del bus controlado para test
 const BUS_ID_TO_CONTROL = 'b123'
