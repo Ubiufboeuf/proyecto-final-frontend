@@ -1,51 +1,52 @@
+import { useEffect, useRef } from 'preact/hooks'
+import { io, type Socket } from 'socket.io-client'
 import type { BusLocationFromServer } from '@/env'
 import { ENDPOINTS, WS_TYPE_BUS_POSITION } from '@/lib/constants'
 import { errorHandler } from '@/lib/utils'
 import { useBusesStore } from '@/stores/useBusesStore'
-import { useEffect, useRef } from 'preact/hooks'
 
 export function useBusTrackingSocket () {
-  const wsRef = useRef<WebSocket | null>(null)
+  const socketRef = useRef<Socket | null>(null)
   const updateBusPosition = useBusesStore((state) => state.updateBusPosition)
 
   useEffect(() => {
-    // Evitar crear conexion ws si ya existe
-    if (wsRef.current) return
-    
-    const ws = new WebSocket(ENDPOINTS.WS)
-    wsRef.current = ws
+    // Evitar crear conexión si ya existe
+    if (socketRef.current) return
 
-    ws.onopen = () => console.log('WebSocket abierto')
+    const socket = io(ENDPOINTS.WS)
+    socketRef.current = socket
 
-    ws.onmessage = (event) => {
-      let data
+    socket.on('connect', () => {
+      console.log('Socket.IO conectado')
+    })
+
+    socket.on('disconnect', (reason) => {
+      console.log('Socket.IO desconectado:', reason)
+    })
+
+    socket.on('connect_error', (err) => {
+      errorHandler(err, 'Error de conexión Socket.IO')
+    })
+
+    socket.on('bus-location', (data) => {
       try {
-        data = JSON.parse(event.data)
+        if (data.type === WS_TYPE_BUS_POSITION) {
+          const bus: BusLocationFromServer = data
+          
+          if (!bus.id) return
+
+          updateBusPosition(bus.id, bus.position)
+        }
       } catch (err) {
-        errorHandler(err, 'Error parseando los datos recibidos por WebSocket')
+        errorHandler(err, 'Error procesando datos de bus-location')
       }
-
-      if (data.type === WS_TYPE_BUS_POSITION) {
-        const bus: BusLocationFromServer = data
-
-        if (!bus.id) return
-        updateBusPosition(bus.id, bus.position)
-      }
-    }
-
-    ws.onerror = (err) => {
-      errorHandler(err, 'Error en WebSocket')
-    }
-
-    ws.onclose = (event) => {
-      console.log('WebSocket cerrado:', event.code, event.reason)
-    }
+    })
 
     return () => {
-      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-        wsRef.current.close()
-        console.log('WebSocket de seguimiento cerrado.')
+      if (socketRef.current) {
+        socketRef.current.disconnect()
+        console.log('Socket.IO de seguimiento cerrado.')
       }
     }
-  }, [updateBusPosition])  
+  }, [updateBusPosition])
 }
