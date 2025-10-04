@@ -1,7 +1,20 @@
-import type { LiveGeolocationSenderOptions } from '@/env'
+import type { BusLocationForServer, LiveGeolocationSenderOptions } from '@/env'
+import { WS_RESPONSE_TYPE } from '@/lib/constants'
 import { trackLog } from '@/lib/utils'
 import { useEffect, useRef, useState } from 'preact/hooks'
 import { io, type Socket } from 'socket.io-client'
+import { Temporal } from 'temporal-polyfill'
+
+const INDICATORS = {
+  TRACKING_LOADING: 'INDICATORS_TRACKING_LOADING',
+  TRACKING_LOADED: 'INDICATORS_TRACKING_LOADED',
+  TRACKING_FAILED: 'INDICATORS_TRACKING_FAILED',
+  TRACKING_STOPPED: 'INDICATORS_TRACKING_STOPPED'
+} as const
+
+const SOCKET_EVENTS = {
+  BUS_LOCATION: 'bus-location'
+} as const
 
 const DEFAULT_OPTIONS: LiveGeolocationSenderOptions = {
   id: null, // ID del chofer
@@ -14,25 +27,100 @@ const DEFAULT_OPTIONS: LiveGeolocationSenderOptions = {
 export function useLiveGeolocationSender (url: string, options: LiveGeolocationSenderOptions = DEFAULT_OPTIONS) {
   // Referencias
   const socketRef = useRef<Socket | null>(null)
+  const watchIdRef = useRef<number | null>(null)
 
   // Estados
   const [error, setError] = useState<[(Error | null), (string | null)]>([null, null])
+  const [isWatching, setIsWatching] = useState(false)
+  const [isTracking, setIsTracking] = useState(false)
+  // indicatorTracking tiene como tipo null o "el valor de cualquier propiedad de INDICATORS"
+  const [trackingIndicator, setTrackingIndicator] = useState<typeof INDICATORS[keyof typeof INDICATORS] | null>(null)
+  const [position, setPosition] = useState<GeolocationPosition | null>(null)
 
   // Funciones para la conexión
   function startWatching () {
+    if (isWatching) return
+    
+    // Indicador - Cargando seguimiento
+    setTrackingIndicator(INDICATORS.TRACKING_LOADING)
 
+    const watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, {
+      enableHighAccuracy: options.enableHighAccuracy,
+      maximumAge: options.maximumAge,
+      timeout: options.timeout
+    })
+
+    watchIdRef.current = watchId
+
+    // Indicadores
+    setIsWatching(true) // Consiguiendo ubicación continuamente
+    setIsTracking(true) // Ubicando al usuario
   }
 
   function stopWatching () {
+    if (watchIdRef.current !== null) {
+      navigator.geolocation.clearWatch(watchIdRef.current)
+      watchIdRef.current = null
+    }
+
+    // Indicadores - Terminar seguimiento
+    setIsWatching(false)
+    setIsTracking(false)
+    setTrackingIndicator(INDICATORS.TRACKING_STOPPED)
+  }
+
+  function successCallback (position: GeolocationPosition) {
+    if (!options.id) {
+      // Indicadores - Error, falta id
+      setTrackingIndicator(INDICATORS.TRACKING_FAILED)
+      setPosition(null)
+      setError([null, 'Falta el ID del chofer'])
+      return
+    }
     
+    // Indicadores - Todo correcto
+    setTrackingIndicator(INDICATORS.TRACKING_LOADED) // Terminar carga de seguimiento al recibir la primera ubicación
+    setPosition(position) // Guardar coordenadas
+    setError([null, null]) // Limpiar último mensaje de error
+
+    // Enviar datos al servidor
+    const socket = socketRef.current
+    if (socket && socket.connected) {
+      const { coords } = position
+
+      const busLocation: BusLocationForServer = {
+        id: options.id,
+        accuracy: coords.accuracy,
+        appTimestamp: Temporal.Now.instant().epochMilliseconds,
+        gpsTimestamp: position.timestamp,
+        position: {
+          x: coords.longitude,
+          y: coords.latitude
+        },
+        speed: coords.speed,
+        type: WS_RESPONSE_TYPE.BUS_POSITION
+      }
+
+      socket.emit(SOCKET_EVENTS.BUS_LOCATION, busLocation)
+    }
   }
 
-  function successCallback () {
+  function errorCallback (positionError: GeolocationPositionError) {
+    const { code, message } = positionError
+    let cause = `Código de error desconocido: ${code}`
 
-  }
+    if (code === positionError.PERMISSION_DENIED) {
+      cause = 'Permiso denegado por el usuario'
+    } else if (code === positionError.POSITION_UNAVAILABLE) {
+      cause = 'Ubicación no disponible'
+    } else if (code === positionError.TIMEOUT) {
+      cause = 'Tiempo de espera agotado'
+    }
 
-  function errorCallback () {
+    const error = new Error(message, { cause })
+    setError([error, 'Error consiguiendo la ubicación del usuario'])
 
+    trackLog('WS', 'Error de ubicación', error, 'CHOFER', options.id ?? undefined)
   }
   
   // Effect principal - Establecer conexión al servidor WebSocket
@@ -68,6 +156,13 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
 
   return {
     startWatching,
-    stopWatching
+    stopWatching,
+    indicators: {
+      trackingState: trackingIndicator,
+      isTracking,
+      isWatching
+    },
+    position,
+    error
   }
 }
