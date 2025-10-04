@@ -24,7 +24,13 @@ const DEFAULT_OPTIONS: LiveGeolocationSenderOptions = {
   timeout: 10 * 1000 // Tiempo máximo para obtener la posición (en ms)
 }
 
-export function useLiveGeolocationSender (url: string, options: LiveGeolocationSenderOptions = DEFAULT_OPTIONS) {
+export function useLiveGeolocationSender (url: string, options: LiveGeolocationSenderOptions) {
+  // Combinar opciones de configuración para garantizar inmutabilidad y valores por defecto
+  const combinedOptions = {
+    ...DEFAULT_OPTIONS,
+    ...options
+  }
+  
   // Referencias
   const socketRef = useRef<Socket | null>(null)
   const watchIdRef = useRef<number | null>(null)
@@ -45,9 +51,9 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
     setTrackingIndicator(INDICATORS.TRACKING_LOADING)
 
     const watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, {
-      enableHighAccuracy: options.enableHighAccuracy,
-      maximumAge: options.maximumAge,
-      timeout: options.timeout
+      enableHighAccuracy: combinedOptions.enableHighAccuracy,
+      maximumAge: combinedOptions.maximumAge,
+      timeout: combinedOptions.timeout
     })
 
     watchIdRef.current = watchId
@@ -70,7 +76,7 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
   }
 
   function successCallback (position: GeolocationPosition) {
-    if (!options.id) {
+    if (!combinedOptions.id) {
       // Indicadores - Error, falta id
       setTrackingIndicator(INDICATORS.TRACKING_FAILED)
       setPosition(null)
@@ -89,7 +95,7 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
       const { coords } = position
 
       const busLocation: BusLocationForServer = {
-        id: options.id,
+        id: combinedOptions.id,
         accuracy: coords.accuracy,
         appTimestamp: Temporal.Now.instant().epochMilliseconds,
         gpsTimestamp: position.timestamp,
@@ -120,13 +126,13 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
     const error = new Error(message, { cause })
     setError([error, 'Error consiguiendo la ubicación del usuario'])
 
-    trackLog('WS', 'Error de ubicación', error, 'CHOFER', options.id ?? undefined)
+    trackLog('WS', 'Error de ubicación', error, 'CHOFER', combinedOptions.id ?? undefined)
   }
   
   // Effect principal - Establecer conexión al servidor WebSocket
   useEffect(() => {
-    const choferId = options.id
-    if (!choferId || !options.sendCoordinates) return
+    const choferId = combinedOptions.id
+    if (!choferId || !combinedOptions.sendCoordinates) return
 
     const socket = io(url, {
       // Forzar solo conexión websocket, sin usar http long polling por problemas en mi celular,
@@ -136,7 +142,7 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
         // Mandar datos específicos para el handshake, no es necesario,
         // pero se usa para hacer más informativa la conexión inicial
         role: 'chofer',
-        id: options.id
+        id: combinedOptions.id
       }
     })
 
@@ -152,7 +158,7 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
         trackLog('WS', 'Chofer desconectado', null, 'CHOFER', choferId)
       }
     }
-  }, [options.id, options.sendCoordinates, url])
+  }, [combinedOptions.id, combinedOptions.sendCoordinates, url])
 
   return {
     startWatching,
