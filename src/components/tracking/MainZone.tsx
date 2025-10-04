@@ -90,10 +90,17 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
       control.zoom({ position: 'topright' }).addTo($map)
     }
 
-    // for (const { location } of buses) {
-    //   const { x, y } = location.position
-    //   const busMarker = marker({ lat: y, lng: x }).addTo($map)
-    // }
+    for (const { location } of buses) {
+      const { x, y } = location.position
+      let busMarker = location.marker
+
+      if (!busMarker) {
+        busMarker = marker({ lat: y, lng: x }).addTo($map)
+        location.marker = busMarker
+      }
+
+      busMarker.setLatLng({ lat: y, lng: x })
+    }
   }
 
   useEffect(() => {
