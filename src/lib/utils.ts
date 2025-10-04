@@ -85,3 +85,18 @@ export function errorHandler (err: unknown, baseMessage?: string | null, canShow
 
   return errorToShow
 }
+
+export function trackLog (context: 'WS' | 'HTTP', message: string, extra: Error | string | null | undefined = null, type: 'CHOFER' | 'USUARIO', id: string = 'unknown') {
+  const now = Temporal.Now.instant()
+  const time = parseTimestamp(now.epochMilliseconds, { format: '24 hrs', output: 'hh:mm:ss' })
+  const identifier = `${type}/${id}`
+
+  let extraMessage = ''
+  if (extra instanceof Error) {
+    extraMessage = extra.message
+  } else if (typeof extra === 'string') {
+    extraMessage = extra
+  }
+
+  console.log(`${time} [${context}] ${identifier} - ${message} ${extraMessage}`)
+}
