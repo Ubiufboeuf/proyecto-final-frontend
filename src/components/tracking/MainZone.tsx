@@ -91,12 +91,11 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     }
 
     for (const { location } of buses) {
-      // console.log(bus.location)
       const { x, y } = location.position
       console.log({ x, y })
       const busMarker = marker({ lat: y, lng: x }).addTo($map)
-      console.log(busMarker)      
-    }    
+      console.log(busMarker)
+    }
   }
 
   useEffect(() => {
