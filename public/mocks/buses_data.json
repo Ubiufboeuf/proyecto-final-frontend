@@ -19,11 +19,11 @@
       },
       "location": {
         "city": "Canelones",
-        "country": "Uruguay",
         "position": {
           "x": 0,
           "y": 0
-        }
+        },
+        "marker": null
       },
       "origin": {
         "location": "Montevideo",
@@ -49,11 +49,11 @@
       },
       "location": {
         "city": "Canelones",
-        "country": "Uruguay",
         "position": {
           "x": 0,
           "y": 0
-        }
+        },
+        "marker": null
       },
       "origin": {
         "location": "Montevideo",
@@ -79,11 +79,11 @@
       },
       "location": {
         "city": "Canelones",
-        "country": "Uruguay",
         "position": {
           "x": 0,
           "y": 0
-        }
+        },
+        "marker": null
       },
       "origin": {
         "location": "Montevideo",
@@ -109,11 +109,11 @@
       },
       "location": {
         "city": "Canelones",
-        "country": "Uruguay",
         "position": {
           "x": 0,
           "y": 0
-        }
+        },
+        "marker": null
       },
       "origin": {
         "location": "Montevideo",

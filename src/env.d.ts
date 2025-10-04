@@ -1,3 +1,4 @@
+import type { Marker } from 'leaflet'
 import type { JSX } from 'preact/jsx-runtime'
 
 export type Contact = {
@@ -47,6 +48,19 @@ export type Point = {
   y: number
 }
 
+export type BusLocation = {
+  city: string
+  position: Point
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  marker: Marker<any> | null
+}
+
+// Este lo recibe del servidor
+export type BusLocationFromServer = BusLocation & {
+  id: string
+  type: string
+}
+
 export type Bus = {
   id: string
   state: BusStates
@@ -59,11 +73,7 @@ export type Bus = {
     location: string
     timestamp: number
   }
-  location: {
-    city: string
-    country: string
-    position: Point
-  }
+  location: BusLocation
   route: {
     current: Point[]
     planned: Point[]
