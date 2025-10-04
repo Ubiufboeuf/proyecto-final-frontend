@@ -19,6 +19,7 @@
     "preact": "10.26.9",
     "react": "npm:@preact/compat@18.3.1",
     "react-dom": "npm:@preact/compat@18.3.1",
+    "socket.io-client": "4.8.1",
     "tailwindcss": "4.1.10",
     "temporal-polyfill": "0.3.0",
     "vaul": "1.1.2"
