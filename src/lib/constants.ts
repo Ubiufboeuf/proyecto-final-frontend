@@ -1,10 +1,11 @@
-const origen = import.meta.env.PUBLIC_ORIGIN
+const http_endpoint = import.meta.env.PUBLIC_HTTP_ENDPOINT
+const ws_endpoint = import.meta.env.PUBLIC_WS_ENDPOINT
 const { DEV } = import.meta.env
 
 export const ENDPOINTS = {
-  ROUTES: `${origen}/mocks/routes.json`,
-  BUSES_DATA: `${origen}/mocks/buses_data.json`,
-  WS: 'ws://localhost:8080'
+  ROUTES: `${http_endpoint}/mocks/routes.json`,
+  BUSES_DATA: `${http_endpoint}/mocks/buses_data.json`,
+  WS: ws_endpoint
 }
 
 export {
