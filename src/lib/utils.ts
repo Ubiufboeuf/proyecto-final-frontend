@@ -98,5 +98,5 @@ export function trackLog (context: 'WS' | 'HTTP', message: string, extra: Error 
     extraMessage = extra
   }
 
-  console.log(`${time} [${context}] ${identifier} - ${message} ${extraMessage}`)
+  console.log(`${time} [${context}] ${identifier} - ${message} ${extraMessage ? `: ${extraMessage}` : ''}`)
 }
