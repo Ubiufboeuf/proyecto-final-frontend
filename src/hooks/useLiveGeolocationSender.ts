@@ -1,20 +1,9 @@
 import type { BusLocationForServer, LiveGeolocationSenderOptions } from '@/env'
-import { WS_RESPONSE_TYPE } from '@/lib/constants'
+import { INDICATORS, SOCKET_EVENTS, WS_RESPONSE_TYPE } from '@/lib/constants'
 import { trackLog } from '@/lib/utils'
 import { useEffect, useRef, useState } from 'preact/hooks'
 import { io, type Socket } from 'socket.io-client'
 import { Temporal } from 'temporal-polyfill'
-
-const INDICATORS = {
-  TRACKING_LOADING: 'INDICATORS_TRACKING_LOADING',
-  TRACKING_LOADED: 'INDICATORS_TRACKING_LOADED',
-  TRACKING_FAILED: 'INDICATORS_TRACKING_FAILED',
-  TRACKING_STOPPED: 'INDICATORS_TRACKING_STOPPED'
-} as const
-
-const SOCKET_EVENTS = {
-  BUS_LOCATION: 'bus-location'
-} as const
 
 const DEFAULT_OPTIONS: LiveGeolocationSenderOptions = {
   id: null, // ID del chofer
@@ -25,6 +14,8 @@ const DEFAULT_OPTIONS: LiveGeolocationSenderOptions = {
 }
 
 export function useLiveGeolocationSender (url: string, options: LiveGeolocationSenderOptions) {
+  // #region --- Variables, estados y referencias ---
+
   // Combinar opciones de configuración para garantizar inmutabilidad y valores por defecto
   const combinedOptions = {
     ...DEFAULT_OPTIONS,
@@ -33,22 +24,71 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
   
   // Referencias
   const socketRef = useRef<Socket | null>(null)
-  const watchIdRef = useRef<number | null>(null)
+  const trackIdRef = useRef<number | null>(null)
 
   // Estados
   const [error, setError] = useState<[(Error | null), (string | null)]>([null, null])
-  const [isWatching, setIsWatching] = useState(false)
-  const [isTracking, setIsTracking] = useState(false)
-  // indicatorTracking tiene como tipo null o "el valor de cualquier propiedad de INDICATORS"
-  const [trackingIndicator, setTrackingIndicator] = useState<typeof INDICATORS[keyof typeof INDICATORS] | null>(null)
   const [position, setPosition] = useState<GeolocationPosition | null>(null)
+  const [isConnected, setIsConnected] = useState(false)
+  const [isTracking, setIsTracking] = useState(false)
+  
+  // Los indicadores tienen como valor "null" o "el valor de cualquier propiedad de su indicador en INDICATORS"
+  const [connectionIndicator, setConnectionIndicator] = useState<typeof INDICATORS.CONNECTION[keyof typeof INDICATORS.CONNECTION] | null>(null)
+  const [trackingIndicator, setTrackingIndicator] = useState<typeof INDICATORS.TRACKING[keyof typeof INDICATORS.TRACKING] | null>(null)
+  
+  // #endregion --- Variables, estados y referencias ---
 
-  // Funciones para la conexión
-  function startWatching () {
-    if (isWatching) return
+  // #region --- Funciones de la conexión ---
+
+  function handleSocketConnected (choferId: string) {
+    trackLog('WS', 'Conexión establecida', null, 'CHOFER', choferId)
+
+    // Conexión establecida
+    setError([null, null])
+    setIsConnected(true)
+    setConnectionIndicator(INDICATORS.CONNECTION.ENTABLISHED)
+  }
+
+  function handleSocketDisconnected (choferId: string, reason: Socket.DisconnectReason) {
+    trackLog('WS', 'Conexión cerrada', reason, 'CHOFER', choferId)
+
+    // Conexión cerrada
+    setError([null, null])
+    setIsConnected(false)
+    setConnectionIndicator(INDICATORS.CONNECTION.CLOSED)
+    setIsTracking(false)
+    setTrackingIndicator(INDICATORS.TRACKING.STOPPED)
+  }
+
+  function handleConnectionError (choferId: string, err: unknown) {
+    let error = null
+    if (err instanceof Error) {
+      error = err
+    } else if (typeof err === 'string') {
+      error = new Error(err)
+    } else {
+      error = new Error('Tipo de error desconocido', { cause: err })
+    }
+
+    trackLog('WS', 'Error de conexión', error, 'CHOFER', choferId)
     
-    // Indicador - Cargando seguimiento
-    setTrackingIndicator(INDICATORS.TRACKING_LOADING)
+    // Error de conexión
+    setError([error, 'Error de conexión'])
+    setIsConnected(false)
+    setConnectionIndicator(INDICATORS.CONNECTION.FAILED)
+    setIsTracking(false)
+    setTrackingIndicator(INDICATORS.TRACKING.FAILED)
+  }
+  
+  // #endregion --- Funciones de la conexión ---
+
+  // #region --- Funciones del seguimiento ---
+
+  function startTracking () {
+    if (isTracking) return
+    
+    // Cargando seguimiento
+    setTrackingIndicator(INDICATORS.TRACKING.LOADING)
 
     const watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, {
       enableHighAccuracy: combinedOptions.enableHighAccuracy,
@@ -56,36 +96,35 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
       timeout: combinedOptions.timeout
     })
 
-    watchIdRef.current = watchId
+    trackIdRef.current = watchId
 
-    // Indicadores
-    setIsWatching(true) // Consiguiendo ubicación continuamente
-    setIsTracking(true) // Ubicando al usuario
+    // Siguiendo al usuario
+    setIsTracking(true)
   }
 
   function stopWatching () {
-    if (watchIdRef.current !== null) {
-      navigator.geolocation.clearWatch(watchIdRef.current)
-      watchIdRef.current = null
+    if (trackIdRef.current !== null) {
+      navigator.geolocation.clearWatch(trackIdRef.current)
+      trackIdRef.current = null
     }
 
-    // Indicadores - Terminar seguimiento
-    setIsWatching(false)
+    // Terminar seguimiento
     setIsTracking(false)
-    setTrackingIndicator(INDICATORS.TRACKING_STOPPED)
+    setTrackingIndicator(INDICATORS.TRACKING.STOPPED)
   }
 
   function successCallback (position: GeolocationPosition) {
     if (!combinedOptions.id) {
-      // Indicadores - Error, falta id
-      setTrackingIndicator(INDICATORS.TRACKING_FAILED)
+      // Error, falta ID
+      setIsTracking(false)
+      setTrackingIndicator(INDICATORS.TRACKING.ID_MISSING)
       setPosition(null)
       setError([null, 'Falta el ID del chofer'])
       return
     }
     
-    // Indicadores - Todo correcto
-    setTrackingIndicator(INDICATORS.TRACKING_LOADED) // Terminar carga de seguimiento al recibir la primera ubicación
+    // Todo correcto
+    setTrackingIndicator(INDICATORS.TRACKING.LOADED) // Terminar carga de seguimiento al recibir la primera ubicación
     setPosition(position) // Guardar coordenadas
     setError([null, null]) // Limpiar último mensaje de error
 
@@ -124,12 +163,18 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
     }
 
     const error = new Error(message, { cause })
+
+    // Indicadores - Error al conseguir la posicón
     setError([error, 'Error consiguiendo la ubicación del usuario'])
+    setIsTracking(false)
+    setTrackingIndicator(INDICATORS.TRACKING.FAILED)
 
     trackLog('WS', 'Error de ubicación', error, 'CHOFER', combinedOptions.id ?? undefined)
   }
+
+  // #endregion --- Funciones del seguimiento ---
   
-  // Effect principal - Establecer conexión al servidor WebSocket
+  // Effect principal - Establecer conexión con el servidor WebSocket
   useEffect(() => {
     const choferId = combinedOptions.id
     if (!choferId || !combinedOptions.sendCoordinates) return
@@ -142,31 +187,31 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
         // Mandar datos específicos para el handshake, no es necesario,
         // pero se usa para hacer más informativa la conexión inicial
         role: 'chofer',
-        id: combinedOptions.id
+        id: choferId
       }
     })
 
     socketRef.current = socket
     
-    socket.on('connect', () => trackLog('WS', 'Chofer conectado', null, 'CHOFER', choferId))
-    socket.on('disconnect', (reason) => trackLog('WS', 'Chofer desconectado', reason, 'CHOFER', choferId))
-    socket.on('connection_error', (err) => setError([err, 'Error de conexión']))
+    socket.on('connect', () => handleSocketConnected(choferId))
+    socket.on('disconnect', (reason) => handleSocketDisconnected(choferId, reason))
+    socket.on('connection_error', (err) => handleConnectionError(choferId, err))
 
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect()
-        trackLog('WS', 'Chofer desconectado', null, 'CHOFER', choferId)
       }
     }
   }, [combinedOptions.id, combinedOptions.sendCoordinates, url])
 
   return {
-    startWatching,
+    startWatching: startTracking,
     stopWatching,
     indicators: {
-      trackingState: trackingIndicator,
+      isConnected,
       isTracking,
-      isWatching
+      connectionState: connectionIndicator,
+      trackingState: trackingIndicator
     },
     position,
     error
