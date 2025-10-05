@@ -1,4 +1,4 @@
-import type { Marker } from 'leaflet'
+import type { LatLngTuple, Marker, Polyline } from 'leaflet'
 import type { JSX } from 'preact/jsx-runtime'
 import type { WS_RESPONSE_TYPE } from '@/lib/constants'
 
@@ -90,6 +90,10 @@ export type Bus = {
   route: {
     current: Point[]
     planned: Point[]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    current_polyline: Polyline<GeoJSON.LineString | GeoJSON.MultiLineString, any> | null
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    planned_polyline: Polyline<LineString | MultiLineString, any> | null
   }
   passengers: {
     capacity: number,
