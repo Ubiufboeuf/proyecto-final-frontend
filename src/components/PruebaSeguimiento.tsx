@@ -1,48 +1,60 @@
 import { useState, useEffect } from 'preact/compat'
 import { useLiveGeolocationSender } from '@/hooks/useLiveGeolocationSender'
+import { ENDPOINTS, INDICATORS } from '@/lib/constants'
 
 // ID del bus controlado para test
 const BUS_ID_TO_CONTROL = 'b123'
 
-export function DriverDashboard() {
-  const [serverUrl] = useState('http://192.168.1.5:8080')
+const userFriendlyConectionStates: Record<typeof INDICATORS.CONNECTION[keyof typeof INDICATORS.CONNECTION], string> = {
+  [INDICATORS.CONNECTION.FAILED]: 'Seguimiento fallido',
+  [INDICATORS.CONNECTION.ENTABLISHED]: 'Conexión establecida!',
+  [INDICATORS.CONNECTION.LOADING]: 'Conectando...',
+  [INDICATORS.CONNECTION.CLOSED]: 'Conexión cerrada'
+}
+
+const userFriendlyTrackingStates: Record<typeof INDICATORS.TRACKING[keyof typeof INDICATORS.TRACKING], string> = {
+  [INDICATORS.TRACKING.FAILED]: 'Seguimiento fallido',
+  [INDICATORS.TRACKING.LOADED]: 'Cargado!',
+  [INDICATORS.TRACKING.LOADING]: 'Cargando...',
+  [INDICATORS.TRACKING.STOPPED]: 'Seguimiento detenido',
+  [INDICATORS.TRACKING.ID_MISSING]: 'Falta especificar un ID'
+}
+
+export function DriverDashboard () {
+  const [serverUrl] = useState(ENDPOINTS.WS)
   const [highAccuracy, setHighAccuracy] = useState(true)
 
-  const {
-    coordinates,
-    isTracking,
-    isLoadingTracking,
-    error,
-    isWatching,
-    startWatching,
-    stopWatching
-  } = useLiveGeolocationSender(serverUrl, {
+  const { error, indicators, position, startWatching, stopWatching } = useLiveGeolocationSender(serverUrl, {
     enableHighAccuracy: highAccuracy,
-    timeout: 10000,
-    maximumAge: 30000,
+    id: BUS_ID_TO_CONTROL,
+    maximumAge: 0, // Para no usar una ubicación cacheada,
     sendCoordinates: true,
-    busId: BUS_ID_TO_CONTROL
+    timeout: 10000
   })
 
-  const [connectionStatus, setConnectionStatus] = useState<'connected' | 'connecting' | 'disconnected'>('disconnected')
-
-  useEffect(() => {
-    if (isWatching && !error) setConnectionStatus('connected')
-    else if (isTracking) setConnectionStatus('connecting')
-    else setConnectionStatus('disconnected')
-  }, [isWatching, isTracking, error])
+  function toggleAccuracy () {
+    setHighAccuracy((prevState) => !prevState)
+  }
 
   return (
     <div>
       <h2>Panel de Chofer (Test)</h2>
-      <p>Estado: {connectionStatus}</p>
-      <p>Latitud: {coordinates?.latitude ?? 'N/A'}</p>
-      <p>Longitud: {coordinates?.longitude ?? 'N/A'}</p>
+      <p>Estado de la conexión: {indicators.connectionState ? userFriendlyConectionStates[indicators.connectionState] : 'unknown'}</p>
+      <p>Estado del seguimiento: {indicators.trackingState ? userFriendlyTrackingStates[indicators.trackingState] : 'unknown'}</p>
+      <p>Conectado: {indicators.isConnected ? 'si' : 'no'}</p>
+      <p>Siguiendo: {indicators.isTracking ? 'si' : 'no'}</p>
+      <p>Latitud: {position?.coords?.latitude ?? 'N/A'}</p>
+      <p>Longitud: {position?.coords?.longitude ?? 'N/A'}</p>
+      <p>Precisión: {highAccuracy ? 'Alta' : 'Normal'}</p>
 
-      <button onClick={startWatching} disabled={isWatching || isLoadingTracking}>
-        {isLoadingTracking ? 'Iniciando...' : 'Iniciar Seguimiento'}
+      <button onClick={toggleAccuracy}>Cambiar precisión</button>
+      
+      <p>No confundas seguimiento con conexión</p>
+      <button onClick={startWatching} disabled={indicators.isTracking || indicators.trackingState === INDICATORS.TRACKING.LOADING}>
+        {indicators.trackingState === INDICATORS.TRACKING.LOADING ? 'Iniciando...' : 'Iniciar Seguimiento'}
       </button>
-      <button onClick={stopWatching} disabled={!isWatching}>Detener Seguimiento</button>
+      <button onClick={stopWatching} disabled={!indicators.isTracking}>Detener Seguimiento</button>
+
       {error && <p>Error: {error}</p>}
     </div>
   )
