@@ -19,10 +19,7 @@
       },
       "location": {
         "city": "Canelones",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
+        "position": null,
         "marker": null
       },
       "origin": {
@@ -49,10 +46,7 @@
       },
       "location": {
         "city": "Canelones",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
+        "position": null,
         "marker": null
       },
       "origin": {
@@ -79,10 +73,7 @@
       },
       "location": {
         "city": "Canelones",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
+        "position": null,
         "marker": null
       },
       "origin": {
@@ -109,10 +100,7 @@
       },
       "location": {
         "city": "Canelones",
-        "position": {
-          "x": 0,
-          "y": 0
-        },
+        "position": null,
         "marker": null
       },
       "origin": {

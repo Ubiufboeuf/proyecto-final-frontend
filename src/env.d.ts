@@ -52,7 +52,7 @@ export type Point = {
 
 export type BusLocation = {
   city: string
-  position: Point
+  position: Point | null
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   marker: Marker<any> | null
 }

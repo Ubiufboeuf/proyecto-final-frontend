@@ -33,7 +33,7 @@ export function useBusTrackingSocket () {
         if (data.type === WS_RESPONSE_TYPE.BUS_POSITION) {
           const bus: BusLocationFromServer = data
           
-          if (!bus.id) return
+          if (!bus.id || !bus.position) return
 
           updateBusPosition(bus.id, bus.position)
         }
