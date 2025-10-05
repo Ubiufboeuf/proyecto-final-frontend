@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css'
 import type { BusesData, BusStates } from '@/env'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { useEffect, useRef, useState } from 'preact/hooks'
-import type { Map } from 'leaflet'
+import type { LatLngTuple, Map } from 'leaflet'
 import VaulDrawer from './Drawer'
 import { Icon } from '../Icon'
 import { IconEye, IconFocus } from '../Icons'
@@ -84,7 +84,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   async function handleBusesAndRoutes () {
     if (!leaflet || !buses) return
 
-    const { map: createMap, control, marker } = leaflet
+    const { map: createMap, control, marker, polyline } = leaflet
 
     let $map = map
     if (!$map) {
@@ -94,18 +94,56 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
       control.zoom({ position: 'topright' }).addTo($map)
     }
 
-    for (const { location } of buses) {
-      if (location.position === null) continue
+    for (const { location, route } of buses) {
+      if (location.position !== null) {
+        const { x, y } = location.position
 
-      const { x, y } = location.position
-      let busMarker = location.marker
+        // Marcador
+        let busMarker = location.marker
 
-      if (!busMarker) {
-        busMarker = marker({ lat: y, lng: x }).addTo($map)
-        location.marker = busMarker
+        if (!busMarker) {
+          busMarker = marker({ lat: y, lng: x }).addTo($map)
+          location.marker = busMarker
+        }
+
+        busMarker.setLatLng({ lat: y, lng: x })
+      }
+      
+      // Ruta planeada
+      const busPlannedRoute: LatLngTuple[] = []
+
+      for (const point of route.planned) {
+        if (!point) continue
+        busPlannedRoute.push([point.y, point.x])
       }
 
-      busMarker.setLatLng({ lat: y, lng: x })
+      let busPlannedPolyline = route.planned_polyline
+      
+      if (!busPlannedPolyline) {
+        busPlannedPolyline = polyline(busPlannedRoute, {
+          color: 'blue',
+          weight: 4,
+          opacity: 0.8
+        }).addTo($map)
+      }
+
+      // Ruta actual
+      const busCurrentRoute: LatLngTuple[] = []
+
+      for (const point of route.current) {
+        if (!point) continue
+        busCurrentRoute.push([point.y, point.x])
+      }
+
+      let busCurrentPolyline = route.current_polyline
+      
+      if (!busCurrentPolyline) {
+        busCurrentPolyline = polyline(busCurrentRoute, {
+          color: 'blue',
+          weight: 4,
+          opacity: 0.8
+        }).addTo($map)
+      }
     }
   }
 
