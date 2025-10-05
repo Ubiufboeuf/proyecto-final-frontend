@@ -13,7 +13,7 @@ export function useBusTrackingSocket () {
     // Evitar crear conexión si ya existe
     if (socketRef.current) return
 
-    const socket = io(ENDPOINTS.WS)
+    const socket = io(ENDPOINTS.WS, { reconnectionAttempts: 3 })
     socketRef.current = socket
 
     socket.on('connect', () => {
