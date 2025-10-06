@@ -1,6 +1,7 @@
 import type { Marker, Polyline } from 'leaflet'
 import type { JSX } from 'preact/jsx-runtime'
 import type { WS_RESPONSE_TYPE } from '@/lib/constants'
+import type { HTMLInputTypeAttribute } from 'preact/compat'
 
 export type Contact = {
   dept: string
@@ -223,26 +224,15 @@ export type FormTextarea = {
   placeholder: string
 }
 
-export type FormInputText = {
+export type FormInput = {
   id: string
+  name: string
   title: string
-  type: 'text'
+  type: HTMLInputTypeAttribute
   placeholder: string
+  class: string
+  Icon?: () => JSX.Element
 }
 
-export type FormInputEmail = {
-  id: string
-  title: string
-  type: 'email'
-  placeholder: string
-}
-
-export type FormInputPhone = {
-  id: string
-  title: string
-  type: 'tel'
-  placeholder: string
-}
-
-export type FormInput = FormInputText | FormInputNumber | FormInputEmail | FormInputPhone
+export type FormInput = FormInputText | FormInput
 export type TripInfo = FormTextarea | FormInputText | FormInputEmail | FormInputPhone
