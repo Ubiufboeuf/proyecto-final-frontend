@@ -1,4 +1,4 @@
-import type { LatLngTuple, Marker, Polyline } from 'leaflet'
+import type { Marker, Polyline } from 'leaflet'
 import type { JSX } from 'preact/jsx-runtime'
 import type { WS_RESPONSE_TYPE } from '@/lib/constants'
 
