@@ -752,3 +752,24 @@ export const IconWC = () => (
 export const IconNoWC = () => (
   <svg  xmlns='http://www.w3.org/2000/svg'  width='24'  height='24'  viewBox='0 0 24 24'  fill='none'  stroke='currentColor'  strokeWidth='2'  strokeLinecap='round'  strokeLinejoin='round'  class='icon icon-tabler icons-tabler-outline icon-tabler-toilet-paper-off'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><path d='M4.27 4.28c-.768 1.27 -1.27 3.359 -1.27 5.72c0 3.866 1.343 7 3 7s3 -3.134 3 -7c0 -.34 -.01 -.672 -.03 -1' /><path d='M21 10c0 -3.866 -1.343 -7 -3 -7' /><path d='M7 3h11' /><path d='M21 10v7m-1.513 2.496l-1.487 -.496l-3 2l-3 -3l-3 2v-10' /><path d='M6 10h.01' /><path d='M3 3l18 18' /></svg>
 )
+
+export const IconEyeClosed = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+    stroke='currentColor'
+    strokeWidth='2'
+    strokeLinecap='round'
+    strokeLinejoin='round'
+    class='icon icon-tabler icons-tabler-outline icon-tabler-eye-closed'
+  >
+    <path d='M21 9c-2.4 2.667 -5.4 4 -9 4c-3.6 0 -6.6 -1.333 -9 -4' />
+    <path d='M3 15l2.5 -3.8' />
+    <path d='M21 14.976l-2.492 -3.776' />
+    <path d='M9 17l.5 -4' />
+    <path d='M15 17l-.5 -4' />
+  </svg>
+)
