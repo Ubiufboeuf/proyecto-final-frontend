@@ -1,7 +1,14 @@
 ---
-import Layout from '@/layouts/Layout.astro'
+import { LoginForm } from '@/components/forms/LoginForm'
+import { ThemeSelector } from '@/components/ThemeSelector'
+import LayoutSimple from '@/layouts/LayoutSimple.astro'
 ---
 
-<Layout title='Iniciar Sesión'>
-
-</Layout>
+<LayoutSimple title='Iniciar Sesión'>
+  <section class='flex items-center h-[calc(100dvh-80px)]'>
+    <LoginForm client:load />
+    <div class='fixed bottom-4 right-4'>
+      <ThemeSelector client:load />
+    </div>
+  </section>
+</LayoutSimple>
