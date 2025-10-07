@@ -28,7 +28,7 @@ export function LoginForm () {
         <p class='text-gray-300'>¿No tienes una cuenta todavía?</p>
         <a
           href='/register/'
-          class='border-b-2 transition-colors text-blue-400 border-b-transparent hover:border-blue-400'
+          class='transition-colors underline decoration-2 underline-offset-2 text-blue-400 decoration-transparent hover:decoration-[unset] touch:active:decoration-[unset]'
         >
           Registrate
         </a>
