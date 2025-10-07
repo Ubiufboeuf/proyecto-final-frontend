@@ -5,16 +5,6 @@ export function LoginForm () {
     <form class='h-fit w-100 rounded-xl flex flex-col items-center gap-4 p-4 py-12 bg-gray-700/50'>
       <h1 class='text-gray-100 font-semibold text-xl'>Iniciar Sesión</h1>
       <div class='w-full px-6'>
-        {/* <FormInput
-          detail={{ id: 'input-login-mail', title: 'Correo', placeholder: 'correo@email.com', type: 'email' }}
-          showIcon
-          class='text-base'
-          detail={{ id: 'input-login-mail', title: 'Correo', placeholder: 'correo@email.com', type: 'email' }}
-          showIcon
-          class='text-base'
-        /> */}
-      </div>
-      <div class='w-full px-6'>
         <FormInput
           id='input-register-password'
           name='input-register-password'
