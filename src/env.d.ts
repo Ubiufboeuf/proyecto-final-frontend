@@ -208,15 +208,6 @@ export type FormTimePicker = {
   type: 'time-picker'
 }
 
-export type FormInputNumber = {
-  id: string
-  title: string
-  type: 'number'
-  placeholder: string
-}
-
-export type TripDetail = FormSelect | FormDatePicker | FormTimePicker | FormInputNumber
-
 export type FormTextarea = {
   id: string
   title: string
@@ -234,5 +225,6 @@ export type FormInput = {
   Icon?: () => JSX.Element
 }
 
+export type TripDetail = FormSelect | FormDatePicker | FormTimePicker | FormInput
 export type FormInput = FormInput
 export type TripInfo = FormTextarea | FormInput
