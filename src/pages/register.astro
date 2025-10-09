@@ -1,7 +1,10 @@
 ---
-import Layout from '@/layouts/Layout.astro'
+import { RegisterForm } from '@/components/forms/RegisterForm'
+import LayoutSimple from '@/layouts/LayoutSimple.astro'
 ---
 
-<Layout title='Registrarse'>
-
-</Layout>
+<LayoutSimple title='Registrarse'>
+  <section class='flex items-center h-[calc(100dvh-80px)] min-h-fit lfw:w-lfw w-full'>
+    <RegisterForm client:load />
+  </section>
+</LayoutSimple>
