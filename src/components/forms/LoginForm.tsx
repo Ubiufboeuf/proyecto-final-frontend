@@ -13,8 +13,8 @@ export function LoginForm () {
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-xl'>Iniciar Sesión</h1>
       <div class='w-full lfw:px-6'>
         <FormInput
-          id='input-login-password'
-          name='input-login-password'
+          id='input-login-email'
+          name='input-login-email'
           title='Correo'
           placeholder='correo@email.com'
           type='email'
