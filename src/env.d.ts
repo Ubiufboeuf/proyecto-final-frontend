@@ -234,5 +234,5 @@ export type FormInput = {
   Icon?: () => JSX.Element
 }
 
-export type FormInput = FormInputText | FormInput
-export type TripInfo = FormTextarea | FormInputText | FormInputEmail | FormInputPhone
+export type FormInput = FormInput
+export type TripInfo = FormTextarea | FormInput
