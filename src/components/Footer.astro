@@ -15,7 +15,11 @@ import { ThemeSelector } from './ThemeSelector'
   </div>
   <div class='flex gap-4 items-center justify-center min-w-fit'>
     <ContactViaPhone client:idle />
-    <ThemeSelector buttonClass='text-white dark:text-white hover:bg-white hover:text-gray-700 touch:active:bg-white touch:active:text-gray-700 font-normal px-4 gap-2' client:idle />
+    <ThemeSelector
+      buttonClass='text-white dark:text-white hover:bg-white hover:text-gray-700 touch:active:bg-white touch:active:text-gray-700 font-normal px-4 gap-2'
+      listClass='bottom-13 right-0'
+      client:idle
+    />
   </div>
   <a
     href='mailto:berruttiturismo@adinet.com.uy'

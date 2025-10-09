@@ -27,7 +27,7 @@ const themeOptions: ThemeOptions[] = [
 
 let clickedSameButton = false
 
-export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
+export function ThemeSelector ({ buttonClass, listClass }: { buttonClass?: string, listClass?: string }) {
   const [isThemeListOpen, setIsThemeListOpen] = useState(false)
   const theme = useThemeStore((state) => state.theme)
   const setTheme = useThemeStore((state) => state.setTheme)
@@ -106,7 +106,7 @@ export function ThemeSelector ({ buttonClass }: { buttonClass?: string }) {
     <section class='h-fit w-full relative'>
       <section
         id='themeList'
-        class={`${isThemeListOpen ? 'themeListOpen' : ''} [&.themeListOpen]:h-fit [&.themeListOpen]:py-2 h-0 overflow-hidden [transition:height_250ms_ease,padding-block_250ms_ease] [interpolate-size:allow-keywords] absolute bottom-13 right-0 bg-gray-200 dark:bg-gray-700 rounded-lg py-0 px-2 gap-1.5 flex flex-col`}
+        class={`${isThemeListOpen ? 'themeListOpen' : ''} ${listClass} [&.themeListOpen]:h-fit [&.themeListOpen]:py-2 h-0 overflow-hidden [transition:height_250ms_ease,padding-block_250ms_ease] [interpolate-size:allow-keywords] absolute bg-gray-200 dark:bg-gray-700 rounded-lg py-0 px-2 gap-1.5 flex flex-col`}
       >
         {
           themeOptions.map(({ icon: ThemeIcon, name, theme: themeOption }) => (

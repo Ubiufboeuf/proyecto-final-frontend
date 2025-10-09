@@ -41,7 +41,7 @@ export function SideBar ({ pathname }: { pathname: string }) {
           }
         </main>
         <div class='py-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
-          <ThemeSelector />
+          <ThemeSelector listClass='bottom-13 right-0' />
           <RegisterButton class='w-full text-center' />
           <LoginButton class='w-full text-center' />
         </div>
