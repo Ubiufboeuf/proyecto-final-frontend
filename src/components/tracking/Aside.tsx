@@ -35,7 +35,7 @@ export function Aside ({ busesData: _busesData, class: className }: { busesData:
   return (
     <aside class={className}>
       <AsideHeader />
-      <section class='overflow-y-scroll h-full max-h-full [scrollbar-width:thin]'>
+      <section class='relative overflow-y-scroll h-full max-h-full [scrollbar-width:thin]'>
         <div id='buses-cards-wrapper' class='p-4 h-fit min-h-fit grid grid-cols-1 gap-4'>
           {
             buses?.map((bus) => (
@@ -43,26 +43,26 @@ export function Aside ({ busesData: _busesData, class: className }: { busesData:
             ))
           }
         </div>
-      </section>
-      <section class='min-h-fit border-t border-gray-200 text-gray-700 dark:border-0 dark:text-gray-200 p-2 px-4 flex flex-col gap-1'>
-        <strong class='text-xs font-semibold my-1'>Estado de los ómnibus:</strong>
-        <div class='flex items-center h-fit w-full justify-between'>
-          <span class='text-xs flex items-center gap-2'>
-            <div class='size-2 rounded-full bg-green-500 dark:bg-green-700' />
-            En viaje
-            <span class={`${inMovement ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 dark:[&.neutral]:text-gray-500 text-green-700 dark:text-green-600`}>{inMovement ?? 0}</span>
-          </span>
-          <span class='text-xs flex items-center gap-2'>
-            <div class='size-2 rounded-full bg-blue-500 dark:bg-blue-700' />
-            En terminal
-            <span class={`${inTerminal ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 dark:[&.neutral]:text-gray-500 text-blue-700 dark:text-blue-600`}>{inTerminal ?? 0}</span>
-          </span>
-          <span class='text-xs flex items-center gap-2'>
-            <div class='size-2 rounded-full bg-red-500 dark:bg-red-700' />
-            Atrasado
-            <span class={`${delayed ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 dark:[&.neutral]:text-gray-500 text-red-700 dark:text-red-600`}>{delayed ?? 0}</span>
-          </span>
-        </div>
+        <footer class='sticky bottom-0 bg-gray-800 min-h-fit border-t border-gray-200 text-gray-700 dark:border-0 dark:text-gray-200 p-2 px-4 flex flex-col gap-1'>
+          <strong class='text-xs font-semibold my-1'>Estado de los ómnibus:</strong>
+          <div class='flex items-center h-fit w-full justify-between'>
+            <span class='text-xs flex items-center gap-2'>
+              <div class='size-2 rounded-full bg-green-500 dark:bg-green-700' />
+              En viaje
+              <span class={`${inMovement ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 dark:[&.neutral]:text-gray-500 text-green-700 dark:text-green-600`}>{inMovement ?? 0}</span>
+            </span>
+            <span class='text-xs flex items-center gap-2'>
+              <div class='size-2 rounded-full bg-blue-500 dark:bg-blue-700' />
+              En terminal
+              <span class={`${inTerminal ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 dark:[&.neutral]:text-gray-500 text-blue-700 dark:text-blue-600`}>{inTerminal ?? 0}</span>
+            </span>
+            <span class='text-xs flex items-center gap-2'>
+              <div class='size-2 rounded-full bg-red-500 dark:bg-red-700' />
+              Atrasado
+              <span class={`${delayed ? '' : 'neutral'} ml-auto font-semibold [&.neutral]:text-gray-700 dark:[&.neutral]:text-gray-500 text-red-700 dark:text-red-600`}>{delayed ?? 0}</span>
+            </span>
+          </div>
+        </footer>
       </section>
     </aside>
   )
