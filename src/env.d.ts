@@ -190,7 +190,7 @@ export type PreferredTimeOptions = {
 export type FormSelect = {
   id: string
   title: string
-  type: 'select'
+  formElementType: 'select'
   options: UruguayDepartments[]
   defaultOption: string
 }
@@ -198,20 +198,20 @@ export type FormSelect = {
 export type FormDatePicker = {
   id: string
   title: string
-  type: 'date-picker'
+  formElementType: 'date-picker'
   epochMiliseconds: number
 }
 
 export type FormTimePicker = {
   id: string
   title: string
-  type: 'time-picker'
+  formElementType: 'time-picker'
 }
 
 export type FormTextarea = {
   id: string
   title: string
-  type: 'textarea'
+  formElementType: 'textarea'
   placeholder: string
 }
 
@@ -219,6 +219,7 @@ export type FormInput = {
   id: string
   name: string
   title: string
+  formElementType: 'input'
   type: HTMLInputTypeAttribute
   placeholder: string
   class?: string

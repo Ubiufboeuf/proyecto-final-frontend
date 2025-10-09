@@ -7,14 +7,13 @@ export function TripInfo () {
     <main class='grid md:grid-cols-2 grid-cols-1 gap-4'>
       {
         tripInfo.map((detail) => {
-          if (detail.type === 'textarea') {
+          if (detail.formElementType === 'textarea') {
             return <FormTextarea key={`trip-detail-select-${detail.id}`} detail={detail} />
-          } else if (detail.type === 'email') {
-            return <FormInput key={`trip-detail-input-${detail.id}`} detail={detail} />
-          } else if (detail.type === 'tel') {
-            return <FormInput key={`trip-detail-input-${detail.id}`} detail={detail} />
-          } else if (detail.type === 'text') {
-            return <FormInput key={`trip-detail-input-${detail.id}`} detail={detail} />
+          } else if (detail.formElementType === 'input') {
+            return <FormInput
+              key={`trip-detail-input-${detail.id}`}
+              {...detail}
+            />
           }
         })
       }
