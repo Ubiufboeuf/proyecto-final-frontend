@@ -16,6 +16,11 @@
   --spacing-sidebar: 288px;
 
   --color-orange-600-light: #F65C1A;
+
+  /* Para los formularios de login y registro */
+  --breakpoint-lfw: 400px; /* login-form-width */
+  --spacing-lfw: 400px; /* login-form-height */
+  --spacing-lfh: 460px; /* login-form-height */
 }
 
 @custom-variant touch {
