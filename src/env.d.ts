@@ -223,6 +223,7 @@ export type FormInput = {
   type: HTMLInputTypeAttribute
   placeholder: string
   required?: boolean
+  autocomplete?: string
   class?: string
   visiblePasswordPlaceholder?: string
 }
