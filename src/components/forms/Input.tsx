@@ -26,7 +26,7 @@ export function FormInput ({ id, name, title, placeholder, visiblePasswordPlaceh
 
   function handleFocusInput () {
     const input = inputRef.current
-    if (input) {
+    if (input?.type === 'password') {
       input.selectionStart = input.value.length
       input.selectionEnd = input.value.length
     }
