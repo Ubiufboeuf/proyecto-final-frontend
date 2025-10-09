@@ -25,17 +25,17 @@ export function RoutesModal () {
   return (
     <dialog
       // ref={modalRef}
-      class='h-screen w-screen fixed left-0 top-0 bg-black/80 flex items-center justify-center z-20'
+      class='h-screen w-screen min-h-fit fixed left-0 top-0 bg-black/80 flex items-center justify-center z-20'
       onClick={handleHideModal}
       hidden={!isModalOpen}
     >
-      <main class='h-115 w-168 min-h-fit max-h-full bg-white dark:bg-gray-800 rounded-lg text-neutral-700 dark:text-gray-300 overflow-y-auto p-5 px-7 gap-2 flex flex-col'>
+      <main class='w-168 overflow-y-auto h-full max-h-fit min-h-[max(fit-content,460px)] bg-white dark:bg-gray-800 rounded-lg text-neutral-700 dark:text-gray-300 p-5 px-7 gap-2 flex flex-col'>
         <section class='h-fit flex flex-wrap-reverse items-center justify-between min-h-fit'>
           <div class='flex items-center gap-2'>
-            <Icon class='size-6 text-orange-500'>
+            <Icon class='size-5 xs:size-6 text-orange-500'>
               <IconBus />
             </Icon>
-            <h1 class='text-lg font-bold text-gray-800 dark:text-gray-50 flex items-center'>
+            <h1 class='text-lg font-bold text-gray-800 dark:text-gray-50 hidden xs:flex items-center'>
               Horarios
               <div class='flex items-center gap-1'>
                 <span>: {origen}</span>
@@ -44,6 +44,13 @@ export function RoutesModal () {
                 </Icon>
                 <span>{destino}</span>
               </div>
+            </h1>
+            <h1 class='flex xs:hidden items-center gap-1 text-md font-semibold text-gray-800 dark:text-gray-50'>
+              <span>{origen}</span>
+              <Icon class='rotate-180 text-gray-500 size-4'>
+                <IconArrowLeft />
+              </Icon>
+              <span>{destino}</span>
             </h1>
           </div>
           <button
