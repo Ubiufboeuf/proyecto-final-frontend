@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css'
-import { Icon } from '@/components/Icon'
-import { IconArrowLeft } from '@/components/Icons'
 import { ThemeSelector } from '@/components/ThemeSelector'
 
 interface Props {
@@ -54,18 +52,12 @@ const themeCookie = Astro.cookies.get('berrutti-web-theme')
 		</script>
 	</head>
 	<body class='relative bg-linear-to-b dark:bg-radial-[circle_at_50%_20%] from-blue-50 to-orange-50 text-black dark:from-gray-800 dark:to-gray-900'>
-    <header class='w-full h-16 z-10 relative border-b-gray-200 border-b-[1px] px-8 pl-4 bg-white text-gray-700 top-0 left-0 flex justify-between items-center [&_.icon]:max-h-10 dark:border-0 dark:bg-transparent'>
+    <header class='w-full h-16 z-10 relative border-b-gray-200 border-b-[1px] px-8 bg-white text-gray-700 top-0 left-0 flex justify-between items-center [&_.icon]:max-h-10 dark:border-0 dark:bg-transparent'>
       <aside class='flex items-center justify-between gap-2 w-full'>
-        <a
-          href='/'
-          class='flex text-sm font-semibold cursor-pointer items-center justify-center max-h-full h-fit w-fit p-3 px-4 hover:bg-gray-200 touch:active:bg-gray-200 transition-colors gap-2 rounded-lg bg-white dark:bg-transparent dark:text-gray-200 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700'
-        >
-          <Icon class='size-5'>
-            <IconArrowLeft />
-          </Icon>
-          <span>Volver</span>
-        </a>
-        <h1 class='font-bold text-center text-lg text-nowrap min-w-fit dark:text-gray-50'>{headerTitle ?? title}</h1>
+        <h1 class='font-bold text-center text-lg text-nowrap w-fit dark:text-gray-50'>{headerTitle ?? title}</h1>
+				<div class='w-fit h-fit'>
+					<ThemeSelector listClass='top-13 right-0' client:load />
+				</div>
       </aside>
     </header>
     <main class={`flex flex-col items-center ${className}`}>
