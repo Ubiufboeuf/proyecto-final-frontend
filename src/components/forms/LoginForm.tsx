@@ -11,7 +11,7 @@ export function LoginForm () {
       onSubmit={handleSubmitForm}
     >
       <h1 class='text-gray-100 font-semibold text-xl'>Iniciar Sesión</h1>
-      <div class='w-full px-6'>
+      <div class='w-full lfw:px-6'>
         <FormInput
           id='input-register-password'
           name='input-register-password'
@@ -22,7 +22,7 @@ export function LoginForm () {
           required
         />
       </div>
-      <div class='w-full px-6'>
+      <div class='w-full lfw:px-6'>
         <FormInput
           id='input-login-password'
           name='input-login-password'
@@ -38,7 +38,7 @@ export function LoginForm () {
         Iniciar Sesión
       </button>
       <div class='flex flex-col items-center mt-6'>
-        <p class='text-gray-300'>¿No tienes una cuenta todavía?</p>
+        <p class='text-gray-300 text-center'>¿No tienes una cuenta todavía?</p>
         <a
           href='/register/'
           class='transition-colors underline decoration-2 underline-offset-2 text-blue-400 decoration-transparent hover:decoration-[unset] touch:active:decoration-[unset]'
