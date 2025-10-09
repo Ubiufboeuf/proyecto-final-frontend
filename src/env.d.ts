@@ -218,12 +218,13 @@ export type FormTextarea = {
 export type FormInput = {
   id: string
   name: string
-  title: string
   formElementType: 'input'
+  title: string
   type: HTMLInputTypeAttribute
   placeholder: string
+  required?: boolean
   class?: string
-  Icon?: () => JSX.Element
+  visiblePasswordPlaceholder?: string
 }
 
 export type TripDetail = FormSelect | FormDatePicker | FormTimePicker | FormInput
