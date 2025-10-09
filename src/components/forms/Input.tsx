@@ -3,7 +3,7 @@ import { Icon } from '../Icon'
 import { IconEye, IconEyeClosed } from '../Icons'
 import { useRef, useState, type HTMLInputTypeAttribute } from 'preact/compat'
 
-export function FormInput ({ id, name, title, placeholder, visiblePasswordPlaceholder = 'abc123', type, required = false, class: className }: { id: string, name: string, title: string, type: HTMLInputTypeAttribute, placeholder: string, visiblePasswordPlaceholder?: string, required?: boolean, class: string }) {
+export function FormInput ({ id, name, title, placeholder, visiblePasswordPlaceholder = 'abc123', type, required = false, class: className }: { id: string, name: string, title: string, type: HTMLInputTypeAttribute, placeholder: string, visiblePasswordPlaceholder?: string, required?: boolean, class?: string }) {
   const [showPassword, setShowPassword] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
