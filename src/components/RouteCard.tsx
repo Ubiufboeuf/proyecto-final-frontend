@@ -178,7 +178,7 @@ export function RouteCard (ruta: Ruta) {
       </section>
       <section class='h-fit min-h-fit flex-1 flex w-full items-end'>
         <a
-          href={falta ? undefined : `/buy-ticket/${id}`}
+          href={falta ? undefined : `/buy-ticket/${id}/`}
           class={`${falta ? 'bg-gray-700 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600 touch:active:bg-orange-600 dark:bg-orange-600/90 dark:hover:bg-orange-600/70 dark:touch:active:bg-orange-600/70 cursor-pointer'} text-sm font-semibold text-nowrap rounded-lg w-full text-center p-3 px-4 text-white transition-colors`}
         >
           { falta
