@@ -7,10 +7,10 @@ export function LoginForm () {
   
   return (
     <form
-      class='h-fit w-100 rounded-xl flex flex-col items-center gap-4 p-4 py-12 bg-gray-700/50'
+      class='h-fit w-100 rounded-xl flex flex-col items-center gap-4 p-4 py-12 border border-gray-300 bg-white dark:border-0 dark:bg-gray-700/50'
       onSubmit={handleSubmitForm}
     >
-      <h1 class='text-gray-100 font-semibold text-xl'>Iniciar Sesión</h1>
+      <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-xl'>Iniciar Sesión</h1>
       <div class='w-full lfw:px-6'>
         <FormInput
           id='input-register-password'
@@ -38,10 +38,10 @@ export function LoginForm () {
         Iniciar Sesión
       </button>
       <div class='flex flex-col items-center mt-6'>
-        <p class='text-gray-300 text-center'>¿No tienes una cuenta todavía?</p>
+        <p class='text-gray-600 dark:text-gray-300 text-center'>¿No tienes una cuenta todavía?</p>
         <a
           href='/register/'
-          class='transition-colors underline decoration-2 underline-offset-2 text-blue-400 decoration-transparent hover:decoration-[unset] touch:active:decoration-[unset]'
+          class='transition-colors underline decoration-2 underline-offset-2 text-blue-500 dark:text-blue-400 decoration-transparent hover:decoration-[unset] touch:active:decoration-[unset]'
         >
           Registrate
         </a>
