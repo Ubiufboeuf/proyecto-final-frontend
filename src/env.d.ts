@@ -230,7 +230,7 @@ export type FormInput = {
   title: string
   type: HTMLInputTypeAttribute
   placeholder: string
-  class: string
+  class?: string
   Icon?: () => JSX.Element
 }
 
