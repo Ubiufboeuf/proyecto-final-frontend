@@ -36,7 +36,7 @@
 }
 
 @custom-variant sidebar-open {
-  &:where([data-sidebar-open] *) {
+  &:where([data-sidebar-open=checked] *) {
     @slot;
   }
 }
