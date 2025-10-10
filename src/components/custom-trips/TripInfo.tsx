@@ -8,7 +8,10 @@ export function TripInfo () {
       {
         tripInfo.map((detail) => {
           if (detail.formElementType === 'textarea') {
-            return <FormTextarea key={`trip-detail-select-${detail.id}`} detail={detail} />
+            return <FormTextarea
+              key={`trip-detail-select-${detail.id}`}
+              {...detail}
+            />
           } else if (detail.formElementType === 'input') {
             return <FormInput
               key={`trip-detail-input-${detail.id}`}
