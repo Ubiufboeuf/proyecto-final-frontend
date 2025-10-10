@@ -225,6 +225,7 @@ export type FormInput = {
   required?: boolean
   autocomplete?: string
   class?: string
+  wrapperClass?: string
   visiblePasswordPlaceholder?: string
 }
 
