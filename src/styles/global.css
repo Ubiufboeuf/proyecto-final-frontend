@@ -35,6 +35,12 @@
   }
 }
 
+@custom-variant sidebar-open {
+  &:where([data-sidebar-open] *) {
+    @slot;
+  }
+}
+
 @variant dark {
   &:where([data-theme=dark] *) {
     @slot;

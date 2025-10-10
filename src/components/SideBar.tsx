@@ -1,26 +1,22 @@
 import { links } from '@/lib/utils'
-import { useMenuStore } from '@/stores/useMenuStore'
 import { useId } from 'preact/compat'
-import { CloseSidebar } from './CloseSidebar'
 import { ThemeSelector } from './ThemeSelector'
 import { LoginButton } from './LoginButton'
 import { RegisterButton } from './RegisterButton'
 
 export function SideBar ({ pathname }: { pathname: string }) {
-  const isMenuOpen = useMenuStore((state) => state.isMenuOpen)
-  const setIsMenuOpen = useMenuStore((state) => state.setIsMenuOpen)
-
-  function toggleMenu () {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
   return (
     <>
       <aside
-        class={`${isMenuOpen ? 'menuOpen' : ''} [&.menuOpen]:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar min-w-fit h-full flex flex-col xl:hidden duration-300 z-[2] px-8 [scrollbar-width:thin] bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100`}
+        class='sidebar-open:right-0 -right-sidebar max-w-full overflow-y-auto mb-4 transition-[right] fixed top-0 w-sidebar min-w-fit h-full flex flex-col xl:hidden duration-300 z-[2] px-8 [scrollbar-width:thin] bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100'
       >
         <header class='h-navbar min-h-navbar w-full flex items-center justify-center'>
-          <CloseSidebar />
+          <label
+            htmlFor='input-global-sidebar'
+            class='h-fit w-full p-2 min-h-10 border transition-colors rounded-lg flex xl:hidden items-center justify-center cursor-pointer border-orange-500 text-orange-500 hover:bg-orange-50 hover:text-gray-700 touch:active:bg-orange-50 touch:active:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-orange-50 dark:hover:border-orange-50 dark:touch:active:bg-gray-700 dark:touch:active:text-orange-50 dark:touch:active:border-orange-50'
+          >
+            Cerrar menú
+          </label>
         </header>
         <main class='h-fit w-full flex flex-col items-center gap-2 min-h-fit'>
           {
@@ -46,10 +42,9 @@ export function SideBar ({ pathname }: { pathname: string }) {
           <LoginButton class='w-full text-center' />
         </div>
       </aside>
-      <button
-        class='fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 xl:hidden cursor-pointer'
-        hidden={!isMenuOpen}
-        onClick={toggleMenu}
+      <label
+        htmlFor='input-global-sidebar'
+        class='not-sidebar-open:hidden fixed h-screen w-screen z-[1] left-0 top-0 bg-black/40 xl:hidden cursor-pointer'
       />
     </>
   )

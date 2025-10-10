@@ -1,8 +1,7 @@
 ---
 import { Icon } from './Icon'
-import { IconBus } from './Icons'
+import { IconBus, IconMenu } from './Icons'
 import { links } from '@/lib/utils'
-import { ToggleSidebar } from '@/components/ToggleSidebar'
 import { RegisterButton } from './RegisterButton'
 import { LoginButton } from './LoginButton'
 
@@ -40,7 +39,14 @@ const { pathname } = Astro.props
     <aside class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
       <LoginButton class='not-xs:hidden xl:flex lg:hidden' />
       <RegisterButton class='not-xs:hidden xl:flex lg:hidden' />
-      <ToggleSidebar class='xl:hidden' client:load />
+      <label
+        for='input-global-sidebar'
+        class='xl:hidden h-fit w-fit p-2 aspect-square min-h-10 hover:bg-gray-200 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 touch:active:bg-gray-200 transition-colors rounded-lg flex items-center justify-center cursor-pointer'
+      >
+        <Icon>
+          <IconMenu />
+        </Icon>
+      </label>
     </aside>
   </div>
 </header>
