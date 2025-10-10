@@ -210,9 +210,11 @@ export type FormTimePicker = {
 
 export type FormTextarea = {
   id: string
+  name: string
   title: string
-  formElementType: 'textarea'
+  formElementType?: 'textarea'
   placeholder: string
+  class?: string
 }
 
 export type FormInput = {
