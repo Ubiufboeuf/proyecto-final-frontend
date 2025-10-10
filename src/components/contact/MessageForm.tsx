@@ -1,3 +1,4 @@
+import { FormInput } from '../forms/Input'
 import { Icon } from '../Icon'
 import { IconSend } from '../Icons'
 
@@ -8,26 +9,41 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 		
   return (
     <form
-			class='bg-white dark:bg-gray-700/50 dark:text-gray-200 dark:border-0 rounded-lg w-full h-fit flex-1 border border-gray-200 flex flex-col p-6 gap-6 [&_h1:not(&>h1)]:font-medium
-				[&_input]:h-10 [&_input]:w-full [&_input]:group-hover:outline-gray-300 [&_input]:group-active:outline-gray-300 [&_input]:focus-visible:outline-black [&_input]:transition-colors [&_input]:outline [&_input]:outline-transparent [&_input]:border [&_input]:border-gray-200 [&_input]:rounded [&_input]:px-2 dark:[&_input]:border-0 dark:[&_input]:bg-gray-700/50 dark:[&_input]:focus-visible:outline-0 dark:[&_input]:focus-visible:bg-gray-800 dark:[&_input]:outline-0 dark:[&_label]:hover:[&_input]:not-focus-visible:bg-gray-700 dark:[&_label]:touch:active:[&_input]:bg-gray-700
-			'
+			class='bg-white dark:bg-gray-700/50 dark:text-gray-200 dark:border-0 rounded-lg w-full h-fit flex-1 border border-gray-200 flex flex-col p-6 gap-6 [&_h1:not(&>h1)]:font-medium'
 			onSubmit={handleSubmitForm}
 		>
 			<h1 class='text-xl font-semibold dark:text-gray-100'>Envíanos un Mensaje</h1>
 			<div class='flex items-center justify-between w-full h-fit gap-4 md:flex-row flex-col'>
-				<label class='group w-full max-w-full'>
-					<h1>Nombre Completo</h1>
-					<input required />
-				</label>
-				<label class='group w-full max-w-full'>
-					<h1>Teléfono</h1>
-					<input type='tel' required />
-				</label>
+				<FormInput
+					id='input-contact-name'
+					name='input-contact-name'
+					title='Nombre Completo'
+					placeholder='Pepito Rodrigez'
+					type='text'
+					class='text-base'
+					wrapperClass='w-full max-w-full'
+					required
+				/>
+				<FormInput
+					id='input-contact-tel'
+					name='input-contact-tel'
+					title='Teléfono'
+					placeholder='+000 123 456 789'
+					type='tel'
+					class='text-base'
+					wrapperClass='w-full max-w-full'
+					required
+				/>
 			</div>
-			<label class='group'>
-				<h1>Email</h1>
-				<input type='email' required />
-			</label>
+			<FormInput
+				id='input-contact-email'
+				name='input-contact-email'
+				title='Correo'
+				placeholder='correo@email.com'
+				type='email'
+				class='text-base'
+				required
+			/>
 			<label class='group'>
 				<h1>Asunto</h1>
 				<select
