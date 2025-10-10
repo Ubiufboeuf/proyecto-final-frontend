@@ -218,7 +218,7 @@ export type FormTextarea = {
 export type FormInput = {
   id: string
   name: string
-  formElementType: 'input'
+  formElementType?: 'input'
   title: string
   type: HTMLInputTypeAttribute
   placeholder: string
