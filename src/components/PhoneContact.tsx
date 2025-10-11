@@ -8,7 +8,7 @@ export function PhoneContact ({ contact: { dept, maps, number, place } }: { cont
   const [copied, setCopied] = useState<string | null>(null)
   
   return (
-    <article class='w-full h-52 min-h-fit border-gray-300 border dark:border-0 dark:bg-gray-700/50 rounded-lg p-6 flex flex-col justify-between gap-3 transition-shadow'>
+    <article class='w-full h-full min-h-fit bg-white border-gray-300 border dark:border-0 dark:bg-gray-700/50 rounded-lg p-6 flex flex-col justify-between gap-3 transition-shadow'>
       <strong class='text-orange-600 dark:text-orange-600-light text-lg font-semibold'>{dept}</strong>
       <div class='flex items-center text-gray-500 dark:text-gray-300 gap-2 text-sm'>
         <Icon class='size-4'>
