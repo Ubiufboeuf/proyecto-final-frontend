@@ -3,6 +3,7 @@ import { Icon } from '@/components/Icon'
 import { IconMail, IconMapPin, IconClock, IconPhone } from '@/components/Icons'
 import Layout from '@/layouts/Layout.astro'
 import { MessageForm } from '@/components/contact/MessageForm'
+import { PhoneContact } from '@/components/PhoneContact'
 
 const selectOptions = [
 	{ text: 'Consulta General', value: 'general-inquiry' },
@@ -21,54 +22,12 @@ const contactInfo = [
 ]
 
 const offices = [
-  {
-    dept: 'Colonia',
-    info: [
-      { icon: IconMapPin, text: 'Local Nº 401 - Terminal de Ómnibus' },
-      { icon: IconPhone, text: '4522 5301' },
-      { icon: IconClock, text: 'Lun-Dom | 6:00 - 21:00' }
-    ]
-  },
-  {
-    dept: 'Carmelo',
-    info: [
-      { icon: IconMapPin, text: 'Uruguay 337' },
-      { icon: IconPhone, text: '4542 2504' },
-      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
-    ]
-  },
-  {
-    dept: 'Nueva Palmira',
-    info: [
-      { icon: IconMapPin, text: 'Gral Artigas 1193, esq.Eloy García' },
-      { icon: IconPhone, text: '4544 6181' },
-      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
-    ]
-  },
-  {
-    dept: 'Dolores',
-    info: [
-      { icon: IconMapPin, text: 'Artigas esq. Pbro. Bonofacio Redruello' },
-      { icon: IconPhone, text: '4534 4179' },
-      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
-    ]
-  },
-  {
-    dept: 'Mercedes',
-    info: [
-      { icon: IconMapPin, text: 'Local Nº 7 - Terminal Shopping' },
-      { icon: IconPhone, text: '4532 6449' },
-      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
-    ]
-  },
-  {
-    dept: 'Ombúes',
-    info: [
-      { icon: IconMapPin, text: 'Zorrilla 1036 Bis' },
-      { icon: IconPhone, text: '4576 2859' },
-      { icon: IconClock, text: 'Lun-Vie | 8:00 - 18:00' }
-    ]
-  }
+	{ dept: 'Colonia', place: 'Local Nº 401 - Terminal de Ómnibus', number: '4522 5301', maps: 'https://goo.gl/maps/n6dJaecYFAoNUNkw7' },
+	{ dept: 'Carmelo', place: 'Uruguay 337', number: '4542 2504', maps: 'https://goo.gl/maps/ekq5ueUK5CLCVyQq6' },
+	{ dept: 'Nueva palmira', place: 'Gral Artigas 1193, esq.Eloy García', number: '4544 6181', maps: 'https://goo.gl/maps/URc34cnf6J6xDNuT6' },
+	{ dept: 'Dolores', place: 'Artigas esq. Pbro. Bonofacio Redruello', number: '4534 4179', maps: 'https://goo.gl/maps/YmXeak5CnUxg1VFK8' },
+	{ dept: 'Mercedes', place: 'Local Nº 7 -Terminal Shopping', number: '4532 6449', maps: 'https://goo.gl/maps/FuTGqrJsBcDDrVSY7' },
+	{ dept: 'Ombúes', place: 'Zorrilla 1036 Bis', number: '4576 2859', maps: 'https://goo.gl/maps/NEh2aDkewo6HxLs69' }
 ]
 
 const faq = [
@@ -151,21 +110,11 @@ const faq = [
 	<section class='max-w-screen-2xl w-full'>
 		<h1 class='text-3xl font-bold text-gray-800 mb-4 text-center pb-2 dark:text-gray-50'>Nuestras Oficinas</h1>
 		<div class='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] w-full h-fit gap-6'>
-			{ offices.map(({ dept, info }) => (
-				<article class='h-full w-full border border-gray-200 rounded-lg bg-white dark:bg-gray-700/50 dark:border-0 flex flex-col p-6 gap-6'>
-					<h1 class='text-lg text-orange-500 dark:text-orange-600-light font-semibold'>{dept}</h1>
-					<div class='flex flex-col gap-4'>
-						{ info.map(({ icon: InfoIcon, text }) => (
-								<div class='flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300'>
-									<Icon class='size-5'>
-										<InfoIcon />
-									</Icon>
-									<span class=''>{text}</span>
-								</div>
-						)) }
-					</div>
-				</article>
-			)) }
+			{
+				offices.map((contact) => (
+					<PhoneContact contact={contact} />
+				))
+			}
 		</div>
 	</section>
 	<section class='max-w-screen-2xl w-full mt-4 mb-12'>
