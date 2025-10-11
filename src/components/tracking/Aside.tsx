@@ -43,7 +43,7 @@ export function Aside ({ busesData: _busesData, class: className }: { busesData:
             ))
           }
         </div>
-        <footer class='sticky bottom-0 bg-gray-800 min-h-fit border-t border-gray-200 text-gray-700 dark:border-0 dark:text-gray-200 p-2 px-4 flex flex-col gap-1'>
+        <footer class='sticky bottom-0 bg-white min-h-fit border-t border-gray-200 text-gray-700 dark:border-0 dark:bg-gray-800 dark:text-gray-200 p-2 px-4 flex flex-col gap-1'>
           <strong class='text-xs font-semibold my-1'>Estado de los ómnibus:</strong>
           <div class='flex items-center h-fit w-full justify-between'>
             <span class='text-xs flex items-center gap-2'>
