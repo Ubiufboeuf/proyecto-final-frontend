@@ -8,7 +8,7 @@ export function FormTimePicker ({ detail: { title, id } }: { detail: FormTimePic
         id={id}
         name={id}
         type='time'
-        class='w-full h-fit p-2.5 sm:text-sm rounded border-2 cursor-pointer transition-colors border-gray-200 group-hover:border-orange-500/50 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:focus-visible:bg-gray-800 dark:focus-visible:hover:bg-gray-700'
+        class='w-full h-fit p-2.5 sm:text-sm rounded border-2 cursor-pointer transition-colors border-gray-200 group-hover:bg-orange-50 group-hover:border-orange-500/50 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:focus-visible:bg-gray-800 dark:focus-visible:hover:bg-gray-700'
       />
     </label>
   )

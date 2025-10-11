@@ -39,7 +39,7 @@ export function FormInput ({
   return (
     <label class={`${wrapperClass} relative flex flex-col gap-1 text-gray-700 dark:text-gray-300 group`}>
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold sm:text-sm'>{title}</h1>
-      <div class={`${className} ${type === 'password' ? '' : 'input-password'} flex items-center justify-between gap-2 p-2.5 not-[.input-password]:pr-1 not-[.input-password]:py-1 w-full h-fit not-[[class*=title-]]:sm:text-sm rounded border-2 transition-colors border-gray-200 group-hover:border-orange-500/50 touch:group-active:border-orange-500/50 focus-within:bg-gray-100 dark:border-transparent dark:bg-gray-700/50 dark:outline-0 dark:group-hover:border-gray-600 dark:touch:active:border-gray-600 dark:focus-within:bg-gray-800 cursor-text`}>
+      <div class={`${className} ${type === 'password' ? '' : 'input-password'} flex items-center justify-between gap-2 p-2.5 not-[.input-password]:pr-1 not-[.input-password]:py-1 w-full h-fit not-[[class*=title-]]:sm:text-sm rounded border-2 transition-colors border-gray-200 group-hover:bg-orange-50 group-hover:border-orange-500/50 touch:group-active:border-orange-500/50 focus-within:bg-gray-100 dark:border-transparent dark:bg-gray-700/50 dark:outline-0 dark:group-hover:border-gray-600 dark:touch:active:border-gray-600 dark:focus-within:bg-gray-800 cursor-text`}>
         <input
           ref={inputRef}
           id={id}
