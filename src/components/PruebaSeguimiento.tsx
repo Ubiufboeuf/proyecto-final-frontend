@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/compat'
+import { useState } from 'preact/compat'
 import { useLiveGeolocationSender } from '@/hooks/useLiveGeolocationSender'
 import { ENDPOINTS, INDICATORS } from '@/lib/constants'
 
