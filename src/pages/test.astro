@@ -2,6 +2,7 @@
 // import VaulDrawer from '@/components/Drawer'
 import '../styles/water-dark.css'
 import { DriverDashboard } from '@/components/PruebaSeguimiento'
+import { SimpleHttpRouteRecorder } from '@/components/RouteRecorderHttp'
 import '@/styles/global.css'
 ---
 
@@ -15,7 +16,8 @@ import '@/styles/global.css'
 	</head>
   <body>
     <!-- <VaulDrawer client:load /> -->
-		 <DriverDashboard client:only='preact' />
+		 <!-- <DriverDashboard client:only='preact' /> -->
+			<SimpleHttpRouteRecorder client:only='preact' />
   </body>
 </html>
 
