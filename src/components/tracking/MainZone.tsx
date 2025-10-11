@@ -189,14 +189,21 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
           id='map'
           class='w-full h-full max-w-full max-h-full overflow-hidden z-0'
         />
-        <header class='w-fit absolute left-2.5 top-2.5 bg-white dark:bg-gray-800 dark:[&>button]:text-gray-200 dark:[&>button]:hover:bg-gray-700 dark:[&>button]:touch:active:bg-gray-700 rounded-lg px-4 py-3 flex items-center gap-2 h-fit [&>button]:flex [&>button]:items-center [&>button]:max-h-full [&>button]:w-fit [&>button]:p-2 [&>button]:px-3 [&>button]:border [&>button]:border-gray-300 [&>button]:rounded-lg [&>button]:gap-2 [&>button]:text-gray-800 [&>button]:cursor-pointer [&>button]:text-sm [&>button]:hover:bg-gray-200 [&>button]:transition-colors mr-14'>
-          <button>
+        <header class='flex items-center gap-2 h-fit w-fit absolute left-2.5 top-2.5 rounded-lg px-4 py-3 mr-14
+        bg-white dark:bg-gray-800'>
+          <button class='flex items-center justify-center gap-2 w-fit h-fit max-w-full max-h-full px-3 p-2 border-2 text-sm cursor-pointer transition-colors rounded-lg outline-0
+          text-gray-800 border-gray-200 hover:bg-orange-50 active:bg-orange-50 touch:active:bg-orange-50 hover:border-orange-500/50 active:border-orange-500/50 touch:active:border-orange-500/50 focus-visible:bg-gray-100 focus-visible:border-orange-500/50
+          dark:bg-gray-700/50 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:active:bg-gray-700 dark:touch:active:bg-gray-700 dark:hover:border-gray-600 dark:active:border-gray-600 dark:touch:active:border-gray-600 dark:focus-visible:bg-gray-600'>
             <Icon class='size-5'>
               <IconEye />
             </Icon>
             <span class='hidden us:inline'>Vista Satélite</span>
           </button>
-          <button onClick={handleLocateMe}>
+          <button class='flex items-center justify-center gap-2 w-fit h-fit max-w-full max-h-full px-3 p-2 border-2 text-sm cursor-pointer transition-colors rounded-lg outline-0
+            text-gray-800 border-gray-200 hover:bg-orange-50 active:bg-orange-50 touch:active:bg-orange-50 hover:border-orange-500/50 active:border-orange-500/50 touch:active:border-orange-500/50 focus-visible:bg-gray-100 focus-visible:border-orange-500/50
+            dark:bg-gray-700/50 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:active:bg-gray-700 dark:touch:active:bg-gray-700 dark:hover:border-gray-600 dark:active:border-gray-600 dark:touch:active:border-gray-600 dark:focus-visible:bg-gray-600'
+            onClick={handleLocateMe}
+          >
             <Icon class='size-5'>
               <IconFocus />
             </Icon>
