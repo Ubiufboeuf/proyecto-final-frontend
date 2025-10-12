@@ -1,0 +1,27 @@
+---
+import LayoutSimple from '@/layouts/LayoutSimple.astro';
+---
+
+<LayoutSimple title='Aviso sobre el uso de cookies' class='max-w-screen-lg mx-auto w-full xs:px-10 px-6'>
+  <section class='flex flex-col items-center h-fit w-full max-w-screen-2xl gap-4 py-8 px-6'>
+    <h1 class='text-2xl font-bold text-center'>Aviso sobre el uso de cookies</h1>
+    <p class='text-pretty'>Berrutti Turismo utiliza únicamente cookies técnicas y de funcionalidad propias, que son esenciales para el correcto funcionamiento de nuestra aplicación web y para ofrecer un servicio solicitado por usted.</p>
+  </section>
+  <section class='flex flex-col items-center h-fit w-full max-w-screen-2xl gap-4 py-8 px-6'>
+    <h1 class='text-xl font-bold text-center'>1. ¿Qué son las Cookies?</h1>
+    <p class='text-pretty'>Son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web.</p>
+  </section>
+  <section class='flex flex-col items-center h-fit w-full max-w-screen-2xl gap-4 py-8 px-6'>
+    <h1 class='text-xl font-bold text-center'>2. Tipos de Cookies Utilizadas (No Necesitan Consentimiento Explícito)</h1>
+    <p class='text-pretty'>De acuerdo con la normativa de protección de datos, las cookies utilizadas en nuestra plataforma no requieren la obtención de su consentimiento expreso previo, ya que son estrictamente necesarias para la prestación del servicio. Utilizamos las siguientes:</p>
+    <ul>
+      <li class='list-disc list-inside'>Cookies de Sesión (Autenticación): Imprescindibles para identificar al usuario cuando inicia sesión. Permiten mantener la sesión activa y acceder a áreas restringidas (como el seguimiento de buses).</li>
+      <li class='list-disc list-inside'>Cookies de Preferencias/Técnicas: Se utilizan para recordar las preferencias del usuario en la interfaz (ej. su elección de tema claro o tema oscuro).</li>
+    </ul>
+  </section>
+  <section class='flex flex-col items-center h-fit w-full max-w-screen-2xl gap-4 py-8 px-6'>
+    <h1 class='text-xl font-bold text-center'>3. Gestión de Cookies</h1>
+    <p class='text-pretty'>Usted puede, en todo momento, restringir, bloquear o borrar las cookies de la Plataforma utilizando la configuración de su navegador. Sin embargo, si deshabilita las cookies de sesión, es posible que no pueda acceder a algunas funcionalidades.</p>
+    <p class='text-pretty'>Para más información sobre el tratamiento de sus datos, consulte nuestra <a href='/legal/privacy-policy' class='text-center text-gray-400 underline'>Política de Privacidad</a>.</p>
+  </section>
+</LayoutSimple>

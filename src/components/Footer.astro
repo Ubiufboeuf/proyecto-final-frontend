@@ -6,7 +6,7 @@ import { ThemeSelector } from './ThemeSelector'
 
 ---
 
-<footer class='w-full h-fit min-h-44 text-white bg-gray-800 dark:bg-gray-700/50 flex flex-col items-center justify-center gap-2'>
+<footer class='w-full h-fit min-h-fit py-8 text-white bg-gray-800 dark:bg-gray-700/50 flex flex-col items-center justify-center gap-2'>
   <div class='flex items-center justify-center gap-2'>
     <Icon class='size-6 text-orange-500'>
       <IconBus />
@@ -33,4 +33,10 @@ import { ThemeSelector } from './ThemeSelector'
       berruttiturismo@adinet.com.uy
     </span>
   </a>
+  <div class='flex flex-col md:flex-row gap-x-4 justify-center my-3'>
+    <a href='/legal/privacy-policy' class='text-center text-gray-400 underline'>Política de Privacidad</a>
+    <a href='/legal/terms-and-conditions' class='text-center text-gray-400 underline'>Términos y Condiciones</a>
+    <a href='/legal/cookies' class='text-center text-gray-400 underline'>Aviso sobre el uso de cookies</a>
+  </div>
+  <p class='opacity-70 text-sm'>&copy; 2025 Berrutti Turismo. Todos los derechos reservados.</p>
 </footer>
