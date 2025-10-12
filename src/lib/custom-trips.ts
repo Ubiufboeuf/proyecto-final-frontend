@@ -118,7 +118,7 @@ export const tripDetails: TripDetail[] = [
 ]
 
 export const tripInfo: TripInfo[] = [
-	{ id: 'comments', title: 'Comentarios o Solicitudes Especiales', formElementType: 'textarea', placeholder: 'Describe cualquier requerimiento especial, paradas adicionales, o información relevante para tu viaje...' },
+	{ id: 'comments', name: 'comments', title: 'Comentarios o Solicitudes Especiales', formElementType: 'textarea', placeholder: 'Describe cualquier requerimiento especial, paradas adicionales, o información relevante para tu viaje...' },
 	{ id: 'full-name', name: 'full-name', title: 'Nombre Completo', formElementType: 'input', type: 'text', placeholder: 'Juan Pérez' },
 	{ id: 'company', name: 'company', title: 'Companía (opcional)', formElementType: 'input', type: 'text', placeholder: 'Mi Empresa S.A.' },
 	{ id: 'phone', name: 'phone', title: 'Teléfono', formElementType: 'input', type: 'tel', placeholder: '123 456 789' },
