@@ -1,8 +1,8 @@
 import { links } from '@/lib/utils'
 import { useId } from 'preact/compat'
 import { ThemeSelector } from './ThemeSelector'
-import { LoginButton } from './LoginButton'
-import { RegisterButton } from './RegisterButton'
+import { LoginLink } from './user/LoginLink'
+import { RegisterLink } from './user/RegisterLink'
 
 export function SideBar ({ pathname }: { pathname: string }) {
   return (
@@ -38,8 +38,8 @@ export function SideBar ({ pathname }: { pathname: string }) {
         </main>
         <div class='py-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
           <ThemeSelector listClass='bottom-13 right-0' />
-          <RegisterButton class='w-full text-center' />
-          <LoginButton class='w-full text-center' />
+          <RegisterLink class='w-full text-center' />
+          <LoginLink class='w-full text-center' />
         </div>
       </aside>
       <label
