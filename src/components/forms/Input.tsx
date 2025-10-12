@@ -15,7 +15,8 @@ export function FormInput ({
     const input = inputRef.current
     if (input) {
       // Establecer foco en el input
-      setTimeout(() => input.focus(), 0)
+      // setTimeout(() => input.focus(), 0)
+      input.focus()
     }
 
     setShowPassword((prevState) => { // prevState = showPassword, true o false
