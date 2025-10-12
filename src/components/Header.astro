@@ -2,8 +2,7 @@
 import { Icon } from './Icon'
 import { IconBus, IconMenu } from './Icons'
 import { links } from '@/lib/utils'
-import { RegisterButton } from './RegisterButton'
-import { LoginButton } from './LoginButton'
+import { UserLinks } from './user/UserLinks'
 
 interface Props { 
   pathname: string
@@ -37,8 +36,7 @@ const { pathname } = Astro.props
       }
     </nav>
     <aside class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
-      <LoginButton class='not-xs:hidden xl:flex lg:hidden' />
-      <RegisterButton class='not-xs:hidden xl:flex lg:hidden' />
+      <UserLinks display='horizontal' />
       <label
         for='input-global-sidebar'
         class='xl:hidden h-fit w-fit p-2 aspect-square min-h-10 hover:bg-gray-200 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 touch:active:bg-gray-200 transition-colors rounded-lg flex items-center justify-center cursor-pointer'
