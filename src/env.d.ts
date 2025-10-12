@@ -3,6 +3,12 @@ import type { JSX } from 'preact/jsx-runtime'
 import type { WS_RESPONSE_TYPE } from '@/lib/constants'
 import type { HTMLInputTypeAttribute } from 'preact/compat'
 
+export type User = {
+  name: string
+  username: string
+  role: 'client' | 'driver' | 'admin'
+}
+
 export type Contact = {
   dept: string
   place: string
