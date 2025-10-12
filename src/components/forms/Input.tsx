@@ -39,7 +39,7 @@ export function FormInput ({
   return (
     <label class={`${wrapperClass} relative flex flex-col gap-1 text-gray-700 dark:text-gray-300 group`}>
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold sm:text-sm'>{title}</h1>
-      <div class={`${className} ${type === 'password' ? '' : 'input-password'} flex items-center justify-between gap-2 p-2.5 not-[.input-password]:pr-1 not-[.input-password]:py-1 w-full h-fit not-[[class*=title-]]:sm:text-sm rounded border-2 transition-colors border-gray-200 group-hover:bg-orange-50 group-hover:border-orange-500/50 touch:group-active:border-orange-500/50 focus-within:bg-gray-100 dark:border-transparent dark:bg-gray-700/50 dark:outline-0 dark:group-hover:border-gray-600 dark:touch:active:border-gray-600 dark:focus-within:bg-gray-800 cursor-text`}>
+      <div class={`${className} ${type === 'password' ? '' : 'input-password'} flex items-center justify-between gap-2  w-full h-fit not-[[class*=title-]]:sm:text-sm rounded border-2 transition-colors border-gray-200 group-hover:bg-orange-50 group-hover:border-orange-500/50 touch:group-active:border-orange-500/50 focus-within:bg-gray-100 dark:border-transparent dark:bg-gray-700/50 dark:outline-0 dark:group-hover:border-gray-600 dark:touch:active:border-gray-600 dark:focus-within:bg-gray-800 cursor-text`}>
         <input
           ref={inputRef}
           id={id}
@@ -47,14 +47,14 @@ export function FormInput ({
           type={type !== 'password' ? type : showPassword ? 'text' : type}
           placeholder={placeholder}
           onFocus={handleFocusInput}
-          class='h-full w-full outline-0 text-ellipsis'
+          class='h-full w-full outline-0 text-ellipsis p-3'
           required={required}
           autoComplete={autocomplete}
         />
         { type === 'password' && (
           <label
             onInput={toggleShowPassword}
-            class='flex items-center justify-center h-fit w-fit p-1 cursor-pointer rounded-lg transition-all hover:bg-gray-300 touch:active:bg-gray-300 dark:hover:bg-gray-600 dark:touch:active:bg-gray-600'
+            class='flex items-center justify-center h-fit w-fit p-1 mr-2 cursor-pointer rounded-lg transition-all hover:bg-gray-300 touch:active:bg-gray-300 dark:hover:bg-gray-600 dark:touch:active:bg-gray-600'
           >
             <input type='checkbox' hidden />
             <Icon class='size-6' hidden={showPassword}>
