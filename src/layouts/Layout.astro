@@ -3,6 +3,7 @@ import { SideBar } from '@/components/SideBar'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import '../styles/global.css'
+import { InitializeUser } from '@/components/user/InitializeUser'
 
 interface Props {
 	title: string
@@ -13,6 +14,7 @@ const { title, class: className = '' } = Astro.props
 const { originPathname: pathname } = Astro
 
 const themeCookie = Astro.cookies.get('berrutti-web-theme')
+const { isAuth, isLoading, user } = Astro.locals
 ---
 
 <html lang='es' data-theme={themeCookie?.value || 'system'}>
@@ -73,6 +75,7 @@ const themeCookie = Astro.cookies.get('berrutti-web-theme')
 		</script>
 	</head>
 	<body class='relative bg-linear-to-b dark:bg-radial-[circle_at_50%_20%] from-blue-50 to-orange-50 text-black dark:from-gray-800 dark:to-gray-900'>
+		<InitializeUser isAuth={isAuth} isLoading={isLoading} user={user} client:load />
 		<input id='input-global-sidebar' type='checkbox' hidden />
 		<Header pathname={pathname} />
 		<SideBar pathname={pathname} client:idle />
