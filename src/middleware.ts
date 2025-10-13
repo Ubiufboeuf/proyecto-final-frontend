@@ -6,7 +6,7 @@ import { SESSION_COOKIE_NAME } from './lib/constants'
 
 const auth = defineMiddleware(async (context, next) => {
   // Esto es para crear una cookie para pruebas, pero igual, algo así debería ser la configuración de la real
-  // context.cookies.set('berrutti-web-auth-token', 'token1', {
+  // context.cookies.set(SESSION_COOKIE_NAME, 'token2', {
   //   httpOnly: true,
   //   sameSite: 'strict',
   //   path: '/',
