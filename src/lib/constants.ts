@@ -1,4 +1,4 @@
-const http_endpoint = import.meta.env.PUBLIC_HTTP_ENDPOINT
+export const http_endpoint = import.meta.env.PUBLIC_HTTP_ENDPOINT
 const http_recorder_endpoint = import.meta.env.PUBLIC_HTTP_RECORDER_ENDPOINT
 const ws_endpoint = import.meta.env.PUBLIC_WS_ENDPOINT
 const { DEV } = import.meta.env
