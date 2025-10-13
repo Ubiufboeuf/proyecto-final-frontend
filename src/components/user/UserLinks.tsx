@@ -5,6 +5,7 @@ import { useUserStore } from '@/stores/useUserStore'
 
 export function UserLinks ({ display = 'header' }: { display: 'header' | 'sidebar' }) {
   const isAuth = useUserStore((state) => state.isAuth)
+  const user = useUserStore((state) => state.user)
   
   if (display === 'header') return (
     <div class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
@@ -12,7 +13,7 @@ export function UserLinks ({ display = 'header' }: { display: 'header' | 'sideba
         <LoginLink class='not-xs:hidden xl:flex lg:hidden' />
         <RegisterLink class='not-xs:hidden xl:flex lg:hidden' />
       </> }
-      { isAuth && <AccountLink /> }
+      { isAuth && <AccountLink username={user?.username} /> }
     </div>
   )
 
