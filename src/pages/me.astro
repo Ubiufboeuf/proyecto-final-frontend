@@ -5,7 +5,7 @@ import { LogoutButton } from '@/components/user/LogoutButton'
 import { SESSION_COOKIE_NAME } from '@/lib/constants'
 import { http_endpoint } from '@/lib/constants'
 
-if (http_endpoint !== Astro.url.origin) {
+if (new URL(http_endpoint).host !== Astro.url.host) {
   return Astro.redirect(http_endpoint)
 }
 
