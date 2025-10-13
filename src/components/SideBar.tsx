@@ -1,8 +1,6 @@
 import { links } from '@/lib/utils'
 import { useId } from 'preact/compat'
 import { ThemeSelector } from './ThemeSelector'
-import { LoginLink } from './user/LoginLink'
-import { RegisterLink } from './user/RegisterLink'
 import { UserLinks } from './user/UserLinks'
 
 export function SideBar ({ pathname }: { pathname: string }) {
