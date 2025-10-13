@@ -9,7 +9,7 @@ type userStore = {
   initializeUser: (newAuthStatus: AuthStatus) => void
   setIsAuth: (newValue: boolean) => void
   setIsLoading: (newValue: boolean) => void
-  setUser: (newUser: User) => void
+  setUser: (newUser: User | null) => void
 }
 
 export const useUserStore = create<userStore>((set) => ({
