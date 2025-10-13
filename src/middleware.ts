@@ -14,8 +14,11 @@ const auth = defineMiddleware(async (context, next) => {
   const token = context.cookies.get('berrutti-web-auth-token')
 
   if (!token) {
-    next()
-    return
+    context.locals.isLoading = false
+    context.locals.isAuth = false
+    context.locals.user = null
+    
+    return next()
   }
 
   // isLoading es para diferenciar el false de isAuth de "sin verificar" y "verificado fallido"
@@ -31,16 +34,11 @@ const auth = defineMiddleware(async (context, next) => {
     isLoading = false
   }
 
-  if (!isAuth || !user) {
-    next()
-    return
-  }
-
   context.locals.isLoading = isLoading
   context.locals.isAuth = isAuth
   context.locals.user = user
 
-  next()
+  return next()
 })
 
 export const onRequest = sequence(auth)
