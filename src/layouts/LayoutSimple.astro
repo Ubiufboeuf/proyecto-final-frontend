@@ -3,6 +3,7 @@ import { Icon } from '@/components/Icon'
 import '../styles/global.css'
 import { ThemeSelector } from '@/components/ThemeSelector'
 import { IconArrowLeft } from '@/components/Icons'
+import { InitializeUser } from '@/components/user/InitializeUser'
 
 interface Props {
 	title: string
@@ -13,6 +14,7 @@ interface Props {
 const { title, headerTitle, class: className = '' } = Astro.props
 
 const themeCookie = Astro.cookies.get('berrutti-web-theme')
+const { isAuth, isLoading, user } = Astro.locals
 ---
 
 <html lang='es' data-theme={themeCookie?.value || 'system'}>
@@ -54,6 +56,7 @@ const themeCookie = Astro.cookies.get('berrutti-web-theme')
 		</script>
 	</head>
 	<body class='relative bg-linear-to-b dark:bg-radial-[circle_at_50%_20%] from-blue-50 to-orange-50 text-black dark:text-gray-300 dark:from-gray-800 dark:to-gray-900'>
+		<InitializeUser isAuth={isAuth} isLoading={isLoading} user={user} client:load />
     <header class='w-full h-16 z-10 relative border-b-gray-200 border-b-[1px] px-8 pl-4 bg-white text-gray-700 top-0 left-0 flex justify-between items-center [&_.icon]:max-h-10 dark:border-0 dark:bg-transparent'>
       <aside class='flex items-center justify-between gap-2 w-full'>
         <a
