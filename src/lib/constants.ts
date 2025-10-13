@@ -7,7 +7,8 @@ export const ENDPOINTS = {
   ROUTES: `${http_endpoint}/mocks/routes.json`,
   BUSES_DATA: `${http_endpoint}/mocks/buses_data.json`,
   HTTP: http_recorder_endpoint,
-  WS: ws_endpoint
+  WS: ws_endpoint,
+  LOGOUT: `${http_endpoint}/api/logout`
 }
 
 export {
