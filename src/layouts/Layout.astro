@@ -78,7 +78,7 @@ const { isAuth, isLoading, user } = Astro.locals
 		<InitializeUser isAuth={isAuth} isLoading={isLoading} user={user} client:load />
 		<input id='input-global-sidebar' type='checkbox' hidden />
 		<Header pathname={pathname} />
-		<SideBar pathname={pathname} client:idle />
+		<SideBar pathname={pathname} client:load />
 		<main class={`flex flex-col items-center ${className}`}>
 			<slot />
 		</main>
