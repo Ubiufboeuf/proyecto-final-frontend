@@ -1,5 +1,5 @@
 ---
-import { SideBar } from '@/components/SideBar'
+import SideBar from '@/components/SideBar.astro'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import '../styles/global.css'
@@ -78,7 +78,7 @@ const { isAuth, isLoading, user } = Astro.locals
 		<InitializeUser isAuth={isAuth} isLoading={isLoading} user={user} client:load />
 		<input id='input-global-sidebar' type='checkbox' hidden />
 		<Header pathname={pathname} />
-		<SideBar pathname={pathname} client:idle />
+		<SideBar pathname={pathname} />
 		<main class={`flex flex-col items-center ${className}`}>
 			<slot />
 		</main>
