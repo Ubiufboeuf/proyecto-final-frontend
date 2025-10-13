@@ -1,15 +1,30 @@
 import type { User } from '@/env'
+import { errorHandler } from '@/lib/utils'
 
-export async function validateToken (token: string): Promise<[boolean, User]> {
-  // mocks
-  const isAuth = true
-  const user: User = { name: 'Manolo', username: 'ElHueso123', role: 'client' }
+export async function validateToken (token: string): Promise<[boolean, User | null]> {
+  let user: User | null = null
+  try {
+    user = await getUserData(token)
+  } catch (err) {
+    errorHandler(err, 'Error consiguiendo los datos del usuario', false)
+  }
 
-  // fetch(endpoint_validate_cookie, {..., cookie})
-  
+  const isAuth = Boolean(user)
+
   return [isAuth, user]
 }
 
-export async function getUserData (): Promise<User> {
-  return { name: 'Manolo', username: 'ElHueso123', role: 'client' }
+export async function getUserData (token: string): Promise<User | null> {
+  const users: { [key: string]: User } = {
+    'token1': { name: 'Manolo', username: 'ElHueso123', role: 'client' },
+    'token2': { name: 'Pepito', username: 'ese_tipo', role: 'client' }
+  }
+
+  let user: User | null = null
+
+  if (users[token as keyof typeof users]) { 
+    user = users[token as keyof typeof users]
+  }
+
+  return user
 }
