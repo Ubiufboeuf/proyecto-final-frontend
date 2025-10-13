@@ -1,8 +1,22 @@
+import { ENDPOINTS } from '@/lib/constants'
 import { FormInput } from './Input'
 
 export function LoginForm () {
-  function handleSubmitForm (event: SubmitEvent) {
+  async function handleSubmitForm (event: SubmitEvent) {
     event.preventDefault()
+
+    try {
+      const res = await fetch(ENDPOINTS.LOGIN, { method: 'POST' })
+      if (res.ok) {
+        location.href = '/'
+        // console.log(res)
+        return
+      }
+      
+      console.error('Error cerrando la sesión')
+    } catch {
+      console.error('Error de red al cerrar sesión')
+    }
   }
   
   return (

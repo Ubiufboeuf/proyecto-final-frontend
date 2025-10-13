@@ -10,7 +10,8 @@ export const ENDPOINTS = {
   BUSES_DATA: `${http_endpoint}/mocks/buses_data.json`,
   HTTP: http_recorder_endpoint,
   WS: ws_endpoint,
-  LOGOUT: `${http_endpoint}/api/logout`
+  LOGOUT: `${http_endpoint}/api/logout`,
+  LOGIN: `${http_endpoint}/api/login`
 }
 
 export {
