@@ -1,7 +1,7 @@
 import { SESSION_COOKIE_NAME } from '@/lib/constants'
 import type { APIRoute } from 'astro'
 
-export const POST: APIRoute = async ({ cookies, redirect }) => {
+export const POST: APIRoute = async ({ cookies, redirect }) => {  
   cookies.delete(SESSION_COOKIE_NAME, {
     path: '/',
     httpOnly: true,
@@ -9,5 +9,5 @@ export const POST: APIRoute = async ({ cookies, redirect }) => {
     secure: true
   })
 
-  return redirect('/')
+  return redirect('/', 302)
 }
