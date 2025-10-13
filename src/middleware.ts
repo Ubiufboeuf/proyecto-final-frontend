@@ -21,14 +21,14 @@ const auth = defineMiddleware(async (context, next) => {
   // isLoading es para diferenciar el false de isAuth de "sin verificar" y "verificado fallido"
   let user: User | null = null
   let isAuth: boolean = false
-  let isLoadingAuth: boolean = true
+  let isLoading: boolean = true
 
   try {
     [isAuth, user] = await validateToken(token.value)
   } catch (err) {
     errorHandler(err)
   } finally {
-    isLoadingAuth = false
+    isLoading = false
   }
 
   if (!isAuth || !user) {
@@ -36,7 +36,7 @@ const auth = defineMiddleware(async (context, next) => {
     return
   }
 
-  context.locals.isLoadingAuth = isLoadingAuth
+  context.locals.isLoading = isLoading
   context.locals.isAuth = isAuth
   context.locals.user = user
 
