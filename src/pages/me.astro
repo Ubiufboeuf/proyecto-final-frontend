@@ -3,13 +3,18 @@ import LayoutSimple from '@/layouts/LayoutSimple.astro'
 import { getUserData } from '@/services/userService'
 import { LogoutButton } from '@/components/user/LogoutButton'
 import { SESSION_COOKIE_NAME } from '@/lib/constants'
+import { http_endpoint } from '@/lib/constants'
+
+if (http_endpoint !== Astro.url.origin) {
+  return Astro.redirect(http_endpoint)
+}
 
 const token = Astro.cookies.get(SESSION_COOKIE_NAME)
-if (!token) return
+if (!token) return Astro.redirect('/')
 
 const user = await getUserData(token.value)
 
-if (!user) return
+if (!user) return Astro.redirect('/')
 const { name, role, username } = user
 ---
 
