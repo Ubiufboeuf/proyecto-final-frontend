@@ -2,18 +2,21 @@ import { LoginLink } from './LoginLink'
 import { RegisterLink } from './RegisterLink'
 import { AccountLink } from './AccountLink'
 import { useUserStore } from '@/stores/useUserStore'
+import { SignedOut } from './SignedOut'
+import { SignedIn } from './SignedIn'
 
 export function UserLinks ({ display = 'header' }: { display: 'header' | 'sidebar' }) {
-  const isAuth = useUserStore((state) => state.isAuth)
   const user = useUserStore((state) => state.user)
   
   if (display === 'header') return (
     <div class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
-      { !isAuth && <>
+      <SignedOut>
         <LoginLink class='not-xs:hidden xl:flex lg:hidden' />
         <RegisterLink class='not-xs:hidden xl:flex lg:hidden' />
-      </> }
-      { isAuth && <AccountLink username={user?.username} /> }
+      </SignedOut>
+      <SignedIn>
+        <AccountLink username={user?.username} />
+      </SignedIn>
     </div>
   )
 
