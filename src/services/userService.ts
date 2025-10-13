@@ -9,3 +9,7 @@ export async function validateToken (token: string): Promise<[boolean, User]> {
   
   return [isAuth, user]
 }
+
+export async function getUserData (): Promise<User> {
+  return { name: 'Manolo', username: 'ElHueso123', role: 'client' }
+}
