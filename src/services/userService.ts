@@ -11,6 +11,8 @@ export async function validateToken (token: string): Promise<[boolean, User | nu
 
   const isAuth = Boolean(user)
 
+  console.log('userService', { isAuth, user })
+
   return [isAuth, user]
 }
 
