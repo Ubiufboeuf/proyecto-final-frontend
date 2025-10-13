@@ -2,8 +2,15 @@
 import LayoutSimple from '@/layouts/LayoutSimple.astro'
 import { getUserData } from '@/services/userService'
 import { LogoutButton } from '@/components/user/LogoutButton'
+import { SESSION_COOKIE_NAME } from '@/lib/constants'
 
-const { name, role, username } = await getUserData()
+const token = Astro.cookies.get(SESSION_COOKIE_NAME)
+if (!token) return
+
+const user = await getUserData(token.value)
+
+if (!user) return
+const { name, role, username } = user
 ---
 
 <LayoutSimple title='Usuario'>

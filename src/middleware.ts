@@ -2,6 +2,7 @@ import { defineMiddleware, sequence } from 'astro:middleware'
 import { errorHandler } from './lib/utils'
 import { validateToken } from './services/userService'
 import type { User } from './env'
+import { SESSION_COOKIE_NAME } from './lib/constants'
 
 const auth = defineMiddleware(async (context, next) => {
   // Esto es para crear una cookie para pruebas, pero igual, algo así debería ser la configuración de la real
@@ -11,7 +12,7 @@ const auth = defineMiddleware(async (context, next) => {
   //   path: '/',
   //   secure: true
   // })
-  const token = context.cookies.get('berrutti-web-auth-token')
+  const token = context.cookies.get(SESSION_COOKIE_NAME)
 
   if (!token) {
     context.locals.isLoading = false
