@@ -4,7 +4,7 @@
 declare namespace App {
   interface Locals {
     isAuth: boolean
-    isLoadingAuth: boolean
+    isLoading: boolean
     user: import('src/env').User
   }
 }
