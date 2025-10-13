@@ -7,24 +7,32 @@ import { SignedIn } from './SignedIn'
 
 export function UserLinks ({ display = 'header' }: { display: 'header' | 'sidebar' }) {
   const user = useUserStore((state) => state.user)
-  
-  if (display === 'header') return (
-    <div class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
-      <SignedOut>
-        <LoginLink class='not-xs:hidden xl:flex lg:hidden' />
-        <RegisterLink class='not-xs:hidden xl:flex lg:hidden' />
-      </SignedOut>
-      <SignedIn>
-        <AccountLink username={user?.username} />
-      </SignedIn>
-    </div>
-  )
 
-  if (display === 'sidebar') return (
+  return (
     <>
-      <RegisterLink class='w-full text-center' />
-      <LoginLink class='w-full text-center' />
-      <AccountLink />
+      {
+        display === 'header' ? (
+          <div class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
+            <SignedOut>
+              <LoginLink class='not-xs:hidden xl:flex lg:hidden' />
+              <RegisterLink class='not-xs:hidden xl:flex lg:hidden' />
+            </SignedOut>
+            <SignedIn>
+              <AccountLink username={user?.username} />
+            </SignedIn>
+          </div>
+        ) : (
+          <>
+            <SignedOut>
+              <RegisterLink class='w-full text-center' />
+              <LoginLink class='w-full text-center' />
+            </SignedOut>
+            <SignedIn>
+              <AccountLink username={user?.username} />
+            </SignedIn>
+          </>
+        )
+      }
     </>
   )
 }
