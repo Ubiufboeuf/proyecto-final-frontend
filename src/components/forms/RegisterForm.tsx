@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'preact/compat'
 import { FormInput } from './Input'
 
 export function RegisterForm () {
@@ -17,9 +18,9 @@ export function RegisterForm () {
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-xl'>Crea una cuenta</h1>
       <div class='w-full lfw:px-6'>
         <FormInput
-          id='input-register-name'
-          name='input-register-name'
-          title='Nombre'
+          id='input-register-fullname'
+          name='input-register-fullname'
+          title='Nombre Completo'
           placeholder='Pepito Martinez'
           type='text'
           class='text-base'
