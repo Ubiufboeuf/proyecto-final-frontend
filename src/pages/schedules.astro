@@ -1,7 +1,894 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import { Icon } from '@/components/Icon'
+import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons'
 ---
 
-<Layout title='Horarios'>
-	Horarios
+<Layout title='Horarios' class='px-6'>
+  <section class='my-12'>
+    <h1 class='text-4xl font-bold text-center text-gray-900 dark:text-gray-100'>Horarios de Invierno 2025</h1>
+    <p class='text-xl text-center text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto'>
+      Válidos desde el 10/03/25 al 21/12/25
+    </p>
+  </section>
+
+  <!-- Selector de Líneas -->
+  <section class='mb-8'>
+    <div class='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4'>
+      <h3 class='text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 text-center'>Selecciona la línea que deseas consultar:</h3>
+      <div class='flex flex-wrap gap-3 justify-center'>
+        <button 
+          data-schedule='palmira-colonia'
+          class='schedule-btn active px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105 bg-orange-500 text-white dark:bg-orange-600'>
+          Nueva Palmira / Colonia
+        </button>
+        <button 
+          data-schedule='carmelo-mercedes' 
+          class='schedule-btn px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-green-100 dark:hover:bg-green-900/30'>
+          Carmelo / Mercedes
+        </button>
+        <button 
+          data-schedule='palmira-carmelo' 
+          class='schedule-btn px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/30'>
+          Nueva Palmira / Carmelo
+        </button>
+        <button 
+          data-schedule='palmira-agraciada' 
+          class='schedule-btn px-4 py-2 rounded-lg font-semibold transition-all hover:scale-105 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900/30'>
+          Nueva Palmira / Agraciada
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mensaje cuando no hay selección -->
+  <div id='no-selection' class='hidden bg-gradient-to-r from-orange-50 to-blue-50 dark:from-orange-900/10 dark:to-blue-900/10 rounded-lg shadow-md p-8 mb-8 text-center'>
+    <Icon class='size-16 text-orange-500 mx-auto mb-4'>
+      <IconBus />
+    </Icon>
+    <h3 class='text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2'>Selecciona una línea</h3>
+    <p class='text-gray-600 dark:text-gray-300'>Por favor, elige una línea de las opciones de arriba para ver sus horarios.</p>
+  </div>
+
+  <!-- Información importante -->
+  <section id='leyenda' class='bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 rounded-lg p-6 mb-8 scroll-mt-24'>
+    <div class='flex items-start gap-4'>
+      <Icon class='size-6 text-orange-500 flex-shrink-0 mt-1'>
+        <IconCalendar />
+      </Icon>
+      <div>
+        <h3 class='text-lg font-bold text-gray-900 dark:text-gray-100 mb-2'>Información Importante</h3>
+        <ul class='text-gray-700 dark:text-gray-300 space-y-1 text-sm md:text-base'>
+          <li><strong>C-O:</strong> Combinan a Ombúes</li>
+          <li><strong>M:</strong> Combinan a Mercedes</li>
+          <li><strong>P:</strong> Por Polancos</li>
+          <li><strong>C:</strong> Combinan con Conchillas</li>
+          <li><strong>S:</strong> Solo sale</li>
+          <li><strong>O:</strong> Solo sale (Ombúes)</li>
+          <li class='text-orange-600 dark:text-orange-400 font-semibold'>Nota: Pase hasta 10 minutos antes de que salga el coche. Llegue con 10 minutos de anticipación.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horarios Nueva Palmira / Colonia -->
+  <div data-schedule-content='palmira-colonia' class='schedule-content'>
+  <!-- Horarios de Lunes a Viernes -->
+  <section class='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-8 mb-8'>
+    <div class='flex items-center gap-3 mb-6'>
+      <Icon class='size-8 text-orange-500'>
+        <IconClock />
+      </Icon>
+      <h2 class='text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
+        LÍNEA NUEVA PALMIRA / COLONIA - LUNES A VIERNES
+      </h2>
+    </div>
+
+    <div class='overflow-x-auto'>
+      <table class='w-full text-sm md:text-base'>
+        <thead>
+          <tr class='bg-orange-500 text-white'>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A COLONIA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE COLONIA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>DE OMBÚES</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>CONCHILLAS</th>
+          </tr>
+          <tr class='bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200'>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>SALE DE N.PALMIRA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CARMELO</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>RADIAL CONCHILLAS</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>LLEGA A COLONIA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'></th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>SALE DE COLONIA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>RADIAL CONCHILLAS</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CARMELO</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>LLEGA A N.PALMIRA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'></th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>DE OMBÚES A RADIAL</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>A RADIAL</th>
+          </tr>
+        </thead>
+        <tbody class='text-gray-700 dark:text-gray-300'>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>05:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:10</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>05:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:00</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:45</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:35</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>P</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>10:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>10:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>10:25</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>10:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>10:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O-M</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:00</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:10</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:25</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>15:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>16:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>P-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>15:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>16:35</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>16:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:35</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>16:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:20</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:35</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:10</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>20:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:35</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:50</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>20:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>21:10</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 text-orange-600 dark:text-orange-400'>20:10(2)</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>20:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>21:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>22:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 text-sm'>19:35 S</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class='mt-4 text-xs md:text-sm text-gray-600 dark:text-gray-400'>
+      <p><strong>O=COMBINAN A OMBÚES</strong> | <strong>M=COMBINAN A MERCEDES</strong> | <strong>P=POR POLANCOS</strong> | <strong>C=COMBINAN CON CONCHILLAS</strong> | <strong>S=SOLO SALE</strong></p>
+      <p class='text-orange-600 dark:text-orange-400 mt-1'>(2) Finaliza en Paraguay y Jacinto Laguna</p>
+    </div>
+  </section>
+
+  <!-- Horarios de Sábados -->
+  <section class='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-8 mb-8'>
+    <div class='flex items-center gap-3 mb-6'>
+      <Icon class='size-8 text-blue-500'>
+        <IconClock />
+      </Icon>
+      <h2 class='text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
+        LÍNEA NUEVA PALMIRA / COLONIA - SÁBADOS
+      </h2>
+    </div>
+
+    <div class='overflow-x-auto'>
+      <table class='w-full text-sm md:text-base'>
+        <thead>
+          <tr class='bg-blue-500 text-white'>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A COLONIA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE COLONIA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>DE OMBÚES</th>
+            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>CONCHILLAS</th>
+          </tr>
+          <tr class='bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200'>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>SALE DE N.PALMIRA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CARMELO</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>RADIAL CONCHILLAS</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>LLEGA A COLONIA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'></th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>SALE DE COLONIA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>RADIAL CONCHILLAS</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CARMELO</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>LLEGA A N.PALMIRA</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'></th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>DE OMBÚES A RADIAL</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>A RADIAL</th>
+          </tr>
+        </thead>
+        <tbody class='text-gray-700 dark:text-gray-300'>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>O-C</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>05:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>06:00</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:35</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>O-C-P</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>09:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>07:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>08:30</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:10</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>O-C</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>13:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O-M</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>11:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>12:00</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>14:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>15:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>16:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>16:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:00</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>O-C</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:05</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:45</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>C-O</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>16:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>17:15</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>18:40</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:15</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:50</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>20:25</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:20</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>19:55</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>20:30</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>21:10</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'></td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>-----</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Información adicional -->
+  <section class='bg-gradient-to-r from-orange-50 to-blue-50 dark:from-orange-900/10 dark:to-blue-900/10 rounded-lg shadow-md p-6 mb-8'>
+    <div class='flex items-start gap-4'>
+      <Icon class='size-8 text-orange-500 flex-shrink-0 mt-1'>
+        <IconMapPin />
+      </Icon>
+      <div>
+        <h3 class='text-xl font-bold text-gray-900 dark:text-gray-100 mb-3'>Información de Rutas</h3>
+        <div class='grid md:grid-cols-2 gap-4 text-gray-700 dark:text-gray-300'>
+          <div>
+            <h4 class='font-semibold text-orange-600 dark:text-orange-400 mb-2'>Paradas Principales:</h4>
+            <ul class='space-y-1 text-sm'>
+              <li>• Nueva Palmira</li>
+              <li>• Carmelo</li>
+              <li>• Radial Conchillas</li>
+              <li>• Colonia del Sacramento</li>
+              <li>• Ombúes</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class='font-semibold text-blue-600 dark:text-blue-400 mb-2'>Recomendaciones:</h4>
+            <ul class='space-y-1 text-sm'>
+              <li>• Llegar con 10 minutos de anticipación</li>
+              <li>• Pasaje válido hasta 10 minutos antes de la salida</li>
+              <li>• Consultar disponibilidad para viajes en días festivos</li>
+              <li>• Verificar horarios en caso de condiciones climáticas adversas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botón Ver Leyenda -->
+  <div class='text-center mb-8'>
+    <a href='#leyenda' class='inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors'>
+      <Icon class='size-5'>
+        <IconCalendar />
+      </Icon>
+      Ver Leyenda
+    </a>
+  </div>
+  </div>
+
+  <!-- Línea Carmelo / Mercedes -->
+  <div data-schedule-content='carmelo-mercedes' class='schedule-content hidden'>
+  <section class='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-8 mb-8'>
+    <div class='flex items-center gap-3 mb-6'>
+      <Icon class='size-8 text-green-500'>
+        <IconBus />
+      </Icon>
+      <h2 class='text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
+        LÍNEA CARMELO / MERCEDES
+      </h2>
+    </div>
+
+    <div class='bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 rounded-lg p-4 mb-6'>
+      <p class='text-orange-700 dark:text-orange-300 font-semibold'>NO SALEN LOS DÍAS FERIADOS y DOMINGOS</p>
+      <p class='text-gray-600 dark:text-gray-400 text-sm mt-1'>(Los horarios de llegada son aproximados)</p>
+    </div>
+
+    <div class='mb-6'>
+      <h3 class='text-lg font-bold text-gray-800 dark:text-gray-100 mb-4'>De Lunes a Viernes</h3>
+      <div class='overflow-x-auto'>
+        <table class='w-full text-sm md:text-base border-collapse'>
+          <thead>
+            <tr class='bg-green-500 text-white'>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>SALE DE CARMELO</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>NUEVA PALMIRA</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>DOLORES</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>LLEGA A MERCEDES</th>
+            </tr>
+          </thead>
+          <tbody class='text-gray-700 dark:text-gray-300'>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>06:00</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>06:30</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>07:10</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>07:50</td>
+            </tr>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>13:00</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>13:30</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>14:15</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>15:00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class='text-xs text-gray-600 dark:text-gray-400 mt-2'>De Lunes a Viernes</p>
+    </div>
+
+    <div class='mb-6'>
+      <h3 class='text-lg font-bold text-gray-800 dark:text-gray-100 mb-4'>De Lunes a Sábado - Combina desde Colonia</h3>
+      <div class='overflow-x-auto'>
+        <table class='w-full text-sm md:text-base border-collapse'>
+          <thead>
+            <tr class='bg-green-500 text-white'>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>SALE DE MERCEDES</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>DOLORES</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>NUEVA PALMIRA</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>LLEGA A CARMELO</th>
+            </tr>
+          </thead>
+          <tbody class='text-gray-700 dark:text-gray-300'>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>08:20</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>08:50</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>09:40</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>10:15</td>
+            </tr>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>17:50</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>18:30</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>19:20</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>19:50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class='text-xs text-gray-600 dark:text-gray-400 mt-2'>De Lunes a Sábado - Combina a Colonia</p>
+    </div>
+  </section>
+
+  <!-- Botón Ver Leyenda -->
+  <div class='text-center mb-8'>
+    <a href='#leyenda' class='inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors'>
+      <Icon class='size-5'>
+        <IconCalendar />
+      </Icon>
+      Ver Leyenda
+    </a>
+  </div>
+  </div>
+
+  <!-- Línea Nueva Palmira / Carmelo -->
+  <div data-schedule-content='palmira-carmelo' class='schedule-content hidden'>
+  <section class='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-8 mb-8'>
+    <div class='flex items-center gap-3 mb-6'>
+      <Icon class='size-8 text-purple-500'>
+        <IconBus />
+      </Icon>
+      <h2 class='text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
+        LÍNEA NUEVA PALMIRA / CARMELO
+      </h2>
+    </div>
+
+    <div class='mb-6'>
+      <h3 class='text-lg font-bold text-gray-800 dark:text-gray-100 mb-4'>Lunes a Viernes</h3>
+      <div class='overflow-x-auto mb-4'>
+        <table class='w-full text-sm md:text-base border-collapse'>
+          <thead>
+            <tr class='bg-purple-500 text-white'>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>de N.Palmira</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>06:20</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>06:55</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>07:45 P</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>09:40</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>11:05</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>12:30</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>13:30</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'></th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>16:25</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>18:00</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>19:20</th>
+            </tr>
+          </thead>
+          <tbody class='text-gray-700 dark:text-gray-300'>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center text-orange-600 dark:text-orange-400'>21:10 (1)</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+            </tr>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>de Carmelo</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>06:00</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>06:55</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>08:50</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>11:15</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>13:00</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>14:15</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>15:25 P</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>17:05</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>18:20</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>19:50</td>
+            </tr>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center text-orange-600 dark:text-orange-400'>21:30 (2)</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class='text-xs text-gray-600 dark:text-gray-400 space-y-1'>
+        <p><strong class='text-orange-600 dark:text-orange-400'>(1)</strong> No sale del barrio Artigas, salen de J.Laguna y Paraguay. El recorrido finaliza en Agencia Carmelo</p>
+        <p><strong class='text-orange-600 dark:text-orange-400'>(2)</strong> Finaliza en Paraguay y Jacinto Laguna</p>
+      </div>
+    </div>
+
+    <div class='mb-6'>
+      <h3 class='text-lg font-bold text-gray-800 dark:text-gray-100 mb-4'>Sábados</h3>
+      <div class='overflow-x-auto'>
+        <table class='w-full text-sm md:text-base border-collapse'>
+          <thead>
+            <tr class='bg-purple-500 text-white'>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>de N.Palmira</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>06:20</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>07:45 P</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>11:05</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'></th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>16:25</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>19:20</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'></th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600 text-orange-600 dark:text-orange-400'>21:10 (1)</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'></th>
+            </tr>
+          </thead>
+          <tbody class='text-gray-700 dark:text-gray-300'>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>de Carmelo</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>06:55</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>09:20</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>13:00</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>15:25 P</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>18:20</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>19:50</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3 class='text-lg font-bold text-gray-800 dark:text-gray-100 mb-4'>Domingos y Feriados</h3>
+      <div class='overflow-x-auto'>
+        <table class='w-full text-sm md:text-base border-collapse'>
+          <thead>
+            <tr class='bg-purple-500 text-white'>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>de N.Palmira</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>07:45 P</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>11:05</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'></th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>17:15</th>
+              <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>19:20</th>
+            </tr>
+          </thead>
+          <tbody class='text-gray-700 dark:text-gray-300'>
+            <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 font-semibold'>de Carmelo</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>09:20</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'></td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>14:15</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>18:25</td>
+              <td class='p-2 border border-gray-300 dark:border-gray-600 text-center'>20:55</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class='text-xs text-gray-600 dark:text-gray-400 mt-2'><strong>P =</strong> Por Polancos</p>
+    </div>
+  </section>
+
+  <!-- Botón Ver Leyenda -->
+  <div class='text-center mb-8'>
+    <a href='#leyenda' class='inline-flex items-center gap-2 px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-lg transition-colors'>
+      <Icon class='size-5'>
+        <IconCalendar />
+      </Icon>
+      Ver Leyenda
+    </a>
+  </div>
+  </div>
+
+  <!-- Línea Nueva Palmira / Agraciada -->
+  <div data-schedule-content='palmira-agraciada' class='schedule-content hidden'>
+  <section class='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 md:p-8 mb-8'>
+    <div class='flex items-center gap-3 mb-6'>
+      <Icon class='size-8 text-teal-500'>
+        <IconBus />
+      </Icon>
+      <h2 class='text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
+        LÍNEA NUEVA PALMIRA / AGRACIADA
+      </h2>
+    </div>
+
+    <div class='bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 rounded-lg p-4 mb-6'>
+      <p class='text-orange-700 dark:text-orange-300 font-semibold'>Salen solo los días Lunes y Viernes - Feriados NO</p>
+    </div>
+
+    <div class='overflow-x-auto'>
+      <table class='w-full text-sm md:text-base border-collapse'>
+        <thead>
+          <tr class='bg-teal-500 text-white'>
+            <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>Origen</th>
+            <th class='p-2 md:p-3 border border-gray-300 dark:border-gray-600'>Horario</th>
+          </tr>
+        </thead>
+        <tbody class='text-gray-700 dark:text-gray-300'>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>de Nueva Palmira</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 text-center font-semibold'>12:00</td>
+          </tr>
+          <tr class='schedule-row hover:bg-gray-50 dark:hover:bg-gray-700/50 cursor-pointer transition-colors'>
+            <td class='p-2 border border-gray-300 dark:border-gray-600'>de Agraciada</td>
+            <td class='p-2 border border-gray-300 dark:border-gray-600 text-center font-semibold'>12:45</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Botón Ver Leyenda -->
+  <div class='text-center mb-8'>
+    <a href='#leyenda' class='inline-flex items-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition-colors'>
+      <Icon class='size-5'>
+        <IconCalendar />
+      </Icon>
+      Ver Leyenda
+    </a>
+  </div>
+  </div>
+
 </Layout>
+
+<script>
+  // Función para cambiar entre horarios
+  function initScheduleSelector() {
+    const buttons = document.querySelectorAll('.schedule-btn');
+    const contents = document.querySelectorAll('.schedule-content');
+    const noSelection = document.getElementById('no-selection');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const scheduleId = button.getAttribute('data-schedule');
+        
+        // Ocultar el mensaje de "no hay selección"
+        if (noSelection) {
+          noSelection.classList.add('hidden');
+        }
+        
+        // Remover clase active de todos los botones
+        buttons.forEach(btn => {
+          btn.classList.remove('active', 'bg-orange-500', 'bg-green-500', 'bg-purple-500', 'bg-teal-500', 'text-white', 'dark:bg-orange-600', 'dark:bg-green-600', 'dark:bg-purple-600', 'dark:bg-teal-600');
+          btn.classList.add('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-300');
+        });
+        
+        // Agregar clase active al botón clickeado con su color específico
+        button.classList.remove('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-300');
+        button.classList.add('active', 'text-white');
+        
+        // Aplicar color específico según la línea
+        if (scheduleId === 'palmira-colonia') {
+          button.classList.add('bg-orange-500', 'dark:bg-orange-600');
+        } else if (scheduleId === 'carmelo-mercedes') {
+          button.classList.add('bg-green-500', 'dark:bg-green-600');
+        } else if (scheduleId === 'palmira-carmelo') {
+          button.classList.add('bg-purple-500', 'dark:bg-purple-600');
+        } else if (scheduleId === 'palmira-agraciada') {
+          button.classList.add('bg-teal-500', 'dark:bg-teal-600');
+        }
+        
+        // Ocultar todos los contenidos
+        contents.forEach(content => {
+          content.classList.add('hidden');
+        });
+        
+        // Mostrar el contenido seleccionado
+        const selectedContent = document.querySelector(`[data-schedule-content="${scheduleId}"]`);
+        if (selectedContent) {
+          selectedContent.classList.remove('hidden');
+          // Scroll suave hacia el contenido con un pequeño delay para la animación
+          setTimeout(() => {
+            selectedContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      });
+    });
+  }
+
+  // Función para manejar selección de horarios individuales
+  function initScheduleRowSelector() {
+    const scheduleRows = document.querySelectorAll('.schedule-row');
+
+    scheduleRows.forEach(row => {
+      row.addEventListener('click', function() {
+        // Remover selección de todas las filas en la misma tabla
+        const table = this.closest('table');
+        const rowsInTable = table.querySelectorAll('.schedule-row');
+        
+        rowsInTable.forEach(r => {
+          r.classList.remove('selected-schedule', 'bg-orange-100', 'dark:bg-orange-900/50', 'ring-2', 'ring-orange-500');
+        });
+
+        // Agregar selección a esta fila
+        this.classList.add('selected-schedule', 'bg-orange-100', 'dark:bg-orange-900/50', 'ring-2', 'ring-orange-500');
+        
+        // Scroll suave hacia la fila seleccionada
+        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      // Doble clic para deseleccionar
+      row.addEventListener('dblclick', function() {
+        this.classList.remove('selected-schedule', 'bg-orange-100', 'dark:bg-orange-900/50', 'ring-2', 'ring-orange-500');
+      });
+    });
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initScheduleSelector();
+      initScheduleRowSelector();
+    });
+  } else {
+    initScheduleSelector();
+    initScheduleRowSelector();
+  }
+</script>
+
+<style>
+  .schedule-content {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .schedule-btn {
+    cursor: pointer;
+  }
+
+  .schedule-row {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .schedule-row.selected-schedule {
+    transform: scale(1.01);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  /* Smooth scroll para el ancla de leyenda */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
