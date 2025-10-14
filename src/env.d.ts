@@ -1,7 +1,7 @@
 import type { Marker, Polyline } from 'leaflet'
 import type { JSX } from 'preact/jsx-runtime'
 import type { WS_RESPONSE_TYPE } from '@/lib/constants'
-import type { HTMLInputTypeAttribute } from 'preact/compat'
+import type { ChangeEvent, HTMLInputTypeAttribute } from 'preact/compat'
 
 export type AuthStatus = {
   isAuth: boolean
@@ -241,6 +241,7 @@ export type FormInput = {
   class?: string
   wrapperClass?: string
   visiblePasswordPlaceholder?: string
+  onInput?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export type TripDetail = FormSelect | FormDatePicker | FormTimePicker | FormInput

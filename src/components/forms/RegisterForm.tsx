@@ -4,6 +4,10 @@ export function RegisterForm () {
   function handleSubmitForm (event: SubmitEvent) {
     event.preventDefault()
   }
+
+  function handleInputDocument (event: ChangeEvent<HTMLInputElement>) {
+    console.log(event)
+  }
   
   return (
     <form
@@ -19,6 +23,18 @@ export function RegisterForm () {
           placeholder='Pepito Martinez'
           type='text'
           class='text-base'
+          required
+        />
+      </div>
+      <div class='w-full lfw:px-6'>
+        <FormInput
+          id='input-register-document'
+          name='input-register-document'
+          title='Documento (Cédula o DNI)'
+          placeholder='12345678R'
+          type='text'
+          class='text-base'
+          onInput={handleInputDocument}
           required
         />
       </div>
