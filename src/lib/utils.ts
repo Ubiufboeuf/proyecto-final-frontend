@@ -40,6 +40,7 @@ export const links = [
   { name: 'Inicio', link: '/', Icon: IconHome },
   { name: 'Servicios', link: '/services/', Icon: IconCheckList },
   { name: 'Rutas', link: '/routes/', Icon: IconBus },
+  { name: 'Horarios', link: '/schedules/', Icon: IconCheckList },
   { name: 'Viajes Personalizados', link: '/custom-trips/', Icon: IconSettings },
   { name: 'Seguimiento', link: '/track/', Icon: IconMapPin },
   { name: 'Nosotros', link: '/about/', Icon: IconPeople },
