@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css'
 import type { BusesData, BusStates } from '@/env'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { useEffect, useRef, useState } from 'preact/hooks'
-import type { LatLngTuple, Map } from 'leaflet'
+import type { LatLngTuple, Map, Marker } from 'leaflet'
 import VaulDrawer from './Drawer'
 import { Icon } from '../Icon'
 import { IconEye, IconFocus } from '../Icons'
@@ -13,6 +13,7 @@ const DEFAULT_ZOOM = 16
 
 export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesData, lat: number, lng: number }) {
   const mapRef = useRef<HTMLDivElement>(null)
+  const myMarkerRef = useRef<Marker>(null)
   const [map, setMap] = useState<Map | null>(null)
   const [state] = useState<BusStates>('En viaje')
   const updateBusState = useBusesStore((state) => state.updateBusState)
@@ -66,7 +67,10 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
 
   function handleLocateMe () {
     // console.log(map)
-    if (!map) return
+    const marker = leaflet?.marker
+    if (!map || !marker) return
+
+    const myMarker = myMarkerRef.current
 
     map.locate({
       setView: false,
@@ -75,6 +79,11 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     })
     map.once('locationfound', (e) => {
       map.setView(e.latlng, map.getZoom())
+      if (!myMarker) {
+        myMarkerRef.current = marker(e.latlng, {  }).addTo(map)
+      } else {
+        myMarker.setLatLng(e.latlng)
+      }
     })
     map.once('locationerror', (err) => {
       alert(`Error obteniendo ubicación: ${err.message}`)
