@@ -24,12 +24,7 @@
       },
       "route": {
         "current": [],
-        "planned": [
-          { "x": 0, "y": 0 },
-          { "x": 0.5, "y": 0 },
-          { "x": 0.5, "y": 0.5 },
-          { "x": 0, "y": 0.5 }
-        ]
+        "planned": []
       },
       "origin": {
         "location": "Montevideo",
@@ -60,12 +55,7 @@
       },
       "route": {
         "current": [],
-        "planned": [
-          { "x": 0, "y": 0 },
-          { "x": 0.5, "y": 0 },
-          { "x": 0.5, "y": 0.5 },
-          { "x": 0, "y": 0.5 }
-        ]
+        "planned": []
       },
       "origin": {
         "location": "Montevideo",
@@ -96,12 +86,7 @@
       },
       "route": {
         "current": [],
-        "planned": [
-          { "x": 0, "y": 0 },
-          { "x": 0.5, "y": 0 },
-          { "x": 0.5, "y": 0.5 },
-          { "x": 0, "y": 0.5 }
-        ]
+        "planned": []
       },
       "origin": {
         "location": "Montevideo",
@@ -132,12 +117,7 @@
       },
       "route": {
         "current": [],
-        "planned": [
-          { "x": 0, "y": 0 },
-          { "x": 0.5, "y": 0 },
-          { "x": 0.5, "y": 0.5 },
-          { "x": 0, "y": 0.5 }
-        ]
+        "planned": []
       },
       "origin": {
         "location": "Montevideo",
