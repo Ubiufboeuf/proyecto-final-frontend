@@ -7,7 +7,7 @@ export function FormSelect ({ detail: { id: tripDetailId, options, title, defaul
       <select
         id={tripDetailId}
         name={tripDetailId}
-        class='w-full h-fit p-2.5 sm:text-sm rounded border-2 cursor-pointer transition-colors border-gray-200 group-hover:bg-orange-50 group-hover:border-orange-500/50 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:group-hover:bg-gray-700 dark:touch:active:bg-gray-700'
+        class='w-full h-fit p-2.5 sm:text-sm rounded border-2 cursor-pointer transition-colors border-gray-200 hover:bg-orange-50 hover:border-orange-500/50 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700'
       >
         <option selected value='default' disabled>{defaultOption}</option>
         { options.map(({ id, name }) => (
