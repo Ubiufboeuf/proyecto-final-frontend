@@ -10,8 +10,11 @@ export type AuthStatus = {
 }
 
 export type User = {
-  name: string
-  username: string
+  fullName: string
+  document: string
+  mail?: string
+  tel?: string
+  password: string
   role: 'client' | 'driver' | 'admin'
 }
 

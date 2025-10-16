@@ -18,8 +18,8 @@ export async function validateToken (token: string): Promise<[boolean, User | nu
 
 export async function getUserData (token: string): Promise<User | null> {
   const users: { [key: string]: User } = {
-    'token1': { name: 'Manolo', username: 'ElHueso123', role: 'client' },
-    'token2': { name: 'Pepito', username: 'ese_tipo', role: 'client' }
+    'token1': { fullName: 'Federico Artencio', document: '56942082', mail: 'fede.2007.artencio.u@gmail.com', password: 'Un qué?', role: 'client' },
+    'token2': { fullName: 'Matías Iturralde', document: '45226454', tel: '+598 97 308 696', password: 'enElMacdonalsNoVendenDonas', role: 'client' }
   }
 
   let user: User | null = null
