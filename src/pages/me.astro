@@ -15,19 +15,20 @@ if (!token) return Astro.redirect('/')
 const user = await getUserData(token.value)
 
 if (!user) return Astro.redirect('/')
-const { name, role, username } = user
+const { document, fullName, password, role, mail, tel } = user
 ---
 
 <LayoutSimple title='Usuario'>
   <section class='flex items-center h-[calc(100dvh-80px)] min-h-fit lfw:w-lfw w-full'>
     <article class='h-fit w-100 rounded-xl flex flex-col items-center gap-8 p-4 py-12 border border-gray-300 bg-white dark:border-0 dark:bg-gray-700/50'>
       <div class='flex flex-col items-center gap-2'>
-        <h1 class='text-2xl font-bold'>{username}</h1>
-        <h2 class='text-xl font-semibold'>{name}</h2>
+        <h1 class='text-2xl font-bold'>{fullName}</h1>
+        <h2 class='text-xl font-semibold'>{document}</h2>
       </div>
       <div class='flex flex-col items-center gap-2'>
         <strong>Detalles de la cuenta</strong>
-        <p>Rol: {role}</p>
+        <p>{mail || tel}</p>
+        <p>••••••</p>
       </div>
       <div class='flex flex-col items-center gap-2'>
         <strong>Acciones</strong>
