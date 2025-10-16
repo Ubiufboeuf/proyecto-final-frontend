@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'preact/compat'
+import { useRef, useState, type ReactNode } from 'preact/compat'
 
 export function SwapInputs ({ label, swap_label, children }: { label: string, swap_label: string, children: ReactNode[] }) {
   const [swap, setSwap] = useState(false)
@@ -11,20 +11,12 @@ export function SwapInputs ({ label, swap_label, children }: { label: string, sw
   function toggleSwap () {
     setSwap((prevState) => !prevState)
   }
-
-  useEffect(() => {
-    const wrapper = wrapperRef.current
-    if (!wrapper) return
-
-    const input_component = wrapper.children[1].children[0]
-    const alt_input_component = wrapper.children[2].children[0]
-
-    if (!swap && input_component instanceof HTMLElement) input_component.focus()
-    if (swap && alt_input_component instanceof HTMLElement) alt_input_component.focus()
-  }, [swap])
   
   return (
-    <div ref={wrapperRef} class='w-full h-full relative'>
+    <div
+      ref={wrapperRef}
+      class='w-full h-full relative'
+    >
       <label
         class='absolute right-0 z-10 text-sm underline decoration-2 underline-offset-2 decoration-transparent hover:decoration-[unset] touch:active:decoration-[unset] cursor-pointer transition-colors text-blue-400'
         onInput={toggleSwap}
