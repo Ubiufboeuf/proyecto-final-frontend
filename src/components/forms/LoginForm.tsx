@@ -5,8 +5,29 @@ export function LoginForm () {
   async function handleSubmitForm (event: SubmitEvent) {
     event.preventDefault()
 
+    const form = event.currentTarget
+    if (!(form instanceof HTMLFormElement)) return
+    
+    const formData = new FormData(form)
+    const email = formData.get('input-login-email')
+    const password = formData.get('input-login-password')
+
+    if (!email) {
+      console.error('Falta especificar el email')
+      return
+    }
+
+    if (!password) {
+      console.error('Falta especificar la contraseña')
+      return
+    }
+
     try {
-      const res = await fetch(ENDPOINTS.LOGIN, { method: 'POST' })
+      const res = await fetch(ENDPOINTS.LOGIN, {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      })
+
       if (res.ok) {
         location.href = '/'
         // console.log(res)
