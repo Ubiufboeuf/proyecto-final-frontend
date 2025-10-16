@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'preact/compat'
 import { FormInput } from './Input'
+import { SwapInputs } from './SwapInputs'
 
 export function RegisterForm () {
   function handleSubmitForm (event: SubmitEvent) {
@@ -16,52 +17,63 @@ export function RegisterForm () {
       onSubmit={handleSubmitForm}
     >
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-xl'>Crea una cuenta</h1>
-      <div class='w-full lfw:px-6'>
-        <FormInput
-          id='input-register-fullname'
-          name='input-register-fullname'
-          title='Nombre Completo'
-          placeholder='Pepito Martinez'
-          type='text'
-          class='text-base'
-          required
-        />
-      </div>
-      <div class='w-full lfw:px-6'>
-        <FormInput
-          id='input-register-document'
-          name='input-register-document'
-          title='Documento (Cédula o DNI)'
-          placeholder='12345678R'
-          type='text'
-          class='text-base'
-          onInput={handleInputDocument}
-          required
-        />
-      </div>
-      <div class='w-full lfw:px-6'>
-        <FormInput
-          id='input-register-email'
-          name='input-register-email'
-          title='Correo'
-          placeholder='correo@email.com'
-          type='email'
-          class='text-base'
-          required
-        />
-      </div>
-      <div class='w-full lfw:px-6'>
-        <FormInput
-          id='input-register-password'
-          name='input-register-password'
-          title='Contraseña'
-          placeholder='••••••••'
-          visiblePasswordPlaceholder='123456'
-          type='password'
-          class='text-base'
-          required
-        />
-      </div>
+        <div class='w-full lfw:px-6'>
+          <FormInput
+            id='input-register-fullname'
+            name='input-register-fullname'
+            title='Nombre Completo'
+            placeholder='Pepito Martinez'
+            type='text'
+            class='text-base'
+            required
+          />
+        </div>
+        <div class='w-full lfw:px-6'>
+          <FormInput
+            id='input-register-document'
+            name='input-register-document'
+            title='Documento (Cédula o DNI)'
+            placeholder='12345678R'
+            type='text'
+            class='text-base'
+            onInput={handleInputDocument}
+            required
+          />
+        </div>
+        <div class='w-full lfw:px-6'>
+          <SwapInputs label='Teléfono' swap_label='Correo'>
+            <FormInput
+              id='input-register-email'
+              name='input-register-email'
+              title='Correo'
+              placeholder='correo@email.com'
+              type='email'
+              class='text-base'
+              required
+            />
+            <FormInput
+              id='input-register-phone'
+              name='input-register-phone'
+              title='Teléfono'
+              placeholder='123 456 789'
+              type='tel'
+              class='text-base'
+              required
+            />
+          </SwapInputs>
+        </div>
+        <div class='w-full lfw:px-6'>
+          <FormInput
+            id='input-register-password'
+            name='input-register-password'
+            title='Contraseña'
+            placeholder='••••••••'
+            visiblePasswordPlaceholder='123456'
+            type='password'
+            class='text-base'
+            required
+          />
+        </div>
       <button class='text-nowrap rounded-lg mt-4 p-2 px-4 hover:bg-orange-600 touch:active:bg-orange-600 bg-orange-500 dark:bg-orange-600 dark:hover:bg-orange-600/80 dark:touch:active:bg-orange-600/80 text-white transition-colors cursor-pointer'>
         Crear cuenta
       </button>
