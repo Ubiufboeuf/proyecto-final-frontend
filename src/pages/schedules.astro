@@ -4,16 +4,18 @@ import { Icon } from '@/components/Icon'
 import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons'
 ---
 
-<Layout title='Horarios' class='px-6'>
-  <section class='my-12'>
-    <h1 class='text-4xl font-bold text-center text-gray-900 dark:text-gray-100'>Horarios de Invierno 2025</h1>
-    <p class='text-xl text-center text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto'>
-      Válidos desde el 10/03/25 al 21/12/25
-    </p>
-  </section>
+<Layout title='Horarios'>
+  <div class='w-full'>
+    <div class='max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8'>
+      <section class='my-8 md:my-12'>
+        <h1 class='text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-gray-100'>Horarios de Invierno 2025</h1>
+        <p class='text-lg md:text-xl text-center text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto px-2'>
+          Válidos desde el 10/03/25 al 21/12/25
+        </p>
+      </section>
 
-  <!-- Selector de Líneas -->
-  <section class='mb-8'>
+    <!-- Selector de Líneas -->
+    <section class='mb-8'>
     <div class='bg-white dark:bg-gray-800 rounded-lg shadow-md p-4'>
       <h3 class='text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 text-center'>Selecciona la línea que deseas consultar:</h3>
       <div class='flex flex-wrap gap-3 justify-center'>
@@ -84,16 +86,22 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
       </h2>
     </div>
 
+    <!-- Indicador de scroll para móviles -->
+    <div class='md:hidden text-center mb-3'>
+      <p class='text-xs text-orange-500 dark:text-orange-400 font-medium animate-pulse'>
+        Desliza horizontalmente para ver todas las columnas
+      </p>
+    </div>
+
     <div class='overflow-x-auto'>
       <table class='w-full text-sm md:text-base'>
         <thead>
           <tr class='bg-orange-500 text-white'>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE N.PALMIRA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A COLONIA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE COLONIA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A N.PALMIRA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>DE OMBÚES</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>CONCHILLAS</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A COLONIA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE COLONIA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>CONCHILLAS Y OMBÚES</th>
           </tr>
           <tr class='bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200'>
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>SALE DE N.PALMIRA</th>
@@ -106,8 +114,8 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CARMELO</th>
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>LLEGA A N.PALMIRA</th>
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'></th>
-            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>DE OMBÚES A RADIAL</th>
-            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>A RADIAL</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>OMBÚES A RADIAL</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CONCHILLAS A RADIAL</th>
           </tr>
         </thead>
         <tbody class='text-gray-700 dark:text-gray-300'>
@@ -290,12 +298,11 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
       <table class='w-full text-sm md:text-base'>
         <thead>
           <tr class='bg-blue-500 text-white'>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE N.PALMIRA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A COLONIA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE COLONIA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A N.PALMIRA</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>DE OMBÚES</th>
-            <th class='p-2 md:p-3 text-left font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>CONCHILLAS</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A COLONIA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='3'>SALE DE COLONIA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>LLEGA A N.PALMIRA</th>
+            <th class='p-2 md:p-3 text-center font-semibold border border-gray-300 dark:border-gray-600' colspan='2'>CONCHILLAS Y OMBÚES</th>
           </tr>
           <tr class='bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200'>
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>SALE DE N.PALMIRA</th>
@@ -308,8 +315,8 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CARMELO</th>
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>LLEGA A N.PALMIRA</th>
             <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'></th>
-            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>DE OMBÚES A RADIAL</th>
-            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>A RADIAL</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>OMBÚES A RADIAL</th>
+            <th class='p-2 text-xs md:text-sm border border-gray-300 dark:border-gray-600'>CONCHILLAS A RADIAL</th>
           </tr>
         </thead>
         <tbody class='text-gray-700 dark:text-gray-300'>
@@ -413,39 +420,6 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
           </tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <!-- Información adicional -->
-  <section class='bg-gradient-to-r from-orange-50 to-blue-50 dark:from-orange-900/10 dark:to-blue-900/10 rounded-lg shadow-md p-6 mb-8'>
-    <div class='flex items-start gap-4'>
-      <Icon class='size-8 text-orange-500 flex-shrink-0 mt-1'>
-        <IconMapPin />
-      </Icon>
-      <div>
-        <h3 class='text-xl font-bold text-gray-900 dark:text-gray-100 mb-3'>Información de Rutas</h3>
-        <div class='grid md:grid-cols-2 gap-4 text-gray-700 dark:text-gray-300'>
-          <div>
-            <h4 class='font-semibold text-orange-600 dark:text-orange-400 mb-2'>Paradas Principales:</h4>
-            <ul class='space-y-1 text-sm'>
-              <li>• Nueva Palmira</li>
-              <li>• Carmelo</li>
-              <li>• Radial Conchillas</li>
-              <li>• Colonia del Sacramento</li>
-              <li>• Ombúes</li>
-            </ul>
-          </div>
-          <div>
-            <h4 class='font-semibold text-blue-600 dark:text-blue-400 mb-2'>Recomendaciones:</h4>
-            <ul class='space-y-1 text-sm'>
-              <li>• Llegar con 10 minutos de anticipación</li>
-              <li>• Pasaje válido hasta 10 minutos antes de la salida</li>
-              <li>• Consultar disponibilidad para viajes en días festivos</li>
-              <li>• Verificar horarios en caso de condiciones climáticas adversas</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -760,6 +734,8 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
     </a>
   </div>
   </div>
+    </div>
+  </div>
 
 </Layout>
 
@@ -820,15 +796,17 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
 
   // Función para manejar selección de horarios individuales
   function initScheduleRowSelector() {
-    const scheduleRows = document.querySelectorAll('.schedule-row');
+    const scheduleRows = document.querySelectorAll<HTMLTableRowElement>('.schedule-row');
 
-    scheduleRows.forEach(row => {
-      row.addEventListener('click', function() {
+    scheduleRows.forEach((row) => {
+      row.addEventListener('click', function(this: HTMLTableRowElement) {
         // Remover selección de todas las filas en la misma tabla
         const table = this.closest('table');
-        const rowsInTable = table.querySelectorAll('.schedule-row');
+        if (!table) return;
         
-        rowsInTable.forEach(r => {
+        const rowsInTable = table.querySelectorAll<HTMLTableRowElement>('.schedule-row');
+        
+        rowsInTable.forEach((r) => {
           r.classList.remove('selected-schedule', 'bg-orange-100', 'dark:bg-orange-900/50', 'ring-2', 'ring-orange-500');
         });
 
@@ -840,9 +818,36 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
       });
 
       // Doble clic para deseleccionar
-      row.addEventListener('dblclick', function() {
+      row.addEventListener('dblclick', function(this: HTMLTableRowElement) {
         this.classList.remove('selected-schedule', 'bg-orange-100', 'dark:bg-orange-900/50', 'ring-2', 'ring-orange-500');
       });
+    });
+  }
+
+  // Función para manejar el indicador de scroll - SOLO MÓVIL
+  function initScrollIndicators() {
+    // Solo ejecutar en dispositivos móviles
+    if (window.innerWidth > 767) return;
+    
+    const scrollContainers = document.querySelectorAll<HTMLDivElement>('.overflow-x-auto');
+    
+    scrollContainers.forEach(container => {
+      const checkScroll = () => {
+        const scrollLeft = container.scrollLeft;
+        const scrollWidth = container.scrollWidth;
+        const clientWidth = container.clientWidth;
+        const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10;
+        
+        if (isAtEnd) {
+          container.classList.add('scrolled-end');
+        } else {
+          container.classList.remove('scrolled-end');
+        }
+      };
+
+      container.addEventListener('scroll', checkScroll);
+      // Verificar inicialmente después de un pequeño delay para asegurar que el DOM esté listo
+      setTimeout(checkScroll, 100);
     });
   }
 
@@ -851,10 +856,12 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
     document.addEventListener('DOMContentLoaded', () => {
       initScheduleSelector();
       initScheduleRowSelector();
+      initScrollIndicators();
     });
   } else {
     initScheduleSelector();
     initScheduleRowSelector();
+    initScrollIndicators();
   }
 </script>
 
@@ -876,10 +883,12 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
 
   .schedule-btn {
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .schedule-row {
     transition: all 0.2s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .schedule-row.selected-schedule {
@@ -891,4 +900,126 @@ import { IconClock, IconCalendar, IconMapPin, IconBus } from '@/components/Icons
   html {
     scroll-behavior: smooth;
   }
+
+  /* SCROLL HORIZONTAL */
+  
+  /* Desktop: sin restricciones de ancho, pero con overflow auto por si acaso */
+  .overflow-x-auto {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Tablas sin restricciones en desktop - ancho automático */
+  table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  th, td {
+    padding: 0.5rem;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  /* MÓVIL - Limitar a 2 columnas con scroll horizontal */
+  @media (max-width: 767px) {
+    /* Prevenir overflow horizontal en el body */
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Contenedor con scroll horizontal - FORZAR scroll */
+    .overflow-x-auto {
+      display: block;
+      max-width: calc(100vw - 1rem);
+      width: 100%;
+      overflow-x: scroll !important;
+      overflow-y: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #f97316 #f3f4f6;
+      border-radius: 0.5rem;
+      border: none;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .dark .overflow-x-auto {
+      scrollbar-color: #ea580c #1f2937;
+    }
+
+    /* Scrollbar personalizado para Webkit (Chrome, Safari, Edge) */
+    .overflow-x-auto::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-track {
+      background: #f3f4f6;
+      border-radius: 10px;
+    }
+
+    .dark .overflow-x-auto::-webkit-scrollbar-track {
+      background: #1f2937;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb {
+      background: #f97316;
+      border-radius: 10px;
+      border: 2px solid #f3f4f6;
+    }
+
+    .dark .overflow-x-auto::-webkit-scrollbar-thumb {
+      background: #ea580c;
+      border-color: #1f2937;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+      background: #ea580c;
+    }
+
+    /* Tablas con ancho mínimo - columnas se ajustan al contenido */
+    /* Sobreescribir w-full de Tailwind */
+    .overflow-x-auto table,
+    table.w-full {
+      display: table !important;
+      min-width: 900px !important;
+      width: auto !important;
+      max-width: none !important;
+      table-layout: auto !important;
+      border-collapse: collapse !important;
+      font-size: 0.85rem;
+      margin: 0 auto;
+    }
+
+    th, td {
+      padding: 0.6rem !important;
+      min-width: 140px !important;
+      width: auto !important;
+      max-width: none !important;
+      overflow: visible;
+      white-space: normal;
+      word-wrap: break-word;
+      text-align: center !important;
+    }
+
+    .schedule-btn {
+      touch-action: manipulation;
+      user-select: none;
+    }
+    
+    /* Reducir animaciones en móviles para mejor performance */
+    .schedule-row.selected-schedule {
+      transform: scale(1);
+    }
+  }
+
+  /* Prevenir espacios vacíos */
+  .schedule-content.hidden {
+    display: none !important;
+  }
 </style>
+
