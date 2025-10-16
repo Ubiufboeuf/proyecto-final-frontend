@@ -6,7 +6,7 @@ import { useRef, useState } from 'preact/compat'
 export function FormInput ({
   /* Identificadores */ id, name,
   /* Del elemento    */ title, type, placeholder, required = false, autocomplete = undefined,
-  /* Del componente  */ class: className, wrapperClass, visiblePasswordPlaceholder = 'abc123',
+  /* Del componente  */ class: className = '', wrapperClass = '', visiblePasswordPlaceholder = 'abc123',
   /* Eventos         */ onInput
 }: FormInput) {
   const [showPassword, setShowPassword] = useState(false)
