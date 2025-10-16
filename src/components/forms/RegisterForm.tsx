@@ -49,7 +49,7 @@ export function RegisterForm () {
               id='input-register-phone'
               name='input-register-phone'
               title='Teléfono'
-              placeholder='123 456 789'
+              placeholder='+000 123 456 789'
               type='tel'
               class='text-base'
               required
