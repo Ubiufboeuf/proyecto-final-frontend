@@ -1,14 +1,9 @@
-import type { ChangeEvent } from 'preact/compat'
 import { FormInput } from './Input'
 import { SwapInputs } from './SwapInputs'
 
 export function RegisterForm () {
   function handleSubmitForm (event: SubmitEvent) {
     event.preventDefault()
-  }
-
-  function handleInputDocument (event: ChangeEvent<HTMLInputElement>) {
-    console.log(event)
   }
   
   return (
@@ -36,7 +31,6 @@ export function RegisterForm () {
             placeholder='12345678R'
             type='text'
             class='text-base'
-            onInput={handleInputDocument}
             required
           />
         </div>
