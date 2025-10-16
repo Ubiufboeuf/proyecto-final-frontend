@@ -1,9 +1,79 @@
+import { ENDPOINTS } from '@/lib/constants'
 import { FormInput } from './Input'
 import { SwapInputs } from './SwapInputs'
+import { useState } from 'preact/hooks'
 
 export function RegisterForm () {
-  function handleSubmitForm (event: SubmitEvent) {
+  const [isSwapped, setIsSwapped] = useState(false)
+  
+  async function handleSubmitForm (event: SubmitEvent) {
     event.preventDefault()
+
+    const form = event.currentTarget
+    if (!(form instanceof HTMLFormElement)) return
+    
+    const formData = new FormData(form)
+
+    const fullname = formData.get('input-register-fullname')
+    const document = formData.get('input-register-document')
+    const email = formData.get('input-register-email')
+    const phone = formData.get('input-register-phone')
+    const password = formData.get('input-register-password')
+
+    if (!fullname) {
+      console.error('Falta especificar el nombre completo')
+      return
+    }
+
+    if (!document) {
+      console.error('Falta especificar el documento (cédula o dni)')
+      return
+    }
+
+    if (!email && !isSwapped) {
+      console.error('Falta especificar el email')
+      return
+    }
+
+    if (!phone && isSwapped) {
+      console.error('Falta especificar el teléfono')
+      return
+    }
+
+    if (!password) {
+      console.error('Falta especificar la contraseña')
+      return
+    }
+
+    const contact = isSwapped ? 'phone' : 'email'
+
+    try {
+      const res = await fetch(ENDPOINTS.REGISTER, {
+        method: 'POST',
+        body: JSON.stringify({
+          fullname,
+          document,
+          email,
+          phone,
+          contact,
+          password
+        })
+      })
+
+      if (res.ok) {
+        location.href = '/'
+        // console.log(res)
+        return
+      }
+      
+      console.error('Error iniciar la sesión')
+    } catch {
+      console.error('Error de red al iniciar sesión')
+    }
+  }
+
+  function handleSwap (isSwapped: boolean) {
+    setIsSwapped(isSwapped)
   }
   
   return (
@@ -43,6 +113,7 @@ export function RegisterForm () {
               placeholder='correo@email.com'
               type='email'
               class='text-base'
+              disabled={isSwapped}
               required
             />
             <FormInput
@@ -52,6 +123,7 @@ export function RegisterForm () {
               placeholder='+000 123 456 789'
               type='tel'
               class='text-base'
+              disabled={!isSwapped}
               required
             />
           </SwapInputs>
