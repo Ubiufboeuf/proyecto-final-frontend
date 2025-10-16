@@ -1,6 +1,6 @@
-import { useRef, useState, type ReactNode } from 'preact/compat'
+import { useEffect, useRef, useState, type ReactNode } from 'preact/compat'
 
-export function SwapInputs ({ label, swap_label, children }: { label: string, swap_label: string, children: ReactNode[] }) {
+export function SwapInputs ({ label, swap_label, onSwap, children }: { label: string, swap_label: string, onSwap?: (isSwapped: boolean) => void, children: ReactNode[] }) {
   const [swap, setSwap] = useState(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const swapRef = useRef<HTMLInputElement>(null)
@@ -11,6 +11,10 @@ export function SwapInputs ({ label, swap_label, children }: { label: string, sw
   function toggleSwap () {
     setSwap((prevState) => !prevState)
   }
+
+  useEffect(() => {
+    onSwap?.(swap)
+  }, [swap])
   
   return (
     <div

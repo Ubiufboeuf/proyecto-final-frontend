@@ -35,7 +35,7 @@ export function RegisterForm () {
           />
         </div>
         <div class='w-full lfw:px-6'>
-          <SwapInputs label='Teléfono' swap_label='Correo'>
+          <SwapInputs label='Teléfono' swap_label='Correo' onSwap={handleSwap}>
             <FormInput
               id='input-register-email'
               name='input-register-email'
