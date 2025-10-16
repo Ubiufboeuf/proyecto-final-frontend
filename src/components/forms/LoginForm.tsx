@@ -13,9 +13,9 @@ export function LoginForm () {
         return
       }
       
-      console.error('Error cerrando la sesión')
+      console.error('Error iniciar la sesión')
     } catch {
-      console.error('Error de red al cerrar sesión')
+      console.error('Error de red al iniciar sesión')
     }
   }
   
