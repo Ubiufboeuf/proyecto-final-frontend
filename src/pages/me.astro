@@ -2,11 +2,10 @@
 import LayoutSimple from '@/layouts/LayoutSimple.astro'
 import { getUserData } from '@/services/userService'
 import { LogoutButton } from '@/components/user/LogoutButton'
-import { SESSION_COOKIE_NAME } from '@/lib/constants'
-import { http_endpoint } from '@/lib/constants'
+import { ENDPOINTS, SESSION_COOKIE_NAME } from '@/lib/constants'
 
-if (new URL(http_endpoint).host !== Astro.url.host) {
-  return Astro.redirect(http_endpoint)
+if (new URL(ENDPOINTS.HTTP).host !== Astro.url.host) {
+  return Astro.redirect(ENDPOINTS.HTTP)
 }
 
 const token = Astro.cookies.get(SESSION_COOKIE_NAME)

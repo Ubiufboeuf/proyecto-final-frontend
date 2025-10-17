@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'preact/hooks' // Aseg√
 import { ENDPOINTS } from '@/lib/constants' 
 
 // URL del servidor HTTP
-const SERVER_URL = ENDPOINTS.HTTP 
+const SERVER_URL = ENDPOINTS.HTTP_RECORDER 
 
 export function SimpleHttpRouteRecorder () {
   // #region --- Estados y Referencias ---
