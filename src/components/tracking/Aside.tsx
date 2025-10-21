@@ -4,16 +4,14 @@ import { AsideHeader } from '@/components/tracking/AsideHeader'
 import type { BusesData } from '@/env'
 import { BusCard } from './BusCard'
 import { useId } from 'preact/hooks'
-import { useTrackUIStore } from '@/stores/useTrackUIStore'
 
-export function Aside ({ busesData: _busesData, class: className }: { busesData: BusesData | null, class: string }) {
+export function Aside ({ busesData: _busesData, class: className, hidden = false }: { busesData: BusesData | null, class: string, hidden?: boolean }) {
   const [busesData, setBusesData] = useState(_busesData)
   const buses = useBusesStore((state) => state.buses)
   const setSelectedCount = useBusesStore((state) => state.setSelectedCount)
   const delayed = useBusesStore((state) => state.delayed)
   const inTerminal = useBusesStore((state) => state.inTerminal)
   const inMovement = useBusesStore((state) => state.inMovement)
-  const isUIVisible = useTrackUIStore((state) => state.isUIVisible)
 
   useEffect(() => {
     if (!buses) return
@@ -35,7 +33,7 @@ export function Aside ({ busesData: _busesData, class: className }: { busesData:
   }, [buses])
 
   return (
-    <aside class={className} hidden={!isUIVisible}>
+    <aside class={className} hidden={hidden}>
       <AsideHeader />
       <section class='relative overflow-y-scroll h-full max-h-full [scrollbar-width:thin]'>
         <div id='buses-cards-wrapper' class='p-4 h-fit min-h-fit grid grid-cols-1 gap-4'>
