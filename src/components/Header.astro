@@ -2,13 +2,17 @@
 import { Icon } from './Icon'
 import { IconBus, IconMenu } from './Icons'
 import { links } from '@/lib/utils'
-import { UserLinks } from './user/UserLinks'
+import { LoginLink } from './user/LoginLink'
+import { AccountLink } from './user/AccountLink'
+import { RegisterLink } from './user/RegisterLink'
 
 interface Props { 
   pathname: string
 }
 
 const { pathname } = Astro.props
+
+const { isAuth } = Astro.locals
 ---
 
 <header class='w-full h-navbar px-8 pl-4 bg-white dark:bg-transparent text-gray-700 dark:text-gray-100 flex justify-center items-center'>
@@ -36,7 +40,9 @@ const { pathname } = Astro.props
       }
     </nav>
     <aside class='h-full w-fit not-xl:flex-1 flex items-center justify-end gap-2'>
-      <UserLinks display='header' client:load />
+      { !isAuth && <LoginLink class='not-xs:hidden xl:flex lg:hidden' /> }
+      { !isAuth && <RegisterLink class='not-xs:hidden xl:flex lg:hidden' /> }
+      { isAuth && <AccountLink /> }
       <label
         for='input-global-sidebar'
         class='xl:hidden h-fit w-fit p-2 aspect-square min-h-10 hover:bg-gray-200 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 touch:active:bg-gray-200 transition-colors rounded-lg flex items-center justify-center cursor-pointer'

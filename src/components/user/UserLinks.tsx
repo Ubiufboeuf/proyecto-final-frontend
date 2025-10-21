@@ -5,6 +5,13 @@ import { SignedOut } from './SignedOut'
 import { SignedIn } from './SignedIn'
 
 export function UserLinks ({ display = 'header' }: { display: 'header' | 'sidebar' }) {
+  /** --- Aviso ---
+   * No hay que eliminar este componente por si llega a dar fallos el manejo de la sesión del usuario.
+   * Ya dió problemas cuando se manejaba con preact por temas de hidratación,
+   * y si bien ahora no debería pasar, sólo por si acaso deberíamos dejarlo.
+   * 
+   * Lo mismo con los componentes <SignedOut> y <SignedIn>
+   */
   return (
     <>
       {
