@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from 'preact/hooks'
 import type { LatLngTuple, Map, Marker } from 'leaflet'
 import VaulDrawer from './Drawer'
 import { Icon } from '../Icon'
-import { IconEye, IconFocus } from '../Icons'
+import { IconEye, IconEyeClosed, IconFocus } from '../Icons'
+import { useTrackUIStore } from '@/stores/useTrackUIStore'
 
 const DEFAULT_LAT = -34.4707
 const DEFAULT_LNG = -57.8515
@@ -23,6 +24,9 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   const buses = useBusesStore((state) => state.buses)
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
   const [leaflet, setLeaflet] = useState<typeof import('/home/mango/proyecto-final/frontend/node_modules/.pnpm/@types+leaflet@1.9.20/node_modules/@types/leaflet/index')>()
+  // const [isUIVisible, setIsUIVisible] = useState(true)
+  const isUIVisible = useTrackUIStore((state) => state.isUIVisible)
+  const setIsUIVisible = useTrackUIStore((state) => state.setIsUIVisible)
 
   async function importLeaflet () {
     let L
@@ -63,6 +67,12 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'    
     }).addTo($map)
+  }
+
+  function handleToggleUI () {
+    setIsUIVisible(!isUIVisible)
+    const resizeEvent = new UIEvent('resize')
+    window.dispatchEvent(resizeEvent)
   }
 
   function handleLocateMe () {
@@ -191,7 +201,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   }, [buses])
 
   return (
-    <main class='h-full w-full absolute right-0 top-0 z-0 pt-16 lg:pl-80 [transition:padding-left_ease_250ms]'>
+    <main class={`${isUIVisible ? 'isUIVisible' : ''} [&.isUIVisible]:pt-16 [&.isUIVisible]:lg:pl-80 h-full w-full absolute right-0 top-0 z-0`}>
       <div class='h-full w-full flex justify-center items-center relative'>
         <div
           ref={mapRef}
@@ -201,14 +211,6 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
         <header class='flex items-center gap-2 h-fit w-fit absolute left-2.5 top-2.5 rounded-lg px-4 py-3 mr-14
         bg-white dark:bg-gray-800'>
           <button class='flex items-center justify-center gap-2 w-fit h-fit max-w-full max-h-full px-3 p-2 border-2 text-sm cursor-pointer transition-colors rounded-lg outline-0
-          text-gray-800 border-gray-200 hover:bg-orange-50 active:bg-orange-50 touch:active:bg-orange-50 hover:border-orange-500/50 active:border-orange-500/50 touch:active:border-orange-500/50 focus-visible:bg-gray-100 focus-visible:border-orange-500/50
-          dark:bg-gray-700/50 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:active:bg-gray-700 dark:touch:active:bg-gray-700 dark:hover:border-gray-600 dark:active:border-gray-600 dark:touch:active:border-gray-600 dark:focus-visible:bg-gray-600'>
-            <Icon class='size-5'>
-              <IconEye />
-            </Icon>
-            <span class='hidden us:inline'>Vista Satélite</span>
-          </button>
-          <button class='flex items-center justify-center gap-2 w-fit h-fit max-w-full max-h-full px-3 p-2 border-2 text-sm cursor-pointer transition-colors rounded-lg outline-0
             text-gray-800 border-gray-200 hover:bg-orange-50 active:bg-orange-50 touch:active:bg-orange-50 hover:border-orange-500/50 active:border-orange-500/50 touch:active:border-orange-500/50 focus-visible:bg-gray-100 focus-visible:border-orange-500/50
             dark:bg-gray-700/50 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:active:bg-gray-700 dark:touch:active:bg-gray-700 dark:hover:border-gray-600 dark:active:border-gray-600 dark:touch:active:border-gray-600 dark:focus-visible:bg-gray-600'
             onClick={handleLocateMe}
@@ -216,7 +218,21 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
             <Icon class='size-5'>
               <IconFocus />
             </Icon>
-            <span class='hidden us:inline'>Ubícame</span>
+            <span class='hidden us:inline' hidden={!isUIVisible}>Ubícame</span>
+          </button>
+          <button
+            class='flex items-center justify-center gap-2 w-fit h-fit max-w-full max-h-full px-3 p-2 border-2 text-sm cursor-pointer transition-colors rounded-lg outline-0
+          text-gray-800 border-gray-200 hover:bg-orange-50 active:bg-orange-50 touch:active:bg-orange-50 hover:border-orange-500/50 active:border-orange-500/50 touch:active:border-orange-500/50 focus-visible:bg-gray-100 focus-visible:border-orange-500/50
+          dark:bg-gray-700/50 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 dark:active:bg-gray-700 dark:touch:active:bg-gray-700 dark:hover:border-gray-600 dark:active:border-gray-600 dark:touch:active:border-gray-600 dark:focus-visible:bg-gray-600'
+            onClick={handleToggleUI}
+          >
+            <Icon class='size-5' hidden={isUIVisible}>
+              <IconEye />
+            </Icon>
+            <Icon class='size-5' hidden={!isUIVisible}>
+              <IconEyeClosed />
+            </Icon>
+            <span class='hidden us:inline' hidden={!isUIVisible}>{isUIVisible ? 'Ocultar interfaz' : 'Mostrar interfaz'}</span>
           </button>
         </header>
         <VaulDrawer busesData={busesData} />
