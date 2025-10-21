@@ -8,16 +8,17 @@ import { InitializeUser } from '@/components/user/InitializeUser'
 interface Props {
 	title: string
 	class?: string
+	stabilizeScrollbarGutter?: boolean
 }
 
-const { title, class: className = '' } = Astro.props
+const { title, class: className = '', stabilizeScrollbarGutter = true } = Astro.props
 const { originPathname: pathname } = Astro
 
 const themeCookie = Astro.cookies.get('berrutti-web-theme')
 const { isAuth, isLoading, user } = Astro.locals
 ---
 
-<html lang='es' data-theme={themeCookie?.value || 'system'}>
+<html lang='es' data-theme={themeCookie?.value || 'system'} style={stabilizeScrollbarGutter ? 'scrollbar-gutter: stable;' : ''}>
 	<head>
 		<meta charset='utf-8' />
 		<link rel='icon' type='image/svg+xml' href='/favicon.webp' />
