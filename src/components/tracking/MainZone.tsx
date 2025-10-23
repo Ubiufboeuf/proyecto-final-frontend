@@ -78,9 +78,15 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   function handleLocateMe () {
     // console.log(map)
     const marker = leaflet?.marker
-    if (!map || !marker) return
+    const icon = leaflet?.icon
+
+    if (!map || !marker || !icon) return
 
     const myMarker = myMarkerRef.current
+    const markerIcon = icon({
+      iconUrl: '/marker-icon.png',
+      iconSize: [25, 41]
+    })
 
     map.locate({
       setView: false,
@@ -90,7 +96,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     map.once('locationfound', (e) => {
       map.setView(e.latlng, map.getZoom())
       if (!myMarker) {
-        myMarkerRef.current = marker(e.latlng, {  }).addTo(map)
+        myMarkerRef.current = marker(e.latlng, { icon: markerIcon }).addTo(map)
       } else {
         myMarker.setLatLng(e.latlng)
       }
@@ -103,7 +109,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   async function handleBusesAndRoutes () {
     if (!leaflet || !buses) return
 
-    const { map: createMap, control, marker, polyline } = leaflet
+    const { map: createMap, control, marker, polyline, icon } = leaflet
 
     let $map = map
     if (!$map) {
@@ -113,6 +119,11 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
       control.zoom({ position: 'topright' }).addTo($map)
     }
 
+    const markerIcon = icon({
+      iconUrl: '/marker-icon.png',
+      iconSize: [25, 41]
+    })
+
     for (const { location, route } of buses) {
       if (location.position !== null) {
         const { x, y } = location.position
@@ -121,7 +132,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
         let busMarker = location.marker
 
         if (!busMarker) {
-          busMarker = marker({ lat: y, lng: x }).addTo($map)
+          busMarker = marker({ lat: y, lng: x }, { icon: markerIcon }).addTo($map)
           location.marker = busMarker
         }
 
