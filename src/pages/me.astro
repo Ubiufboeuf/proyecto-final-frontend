@@ -15,6 +15,12 @@ const user = await getUserData(token.value)
 
 if (!user) return Astro.redirect('/')
 const { document, fullName, password, role, mail, tel } = user
+
+const roles = {
+  'client': 'Cliente',
+  'admin': 'Administrador',
+  'driver': 'Conductor'
+}
 ---
 
 <LayoutSimple title='Usuario'>
@@ -26,6 +32,7 @@ const { document, fullName, password, role, mail, tel } = user
       </div>
       <div class='flex flex-col items-center gap-2'>
         <strong>Detalles de la cuenta</strong>
+        <p>{roles[role]}</p>
         <p>{mail || tel}</p>
         <p>••••••</p>
       </div>
