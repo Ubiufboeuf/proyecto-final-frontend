@@ -15,7 +15,7 @@ export function useBusTrackingSocket () {
 
     let socket = null
     try {
-      socket = io(ENDPOINTS.WS, { reconnectionAttempts: 3 })
+      socket = io(ENDPOINTS.WS, { reconnectionAttempts: 3,  extraHeaders: {'ngrok-skip-browser-warning': 'any-value'} })
       socketRef.current = socket
     } catch (err) {
       errorHandler(err)
@@ -31,7 +31,7 @@ export function useBusTrackingSocket () {
     })
 
     socket.on('connect_error', (err) => {
-      errorHandler(err, 'Error de conexión Socket.IO')
+      errorHandler(err, 'Error de conexión Socket.IO', true)
     })
 
     socket.on('bus-location', (data) => {
