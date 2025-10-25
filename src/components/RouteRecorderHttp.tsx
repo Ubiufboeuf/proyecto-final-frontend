@@ -1,17 +1,20 @@
 import { useState, useEffect, useRef, useCallback } from 'preact/hooks' // Asegúrate de importar useCallback
 import { ENDPOINTS } from '@/lib/constants' 
+import { errorHandler } from '@/lib/utils'
 
 // URL del servidor HTTP
 const SERVER_URL = ENDPOINTS.HTTP_RECORDER 
 
 export function SimpleHttpRouteRecorder () {
   // #region --- Estados y Referencias ---
-  const [routeId, setRouteId] = useState('Ruta-A') // Estado para el nombre de la ruta
+  const [routeId, setRouteId] = useState('Ruta-NºX') // Estado para el nombre de la ruta
   const [position, setPosition] = useState<GeolocationPosition | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isRecording, setIsRecording] = useState(false)
   const trackIdRef = useRef<number | null>(null)
   const positionCountRef = useRef(0) // Contador simple
+  const routesCount = useRef(0)
+  const routeIdInputRef = useRef<HTMLInputElement | null>(null)
   // #endregion
 
   // Función para manejar el cambio en el input
@@ -64,7 +67,15 @@ export function SimpleHttpRouteRecorder () {
 
       console.log(`[HTTP OK] Posición ${payload[0].count} enviada a ${currentRouteId}.`)
     } catch (err) {
-      setError(`[FALLO RED] Falló el envío: ${err.message}`)
+      let error = ''
+      if (err instanceof Error) {
+        error = err.message
+      } else if (typeof err === 'string') {
+        error = err
+      } else {
+        error = 'Tipo de error desconocido'
+      }
+      setError(`[FALLO RED] Falló el envío: ${error}`)
     }
   }, [SERVER_URL]) // Dependencia del useCallback
 
@@ -100,7 +111,7 @@ export function SimpleHttpRouteRecorder () {
     const watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, {
       enableHighAccuracy: true,
       maximumAge: 0,
-      timeout: 10000 
+      timeout: 10000
     })
 
     trackIdRef.current = watchId
@@ -119,12 +130,45 @@ export function SimpleHttpRouteRecorder () {
 
   // #endregion
 
+  function handleToggleRecord () {
+    if (isRecording) {
+      routesCount.current++
+      stopWatching()
+    } else {
+      startWatching()
+    }
+  }
+
   // Effect de Limpieza
   useEffect(() => {
+    fetch(ENDPOINTS.HTTP_RECORDER, { headers: {
+      'ngrok-skip-browser-warning': 'any-value'
+    } })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data)
+        routesCount.current = data.routesCount
+      })
+      .catch((err) => {
+        errorHandler(err, 'error consiguienod la cantidad de rutas')
+      })
+      .finally(() => {
+        setRouteId(`Ruta Nº${routesCount.current++}`)
+      })
+
     return () => {
       stopWatching() 
     }
   }, [])
+
+  useEffect(() => {
+    if (routeIdInputRef.current)
+      routeIdInputRef.current.value = routeId
+  }, [routeId])
+
+  // useEffect(() => {
+  //   setRouteId(`Ruta Nº${routesCount.current}`)
+  // }, [routesCount])
 
   return (
     <div style={{ padding: '20px', border: '1px solid #1a1a1a', background: '#202020', color: '#f0f0f0', maxWidth: '400px', margin: '20px auto' }}>
@@ -135,9 +179,10 @@ export function SimpleHttpRouteRecorder () {
       
       <label htmlFor='routeIdInput'>Nombre de la Ruta (ID del JSON):</label>
       <input
+        ref={routeIdInputRef}
         id='routeIdInput'
         type='text'
-        value={routeId}
+        defaultValue={routeId}
         onInput={handleRouteIdChange}
         disabled={isRecording}
         placeholder='Ej: Ruta-Norte'
@@ -164,8 +209,8 @@ export function SimpleHttpRouteRecorder () {
       <hr style={{ borderColor: '#444' }}/>
       
       <button 
-        onClick={isRecording ? stopWatching : startWatching} 
-        disabled={!routeId} // Deshabilitar si el campo de ruta está vacío
+        onClick={handleToggleRecord} 
+        disabled={!routeId || isRecording} // Deshabilitar si el campo de ruta está vacío
         style={{ 
           padding: '10px 20px', 
           cursor: routeId ? 'pointer' : 'not-allowed', 
