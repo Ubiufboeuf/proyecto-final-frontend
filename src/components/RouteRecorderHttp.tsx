@@ -109,7 +109,7 @@ export function SimpleHttpRouteRecorder () {
     setError(null)
     
     const watchId = navigator.geolocation.watchPosition(successCallback, errorCallback, {
-      enableHighAccuracy: true,
+      enableHighAccuracy: false,
       maximumAge: 0,
       timeout: 10000
     })
