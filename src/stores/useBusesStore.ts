@@ -102,7 +102,6 @@ export const useBusesStore = create<BusesStore>((set, get) => ({
   updateBusSelectedState (bus, selected) {
     const { buses } = get()
     const busIdx = buses?.findIndex((b) => b.id === bus.id)
-    console.log({busIdx, bus}, buses)
     
     if (busIdx == null || busIdx === -1 || !buses) return
 
