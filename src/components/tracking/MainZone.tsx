@@ -7,6 +7,7 @@ import VaulDrawer from './Drawer'
 import { Icon } from '../Icon'
 import { IconEye, IconEyeClosed, IconFocus } from '../Icons'
 import { useTrackUIStore } from '@/stores/useTrackUIStore'
+import { errorHandler } from '@/lib/utils'
 
 const DEFAULT_LAT = -34.4707
 const DEFAULT_LNG = -57.8515
@@ -88,19 +89,22 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
       iconSize: [25, 41]
     })
 
-    map.locate({
-      setView: false,
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      const latlng: [number, number] = [
+        coords.latitude,
+        coords.longitude
+      ]
+      map.setView(latlng, map.getZoom())
+      if (!myMarker) {
+        myMarkerRef.current = marker(latlng, { icon: markerIcon }).addTo(map)
+      } else {
+        myMarker.setLatLng(latlng)
+      }
+    }, (err) => errorHandler(err, 'Error consiguiendo la posición del usuario'), {
       enableHighAccuracy: true,
       maximumAge: 0
     })
-    map.once('locationfound', (e) => {
-      map.setView(e.latlng, map.getZoom())
-      if (!myMarker) {
-        myMarkerRef.current = marker(e.latlng, { icon: markerIcon }).addTo(map)
-      } else {
-        myMarker.setLatLng(e.latlng)
-      }
-    })
+
     map.once('locationerror', (err) => {
       alert(`Error obteniendo ubicación: ${err.message}`)
     })
