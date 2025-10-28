@@ -23,6 +23,7 @@ type BusesStore = BusesData & {
   updateBusState: (busId: string, newState: BusStates) => void
   updateBusPosition: (busId: string, newPosition: Point) => void
   setBusesData: (busesData: BusesData) => void
+  updateBusSelectedState: (bus: Bus, isSelected: boolean) => void
   /* count: 12,
   inMovement: 5,
   selected: 0,
@@ -97,5 +98,19 @@ export const useBusesStore = create<BusesStore>((set, get) => ({
         return bus
       })
     }) 
+  },
+  updateBusSelectedState (bus, selected) {
+    const { buses } = get()
+    const busIdx = buses?.findIndex((b) => b.id === bus.id)
+    console.log({busIdx, bus}, buses)
+    
+    if (busIdx == null || busIdx === -1 || !buses) return
+
+    set({
+      buses: buses.toSpliced(busIdx, 1, {
+        ...bus,
+        selected
+      })
+    })
   }
 }))

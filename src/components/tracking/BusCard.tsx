@@ -11,27 +11,17 @@ const states: { [key in BusStates]: string } = {
   'En viaje': 'inMovement'
 }
 
-export function BusCard ({ bus: { id, driver, destination, state = 'En terminal', selected, origin, location, passengers, progress } }: { bus: Bus }) {
+export function BusCard ({ bus }: { bus: Bus }) {
+  const { id, driver, destination, state = 'En terminal', selected, origin, location, passengers, progress } = bus
   const [isSelected, setIsSelected] = useState<boolean>(selected)
-  const buses = useBusesStore((state) => state.buses)
-  const setBuses = useBusesStore((state) => state.setBuses)
+  const updateBusSelectedState = useBusesStore((state) => state.updateBusSelectedState)
   
   function toggleIsSelected () {
     setIsSelected((isSelected) => !isSelected)
   }
 
   useEffect(() => {
-    if (!buses) return
-    
-    const dataIdx = buses.findIndex((bus) => bus.id === id)
-    const currentBus = buses[dataIdx]
-    const newBus: Bus = {
-      ...currentBus,
-      selected: isSelected
-    }
-    const newBuses = [...buses]
-    newBuses[dataIdx] = newBus
-    setBuses(newBuses)
+    updateBusSelectedState(bus, isSelected)
   }, [isSelected])
 
   useEffect(() => {
