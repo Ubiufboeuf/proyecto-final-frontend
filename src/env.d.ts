@@ -107,7 +107,7 @@ export type Bus = {
     current: Point[]
     planned: Point[]
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    current_polyline: Polyline<GeoJSON.LineString | GeoJSON.MultiLineString, any> | null
+    current_polyline: Polyline<LineString | MultiLineString, any> | null
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     planned_polyline: Polyline<LineString | MultiLineString, any> | null
   }
