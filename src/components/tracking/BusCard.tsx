@@ -12,8 +12,8 @@ const states: { [key in BusStates]: string } = {
 }
 
 export function BusCard ({ bus }: { bus: Bus }) {
-  const { id, driver, destination, state = 'En terminal', selected, origin, location, passengers, progress } = bus
-  const [isSelected, setIsSelected] = useState<boolean>(selected)
+  const { id, driver, destination, state = 'En terminal', selected: defaultSelected, origin, location, passengers, progress } = bus
+  const [isSelected, setIsSelected] = useState<boolean>(defaultSelected)
   const updateBusSelectedState = useBusesStore((state) => state.updateBusSelectedState)
   
   function toggleIsSelected () {
@@ -25,8 +25,8 @@ export function BusCard ({ bus }: { bus: Bus }) {
   }, [isSelected])
 
   useEffect(() => {
-    setIsSelected(selected)
-  }, [selected])
+    setIsSelected(defaultSelected)
+  }, [defaultSelected])
 
   return (
     <article
