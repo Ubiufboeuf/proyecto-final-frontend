@@ -23,7 +23,8 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   const setInMovement = useBusesStore((state) => state.setInMovement)
   const setInTerminal = useBusesStore((state) => state.setInTerminal)
   const buses = useBusesStore((state) => state.buses)
-  const updateBus = useBusesStore((state) => state.updateBus)
+  // const updateBus = useBusesStore((state) => state.updateBus)
+  const updateSelectedBuses = useBusesStore((state) => state.updateSelectedBuses)
   // eslint-disable-next-line @typescript-eslint/consistent-type-imports
   const [leaflet, setLeaflet] = useState<typeof import('/home/mango/proyecto-final/frontend/node_modules/.pnpm/@types+leaflet@1.9.20/node_modules/@types/leaflet/index')>()
   // const [isUIVisible, setIsUIVisible] = useState(true)
@@ -125,21 +126,22 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     }
 
     const busMarkerIcon = icon({
-      iconUrl: '/bus-marker-icon.png',
-      iconSize: [348, 174]
+      iconUrl: '/bus-marker-icon.svg',
+      iconSize: [48, 48]
     })
 
     for (const bus of buses) {
-      const newBus = { ...bus }
+      // const newBus = { ...bus }
       const { location, route, selected } = bus
-      
+
       if (!selected) {
         route.planned_polyline?.removeFrom($map)
         route.current_polyline?.removeFrom($map)
+        location.marker?.removeFrom($map)
         continue
       }
 
-      if (location.position !== null) {
+      if (location.position != null) {
         const { x, y } = location.position
 
         // Marcador
@@ -148,6 +150,8 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
         if (!busMarker) {
           busMarker = marker({ lat: y, lng: x }, { icon: busMarkerIcon }).addTo($map)
           location.marker = busMarker
+        } else {
+          busMarker.addTo($map)
         }
 
         busMarker.setLatLng({ lat: y, lng: x })
@@ -169,7 +173,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
           weight: 4,
           opacity: 0.8
         }).addTo($map)
-        newBus.route.planned_polyline = busPlannedPolyline
+        route.planned_polyline = busPlannedPolyline
       } else {
         busPlannedPolyline.addTo($map)
       }
@@ -189,12 +193,12 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
           weight: 4,
           opacity: 0.8
         }).addTo($map)
-        newBus.route.current_polyline = busCurrentPolyline
+        route.current_polyline = busCurrentPolyline
       } else {
         busCurrentPolyline.addTo($map)
       }
 
-      updateBus(newBus)
+      // updateBus(newBus)
     }
   }
 
@@ -219,6 +223,8 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
 
   useEffect(() => {
     if (!buses) return
+
+    updateSelectedBuses()
 
     const busStates: { [key in BusStates]: number } = { 'En terminal': 0, 'En viaje': 0, Atrasado: 0 }
     for (const bus of buses) {

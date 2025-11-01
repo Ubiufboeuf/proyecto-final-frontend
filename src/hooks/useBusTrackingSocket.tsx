@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'preact/hooks'
+import { useEffect, useRef, useState } from 'preact/hooks'
 import { io, type Socket } from 'socket.io-client'
-import type { BusLocationFromServer } from '@/env'
+import type { BusLocationFromServer, Point } from '@/env'
 import { ENDPOINTS, WS_RESPONSE_TYPE } from '@/lib/constants'
 import { errorHandler } from '@/lib/utils'
 import { useBusesStore } from '@/stores/useBusesStore'
@@ -8,6 +8,8 @@ import { useBusesStore } from '@/stores/useBusesStore'
 export function useBusTrackingSocket () {
   const socketRef = useRef<Socket | null>(null)
   const updateBusPosition = useBusesStore((state) => state.updateBusPosition)
+  const selectedBuses = useBusesStore((state) => state.selectedBuses)
+  const [lastPositions, setLastPositions] = useState<Record<string, Point>>({})
 
   useEffect(() => {
     // Evitar crear conexión si ya existe
@@ -48,6 +50,17 @@ export function useBusTrackingSocket () {
       }
     })
 
+    socket.on('response-last-position', ({ id, latlng }) => {
+      // console.log('response last position', id, latlng)
+      if (!latlng) return
+
+      updateBusPosition(id, latlng)
+      setLastPositions((p) => ({
+        ...p,
+        [id]: latlng
+      }))
+    })
+
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect()
@@ -55,4 +68,16 @@ export function useBusTrackingSocket () {
       }
     }
   }, [updateBusPosition])
+
+  useEffect(() => {
+    const socket = socketRef.current
+    if (!socket) return
+    
+    // console.log(lastPositions)
+    for (const { id } of selectedBuses) {
+      if (lastPositions[id]) continue
+
+      socket.emit('request-last-position', id)
+    }
+  }, [selectedBuses, lastPositions])
 }

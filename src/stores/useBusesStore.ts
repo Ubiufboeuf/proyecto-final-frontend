@@ -25,6 +25,8 @@ type BusesStore = BusesData & {
   setBusesData: (busesData: BusesData) => void
   updateBusSelectedState: (bus: Bus, isSelected: boolean) => void
   updateBus: (bus: Bus) => void
+  selectedBuses: Bus[]
+  updateSelectedBuses: () => void
   /* count: 12,
   inMovement: 5,
   selected: 0,
@@ -124,5 +126,19 @@ export const useBusesStore = create<BusesStore>((set, get) => ({
         ...state.buses!.toSpliced(busIdx, 1, bus)
       ]
     }))
-  }
+  },
+  updateSelectedBuses () {
+    const { buses } = get()
+
+    const selectedBuses: Bus[] = []
+
+    for (const bus of buses || []) {
+      if (!bus.selected) continue
+
+      selectedBuses.push(bus)
+    }
+
+    set({ selectedBuses })
+  },
+  selectedBuses: []
 }))
