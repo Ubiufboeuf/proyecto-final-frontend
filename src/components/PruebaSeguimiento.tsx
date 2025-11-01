@@ -37,7 +37,7 @@ export function DriverDashboard () {
   }
 
   return (
-    <div>
+    <div class='flex flex-col max-w-100'>
       <h2>Panel de Chofer (Test)</h2>
       <p>Estado de la conexión: {indicators.connectionState ? userFriendlyConectionStates[indicators.connectionState] : 'unknown'}</p>
       <p>Estado del seguimiento: {indicators.trackingState ? userFriendlyTrackingStates[indicators.trackingState] : 'unknown'}</p>
