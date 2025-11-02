@@ -37,12 +37,6 @@ export function HeaderInfo () {
         <span class='not-xxs:hidden'>{ selectedCount === 1 ? ' seleccionado' : ' seleccionados' }</span>
         <span class='xxs:hidden'>/{count}</span>
       </span>
-      <div class='text-sm text-gray-600 w-fit text-nowrap dark:text-gray-200'>
-        <span class='not-xs:hidden'>
-          Actualizado:
-        </span>
-        <span>{' '}{ parseTimestamp(timestampInMiliseconds, { format: '12 hrs', output: 'time' }) }</span>
-      </div>
     </section>
   )
 }
