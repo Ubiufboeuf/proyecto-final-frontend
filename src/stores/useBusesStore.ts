@@ -33,7 +33,7 @@ type BusesStore = BusesData & {
 
 export const useBusesStore = create<BusesStore>((set, get) => ({
   buses,
-  count,
+  count: count || (buses ? buses.length + 1 : 0),
   selectedCount,
   delayed,
   inMovement,

@@ -32,7 +32,7 @@ export async function getBusesData () {
   const busesData: BusesData = {
     buses: data.buses,
     selectedCount: data.selectedCount,
-    count: data.count,
+    count: data.count || (data.buses ? data.buses.length + 1 : 0),
     delayed: data.delayed,
     inMovement: data.inMovement,
     inTerminal: data.inTerminal,
