@@ -51,6 +51,7 @@ export function ThemeSelector ({ buttonClass, listClass }: { buttonClass?: strin
     
     setThemeCookie(newTheme)
     setTheme(newTheme)
+    setIsThemeListOpen(false)
   }
   
   function isValidTheme (themeStr: unknown): themeStr is ColorTheme {
