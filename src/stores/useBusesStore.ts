@@ -9,6 +9,8 @@ try {
   console.error(err)
 }
 
+const { buses, selectedCount, count, delayed, inMovement, inTerminal, timestamp } = busesData
+
 type BusesStore = BusesData & {
   setCount: (newValue: number) => void
   setInMovement: (newValue: number) => void
@@ -27,16 +29,16 @@ type BusesStore = BusesData & {
   updateBus: (bus: Bus) => void
   selectedBuses: Bus[]
   updateSelectedBuses: () => void
-  /* count: 12,
-  inMovement: 5,
-  selected: 0,
-  inTerminal: 0,
-  delayed: 4,
-  timestamp: 0, */
 }
 
 export const useBusesStore = create<BusesStore>((set, get) => ({
-  ...busesData,
+  buses,
+  count,
+  selectedCount,
+  delayed,
+  inMovement,
+  inTerminal,
+  timestamp,
   setBusesData: (busesData) => set({...busesData}),
   setCount: (newValue) => set({ count: newValue }),
   setInMovement: (newValue) => set({ inMovement: newValue }),
