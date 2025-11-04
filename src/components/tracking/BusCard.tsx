@@ -44,8 +44,14 @@ export function BusCard ({ bus }: { bus: Bus }) {
   }, [defaultSelected])
 
   return (
-    <article
-      class={`${isSelected ? 'busSelected' : ''} h-fit min-h-fit p-4 w-full border flex-col border-gray-200 rounded-lg flex cursor-pointer group bg-transparent outline-2 [&.busSelected]:outline-orange-500 [&.busSelected]:bg-orange-50 outline-transparent transition-all gap-2 dark:border-0 dark:bg-gray-700/50 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:outline-0 dark:[&.busSelected]:bg-gray-600`}
+    <button
+      class={`${isSelected ? 'busSelected' : ''} group
+      flex flex-col gap-2 h-fit min-h-fit w-full p-4 rounded-lg border outline-2 text-start cursor-pointer transition-colors
+
+      bg-transparent border-gray-200 outline-transparent [&.busSelected]:bg-orange-50 [&.busSelected]:outline-orange-500
+      
+      dark:bg-gray-700/50 dark:border-0 dark:outline-0 dark:[&.busSelected]:bg-gray-600 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:has-[.card-option:hover]:bg-gray-700/50
+      `}
       onClick={toggleIsSelected}
     >
       <section class='flex items-center w-full h-fit'>
