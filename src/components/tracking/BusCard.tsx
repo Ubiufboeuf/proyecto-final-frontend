@@ -1,9 +1,10 @@
 import type { Bus, BusStates } from '@/env'
-import { IconCheckbox, IconClock, IconMapPin, IconUser } from '../Icons'
+import { IconCheckbox, IconClock, IconFocus, IconMapPin, IconUser } from '../Icons'
 import { Icon } from '../Icon'
 import { useEffect, useState } from 'preact/hooks'
 import { parseTimestamp } from '@/lib/utils'
 import { useBusesStore } from '@/stores/useBusesStore'
+import type { ChangeEvent } from 'preact/compat'
 
 const states: { [key in BusStates]: string } = {
   'Atrasado': 'delayed',
@@ -12,12 +13,26 @@ const states: { [key in BusStates]: string } = {
 }
 
 export function BusCard ({ bus }: { bus: Bus }) {
-  const { id, driver, destination, state = 'En terminal', selected: defaultSelected, origin, location, passengers, progress } = bus
+  const { id, driver, destination, state = 'En terminal', selected: defaultSelected, origin, location, passengers } = bus
   const [isSelected, setIsSelected] = useState<boolean>(defaultSelected)
   const updateBusSelectedState = useBusesStore((state) => state.updateBusSelectedState)
+  const changeBusToFocus = useBusesStore((state) => state.changeBusToFocus)
+  const lockedBus = useBusesStore((state) => state.busToFocus)
   
-  function toggleIsSelected () {
+  function toggleIsSelected (event: ChangeEvent) {
+    const { target } = event
+    if (!(target instanceof HTMLElement)) return
+    
     setIsSelected((isSelected) => !isSelected)
+  }
+
+  function handleBusToFocus (event: InputEvent) {
+    event.stopPropagation()
+    if (lockedBus === bus.id) {
+      changeBusToFocus(null)
+      return
+    }
+    changeBusToFocus(bus.id)
   }
 
   useEffect(() => {
@@ -77,7 +92,28 @@ export function BusCard ({ bus }: { bus: Bus }) {
           <span>{passengers.onBoard}/{passengers.capacity} {passengers.onBoard === 1 ? 'pasajero' : 'pasajeros'}</span>
         </span>
       </section>
-      <section>
+      <section class='card-options pt-1'>
+        <label
+          class='card-option flex items-center justify-center gap-1.5 w-fit h-fit max-w-full p-1.5 px-2 outline-0 border-2 rounded-md text-xs cursor-pointer transition-colors
+          bg-white text-gray-700 border-gray-300 hover:border-orange-500/50 has-checked:bg-orange-100/70 has-checked:border-orange-400/50
+          dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:border-gray-500 dark:has-checked:bg-gray-600 dark:has-checked:border-gray-500'
+          onClick={(e) => e.stopPropagation()}
+          onInput={handleBusToFocus}
+        >
+          <input
+            id={`checkbox-bus-${id}-focus`}
+            type='checkbox'
+            class='pointer-events-none'
+            checked={lockedBus === bus.id}
+            hidden
+          />
+          <Icon class='size-5 text-gray-800 dark:text-gray-300'>
+            <IconFocus />
+          </Icon>
+          Fijar ómnibus
+        </label>
+      </section>
+      {/* <section>
         <div class='w-full text-xs justify-between flex items-center h-fit text-gray-500 dark:text-gray-400 pb-1'>
           <span>Progreso</span>
           <span>{progress}%</span>
@@ -85,7 +121,7 @@ export function BusCard ({ bus }: { bus: Bus }) {
         <div class='h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-800 overflow-hidden'>
           <div class='rounded-full h-full bg-orange-500 dark:bg-orange-600-light' style={{ width: `${progress}%` }} />
         </div>
-      </section>
-    </article>
+      </section> */}
+    </button>
   )
 }
