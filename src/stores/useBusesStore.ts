@@ -29,6 +29,8 @@ type BusesStore = BusesData & {
   updateBus: (bus: Bus) => void
   selectedBuses: Bus[]
   updateSelectedBuses: () => void
+  busToFocus: string | null
+  changeBusToFocus: (id: string | null) => void
 }
 
 export const useBusesStore = create<BusesStore>((set, get) => ({
@@ -142,5 +144,11 @@ export const useBusesStore = create<BusesStore>((set, get) => ({
 
     set({ selectedBuses })
   },
-  selectedBuses: []
+  selectedBuses: [],
+  busToFocus: null,
+  changeBusToFocus (busToFocus) {
+    // Acepta null, no undefined
+    if (busToFocus === undefined) return
+    set({ busToFocus })
+  }
 }))
