@@ -48,9 +48,11 @@ export function BusCard ({ bus }: { bus: Bus }) {
       class={`${isSelected ? 'busSelected' : ''} group
       flex flex-col gap-2 h-fit min-h-fit w-full p-4 rounded-lg border outline-2 text-start cursor-pointer transition-colors
 
-      bg-transparent border-gray-200 outline-transparent [&.busSelected]:bg-orange-50 [&.busSelected]:outline-orange-500
+      bg-white border-gray-200 outline-transparent [&.busSelected]:bg-orange-50 [&.busSelected]:outline-orange-500 hover:outline-orange-300 focus-visible:outline-gray-700 focus-visible:[.busSelected]:outline-gray-700!
+      hover:has-[.card-option:hover]:not-focus-visible:outline-transparent [&.busSelected]:hover:has-[.card-option:hover]:outline-orange-500
       
-      dark:bg-gray-700/50 dark:border-0 dark:outline-0 dark:[&.busSelected]:bg-gray-600 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 dark:has-[.card-option:hover]:bg-gray-700/50
+      dark:bg-gray-800 dark:border-gray-600 dark:[&.busSelected]:bg-gray-700 dark:[&.busSelected]:outline-gray-500 dark:hover:outline-gray-600 dark:focus-visible:outline-gray-300 dark:focus-visible:[.busSelected]:outline-gray-300!
+      dark:hover:has-[.card-option:hover]:not-focus-visible:outline-transparent dark:[&.busSelected]:hover:has-[.card-option:hover]:outline-gray-500
       `}
       onClick={toggleIsSelected}
     >
