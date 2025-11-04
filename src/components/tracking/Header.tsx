@@ -2,13 +2,14 @@ import { Icon } from '@/components/Icon'
 import { IconArrowLeft } from '@/components/Icons'
 import { HeaderInfo } from '@/components/tracking/HeaderInfo'
 import { useTrackUIStore } from '@/stores/useTrackUIStore'
+import { ThemeSelector } from '../ThemeSelector'
 
 export function Header () {
   const isUIVisible = useTrackUIStore((state) => state.isUIVisible)
 
   return (
     <header
-      class='w-full h-16 z-10 relative border-b-gray-200 border-b-[1px] px-8 pl-4 bg-white text-gray-700 top-0 left-0 flex justify-between items-center [&_.icon]:max-h-10 dark:border-0 dark:bg-transparent'
+      class='w-full h-16 z-10 relative border-b-gray-200 border-b-[1px] px-4 bg-white text-gray-700 top-0 left-0 flex justify-between items-center [&_.icon]:max-h-10 dark:border-0 dark:bg-transparent'
       hidden={!isUIVisible}
     >
       <aside class='flex items-center gap-2'>
@@ -23,7 +24,10 @@ export function Header () {
         </a>
         <h1 class='font-bold text-lg not-md:hidden text-nowrap min-w-fit dark:text-gray-50'>Seguimiento a tiempo real</h1>
       </aside>
-      <HeaderInfo />
+      <div class='flex flex-nowrap items-center gap-2 w-fit min-w-fit h-fit'>
+        <HeaderInfo />
+        <ThemeSelector listClass='top-13 right-0' />
+      </div>
     </header>
   )
 }
