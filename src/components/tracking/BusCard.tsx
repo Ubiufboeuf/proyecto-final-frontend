@@ -1,5 +1,5 @@
 import type { Bus, BusStates } from '@/env'
-import { IconCheckbox, IconClock, IconFocus, IconMapPin, IconUser } from '../Icons'
+import { IconCheckbox, IconClock, IconLock, IconMapPin, IconUser } from '../Icons'
 import { Icon } from '../Icon'
 import { useEffect, useState } from 'preact/hooks'
 import { parseTimestamp } from '@/lib/utils'
@@ -118,7 +118,7 @@ export function BusCard ({ bus }: { bus: Bus }) {
             hidden
           />
           <Icon class='size-5 text-gray-800 dark:text-gray-300'>
-            <IconFocus />
+            <IconLock />
           </Icon>
           Fijar ómnibus
         </label>
