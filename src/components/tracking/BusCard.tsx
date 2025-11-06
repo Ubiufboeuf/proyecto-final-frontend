@@ -37,7 +37,6 @@ export function BusCard ({ bus }: { bus: Bus }) {
   }
   
   useEffect(() => {
-    console.log('isSelected?', isSelected)
     if (!isSelected && lockedBus === bus.id) {
       changeBusToFocus(null)
     }
