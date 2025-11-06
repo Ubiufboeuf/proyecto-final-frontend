@@ -43,7 +43,7 @@ const { isAuth } = Astro.locals
     }
   </main>
   <div class='py-4 flex-1 w-full h-fit min-h-fit flex flex-col items-center justify-end gap-2'>
-    <ThemeSelector listClass='bottom-13 right-0' />
+    <ThemeSelector listClass='bottom-13 right-0' client:load />
     { !isAuth && <LoginLink class='w-full text-center' /> }
     { !isAuth && <RegisterLink class='w-full text-center' /> }
     { isAuth && <AccountLink class='w-full' /> }
