@@ -1,5 +1,6 @@
 import { ENDPOINTS } from '@/lib/constants'
 import { FormInput } from './Input'
+import { SwapInputs } from './SwapInputs'
 
 export function LoginForm () {
   async function handleSubmitForm (event: SubmitEvent) {
@@ -47,15 +48,27 @@ export function LoginForm () {
     >
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-xl'>Iniciar Sesión</h1>
       <div class='w-full lfw:px-6'>
-        <FormInput
-          id='input-login-email'
-          name='input-login-email'
-          title='Correo'
-          placeholder='correo@email.com'
-          type='email'
-          class='text-base'
-          required
-        />
+        <SwapInputs label='Teléfono' swap_label='Correo'>
+          <FormInput
+            id='input-login-email'
+            name='input-login-email'
+            title='Correo'
+            placeholder='correo@email.com'
+            type='email'
+            class='text-base'
+            required
+          />
+          <FormInput
+            id='input-login-tel'
+            name='input-login-tel'
+            title='Teléfono'
+            placeholder='+000 123 456 789'
+            type='tel'
+            class='text-base'
+            wrapperClass='w-full max-w-full'
+            required
+          />
+        </SwapInputs>
       </div>
       <div class='w-full lfw:px-6'>
         <FormInput
