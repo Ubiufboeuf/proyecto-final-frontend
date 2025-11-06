@@ -22,7 +22,7 @@ export function SwapInputs ({ label, swap_label, onSwap, children }: { label: st
       class='w-full h-full relative'
     >
       <label
-        class='absolute right-0 z-10 text-sm underline decoration-2 underline-offset-2 decoration-transparent hover:decoration-[unset] touch:active:decoration-[unset] cursor-pointer transition-colors text-blue-400'
+        class='absolute right-0 z-1 text-sm underline decoration-2 underline-offset-2 decoration-transparent hover:decoration-[unset] touch:active:decoration-[unset] cursor-pointer transition-colors text-blue-400'
         onInput={toggleSwap}
       >
         <input ref={swapRef} type='checkbox' hidden />
