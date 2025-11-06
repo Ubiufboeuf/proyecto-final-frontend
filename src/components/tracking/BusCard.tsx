@@ -1,5 +1,5 @@
 import type { Bus, BusStates } from '@/env'
-import { IconCheckbox, IconClock, IconLock, IconMapPin, IconUser } from '../Icons'
+import { IconCheckbox, IconClock, IconLock, IconLockOpen, IconMapPin, IconUser } from '../Icons'
 import { Icon } from '../Icon'
 import { useEffect, useState } from 'preact/hooks'
 import { parseTimestamp } from '@/lib/utils'
@@ -104,7 +104,7 @@ export function BusCard ({ bus }: { bus: Bus }) {
       </section>
       <section class='card-options pt-1'>
         <label
-          class='card-option flex items-center justify-center gap-1.5 w-fit h-fit max-w-full p-1.5 px-2 outline-0 border-2 rounded-md text-xs cursor-pointer transition-colors
+          class='card-option flex items-center justify-center gap-1.5 w-34 h-fit max-w-full p-1.5 px-2 outline-0 border-2 rounded-md text-xs cursor-pointer transition-colors
           bg-white text-gray-700 border-gray-300 hover:border-orange-500/50 has-checked:bg-orange-100/70 has-checked:border-orange-400/50
           dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:border-gray-500 dark:has-checked:bg-gray-600 dark:has-checked:border-gray-500'
           onClick={(e) => e.stopPropagation()}
@@ -118,9 +118,15 @@ export function BusCard ({ bus }: { bus: Bus }) {
             hidden
           />
           <Icon class='size-5 text-gray-800 dark:text-gray-300'>
-            <IconLock />
+            { lockedBus === bus.id
+                ? <IconLockOpen />
+                : <IconLock />
+            }
           </Icon>
-          Fijar ómnibus
+          { lockedBus === bus.id
+              ? 'Dejar de seguir'
+              : 'Seguir ómnibus'
+          }
         </label>
       </section>
       {/* <section>
