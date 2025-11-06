@@ -1,8 +1,11 @@
 import { ENDPOINTS } from '@/lib/constants'
 import { FormInput } from './Input'
 import { SwapInputs } from './SwapInputs'
+import { useState } from 'preact/hooks'
 
 export function LoginForm () {
+  const [isSwapped, setIsSwapped] = useState(false)
+  
   async function handleSubmitForm (event: SubmitEvent) {
     event.preventDefault()
 
@@ -11,10 +14,16 @@ export function LoginForm () {
     
     const formData = new FormData(form)
     const email = formData.get('input-login-email')
+    const phone = formData.get('input-login-phone')
     const password = formData.get('input-login-password')
 
-    if (!email) {
+    if (!email && !isSwapped) {
       console.error('Falta especificar el email')
+      return
+    }
+
+    if (!phone && isSwapped) {
+      console.error('Falta especificar el teléfono')
       return
     }
 
@@ -23,10 +32,18 @@ export function LoginForm () {
       return
     }
 
+    const contact = isSwapped ? 'phone' : 'email'
+
     try {
+      console.log('fetch')
       const res = await fetch(ENDPOINTS.LOGIN, {
         method: 'POST',
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({
+          email,
+          phone,
+          contact,
+          password
+        })
       })
 
       if (res.ok) {
@@ -48,7 +65,7 @@ export function LoginForm () {
     >
       <h1 class='text-gray-800 dark:text-gray-100 font-semibold text-xl'>Iniciar Sesión</h1>
       <div class='w-full lfw:px-6'>
-        <SwapInputs label='Teléfono' swap_label='Correo'>
+        <SwapInputs label='Teléfono' swap_label='Correo' onSwap={setIsSwapped}>
           <FormInput
             id='input-login-email'
             name='input-login-email'
@@ -56,16 +73,18 @@ export function LoginForm () {
             placeholder='correo@email.com'
             type='email'
             class='text-base'
+            disabled={isSwapped}
             required
           />
           <FormInput
-            id='input-login-tel'
-            name='input-login-tel'
+            id='input-login-phone'
+            name='input-login-phone'
             title='Teléfono'
             placeholder='+000 123 456 789'
             type='tel'
             class='text-base'
             wrapperClass='w-full max-w-full'
+            disabled={!isSwapped}
             required
           />
         </SwapInputs>
