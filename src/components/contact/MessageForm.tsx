@@ -1,4 +1,5 @@
 import { FormInput } from '../forms/Input'
+import { SwapInputs } from '../forms/SwapInputs'
 import { FormTextarea } from '../forms/Textarea'
 import { Icon } from '../Icon'
 import { IconSend } from '../Icons'
@@ -25,26 +26,28 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 					wrapperClass='w-full max-w-full'
 					required
 				/>
-				<FormInput
-					id='input-contact-tel'
-					name='input-contact-tel'
-					title='Teléfono'
-					placeholder='+000 123 456 789'
-					type='tel'
-					class='text-base'
-					wrapperClass='w-full max-w-full'
-					required
-				/>
+				<SwapInputs label='Teléfono' swap_label='Correo'>
+					<FormInput
+						id='input-contact-email'
+						name='input-contact-email'
+						title='Correo'
+						placeholder='correo@email.com'
+						type='email'
+						class='text-base'
+						required
+					/>
+					<FormInput
+						id='input-contact-tel'
+						name='input-contact-tel'
+						title='Teléfono'
+						placeholder='+000 123 456 789'
+						type='tel'
+						class='text-base'
+						wrapperClass='w-full max-w-full'
+						required
+					/>
+				</SwapInputs>
 			</div>
-			<FormInput
-				id='input-contact-email'
-				name='input-contact-email'
-				title='Correo'
-				placeholder='correo@email.com'
-				type='email'
-				class='text-base'
-				required
-			/>
 			<label class='group'>
 				<h1 class='text-gray-800 dark:text-gray-100 font-semibold sm:text-sm'>Asunto</h1>
 				<select
