@@ -80,7 +80,7 @@ const { isAuth, isLoading, user } = Astro.locals
 		<input id='input-global-sidebar' type='checkbox' hidden />
 		<Header pathname={pathname} />
 		<SideBar pathname={pathname} />
-		<main class={`flex flex-col items-center ${className}`}>
+		<main class={`flex flex-col items-start ${className}`}>
 			<slot />
 		</main>
 		<Footer />
