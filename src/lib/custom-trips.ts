@@ -114,7 +114,7 @@ export const tripDetails: TripDetail[] = [
 	{ id: 'return-date', title: 'Fecha de Vuelta (Opcional)', formElementType: 'date-picker', epochMiliseconds: 0 },
 	{ id: 'departure-time', title: 'Hora de Ida', formElementType: 'time-picker' },
 	{ id: 'return-time', title: 'Hora de Vuelta', formElementType: 'time-picker' },
-	{ id: 'passengers-capacity', name: 'passengers-capacity', title: 'Número de Pasajeros', formElementType: 'input', type: 'number', placeholder: 'Ej: 25' }
+	{ id: 'passengers-capacity', name: 'passengers-capacity', title: 'Número de Pasajeros', formElementType: 'input', type: 'number', placeholder: '46, 42, 28, 22 ...' }
 ]
 
 export const tripInfo: TripInfo[] = [
