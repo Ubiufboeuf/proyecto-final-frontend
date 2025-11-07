@@ -241,6 +241,8 @@ export type FormInput = {
   placeholder: string
   required?: boolean
   autocomplete?: string
+  min?: number
+  max?: number
   disabled?: boolean
   class?: string
   wrapperClass?: string

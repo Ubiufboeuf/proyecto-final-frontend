@@ -5,7 +5,7 @@ import { useRef, useState } from 'preact/compat'
 
 export function FormInput ({
   /* Identificadores */ id, name,
-  /* Del elemento    */ title, type, placeholder, required = false, autocomplete = undefined, disabled = false,
+  /* Del elemento    */ title, type, placeholder, required = false, autocomplete = undefined, min, max, disabled = false,
   /* Del componente  */ class: className = '', wrapperClass = '', visiblePasswordPlaceholder = 'abc123',
   /* Eventos         */ onInput
 }: FormInput) {
@@ -53,6 +53,8 @@ export function FormInput ({
           autoComplete={autocomplete}
           disabled={disabled}
           onInput={onInput}
+          min={min}
+          max={max}
         />
         { type === 'password' && (
           <label
