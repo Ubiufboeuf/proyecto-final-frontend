@@ -2,7 +2,7 @@ import { Icon } from '@/components/Icon'
 import type { BusType } from '@/env'
 import { useEffect, useId } from 'preact/hooks'
 
-export function SelectableBusTypeDark ({ busType: { icon: TypeIcon, type, title, description, capacity, tags, darkColor } }: { busType: BusType }) {
+export function SelectableBusTypeDark ({ busType: { icon: TypeIcon, type, title, capacity, tags, darkColor }, updateBusCapacity }: { busType: BusType, updateBusCapacity: (type: string | undefined) => void }) {
   function matchSelectableBusType () {
     const selectedBusType = document.querySelector('label:has([name=inputBusTypeDark]:checked)')
     if (!(selectedBusType instanceof HTMLElement)) return
@@ -12,6 +12,8 @@ export function SelectableBusTypeDark ({ busType: { icon: TypeIcon, type, title,
 
     if (!selectedBusTypeToSelect || !(selectedBusTypeToSelect.children[0] instanceof HTMLInputElement)) return
     selectedBusTypeToSelect.children[0].checked = true
+
+    updateBusCapacity(type)
   }
 
   useEffect(() => {

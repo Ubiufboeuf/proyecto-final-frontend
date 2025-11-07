@@ -3,8 +3,11 @@ import { FormSelect } from '../forms/Select'
 import { FormDatePicker } from '../forms/DatePicker'
 import { FormTimePicker } from '../forms/TimePicker'
 import { FormInput } from '../forms/Input'
+import { useCustomTripPreferences } from '@/stores/useCustomTripPreferencesStore'
 
 export function TripDetails () {
+  const capacity = useCustomTripPreferences((state) => state.capacity)
+
   return (
     <main class='grid md:grid-cols-2 grid-cols-1 gap-4'>
       {
@@ -33,6 +36,8 @@ export function TripDetails () {
               placeholder={placeholder}
               type={type}
               title={title}
+              min={1}
+              max={capacity > 0 ? capacity : undefined}
             />
           }
         })

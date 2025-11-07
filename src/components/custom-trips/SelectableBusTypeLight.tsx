@@ -2,7 +2,7 @@ import { Icon } from '@/components/Icon'
 import type { BusType } from '@/env'
 import { useEffect, useId } from 'preact/hooks'
 
-export function SelectableBusTypeLight ({ busType: { icon: TypeIcon, type, title, description, borderColor, bgColor: backgroundColor, mainColor: color, capacity, tags } }: { busType: BusType }) {
+export function SelectableBusTypeLight ({ busType: { icon: TypeIcon, type, title, borderColor, bgColor: backgroundColor, mainColor: color, capacity, tags }, updateBusCapacity }: { busType: BusType, updateBusCapacity: (type: string | undefined) => void }) {
   function matchSelectableBusType () {
     const selectedBusType = document.querySelector('label:has([name=inputBusTypeLight]:checked)')
     if (!(selectedBusType instanceof HTMLElement)) return
@@ -12,6 +12,8 @@ export function SelectableBusTypeLight ({ busType: { icon: TypeIcon, type, title
 
     if (!selectedBusTypeToSelect || !(selectedBusTypeToSelect.children[0] instanceof HTMLInputElement)) return
     selectedBusTypeToSelect.children[0].checked = true
+
+    updateBusCapacity(type)
   }
 
   useEffect(() => {
@@ -39,9 +41,9 @@ export function SelectableBusTypeLight ({ busType: { icon: TypeIcon, type, title
         </h1>
       </div>
       <div class='flex items-center w-full'>
-        <p class='opacity-80'>
+        {/* <p class='opacity-80'>
           {description}
-        </p>
+        </p> */}
       </div>
       <div class='flex flex-col justify-center w-full gap-2'>
         <p class='text-xs opacity-80'>Capacidad: {capacity} pasajeros</p>
