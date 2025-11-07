@@ -10,8 +10,10 @@ type SelectableBusesTypes = {
   departure_date: string
   arrival_date: string
   passengers: number
+  capacity: number
   preferred_time: number
   setTripTypeById: (tripTypeId: TripTypeId) => TripType | undefined
+  setCapacity: (capacity: number) => void
 }
 
 export const useCustomTripPreferences = create<SelectableBusesTypes>((set) => ({
@@ -22,6 +24,7 @@ export const useCustomTripPreferences = create<SelectableBusesTypes>((set) => ({
   departure_date: '',
   arrival_date: '',
   passengers: 0,
+  capacity: 0,
   preferred_time: 0,
   setTripTypeById (tripTypeId) {
     const tripType = tripTypes.find((t) => t.id === tripTypeId)
@@ -29,7 +32,8 @@ export const useCustomTripPreferences = create<SelectableBusesTypes>((set) => ({
       set({ tripType })
       return tripType
     }
-  }
+  },
+  setCapacity: (capacity) => set({ capacity })
 }))
 
 // 280 181 30
