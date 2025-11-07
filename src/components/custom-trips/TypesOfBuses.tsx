@@ -7,7 +7,8 @@ export function TypesOfBuses () {
   const setCapacity = useCustomTripPreferences((state) => state.setCapacity)
 
   function updateBusCapacity (type: string | undefined) {
-    
+    const bus = typesOfBuses.find((b) => b.type === type)
+    setCapacity(bus?.capacity || 0)
   }
 
   return (
