@@ -25,7 +25,6 @@ export function TripDetails () {
               detail={detail}
             />
           } else {
-            console.log({ detail })
             const { id, name, placeholder, title, type } = detail
             return <FormInput
               key={`trip-detail-number-${detail.id}`}
