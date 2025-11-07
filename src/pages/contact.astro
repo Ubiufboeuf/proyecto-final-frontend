@@ -112,7 +112,7 @@ const faq = [
 		<div class='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] w-full h-fit gap-6'>
 			{
 				offices.map((contact) => (
-					<PhoneContact contact={contact} />
+					<PhoneContact contact={contact} client:load />
 				))
 			}
 		</div>
