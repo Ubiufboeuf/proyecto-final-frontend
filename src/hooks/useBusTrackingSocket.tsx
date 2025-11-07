@@ -13,7 +13,7 @@ export function useBusTrackingSocket () {
 
   useEffect(() => {
     // Evitar crear conexión si ya existe
-    if (socketRef.current) return
+    if (socketRef.current || !ENDPOINTS.WS) return
 
     let socket = null
     try {
