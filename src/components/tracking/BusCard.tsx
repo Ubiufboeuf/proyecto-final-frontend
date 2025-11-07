@@ -58,15 +58,15 @@ export function BusCard ({ bus }: { bus: Bus }) {
       onClick={toggleIsSelected}
     >
       <section class='flex items-center w-full h-fit'>
-        <div class='size-7 flex items-center justify-center'>
-          <input id={`checkbox-bus-${id}`} type='checkbox' hidden class='pointer-events-none' />
+        <label class='size-7 flex items-center justify-center cursor-pointer'>
+          <input id={`checkbox-bus-${id}`} type='checkbox' hidden />
           <Icon class='size-5 text-gray-800 dark:text-gray-300 group-[.busSelected]:scale-110'>
             { isSelected
               ? <IconCheckbox class='text-orange-500' checked={'color'} />
               : <IconCheckbox />
             }
           </Icon>
-        </div>
+        </label>
         <div class='flex flex-col justify-center'>
           <span class='px-2 text-gray-800 dark:text-gray-100 font-semibold'>#{id}</span>
           <span class='text-xs px-2 text-gray-600 dark:text-gray-300'>{driver.name}</span>
