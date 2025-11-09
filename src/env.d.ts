@@ -230,6 +230,7 @@ export type FormTextarea = {
   formElementType?: 'textarea'
   placeholder: string
   class?: string
+  required?: boolean
 }
 
 export type FormInput = {
