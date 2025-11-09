@@ -70,6 +70,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 				title='Mensaje'
 				placeholder='Escribe tu mensaje acá...'
 				class='text-base'
+				required
 			/>
 			<button class='flex items-center justify-center gap-4 font-semibold text-white bg-orange-500 rounded-lg h-fit w-full py-3 cursor-pointer transition-colors hover:bg-orange-600 active:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-600/80 dark:touch:active:bg-orange-600/80'>
 				<Icon class='size-5'>
