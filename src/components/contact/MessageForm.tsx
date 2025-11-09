@@ -1,3 +1,4 @@
+import { useState } from 'preact/hooks'
 import { FormInput } from '../forms/Input'
 import { SwapInputs } from '../forms/SwapInputs'
 import { FormTextarea } from '../forms/Textarea'
@@ -5,6 +6,8 @@ import { Icon } from '../Icon'
 import { IconSend } from '../Icons'
 
 export function MessageForm ({ selectOptions }: { selectOptions: { text: string, value: string }[] }) {
+	const [isSwapped, setIsSwapped] = useState(false)
+	
 	function handleSubmitForm () {
 		
 	}
@@ -26,7 +29,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 					wrapperClass='w-full max-w-full'
 					required
 				/>
-				<SwapInputs label='Teléfono' swap_label='Correo'>
+				<SwapInputs label='Teléfono' swap_label='Correo' onSwap={setIsSwapped}>
 					<FormInput
 						id='input-contact-email'
 						name='input-contact-email'
@@ -34,6 +37,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 						placeholder='correo@email.com'
 						type='email'
 						class='text-base'
+						disabled={isSwapped}
 						required
 					/>
 					<FormInput
@@ -44,6 +48,7 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 						type='tel'
 						class='text-base'
 						wrapperClass='w-full max-w-full'
+						disabled={!isSwapped}
 						required
 					/>
 				</SwapInputs>
