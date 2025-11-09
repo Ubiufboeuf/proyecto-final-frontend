@@ -57,8 +57,9 @@ export function MessageForm ({ selectOptions }: { selectOptions: { text: string,
 				<h1 class='text-gray-800 dark:text-gray-100 font-semibold sm:text-sm'>Asunto</h1>
 				<select
 					class='w-full border border-gray-200 hover:border-gray-300 dark:border-0 dark:bg-gray-700/50 dark:outline-0 dark:hover:bg-gray-700 dark:touch:active:bg-gray-700 transition-colors rounded h-fit p-2'
+					required
 				>
-					<option selected value='default' disabled>Selecciona una opción</option>
+					<option selected value='' disabled>Selecciona una opción</option>
 					{ selectOptions.map(({ text, value }) => (
 						<option key={`contact-selectOption-${value}`} value={value}>{text}</option>
 					)) }
