@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css'
-import type { BusesData, BusStates } from '@/env'
+import type { BusesData, BusStates, Point } from '@/env'
 import { useBusesStore } from '@/stores/useBusesStore'
 import { useEffect, useRef, useState } from 'preact/hooks'
 import type { LatLngTuple, Map, Marker } from 'leaflet'
@@ -30,6 +30,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
   // const [isUIVisible, setIsUIVisible] = useState(true)
   const isUIVisible = useTrackUIStore((state) => state.isUIVisible)
   const setIsUIVisible = useTrackUIStore((state) => state.setIsUIVisible)
+  const busToFocus = useBusesStore((state) => state.busToFocus)
 
   async function importLeaflet () {
     let L
@@ -202,6 +203,16 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
     }
   }
 
+  function moveMapTo (position: Point) {
+    if (!leaflet || !map) return
+
+    const latlng: [number, number] = [
+      position.y,
+      position.x
+    ]
+    map.setView(latlng, map.getZoom())
+  }
+
   useEffect(() => {
     if (map) return
 
@@ -237,6 +248,18 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
 
     handleBusesAndRoutes()
   }, [buses])
+
+  useEffect(() => {
+    if (!busToFocus) return
+
+    const bus = buses?.find((b) => b.id === busToFocus)
+    if (!bus) return
+
+    const { position } = bus.location
+    if (!position) return
+
+    moveMapTo(position)
+  }, [busToFocus, buses])
 
   return (
     <main class={`${isUIVisible ? 'isUIVisible' : ''} [&.isUIVisible]:pt-16 [&.isUIVisible]:lg:pl-80 h-full w-full absolute right-0 top-0 z-0`}>
