@@ -101,29 +101,33 @@ El sitio ya está desplegado en [Cloudflare Pages](https://proyecto-final-fronte
 Repositorios:
 
 * [Frontend](https://github.com/Ubiufboeuf/proyecto-final-frontend)
-* [Backend](https://github.com/Ubiufboeuf/proyecto-final-backend)
+* [Servidor (HTTP)](https://github.com/Ubiufboeuf/proyecto-final-backend)
+* [Servidor (WS)](https://github.com/Ubiufboeuf/proyecto-final-backend-ws)
 
 ---
 
 ## 📌 Estado actual
 
-✅ Listo
+✅ Terminado
 * Inicio
 * Servicios
 * Rutas
 * Seguimiento
 * Contacto (visualmente)
+* Página de login y registro (visualmente)
+* Acerca de la empresa (Berrutti)
+* Viajes personalizados (visualmente)
 
-➖ En proceso
-* Contacto (el formulario de contacto)
+<!-- ➖ En proceso -->
+<!-- * Contacto (el formulario de contacto) -->
 
-⚠️ Pendiente:
-
-* Página de login y registro
+⚠️ Pendiente
 * Página del chofer con seguimiento de su ómnibus.
 * Integración completa con MercadoPago.
 * Página de comprobante QR.
-* Páginas *about/* y *custom-trips/*.
+
+
+Para terminar el funcionamiento de las págians terminadas visualmente nos faltan partes del servidor (http) aún pendientes.
 
 ---
 
