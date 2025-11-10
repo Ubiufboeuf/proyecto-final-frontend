@@ -110,17 +110,17 @@ const uruguayDepartments: UruguayDepartments[] = [
 export const tripDetails: TripDetail[] = [
 	{ id: 'origin', title: 'Origen', formElementType: 'select', options: uruguayDepartments, defaultOption: 'Selecciona origen' },
 	{ id: 'desination', title: 'Destino', formElementType: 'select', options: uruguayDepartments, defaultOption: 'Selecciona destino' },
-	{ id: 'departure-date', title: 'Fecha de Ida', formElementType: 'date-picker', epochMiliseconds: 0 },
+	{ id: 'departure-date', title: 'Fecha de Ida', formElementType: 'date-picker', epochMiliseconds: 0, required: true },
 	{ id: 'return-date', title: 'Fecha de Vuelta (Opcional)', formElementType: 'date-picker', epochMiliseconds: 0 },
-	{ id: 'departure-time', title: 'Hora de Ida', formElementType: 'time-picker' },
+	{ id: 'departure-time', title: 'Hora de Ida', formElementType: 'time-picker', required: true },
 	{ id: 'return-time', title: 'Hora de Vuelta', formElementType: 'time-picker' },
 	{ id: 'passengers-capacity', name: 'passengers-capacity', title: 'Número de Pasajeros', formElementType: 'input', type: 'number', placeholder: '46, 42, 28, 22 ...' }
 ]
 
 export const tripInfo: TripInfo[] = [
 	{ id: 'comments', name: 'comments', title: 'Comentarios o Solicitudes Especiales', formElementType: 'textarea', placeholder: 'Describe cualquier requerimiento especial, paradas adicionales, o información relevante para tu viaje...' },
-	{ id: 'full-name', name: 'full-name', title: 'Nombre Completo', formElementType: 'input', type: 'text', placeholder: 'Juan Pérez' },
-	{ id: 'company', name: 'company', title: 'Companía (opcional)', formElementType: 'input', type: 'text', placeholder: 'Mi Empresa S.A.' },
-	{ id: 'phone', name: 'phone', title: 'Teléfono', formElementType: 'input', type: 'tel', placeholder: '123 456 789' },
-	{ id: 'mail', name: 'mail', title: 'Email', formElementType: 'input', type: 'email', placeholder: 'juanperez@mail.com' }
+	{ id: 'full-name', name: 'full-name', title: 'Nombre Completo', formElementType: 'input', type: 'text', placeholder: 'Juan Pérez', required: true },
+	{ id: 'company', name: 'company', title: 'Companía (opcional)', formElementType: 'input', type: 'text', placeholder: 'Mi Empresa S.A.', required: true },
+	{ id: 'phone', name: 'phone', title: 'Teléfono', formElementType: 'input', type: 'tel', placeholder: '123 456 789', required: true },
+	{ id: 'mail', name: 'mail', title: 'Email', formElementType: 'input', type: 'email', placeholder: 'juanperez@mail.com', required: true }
 ]

@@ -16,16 +16,19 @@ export function TripDetails () {
             return <FormSelect
               key={`trip-detail-select-${detail.id}`}
               detail={detail}
+              required
             />
           } else if (detail.formElementType === 'date-picker') {
             return <FormDatePicker
               key={`trip-detail-date-picker-${detail.id}`}
               detail={detail}
+              required={detail.required}
             />
           } else if (detail.formElementType === 'time-picker') {
             return <FormTimePicker
               key={`trip-detail-time-picker-${detail.id}`}
               detail={detail}
+              required={detail.required}
             />
           } else {
             const { id, name, placeholder, title, type } = detail
@@ -38,6 +41,7 @@ export function TripDetails () {
               title={title}
               min={1}
               max={capacity > 0 ? capacity : undefined}
+              required
             />
           }
         })

@@ -8,7 +8,7 @@ import { TripSummary } from '@/components/custom-trips/TripSummary'
 
 export function CustomTripsForm () {
   function handleSubmitForm (event: SubmitEvent) {
-    event.preventDefault()
+    // event.preventDefault()
   }
   
   return (
@@ -17,7 +17,7 @@ export function CustomTripsForm () {
       onSubmit={handleSubmitForm}
     >
       <div class='gap-8 flex flex-col items-center w-full h-fit'>
-        <section class='h-fit w-full flex flex-col p-6 gap-6 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
+        <section class='relative h-fit w-full flex flex-col p-6 gap-6 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
           <header class='flex items-center gap-3 w-fit h-fit text-orange-500 dark:text-orange-600-light'>
             <Icon class='size-6'>
               <IconMapPin />
@@ -26,7 +26,7 @@ export function CustomTripsForm () {
           </header>
           <TripTypes />
         </section>
-        <section class='h-fit w-full flex flex-col p-6 gap-6 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
+        <section class='relative h-fit w-full flex flex-col p-6 gap-6 rounded-lg border border-gray-300 dark:border-0 bg-white dark:bg-gray-700/50'>
           <header class='flex items-center gap-3 w-fit h-fit text-orange-500 dark:text-orange-600-light'>
             <Icon class='size-6'>
               <IconBus />

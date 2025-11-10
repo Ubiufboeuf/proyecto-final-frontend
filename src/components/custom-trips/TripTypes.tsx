@@ -39,7 +39,7 @@ export function TripTypes () {
             onChange={handleChange(id)}
             data-id={id}
           >
-            <input type='radio' name='inputTripType' hidden />
+            <input type='radio' name='inputTripType' className='absolute left-31 top-10 opacity-0 pointer-events-none' required />
             <strong class='text-gray-700 dark:text-gray-200'>{title}</strong>
             <span class='text-sm'>{description}</span>
           </label>

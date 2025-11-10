@@ -215,12 +215,14 @@ export type FormDatePicker = {
   title: string
   formElementType: 'date-picker'
   epochMiliseconds: number
+  required?: boolean
 }
 
 export type FormTimePicker = {
   id: string
   title: string
   formElementType: 'time-picker'
+  required?: boolean
 }
 
 export type FormTextarea = {

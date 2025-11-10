@@ -31,7 +31,7 @@ export function SelectableBusTypeLight ({ busType: { icon: TypeIcon, type, title
       onChange={matchSelectableBusType}
       data-type={type}
     >
-      <input type='radio' name='inputBusTypeLight' hidden  />
+      <input type='radio' name='inputBusTypeLight' className='absolute left-31 top-10 opacity-0 pointer-events-none' required />
       <div class='w-full h-fit flex items-center gap-2'>
         <Icon class='size-6' style={{ color }}>
           <TypeIcon />
