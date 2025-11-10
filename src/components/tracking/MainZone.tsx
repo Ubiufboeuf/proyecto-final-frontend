@@ -169,7 +169,7 @@ export function MainZone ({ busesData, lat = 0, lng = 0 }: { busesData: BusesDat
       
       if (!busPlannedPolyline) {
         busPlannedPolyline = polyline(busPlannedRoute, {
-          color: 'gray',
+          color: route.color,
           weight: 4,
           opacity: 0.8
         }).addTo($map)

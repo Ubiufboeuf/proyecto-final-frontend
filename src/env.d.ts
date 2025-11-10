@@ -104,6 +104,7 @@ export type Bus = {
   }
   location: BusLocation
   route: {
+    color: string
     current: Point[]
     planned: Point[]
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
