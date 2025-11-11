@@ -1,26 +1,11 @@
 import { useEffect, useState } from 'preact/compat'
 import { useLiveGeolocationSender } from '@/hooks/useLiveGeolocationSender'
-import { ENDPOINTS, INDICATORS } from '@/lib/constants'
+import { ENDPOINTS, INDICATORS, userFriendlyConectionStates, userFriendlyTrackingStates } from '@/lib/constants'
 import type { User } from '@/env'
 import { useBusesStore } from '@/stores/useBusesStore'
 
 // ID del bus controlado para test
 const BUS_ID_TO_CONTROL = 'b123'
-
-const userFriendlyConectionStates: Record<typeof INDICATORS.CONNECTION[keyof typeof INDICATORS.CONNECTION], string> = {
-  [INDICATORS.CONNECTION.FAILED]: 'Seguimiento fallido',
-  [INDICATORS.CONNECTION.ENTABLISHED]: 'Conexión establecida!',
-  [INDICATORS.CONNECTION.LOADING]: 'Conectando...',
-  [INDICATORS.CONNECTION.CLOSED]: 'Conexión cerrada'
-}
-
-const userFriendlyTrackingStates: Record<typeof INDICATORS.TRACKING[keyof typeof INDICATORS.TRACKING], string> = {
-  [INDICATORS.TRACKING.FAILED]: 'Seguimiento fallido',
-  [INDICATORS.TRACKING.LOADED]: 'Cargado!',
-  [INDICATORS.TRACKING.LOADING]: 'Cargando...',
-  [INDICATORS.TRACKING.STOPPED]: 'Seguimiento detenido',
-  [INDICATORS.TRACKING.ID_MISSING]: 'Falta especificar un ID'
-}
 
 export function DriverDashboard ({ user }: { user: User }) {
   const [serverUrl] = useState(ENDPOINTS.WS)

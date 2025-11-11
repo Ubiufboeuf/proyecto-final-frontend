@@ -44,3 +44,18 @@ export const INDICATORS = {
 export const SOCKET_EVENTS = {
   BUS_LOCATION: 'bus-location'
 } as const
+
+export const userFriendlyConectionStates: Record<typeof INDICATORS.CONNECTION[keyof typeof INDICATORS.CONNECTION], string> = {
+  [INDICATORS.CONNECTION.FAILED]: 'Seguimiento fallido',
+  [INDICATORS.CONNECTION.ENTABLISHED]: 'Conexión establecida!',
+  [INDICATORS.CONNECTION.LOADING]: 'Conectando...',
+  [INDICATORS.CONNECTION.CLOSED]: 'Conexión cerrada'
+} as const
+
+export const userFriendlyTrackingStates: Record<typeof INDICATORS.TRACKING[keyof typeof INDICATORS.TRACKING], string> = {
+  [INDICATORS.TRACKING.FAILED]: 'Seguimiento fallido',
+  [INDICATORS.TRACKING.LOADED]: 'Cargado!',
+  [INDICATORS.TRACKING.LOADING]: 'Cargando...',
+  [INDICATORS.TRACKING.STOPPED]: 'Seguimiento detenido',
+  [INDICATORS.TRACKING.ID_MISSING]: 'Falta especificar un ID'
+} as const
