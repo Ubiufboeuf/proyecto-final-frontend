@@ -17,5 +17,5 @@ if (!user || (user.role !== 'driver' && user.role !== 'admin')) return Astro.red
 ---
 
 <LayoutSimple title='Conductor'>
-  <DriverDashboard client:load />
+  <DriverDashboard user={user} client:load />
 </LayoutSimple>

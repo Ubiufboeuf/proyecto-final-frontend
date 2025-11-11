@@ -20,7 +20,7 @@ const userFriendlyTrackingStates: Record<typeof INDICATORS.TRACKING[keyof typeof
   [INDICATORS.TRACKING.ID_MISSING]: 'Falta especificar un ID'
 }
 
-export function DriverDashboard () {
+export function DriverDashboard ({ user }: { user: User }) {
   const [serverUrl] = useState(ENDPOINTS.WS)
   const [highAccuracy, setHighAccuracy] = useState(true)
 
