@@ -8,6 +8,7 @@
   --breakpoint-xs: 512px;
   --breakpoint-xxs: 416px; /* extreme-slim */
   --breakpoint-us: 359px; /* ultra-slim */
+  --breakpoint-dmc: 412px; /* driver-main-container */
 
   --container-navbar: 80px;
   --container-sidebar: 288px;
