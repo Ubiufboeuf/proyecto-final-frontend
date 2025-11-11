@@ -10,6 +10,7 @@ export type AuthStatus = {
 }
 
 export type User = {
+  id: string
   fullName: string
   document: string
   mail?: string
