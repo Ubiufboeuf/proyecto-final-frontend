@@ -67,6 +67,11 @@ export type Point = {
   y: number
 }
 
+export type Coords = {
+  lat: number
+  lng: number
+}
+
 export type BusLocation = {
   city: string
   position: Point | null
