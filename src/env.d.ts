@@ -253,6 +253,8 @@ export type FormInput = {
   autocomplete?: string
   min?: number
   max?: number
+  minLength?: number
+  maxLength?: number
   disabled?: boolean
   class?: string
   wrapperClass?: string
