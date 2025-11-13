@@ -12,8 +12,10 @@ export const ENDPOINTS = {
   HTTP: http_endpoint,
   WS: ws_endpoint,
   LOGOUT: `${http_endpoint}/api/logout`,
-  LOGIN: `${http_endpoint}/api/login`,
-  REGISTER: `${http_endpoint}/api/login`
+  LOGIN: `${http_endpoint}/http.php?action=login`,
+  REGISTER: `${http_endpoint}/http.php?action=registrar`
+  // LOGIN: `${http_endpoint}/api/login/`,
+  // REGISTER: `${http_endpoint}/api/register/`
 }
 
 export {
