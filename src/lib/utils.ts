@@ -99,4 +99,15 @@ export function trackLog (context: 'WS' | 'HTTP', message: string, extra: Error 
   }
 
   console.log(`${time} [${context}] ${identifier} - ${message} ${extraMessage ? `: ${extraMessage}` : ''}`)
+
+  return { extraMessage }
+}
+
+const listOfMessages: Record<string, string> = {
+  'Y0ZkNV': 'Solo puedes conseguir la ubicación en sitios seguros (https)'
+}
+
+export function getMessageByList (msg: string): string {  
+  const element = (Object.entries(listOfMessages).find(([key]) => msg.includes(key)))
+  return (element?.[1]) || 'Error consiguiendo la ubicación del usuario'
 }

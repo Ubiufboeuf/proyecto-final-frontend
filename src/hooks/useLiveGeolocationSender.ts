@@ -1,6 +1,6 @@
 import type { BusLocationForServer, LiveGeolocationSenderOptions } from '@/env'
 import { INDICATORS, SOCKET_EVENTS, WS_RESPONSE_TYPE } from '@/lib/constants'
-import { trackLog } from '@/lib/utils'
+import { getMessageByList, trackLog } from '@/lib/utils'
 import { useEffect, useRef, useState } from 'preact/hooks'
 import { io, type Socket } from 'socket.io-client'
 import { Temporal } from 'temporal-polyfill'
@@ -163,13 +163,13 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
     }
 
     const error = new Error(message, { cause })
+    const { extraMessage: logMessage } = trackLog('WS', 'Error de ubicación', error, 'CHOFER', combinedOptions.id ?? undefined)
 
     // Indicadores - Error al conseguir la posicón
-    setError([error, 'Error consiguiendo la ubicación del usuario'])
+    const msg = getMessageByList(logMessage)
+    setError([error, msg])
     setIsTracking(false)
     setTrackingIndicator(INDICATORS.TRACKING.FAILED)
-
-    trackLog('WS', 'Error de ubicación', error, 'CHOFER', combinedOptions.id ?? undefined)
   }
 
   // #endregion --- Funciones del seguimiento ---
