@@ -189,7 +189,8 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
         role: 'chofer',
         id: choferId
       },
-      extraHeaders: {'ngrok-skip-browser-warning': 'any-value'}
+      extraHeaders: {'ngrok-skip-browser-warning': 'any-value'},
+      reconnectionAttempts: 3
     })
 
     socketRef.current = socket
