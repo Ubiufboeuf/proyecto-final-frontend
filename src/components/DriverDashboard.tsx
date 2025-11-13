@@ -12,7 +12,7 @@ export function DriverDashboard ({ user }: { user: User }) {
   const [highAccuracy, setHighAccuracy] = useState(true)
   const buses = useBusesStore((state) => state.buses)
 
-  const { error, indicators, position, startWatching, stopWatching } = useLiveGeolocationSender(serverUrl, {
+  const { error, indicators, position, startTracking, stopTracking } = useLiveGeolocationSender(serverUrl, {
     enableHighAccuracy: highAccuracy,
     id: BUS_ID_TO_CONTROL,
     maximumAge: 0, // Para no usar una ubicación cacheada,

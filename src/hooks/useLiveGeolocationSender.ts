@@ -102,7 +102,7 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
     setIsTracking(true)
   }
 
-  function stopWatching () {
+  function stopTracking () {
     if (trackIdRef.current !== null) {
       navigator.geolocation.clearWatch(trackIdRef.current)
       trackIdRef.current = null
@@ -206,8 +206,8 @@ export function useLiveGeolocationSender (url: string, options: LiveGeolocationS
   }, [combinedOptions.id, combinedOptions.sendCoordinates, url])
 
   return {
-    startWatching: startTracking,
-    stopWatching,
+    startTracking,
+    stopTracking,
     indicators: {
       isConnected,
       isTracking,
