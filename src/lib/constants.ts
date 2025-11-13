@@ -36,6 +36,8 @@ export const INDICATORS = {
     LOADING: 'INDICATORS_TRACKING_LOADING',
     LOADED: 'INDICATORS_TRACKING_LOADED',
     FAILED: 'INDICATORS_TRACKING_FAILED',
+    START: 'INDICATORS_TRACKING_START',
+    STOP: 'INDICATORS_TRACKING_STOP',
     STOPPED: 'INDICATORS_TRACKING_STOPPED',
     ID_MISSING: 'INDICATORS_TRACKING_ID_MISSING'
   }
@@ -54,8 +56,10 @@ export const userFriendlyConectionStates: Record<typeof INDICATORS.CONNECTION[ke
 
 export const userFriendlyTrackingStates: Record<typeof INDICATORS.TRACKING[keyof typeof INDICATORS.TRACKING], string> = {
   [INDICATORS.TRACKING.FAILED]: 'Seguimiento fallido',
-  [INDICATORS.TRACKING.LOADED]: 'Cargado!',
+  [INDICATORS.TRACKING.LOADED]: 'Siguiendo!',
   [INDICATORS.TRACKING.LOADING]: 'Cargando...',
   [INDICATORS.TRACKING.STOPPED]: 'Seguimiento detenido',
+  [INDICATORS.TRACKING.STOP]: 'Detener seguimiento',
+  [INDICATORS.TRACKING.START]: 'Iniciar seguimiento',
   [INDICATORS.TRACKING.ID_MISSING]: 'Falta especificar un ID'
 } as const
