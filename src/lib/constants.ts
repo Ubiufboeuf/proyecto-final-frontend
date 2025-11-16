@@ -1,3 +1,4 @@
+const local_endpoint = import.meta.env.PUBLIC_LOCAL_ENDPOINT
 const http_endpoint = import.meta.env.PUBLIC_HTTP_ENDPOINT
 const http_recorder_endpoint = import.meta.env.PUBLIC_HTTP_RECORDER_ENDPOINT
 const ws_endpoint = import.meta.env.PUBLIC_WS_ENDPOINT
@@ -6,8 +7,8 @@ const { DEV } = import.meta.env
 const SESSION_COOKIE_NAME = 'berrutti-web-auth-token'
 
 export const ENDPOINTS = {
-  ROUTES: `${http_endpoint}/mocks/routes.json`,
-  BUSES_DATA: `${http_endpoint}/mocks/buses_data.json`,
+  ROUTES: `${local_endpoint}/mocks/routes.json`,
+  BUSES_DATA: `${local_endpoint}/mocks/buses_data.json`,
   HTTP_RECORDER: http_recorder_endpoint,
   HTTP: http_endpoint,
   WS: ws_endpoint,
