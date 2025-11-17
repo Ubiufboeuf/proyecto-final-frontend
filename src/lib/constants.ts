@@ -12,12 +12,10 @@ export const ENDPOINTS = {
   HTTP_RECORDER: http_recorder_endpoint,
   HTTP: http_endpoint,
   WS: ws_endpoint,
-  LOGOUT: `${http_endpoint}/api/logout`,
+  LOGOUT: `${http_endpoint}/http.php?action=logout`,
   LOGIN: `${http_endpoint}/http.php?action=login`,
   REGISTER: `${http_endpoint}/http.php?action=registrar`
-  // LOGIN: `${http_endpoint}/api/login/`,
-  // REGISTER: `${http_endpoint}/api/register/`
-}
+} as const
 
 export {
   DEV,
