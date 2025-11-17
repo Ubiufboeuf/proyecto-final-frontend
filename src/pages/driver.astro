@@ -1,12 +1,8 @@
 ---
 import { DriverDashboard } from '@/components/DriverDashboard';
 import LayoutSimple from '@/layouts/LayoutSimple.astro';
-import { ENDPOINTS, SESSION_COOKIE_NAME } from '@/lib/constants';
+import { SESSION_COOKIE_NAME } from '@/lib/constants';
 import { getUserData } from '@/services/userService';
-
-if (new URL(ENDPOINTS.HTTP).host !== Astro.url.host) {
-  return Astro.redirect(ENDPOINTS.HTTP)
-}
 
 const token = Astro.cookies.get(SESSION_COOKIE_NAME)
 if (!token) return Astro.redirect('/')
