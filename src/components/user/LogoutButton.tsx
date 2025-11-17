@@ -1,4 +1,5 @@
 import { ENDPOINTS } from '@/lib/constants'
+import { errorHandler } from '@/lib/utils'
 import { useUserStore } from '@/stores/useUserStore'
 
 export function LogoutButton ({ class: className = '' }: { class?: string }) {
@@ -14,15 +15,43 @@ export function LogoutButton ({ class: className = '' }: { class?: string }) {
 
     // Esto borra la cookie de sesión del usuario
     try {
-      const res = await fetch(ENDPOINTS.LOGOUT, { method: 'POST' })
-      if (res.ok) {
-        location.href = '/'
+      const res = await fetch(ENDPOINTS.LOGOUT, {
+        method: 'POST',
+        credentials: 'include'
+      })
+
+      if (!res.ok) {
+        alert('Error cerrando sesión')
         return
       }
       
-      console.error('Error cerrando la sesión')
+      let text = ''
+      let data = null
+      let errorParsingJSON: unknown | false = false
+
+      try {
+        text = await res.text()
+        data = JSON.parse(text)
+      } catch (err) {
+        errorParsingJSON = err
+      }
+
+      if (errorParsingJSON !== false) {
+        try {
+          errorHandler(null, 'Error parseando la respuesta al cerrar sesión')
+          // console.log('php data as text:', text)
+          return
+        } catch (err) {
+          errorHandler(err, 'Error mostrando la respuesta del servidor al cerrar sesión')
+          return
+        }
+      }
+
+      // console.log('php data as json:', data)
+      if (data.message) alert(data.message)
+      if (data.success) location.href = '/'
     } catch {
-      console.error('Error de red al cerrar sesión')
+      alert('Error de red al cerrar sesión')
     }
   }
   
