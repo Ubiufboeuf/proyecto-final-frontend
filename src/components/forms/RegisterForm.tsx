@@ -94,7 +94,7 @@ export function RegisterForm () {
 
       // console.log('php data as json:', data)
       if (data.message) alert(data.message)
-      // if (data.success) location.href = '/'
+      if (data.success) location.href = '/'
     } catch {
       // console.error('Error de red al registrarse')
       alert('Error de red al registrarse')

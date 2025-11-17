@@ -78,7 +78,7 @@ export function LoginForm () {
 
       // console.log('php data as json:', data)
       if (data.message) alert(data.message)
-      // if (data.success) location.href = '/'
+      if (data.success) location.href = '/'
     } catch {
       alert('Error de red al iniciar sesión')
     }
