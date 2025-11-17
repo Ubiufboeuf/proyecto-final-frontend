@@ -104,9 +104,9 @@ export function DriverDashboard ({ user }: { user: User }) {
       <section class='h-80 w-full dmc:rounded-lg overflow-hidden bg-gray-700'>
         <MapLite coords={{ lat: position?.coords.latitude, lng: position?.coords.longitude }} />
       </section>
-      <footer class='fixed bottom-0 z-[9999] h-fit w-104 dmc:rounded-lg flex justify-center items-center gap-2 p-4 border border-gray-300 bg-white dark:border-0 dark:bg-[#242F3F]'>
+      <footer class='fixed bottom-0 z-[9999] h-fit w-full dmc:w-104 dmc:rounded-lg flex not-dmc:flex-wrap justify-center items-center gap-2 p-4 border border-gray-300 bg-white dark:border-0 dark:bg-[#242F3F]'>
         <button
-          class='w-fit text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 dark:hover:bg-gray-700 touch:active:bg-orange-50 dark:touch:active:bg-gray-700 text-orange-500 hover:text-gray-800 dark:hover:text-orange-50 dark:touch:active:text-orange-50 touch:active:text-gray-800 transition-colors border-orange-500 dark:hover:border-orange-50 dark:touch:active:border-orange-50 border cursor-pointer'
+          class='w-full dmc:w-fit text-nowrap rounded-lg p-2 px-4 hover:bg-orange-50 dark:hover:bg-gray-700 touch:active:bg-orange-50 dark:touch:active:bg-gray-700 text-orange-500 hover:text-gray-800 dark:hover:text-orange-50 dark:touch:active:text-orange-50 touch:active:text-gray-800 transition-colors border-orange-500 dark:hover:border-orange-50 dark:touch:active:border-orange-50 border cursor-pointer'
           onClick={toggleAccuracy}
         >
           Cambiar precisión
