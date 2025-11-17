@@ -2,6 +2,7 @@ import { ENDPOINTS } from '@/lib/constants'
 import { FormInput } from './Input'
 import { SwapInputs } from './SwapInputs'
 import { useState } from 'preact/hooks'
+import { errorHandler } from '@/lib/utils'
 
 export function RegisterForm () {
   const [isSwapped, setIsSwapped] = useState(false)
@@ -47,28 +48,56 @@ export function RegisterForm () {
 
     const contact = isSwapped ? 'phone' : 'email'
 
+    const body = {
+      fullname,
+      document,
+      email,
+      phone,
+      contact,
+      password
+    }
+
     try {
       const res = await fetch(ENDPOINTS.REGISTER, {
         method: 'POST',
-        body: JSON.stringify({
-          fullname,
-          document,
-          email,
-          phone,
-          contact,
-          password
-        })
+        body: JSON.stringify(body),
+        credentials: 'include'
       })
 
-      if (res.ok) {
-        location.href = '/'
-        // console.log(res)
+      if (!res.ok) {
+        // console.error('Error registrando la cuenta')
+        alert('Error registrando la cuenta')
         return
       }
       
-      console.error('Error iniciar la sesión')
+      let text = ''
+      let data = null
+      let errorParsingJSON: unknown | false = false
+
+      try {
+        text = await res.text()
+        data = JSON.parse(text)
+      } catch (err) {
+        errorParsingJSON = err
+      }
+
+      if (errorParsingJSON !== false) {
+        try {
+          errorHandler(null, 'Error parseando la respuesta al registrarse')
+          // console.log('php data as text:', text)
+          return
+        } catch (err) {
+          errorHandler(err, 'Error mostrando la respuesta del servidor al registrarse')
+          return
+        }
+      }
+
+      // console.log('php data as json:', data)
+      if (data.message) alert(data.message)
+      // if (data.success) location.href = '/'
     } catch {
-      console.error('Error de red al iniciar sesión')
+      // console.error('Error de red al registrarse')
+      alert('Error de red al registrarse')
     }
   }
 
@@ -136,6 +165,7 @@ export function RegisterForm () {
             placeholder='••••••••'
             visiblePasswordPlaceholder='123456'
             type='password'
+            minLength={6}
             class='text-base'
             required
           />

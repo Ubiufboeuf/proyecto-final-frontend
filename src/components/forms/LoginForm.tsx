@@ -2,6 +2,7 @@ import { ENDPOINTS } from '@/lib/constants'
 import { FormInput } from './Input'
 import { SwapInputs } from './SwapInputs'
 import { useState } from 'preact/hooks'
+import { errorHandler } from '@/lib/utils'
 
 export function LoginForm () {
   const [isSwapped, setIsSwapped] = useState(false)
@@ -34,27 +35,52 @@ export function LoginForm () {
 
     const contact = isSwapped ? 'phone' : 'email'
 
+    const body = {
+      email,
+      phone,
+      contact,
+      password
+    }
+
     try {
-      console.log('fetch')
       const res = await fetch(ENDPOINTS.LOGIN, {
         method: 'POST',
-        body: JSON.stringify({
-          email,
-          phone,
-          contact,
-          password
-        })
+        body: JSON.stringify(body),
+        credentials: 'include'
       })
 
-      if (res.ok) {
-        location.href = '/'
-        // console.log(res)
+      if (!res.ok) {
+        alert('Error iniciando sesión')
         return
       }
       
-      console.error('Error iniciar la sesión')
+      let text = ''
+      let data = null
+      let errorParsingJSON: unknown | false = false
+
+      try {
+        text = await res.text()
+        data = JSON.parse(text)
+      } catch (err) {
+        errorParsingJSON = err
+      }
+
+      if (errorParsingJSON !== false) {
+        try {
+          errorHandler(null, 'Error parseando la respuesta al iniciar sesión')
+          // console.log('php data as text:', text)
+          return
+        } catch (err) {
+          errorHandler(err, 'Error mostrando la respuesta del servidor al iniciar sesión')
+          return
+        }
+      }
+
+      // console.log('php data as json:', data)
+      if (data.message) alert(data.message)
+      // if (data.success) location.href = '/'
     } catch {
-      console.error('Error de red al iniciar sesión')
+      alert('Error de red al iniciar sesión')
     }
   }
   
