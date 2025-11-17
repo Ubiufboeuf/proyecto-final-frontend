@@ -15,7 +15,6 @@ export type User = {
   document: string
   mail?: string
   tel?: string
-  password: string
   role: 'client' | 'driver' | 'admin'
 }
 

@@ -10,7 +10,7 @@ if (!token) return Astro.redirect('/')
 const user = await getUserData(token.value)
 
 if (!user) return Astro.redirect('/')
-const { document, fullName, password, role, mail, tel } = user
+const { document, fullName, role, mail, tel } = user
 
 const roles = {
   'client': 'Cliente',
