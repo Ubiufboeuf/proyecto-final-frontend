@@ -14,7 +14,8 @@ export const ENDPOINTS = {
   WS: ws_endpoint,
   LOGOUT: `${http_endpoint}/http.php?action=logout`,
   LOGIN: `${http_endpoint}/http.php?action=login`,
-  REGISTER: `${http_endpoint}/http.php?action=registrar`
+  REGISTER: `${http_endpoint}/http.php?action=registrar`,
+  GET_USER_DATA: `${http_endpoint}/http.php?action=obtenerDatosUsuario`
 } as const
 
 export {
