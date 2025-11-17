@@ -63,11 +63,16 @@ export async function getUserData (token: string): Promise<User | null> {
     throw new Error('No se recibió ningún usuario')
   }
     
+  let role: User['role'] = 'client'
+  if (usuario.rol === 'admin' || usuario.rol === 'driver') {
+    role = usuario.rol
+  }
+  
   const user: User = {
     id: `${usuario.ID_Usuario}`,
     document: `${usuario.documento}`,
     fullName: `${usuario.nombre_completo}`,
-    role: 'client',
+    role,
     mail: `${usuario.correo}`,
     tel: `${usuario.telefono}`
   }
