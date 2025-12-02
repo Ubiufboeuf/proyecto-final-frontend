@@ -45,8 +45,7 @@ export function LoginForm () {
     try {
       const res = await fetch(ENDPOINTS.LOGIN, {
         method: 'POST',
-        body: JSON.stringify(body),
-        credentials: 'include'
+        body: JSON.stringify(body)
       })
 
       if (!res.ok) {
